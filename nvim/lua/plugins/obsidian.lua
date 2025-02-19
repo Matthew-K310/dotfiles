@@ -15,7 +15,7 @@ return {
       workspaces = {
         {
           name = 'personal',
-          path = '~/Obsidian Local Vault/Matthew Local Vault/remote/',
+          path = '~/obsidian-vault/remote/',
         },
         -- {
         --   name = 'work',

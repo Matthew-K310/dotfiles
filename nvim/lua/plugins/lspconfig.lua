@@ -378,5 +378,4 @@ return {
       require('lsp_lines').setup()
     end,
   },
-  require 'kickstart.plugins.lint',
 }
