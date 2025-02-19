@@ -1,0 +1,36 @@
+return {
+  'williamboman/mason-lspconfig.nvim',
+  config = function()
+    require('mason-lspconfig').setup {
+      ensure_installed = {
+        -- 'nil_ls',
+        'bashls',
+        -- 'prettier',
+        'lua_ls',
+        'rust_analyzer',
+        'gopls',
+        'templ',
+        'html',
+        'cssls',
+        'emmet_language_server',
+        'htmx',
+        'tailwindcss',
+        'ts_ls',
+        'pylsp',
+        'clangd',
+        'prismals',
+        'yamlls',
+        'jsonls',
+        'eslint',
+        'marksman',
+        -- 'markdownlint',
+        'sqlls',
+        'wgsl_analyzer',
+        'texlab',
+        'intelephense',
+        'nim_langserver',
+        'zls',
+      },
+    }
+  end,
+}
