@@ -1,0 +1,19 @@
+general.import = ["~/.config/alacritty/dist/rose-pine-moon.toml"]
+
+[font]
+size = 14
+normal = {family = "JetBrainsMono Nerd Font", style = "Regular"}
+bold = {family = "JetBrainsMono Nerd Font", style = "Bold"}
+italic = {family = "JetBrainsMono Nerd Font", style = "Italic"}
+bold_italic = {family = "JetBrainsMono Nerd Font", style = "Bold Italic"}
+
+[window]
+startup_mode = "Maximized"
+dynamic_title = true 
+decorations_theme_variant = "None"
+decorations = "None"
+opacity = 0.6
+blur = true
+
+[cursor]
+style = {shape = "Beam", blinking = "On"}
