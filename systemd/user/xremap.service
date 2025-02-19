@@ -1,0 +1,7 @@
+# ~/.config/systemd/user/xremap.service
+[Unit]
+Description=xremap
+
+[Service]
+Restart=always
+ExecStart=xremap /home/matthewuser/config/xremap.yml --watch`
