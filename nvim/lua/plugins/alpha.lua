@@ -493,6 +493,19 @@ return {
       [[ ⣿⣟⡿⣾⠀⠀⠀⠀⠀⠀⠀⢀⡤⠄⠀⠀⠀⠀⠸⠁⢠⣦⣤⢀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠈⣿⠀ ]],
       [[ ⣿⣿⠏⠁⢀⡇⠀⠀⠀⠀⠀⠀⡄⠀⠀⠀⠘⡏⣷⣵⡻⠃⠄⢴⣆⠀⠀⠀⠀⠀⠀⠀⠰⠀⣆⣷⣿ ]],
       [[ ⣿⡿⣻⠗⠀⢠⠀⠀⠀⠀⠀⠃⠀⠀⠀⠀⢠⣤⣄⢰⣶⢯⣤⡈⠋⠀⠀⠀⠀⠀⠀⠀⠀⠆⠀⣿⣼ ]],
+      -- [[ $$$$$$$$$$$VVVVVVVVVVVVVVVVVVV$VVV$$VVVVVVVVVVVVVV ]],
+      -- [[ $$$$$$$$$$$$VVVVI*::*FVVVVVVV$$$$$$$$$$$VVVVVVVVVV ]],
+      -- [[ $$$$$$$$$$$$$$VV*..:::*VVVVVVVV$V$V$$$$VVVVVVVVVVV ]],
+      -- [[ $$$$$$$$$$$$$$$V*:***FV$$VVVVVVVVVV$$$$VVVV$$V$VV$ ]],
+      -- [[ $$$$$$$$$$$$$$$$$$V*:FV$$$$$$V$$$$$$$$$$$$$$$$$$$$ ]],
+      -- [[ $M$$$$$$$$$M$$$$I****V$MM$$$$$$$$$$$$$$$$$$$$$$$$$ ]],
+      -- [[ MMMMMMMMMMMMM$$F:.*V$$$$I*FV$$M$$$$$$$$$$$$$$$$$$$ ]],
+      -- [[ MMMMMMMMMMMMMM$F:.:*VM$$M$M$MMMMMMMMM$$$$$$$$$$$$$ ]],
+      -- [[ MMMMMMMMMMMMMM$F*:::FV$MMMMMMMMMMMMMMM$$$$$$$$$$$$ ]],
+      -- [[ MMMMMMMMMMMMMNM$FFF**:*VMMMMMMMMMMMMMMM$$$$$$$$$$$ ]],
+      -- [[ MMMMMMMMMMMMNNNMM$MMMV*****IVV$$$VVV$$$MM$$$$$$$$$ ]],
+      -- [[ MMMMMMMMMMMMNNNNMNMMMMM$$$$V$$$MMMMMMMMMM$$$$$$$$M ]],
+      -- [[ MMMMMMMMMMNNNNNNNNNNNNNNNNNNNNMMNMMMMMMM$$$$$$$$$$ ]],
     }
     -- alpha dashboard home
     dashboard.section.buttons.val = {

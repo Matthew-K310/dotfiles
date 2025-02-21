@@ -1,5 +1,7 @@
 require 'vimopts'
 
+vim.o.termguicolors = false
+
 -- [[ Basic Autocommands ]]
 
 -- Highlight when yanking (copying) text

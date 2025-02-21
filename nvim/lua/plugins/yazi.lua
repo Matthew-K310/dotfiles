@@ -20,5 +20,8 @@ return { -- Main File Manager
     keymaps = {
       show_help = '<f1>',
     },
+    yazi_floating_window_border = 'rounded',
+    floating_window_scaling_factor = 0.8,
+    yazi_floating_window_winblend = 20,
   },
 }

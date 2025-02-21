@@ -34,12 +34,31 @@ return {
         --   mappings = {
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
-        -- },
         pickers = {
+          lsp_document_symbols = {
+            theme = 'dropdown',
+          },
+          lsp_workspace_symbols = {
+            theme = 'dropdown',
+          },
+          live_grep = {
+            theme = 'dropdown',
+          },
+          grep_string = {
+            theme = 'dropdown',
+          },
+          diagnostics = {
+            theme = 'dropdown',
+          },
           colorscheme = {
             enable_preview = true,
           },
-        },
+        }, -- },
+        -- pickers = {
+        --   colorscheme = {
+        --     enable_preview = true,
+        --   },
+        -- },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -53,6 +72,8 @@ return {
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
+      vim.api.nvim_set_hl(0, 'TelescopeNormal', { bg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'TelescopeBorder', { fg = 'NONE' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Search Keymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = 'Search Files' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = 'Search Builtin' })
