@@ -19,7 +19,10 @@ progress_bar_type = "Rectangle"
 cover_img_length = 9
 cover_img_width = 5
 cover_img_scale = 1.0
+<<<<<<< Updated upstream
 # enable_media_control = true
+=======
+>>>>>>> Stashed changes
 enable_media_control = false
 enable_streaming = "Always"
 enable_notify = true
@@ -43,8 +46,16 @@ album_percent = 40
 [device]
 name = "spotify-player"
 device_type = "speaker"
+<<<<<<< Updated upstream
 volume = 85
 bitrate = 320
 audio_cache = true
 normalization = true
 autoplay = true
+=======
+volume = 70
+bitrate = 320
+audio_cache = false
+normalization = false
+autoplay = false
+>>>>>>> Stashed changes

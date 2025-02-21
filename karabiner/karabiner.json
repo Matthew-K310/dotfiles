@@ -5,18 +5,37 @@
             "complex_modifications": {
                 "rules": [
                     {
+<<<<<<< Updated upstream
                         "description": "Right-Alt to ESC on tap/Left Control on hold",
                         "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "right_alt",
+=======
+                        "description": "Change fn to hyper if held and cmd + period if tapped.",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "fn",
+>>>>>>> Stashed changes
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
                                     {
+<<<<<<< Updated upstream
                                         "key_code": "left_control",
                                         "lazy": true
+=======
+                                        "key_code": "left_shift",
+                                        "modifiers": ["left_command", "left_control", "left_option"]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "period",
+                                        "modifiers": ["left_command"]
+>>>>>>> Stashed changes
                                     }
                                 ],
                                 "type": "basic"
@@ -24,7 +43,11 @@
                         ]
                     },
                     {
+<<<<<<< Updated upstream
                         "description": "ctrl + h/j/k/l as vim arrow keys",
+=======
+                        "description": "Change left_control + hjkl to arrow keys",
+>>>>>>> Stashed changes
                         "manipulators": [
                             {
                                 "from": {
@@ -73,6 +96,7 @@
                         ]
                     },
                     {
+<<<<<<< Updated upstream
                         "description": "Make fn key Left Command + Period on tap and Hyper on hold",
                         "manipulators": [
                             {
@@ -115,6 +139,9 @@
                     {
                         "description": "Change caps_lock to left_control if pressed with other keys, change caps_lock to escape if pressed alone.",
                         "enabled": false,
+=======
+                        "description": "Caps lock to escape on tap and left_control on hold.",
+>>>>>>> Stashed changes
                         "manipulators": [
                             {
                                 "from": {
@@ -134,6 +161,7 @@
                     }
                 ]
             },
+<<<<<<< Updated upstream
             "fn_function_keys": [
                 {
                     "from": { "key_code": "f6" },
@@ -150,6 +178,8 @@
                     ]
                 }
             ],
+=======
+>>>>>>> Stashed changes
             "name": "Default profile",
             "selected": true,
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
