@@ -7,7 +7,7 @@ calendar=(
   label.color="$ROSE"
   label.shadow.drawing=off
 
-  # background.color="$CALENDAR_BACKGROUND"
+  background.color="0x40232323"
 
   # functionality
   update_freq=30

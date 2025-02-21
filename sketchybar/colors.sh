@@ -28,6 +28,7 @@ export LOW=0xff21202e
 export MED=0xff403d52
 export HIGH=0xff524f67
 export WHITE=0xffffffff
+export MAIN=0xff232323
 
 export OVERLAY1=0xff928374
 

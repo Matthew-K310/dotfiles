@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8")
+SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7")
 
 sketchybar --add event aerospace_workspace_change
 
@@ -19,7 +19,7 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
       label="$name"
       # label.color="$WHITE"
 
-      background.color="0x44ffffff" \
+      background.color="0x40232323"
 
       background.corner_radius="5" \
 
@@ -60,3 +60,5 @@ space_creator=(
 sketchybar --add item space_creator left               \
            --set space_creator "${space_creator[@]}"   \
            # --subscribe space_creator aerospace_workspace_change
+
+update_freq=30

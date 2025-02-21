@@ -10,7 +10,7 @@ fi
 
 case ${PERCENTAGE} in
   [3-9][0-9] | 100)
-    COLOR=$PINE
+    COLOR=$FOAM
     ;;
   [1-2][0-9])
     COLOR=$GOLD

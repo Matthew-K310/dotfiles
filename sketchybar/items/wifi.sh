@@ -4,7 +4,10 @@ source "$CONFIG_DIR/colors.sh"
 
 wifi=(
   # label
+  # "label.color=$FOAM"
   "label.color=$FOAM"
+
+  background.color="0x40232323"
 
   # background.color="$WIFI_BACKGROUND"
 

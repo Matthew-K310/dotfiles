@@ -3,6 +3,7 @@
 front_app=(
   icon.background.drawing=on
   icon.drawing=on
+  background.color="0x40232323"
   label.color="$LAVENDER"
   display=active
   script="$PLUGIN_DIR/front_app.sh"
