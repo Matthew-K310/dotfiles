@@ -43,16 +43,13 @@ album_percent = 40
 [device]
 name = "spotify-player"
 device_type = "speaker"
-<<<<<<< Updated upstream
 volume = 85
 bitrate = 320
 audio_cache = true
 normalization = true
 autoplay = true
-=======
 volume = 70
 bitrate = 320
 audio_cache = false
 normalization = false
 autoplay = false
->>>>>>> Stashed changes
