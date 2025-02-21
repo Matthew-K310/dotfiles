@@ -1,32 +1,41 @@
 {
-    "global": { "show_in_menu_bar": false },
+    "global": {
+        "check_for_updates_on_startup": false,
+        "show_in_menu_bar": false
+    },
     "profiles": [
         {
             "complex_modifications": {
                 "rules": [
                     {
-<<<<<<< Updated upstream
-                        "description": "Right-Alt to ESC on tap/Left Control on hold",
-                        "enabled": false,
+                        "description": "Caps lock to escape when tapped and left_control when held.",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "right_alt",
-=======
-                        "description": "Change fn to hyper if held and cmd + period if tapped.",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "fn",
->>>>>>> Stashed changes
+                                    "key_code": "caps_lock",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
                                     {
-<<<<<<< Updated upstream
                                         "key_code": "left_control",
                                         "lazy": true
-=======
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Fn to Raycast emoji when tapped and hyper key when held.",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "fn",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
                                         "key_code": "left_shift",
                                         "modifiers": ["left_command", "left_control", "left_option"]
                                     }
@@ -35,7 +44,6 @@
                                     {
                                         "key_code": "period",
                                         "modifiers": ["left_command"]
->>>>>>> Stashed changes
                                     }
                                 ],
                                 "type": "basic"
@@ -43,11 +51,7 @@
                         ]
                     },
                     {
-<<<<<<< Updated upstream
-                        "description": "ctrl + h/j/k/l as vim arrow keys",
-=======
-                        "description": "Change left_control + hjkl to arrow keys",
->>>>>>> Stashed changes
+                        "description": "Change left_control + hjkl to arrow keys.",
                         "manipulators": [
                             {
                                 "from": {
@@ -94,92 +98,9 @@
                                 "type": "basic"
                             }
                         ]
-                    },
-                    {
-<<<<<<< Updated upstream
-                        "description": "Make fn key Left Command + Period on tap and Hyper on hold",
-                        "manipulators": [
-                            {
-                                "from": { "key_code": "fn" },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "modifiers": ["left_shift", "left_option", "left_command"]
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "period",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Caps Lock to ESC on tap/Left Control on hold",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "lazy": true
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "escape" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Change caps_lock to left_control if pressed with other keys, change caps_lock to escape if pressed alone.",
-                        "enabled": false,
-=======
-                        "description": "Caps lock to escape on tap and left_control on hold.",
->>>>>>> Stashed changes
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "lazy": true
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "escape" }],
-                                "type": "basic"
-                            }
-                        ]
                     }
                 ]
             },
-<<<<<<< Updated upstream
-            "fn_function_keys": [
-                {
-                    "from": { "key_code": "f6" },
-                    "to": [
-                        {
-                            "software_function": {
-                                "set_mouse_cursor_position": {
-                                    "screen": 0,
-                                    "x": "50%",
-                                    "y": "50%"
-                                }
-                            }
-                        }
-                    ]
-                }
-            ],
-=======
->>>>>>> Stashed changes
             "name": "Default profile",
             "selected": true,
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
