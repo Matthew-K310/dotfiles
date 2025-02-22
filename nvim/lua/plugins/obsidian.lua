@@ -33,13 +33,13 @@ return {
       -- see below for full list of options 👇
     },
   },
-  { -- Remove MD013 warnings
-    'nvim-lspconfig',
-    opts = {
-      diagnostics = {
-        virtual_text = false,
-        signs = false,
-      },
-    },
-  },
+  -- { -- Remove MD013 warnings
+  --   'nvim-lspconfig',
+  --   opts = {
+  --     diagnostics = {
+  --       virtual_text = false,
+  --       signs = false,
+  --     },
+  --   },
+  -- },
 }

@@ -232,3 +232,4 @@ sudo pacman -S --noconfirm --needed gcc make git ripgrep fd unzip neovim
 </details>
 
 # nvim-kickstart-custom
+# my-nvim-config
