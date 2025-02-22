@@ -72,19 +72,19 @@ return {
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.api.nvim_set_hl(0, 'TelescopeNormal', { bg = 'NONE' })
-      vim.api.nvim_set_hl(0, 'TelescopeBorder', { fg = 'NONE' })
-      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Search Keymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = 'Search Files' })
-      vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = 'Search Builtin' })
+      -- vim.api.nvim_set_hl(0, 'TelescopeNormal', { bg = 'NONE' })
+      -- vim.api.nvim_set_hl(0, 'TelescopeBorder', { fg = 'NONE' })
+      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
+      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [B]uiltin' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = 'Grep String' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Grep in Current File' })
-      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = 'Search Diagnostics' })
-      vim.keymap.set('n', '<leader>sr', builtin.oldfiles, { desc = 'Search Recent Files' })
-      vim.keymap.set('n', '<leader>ds', builtin.lsp_document_symbols, { desc = 'Search Document Symbols' })
-      vim.keymap.set('n', '<leader>ws', builtin.lsp_workspace_symbols, { desc = 'Search Workspace Symbols' })
-      vim.keymap.set('n', '<leader>sz', ':Telescope zoxide list<CR>', { desc = 'Zoxide Search' })
-      vim.keymap.set('n', '<leader>st', builtin.colorscheme, { desc = 'Set Colorscheme' })
+      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
+      vim.keymap.set('n', '<leader>sr', builtin.oldfiles, { desc = '[S]earch [R]ecent Files' })
+      vim.keymap.set('n', '<leader>ds', builtin.lsp_document_symbols, { desc = 'Search [D]ocument [S]ymbols' })
+      vim.keymap.set('n', '<leader>ws', builtin.lsp_workspace_symbols, { desc = 'Search [W]orkspace [S]ymbols' })
+      vim.keymap.set('n', '<leader>sz', ':Telescope zoxide list<CR>', { desc = '[S]earch [Z]oxide' })
+      vim.keymap.set('n', '<leader>sC', builtin.colorscheme, { desc = '[S]et [C]olorscheme' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Search Buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
@@ -100,6 +100,9 @@ return {
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+      vim.keymap.set('n', '<leader>sD', function()
+        builtin.find_files { cwd = '~/Developments' }
+      end, { desc = '[S]earch [D]ev files' })
     end,
   },
   {

@@ -1,6 +1,7 @@
 require 'vimopts'
 
-vim.o.termguicolors = false
+-- vim.o.termguicolors = false
+vim.opt.termguicolors = true
 
 -- [[ Basic Autocommands ]]
 
@@ -33,3 +34,5 @@ require('lazy').setup('plugins', {
     lazy = false,
   },
 })
+
+vim.cmd 'colorscheme base16-black-metal-gorgoroth'
