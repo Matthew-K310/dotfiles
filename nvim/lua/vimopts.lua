@@ -69,9 +69,6 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- hopefully disables diagnostic warnings
-vim.diagnostic.enable(false)
-
 -- [[ Basic Keymaps ]]
 
 -- Clear highlights on search when pressing <Esc> in normal mode
@@ -104,3 +101,6 @@ vim.keymap.set('n', '<leader>ll', ':setlocal spell spelllang-en_us<CR>')
 
 -- Disables "undefined global" warning
 vim.opt.shortmess:append 'I'
+
+-- Update Lazy plugins
+vim.keymap.set('n', '<leader>ls', ':Lazy sync<CR>')

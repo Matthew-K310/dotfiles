@@ -3,9 +3,7 @@ return {
   config = function()
     require('mason-lspconfig').setup {
       ensure_installed = {
-        -- 'nil_ls',
         'bashls',
-        -- 'prettier',
         'lua_ls',
         'rust_analyzer',
         'gopls',
@@ -25,6 +23,7 @@ return {
         'marksman',
         -- 'markdownlint',
         'sqlls',
+        -- 'swiftlint',
         'wgsl_analyzer',
         'texlab',
         'intelephense',
