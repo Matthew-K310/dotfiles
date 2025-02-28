@@ -76,6 +76,7 @@ return {
       -- vim.api.nvim_set_hl(0, 'TelescopeBorder', { fg = 'NONE' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = 'Telescope buffers' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [B]uiltin' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = 'Grep String' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Grep in Current File' })
