@@ -36,3 +36,13 @@ require('lazy').setup('plugins', {
 })
 
 vim.cmd 'colorscheme base16-black-metal-gorgoroth'
+
+-- 80 character line limit, and start new line
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function()
+    vim.bo.textwidth = 80 -- Set max line width to 100 characters
+    -- vim.bo.wrap = true -- Enable line wrapping
+    vim.bo.formatoptions = 't' -- Auto-wrap text when typing
+  end,
+})

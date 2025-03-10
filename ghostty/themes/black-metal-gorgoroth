@@ -20,7 +20,7 @@ palette = 18=121212
 palette = 19=222222
 palette = 20=999999
 palette = 21=999999
-background = 232323
+background = 000
 foreground = c1c1c1
 selection-background = c1c1c1
 selection-foreground = 000000

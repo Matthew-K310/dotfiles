@@ -53,12 +53,7 @@ return {
           colorscheme = {
             enable_preview = true,
           },
-        }, -- },
-        -- pickers = {
-        --   colorscheme = {
-        --     enable_preview = true,
-        --   },
-        -- },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -104,6 +99,9 @@ return {
       vim.keymap.set('n', '<leader>sD', function()
         builtin.find_files { cwd = '~/Developments' }
       end, { desc = '[S]earch [D]ev files' })
+      vim.keymap.set('n', '<leader>so', function()
+        builtin.find_files { cwd = '~/obsidian-vault' }
+      end, { desc = '[S]earch [O]bsidian vault' })
     end,
   },
   {

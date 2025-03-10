@@ -18,6 +18,10 @@ return {
     config = function()
       local luasnip = require 'luasnip'
 
+      require('cmp').setup.filetype('markdown', {
+        enabled = false,
+      })
+
       -- Set up nvim-cmp.
       local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
       local cmp = require 'cmp'
