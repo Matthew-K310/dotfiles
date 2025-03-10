@@ -21,7 +21,7 @@ return {
       -- Optional, if you keep daily notes in a separate directory.
       folder = 'dailies',
       -- Optional, if you want to change the date format for the ID of daily notes.
-      date_format = '%d%m%Y%H%M',
+      date_format = '%d%m%Y',
       -- Optional, default tags to add to each new daily note created.
       default_tags = { 'daily' },
       -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
@@ -99,7 +99,7 @@ return {
     -- Optional, for templates (see below).
     templates = {
       folder = 'templates',
-      date_format = '%d%m%Y%H%M',
+      date_format = '%d%m%Y',
       time_format = '%H:%M',
       vim.keymap.set('n', '<leader>mt', ':ObsidianTemplate<CR>', { desc = 'Open [T]emplates' }),
     },
