@@ -7,7 +7,7 @@ battery=(
   "label.color=$BATTERY"
   # background.color="$BATTERY_BACKGROUND"
 
-  background.color="0x40232323"
+  # background.color="0x80232323"
 
   # functionality
   update_freq=120

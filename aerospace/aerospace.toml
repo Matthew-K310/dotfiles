@@ -21,7 +21,8 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 20
 
 # Possible values: tiles|accordion
-default-root-container-layout = 'tiles'
+# default-root-container-layout = 'tiles'
+default-root-container-layout = 'accordion'
 
 # Possible values: horizontal|vertical|auto
 default-root-container-orientation = 'auto'
@@ -40,10 +41,10 @@ preset = 'qwerty'
 [gaps]
 inner.horizontal = 10
 inner.vertical = 10
-outer.left = 15
-outer.bottom = 15
-outer.top = 45
-outer.right = 15
+outer.left = 10
+outer.bottom = 10
+outer.top = 33
+outer.right = 10
 
 # 'main' binding mode declaration
 [mode.main.binding]
@@ -129,10 +130,6 @@ esc = 'mode main'
 
 # window workspace assignments
 
-# [[on-window-detected]]
-# if.app-id = 'com.apple.finder'
-# run = "move-node-to-workspace 1"
-
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
 run = "move-node-to-workspace 1"
@@ -142,28 +139,28 @@ if.app-id = 'com.apple.mail'
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
-if.app-id = 'com.readdle.SparkDesktop'
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
 if.app-id = 'org.mozilla.thunderbird'
 run = 'move-node-to-workspace 1'
-
-[[on-window-detected]]
-if.app-id = 'com.todoist.mac.Todoist'
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
-if.app-id = 'com.cron.electron'
-run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = 'com.figma.Desktop'
 run = 'move-node-to-workspace 1'
 
-# [[on-window-detected]]
-# if.app-id = 'org.gimp.gimp-2.10'
-# run = 'move-node-to-workspace 1'
+[[on-window-detected]]
+if.app-id = 'com.readdle.SparkDesktop'
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = 'com.linear'
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = 'com.cron.electron'
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = 'com.todoist.mac.Todoist'
+run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
@@ -177,31 +174,32 @@ run = 'move-node-to-workspace 2'
 if.app-id = 'net.kovidgoyal.kitty'
 run = "move-node-to-workspace 3"
 
-# [[on-window-detected]]
-# if.app-id = 'com.mitchellh.ghostty'
-# run = "move-node-to-workspace 3"
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = "move-node-to-workspace 4"
+
+[[on-window-detected]]
+if.app-id = 'sh.cider.genten.mac'
+run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = "move-node-to-workspace 4"
+run = "move-node-to-workspace 5"
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
 run = "move-node-to-workspace 5"
 
 [[on-window-detected]]
+if.app-id = 'dev.vencord.vesktop'
+run = "move-node-to-workspace 5"
+
+[[on-window-detected]]
 if.app-id = 'dev.zed.Zed'
 run = "move-node-to-workspace 6"
 
-[[on-window-detected]]
-if.app-id = 'com.spotify.client'
-run = "move-node-to-workspace 7"
+# floating window assignments
 
-[[on-window-detected]]
-if.app-id = 'com.josephlyncheski.minimeters'
-run = 'move-node-to-workspace 7'
-
-# window floating assignments
 [[on-window-detected]]
 if.app-id = 'com.apple.DiskUtility'
 run = 'layout floating'

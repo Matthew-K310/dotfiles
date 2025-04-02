@@ -71,6 +71,9 @@ vim.opt.scrolloff = 10
 
 -- [[ Basic Keymaps ]]
 
+-- jj as escape
+vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true, silent = true })
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -88,11 +91,12 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
-vim.keymap.set('i', '<C-h>', '<Left>', { noremap = false, silent = true })
-vim.keymap.set('i', '<C-j>', '<Down>', { noremap = false, silent = true })
-vim.keymap.set('i', '<C-k>', '<Up>', { noremap = false, silent = true })
-vim.keymap.set('i', '<C-l>', '<Right>', { noremap = false, silent = true })
+-- vim.keymap.set('i', '<C-h>', '<Left>', { noremap = false, silent = true })
+-- vim.keymap.set('i', '<C-j>', '<Down>', { noremap = false, silent = true })
+-- vim.keymap.set('i', '<C-k>', '<Up>', { noremap = false, silent = true })
+-- vim.keymap.set('i', '<C-l>', '<Right>', { noremap = false, silent = true })
 
+vim.keymap.set('n', '<leader>nf', ':ene <BAR> startinsert <CR>', { desc = '  > New file' }, { noremap = false, silent = true })
 -- autocomplete in normal text
 vim.keymap.set('i', '<C-f>', '<C-x><C-f>', { noremap = true, silent = true })
 

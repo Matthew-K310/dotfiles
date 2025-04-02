@@ -7,7 +7,7 @@ wifi=(
   # "label.color=$FOAM"
   "label.color=$FOAM"
 
-  background.color="0x40232323"
+  # background.color="0x80232323"
 
   # background.color="$WIFI_BACKGROUND"
 

@@ -6,7 +6,7 @@ volume=(
   # label
   "label.color=$LOVE"
   # background.color="$VOLUME_BACKGROUND"
-  background.color="0x40232323"
+  # background.color="0x80232323"
 
 
   # functionality

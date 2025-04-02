@@ -4,7 +4,8 @@ return {
   config = function()
     require('zen-mode').setup {
       window = {
-        width = 85,
+        -- width = 85,
+        width = 100,
         -- transparent = true,
       },
     }

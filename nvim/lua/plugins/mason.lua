@@ -26,10 +26,32 @@ return {
         -- 'swiftlint',
         'wgsl_analyzer',
         'texlab',
+        'templ',
         'intelephense',
         'nim_langserver',
         'zls',
       },
     }
+    require('mason').setup()
+
+    local mason_registry = require 'mason-registry'
+
+    local formatters = {
+      'prettier',
+      'stylua',
+      'eslint_d',
+      'gofumpt',
+      'golines',
+      'goimports-reviser',
+      'black',
+      'shfmt',
+    }
+
+    -- Ensure formatters are installed
+    for _, tool in ipairs(formatters) do
+      if not mason_registry.is_installed(tool) then
+        mason_registry.get_package(tool):install()
+      end
+    end
   end,
 }

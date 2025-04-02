@@ -2,8 +2,8 @@ theme = black-metal-gorgoroth
 # theme = rose-pine
 # theme = vague
 
-# background-opacity = 0.8
-background-opacity = 1
+background-opacity = 0.9
+# background-opacity = 1
 background-blur-radius = 10
 
 window-padding-x = 5
