@@ -151,10 +151,6 @@ if.app-id = 'com.readdle.SparkDesktop'
 run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
-if.app-id = 'com.linear'
-run = "move-node-to-workspace 2"
-
-[[on-window-detected]]
 if.app-id = 'com.cron.electron'
 run = "move-node-to-workspace 2"
 
