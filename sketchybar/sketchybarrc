@@ -14,24 +14,25 @@ PADDINGS=1                     # All paddings use this value (icon, label, backg
 
 # Setting up the general bar appearance of the bar
 bar=(
-	height=28
+	height=32
 	# notch_display_height=42
-	notch_offset=-7
+	# notch_offset=-7
 	# color=0x40000000
 	# color=0x661724F0
-	background=off
-	# color=0x60232323
-	color=transparent
+	# background=off
+	# color=0xFF232323
+	color=0xFF000000
+	# color=transparent
 	shadow=off
 	position=top
 	sticky=on
 	padding_right=4
 	padding_left=4
-	margin=10
-	corner_radius=8
+	# margin=10
+	# corner_radius=8
 	topmost=window
-	blur_radius=50
-	y_offset=7
+	# blur_radius=50
+	# y_offset=7
 )
 
 sketchybar --bar "${bar[@]}"
@@ -75,12 +76,9 @@ defaults=(
 sketchybar --default "${defaults[@]}"
 
 # Left
-# source "$ITEM_DIR/spaces.sh"
 source "$ITEM_DIR/aerospace.sh"
-# source "$ITEM_DIR/front_app.sh"
 
 # Center
-# source "$ITEM_DIR/aerospace.sh"
 source "$ITEM_DIR/front_app.sh"
 
 # Right
@@ -89,25 +87,25 @@ source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/wifi.sh"
 source "$ITEM_DIR/volume.sh"
 
-sketchybar --add bracket left '/space\..*/' \
-	--set left background.color=0x80232323 \
-	background.corner_radius=12 \
-	background.height=28
-
-sketchybar --add bracket center front_app \
-	--set center background.color=0x80232323 \
-	background.corner_radius=12 \
-	background.height=28
-
+# sketchybar --add bracket left '/space\..*/' \
+# 	--set left background.color=0x80232323 \
+# 	background.corner_radius=12 \
+# 	background.height=28
+#
+# sketchybar --add bracket center front_app \
+# 	--set center background.color=0x80232323 \
+# 	background.corner_radius=12 \
+# 	background.height=28
+#
 # sketchybar --add bracket left '/space\..*/' front_app    \
 #            --set         left background.color=0x80232323 \
 #                                 background.corner_radius=12  \
 #                                 background.height=28
-
-sketchybar --add bracket right battery calendar wifi volume \
-	--set right background.color=0x80232323 \
-	background.corner_radius=12 \
-	background.height=28
+#
+# sketchybar --add bracket right battery calendar wifi volume \
+# 	--set right background.color=0x80232323 \
+# 	background.corner_radius=12 \
+# 	background.height=28
 
 sketchybar --hotload on
 

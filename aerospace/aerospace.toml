@@ -15,76 +15,63 @@ exec-on-workspace-change = [
     'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
 ]
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
-enable-normalization-flatten-containers = true
-enable-normalization-opposite-orientation-for-nested-containers = true
-
-accordion-padding = 20
-
-# Possible values: tiles|accordion
-# default-root-container-layout = 'tiles'
-default-root-container-layout = 'accordion'
-
-# Possible values: horizontal|vertical|auto
-default-root-container-orientation = 'auto'
+enable-normalization-flatten-containers = false
+enable-normalization-opposite-orientation-for-nested-containers = false
 
 # Mouse follows focus when focused monitor changes
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-# on-focus-changed = ['move-mouse window-lazy-center']
-#
+
 automatically-unhide-macos-hidden-apps = true
 
-# Possible values: (qwerty|dvorak)
-[key-mapping]
-preset = 'qwerty'
+# workspace monitor assignments
+# [workspace-to-monitor-force-assignment]
+#
+# 1 = 'main'
+# 2 = 'main'
+# 3 = 'main'
+# 4 = 'main'
+# 5 = 'main'
+# 6 = 'main'
+# 7 = 'main'
+# 8 = 'secondary'
+# 9 = 'secondary'
+# 10 = 'secondary'
 
-# Gaps between windows (inner-*) and between monitor edges (outer-*).
 [gaps]
+
+outer.top = 35
+outer.bottom = 5
+outer.left = 5
+outer.right = 5
 inner.horizontal = 10
 inner.vertical = 10
-outer.left = 10
-outer.bottom = 10
-outer.top = 33
-outer.right = 10
 
-# 'main' binding mode declaration
 [mode.main.binding]
 
-alt-ctrl-cmd-c = 'reload-config'
+# i3 wraps focus by default
+alt-h = 'focus --boundaries-action wrap-around-the-workspace left'
+alt-j = 'focus --boundaries-action wrap-around-the-workspace down'
+alt-k = 'focus --boundaries-action wrap-around-the-workspace up'
+alt-l = 'focus --boundaries-action wrap-around-the-workspace right'
 
-# All possible keys:
-# - Letters.        a, b, c, ..., z
-# - Numbers.        0, 1, 2, ..., 9
-# - Keypad numbers. keypad0, keypad1, keypad2, ..., keypad9
-# - F-keys.         f1, f2, ..., f20
-# - Special keys.   minus, equal, period, comma, slash, backslash, quote, semicolon, backtick,
-#                   leftSquareBracket, rightSquareBracket, space, enter, esc, backspace, tab
-# - Keypad special. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
-#                   keypadMinus, keypadMultiply, keypadPlus
-# - Arrows.         left, down, up, right
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
 
-# All possible modifiers: cmd, alt, ctrl, shift
+# Consider using 'join-with' command as a 'split' replacement if you want to enable
+# normalizations
+alt-quote = 'split horizontal'
+alt-semicolon = 'split vertical'
 
-# All possible commands: https://nikitabobko.github.io/AeroSpace/commands
+alt-f = 'fullscreen'
 
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
-ctrl-cmd-f = 'fullscreen'
+alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
 
-alt-h = 'focus left'
-alt-j = 'focus down'
-alt-k = 'focus up'
-alt-l = 'focus right'
-
-alt-ctrl-h = 'move left'
-alt-ctrl-j = 'move down'
-alt-ctrl-k = 'move up'
-alt-ctrl-l = 'move right'
-
-alt-shift-h = 'resize width -100'
-alt-shift-l = 'resize width +100'
-alt-shift-j = 'resize height -100'
-alt-shift-k = 'resize height +100'
+# workspace assignments
 
 cmd-1 = 'workspace 1'
 cmd-2 = 'workspace 2'
@@ -108,55 +95,51 @@ alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-0 = 'move-node-to-workspace 10'
 
-alt-shift-semicolon = 'mode service'
+alt-tab = 'workspace-back-and-forth'
+alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-# 'service' binding mode declaration.
-[mode.service.binding]
-esc = ['reload-config', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
-f = [
-    'layout floating tiling',
-    'mode main',
-] # Toggle between floating and tiling layout
-backspace = ['close-all-windows-but-current', 'mode main']
+alt-shift-c = 'reload-config'
+
+alt-r = 'mode resize'
 
 [mode.resize.binding]
-ctrl-cmd-h = 'resize width -50'
-ctrl-cmd-j = 'resize height +50'
-ctrl-cmd-k = 'resize height -50'
-ctrl-cmd-l = 'resize width +50'
+h = 'resize width -50'
+j = 'resize height +50'
+k = 'resize height -50'
+l = 'resize width +50'
 enter = 'mode main'
 esc = 'mode main'
 
-# window workspace assignments
+
+# Window workspace assignments
 
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
-if.app-id = 'com.apple.mail'
+if.app-id = 'com.readdle.SparkDesktop'
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
-if.app-id = 'org.mozilla.thunderbird'
-run = 'move-node-to-workspace 1'
-
-[[on-window-detected]]
-if.app-id = 'com.figma.Desktop'
-run = 'move-node-to-workspace 1'
-
-[[on-window-detected]]
-if.app-id = 'com.readdle.SparkDesktop'
-run = "move-node-to-workspace 2"
-
-[[on-window-detected]]
 if.app-id = 'com.cron.electron'
-run = "move-node-to-workspace 2"
+run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = 'com.todoist.mac.Todoist'
-run = "move-node-to-workspace 2"
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'com.linear'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'notion.id'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'com.sunsama.native-app'
+run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
@@ -179,10 +162,6 @@ if.app-id = 'sh.cider.genten.mac'
 run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
-if.app-id = 'md.obsidian'
-run = "move-node-to-workspace 5"
-
-[[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
 run = "move-node-to-workspace 5"
 
@@ -190,11 +169,16 @@ run = "move-node-to-workspace 5"
 if.app-id = 'dev.vencord.vesktop'
 run = "move-node-to-workspace 5"
 
+# [[on-window-detected]]
+# if.app-id = 'md.obsidian'
+# run = "move-node-to-workspace 6"
+
 [[on-window-detected]]
 if.app-id = 'dev.zed.Zed'
 run = "move-node-to-workspace 6"
 
-# floating window assignments
+
+# Floating window assignments
 
 [[on-window-detected]]
 if.app-id = 'com.apple.DiskUtility'
@@ -234,4 +218,8 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.bitwarden.desktop'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.raycast.app'
 run = 'layout floating'
