@@ -42,6 +42,12 @@ require('lazy').setup('plugins', {
   },
 })
 
+vim.filetype.add {
+  extension = {
+    templ = 'templ',
+  },
+}
+
 -- indicator at 80 characters
 vim.opt.colorcolumn = '81'
 

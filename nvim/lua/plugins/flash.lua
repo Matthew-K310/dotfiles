@@ -1,6 +1,6 @@
 return { -- Faster Finding
   'folke/flash.nvim',
-  event = 'VeryLazy',
+  lazy = 'true',
   opts = {},
   -- stylua: ignore
   keys = {
