@@ -1,0 +1,7 @@
+help
+add ~/Media/Music/
+clear
+~/Media/Music
+add ~/Music/
+add ~/Music
+add $HOME/Music

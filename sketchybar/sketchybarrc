@@ -1,0 +1,113 @@
+#!/bin/bash
+
+source "$HOME/.config/sketchybar/colors.sh" # Loads all defined colors
+
+ITEM_DIR="$HOME/.config/sketchybar/items"     # Directory where the items are configured
+PLUGIN_DIR="$HOME/.config/sketchybar/plugins" # Directory where all the plugin scripts are stored
+
+FONT="JetBrainsMono Nerd Font" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
+PADDINGS=1                     # All paddings use this value (icon, label, background)
+
+# aerospace setting
+# AEROSPACE_FOCUSED_MONITOR_NO=$(aerospace list-workspaces --focused)
+# AEROSPACE_LIST_OF_WINDOWS_IN_FOCUSED_MONITOR=$(aerospace list-windows --workspace $AEROSPACE_FOCUSED_MONITOR_NO | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
+
+# Setting up the general bar appearance of the bar
+bar=(
+	height=32
+	# notch_display_height=42
+	# notch_offset=-7
+	# color=0xFF232323
+	color=0x60000000
+	# color=transparent
+	shadow=off
+	position=top
+	sticky=on
+	padding_right=4
+	padding_left=4
+	# margin=10
+	# corner_radius=8
+	topmost=window
+	blur_radius=50
+	# y_offset=7
+)
+
+sketchybar --bar "${bar[@]}"
+
+# Setting up default item properties
+defaults=(
+	updates=when_shown
+
+	# icon
+	icon.drawing=off
+	icon.padding_left=0
+	icon.padding_right=0
+	icon.font="$FONT:Bold:13.0"
+
+	# label/text
+	label.font="$FONT:Bold:13.0"
+	# label.color=$LABEL_COLOR
+	label.color=$ROSE
+
+	# padding
+	label.padding_left=8
+	label.padding_right=8
+	padding_right=2
+	padding_left=2
+
+	# background
+	background.height=24
+	background.corner_radius=5
+	background.border_width=2
+
+	# popup
+	popup.background.border_width=2
+	popup.background.corner_radius=9
+	popup.background.color=$POPUP_BACKGROUND_COLOR
+	popup.blur_radius=20
+	popup.background.shadow.drawing=on
+
+	scroll_texts=on
+)
+
+sketchybar --default "${defaults[@]}"
+
+# Left
+source "$ITEM_DIR/aerospace.sh"
+source "$ITEM_DIR/front_app.sh"
+
+# Center
+source "$ITEM_DIR/calendar.sh"
+
+# Right
+source "$ITEM_DIR/battery.sh"
+source "$ITEM_DIR/wifi.sh"
+source "$ITEM_DIR/volume.sh"
+source "$ITEM_DIR/media.sh"
+
+# sketchybar --add bracket left '/space\..*/' \
+# 	--set left background.color=0x80232323 \
+# 	background.corner_radius=12 \
+# 	background.height=28
+#
+# sketchybar --add bracket center front_app \
+# 	--set center background.color=0x80232323 \
+# 	background.corner_radius=12 \
+# 	background.height=28
+#
+# sketchybar --add bracket left '/space\..*/' front_app    \
+#            --set         left background.color=0x80232323 \
+#                                 background.corner_radius=12  \
+#                                 background.height=28
+#
+# sketchybar --add bracket right battery calendar wifi volume \
+# 	--set right background.color=0x80232323 \
+# 	background.corner_radius=12 \
+# 	background.height=28
+
+sketchybar --hotload on
+
+# Forcing all item scripts to run (never do this outside of sketchybarrc)
+sketchybar --update
+
+echo "sketchybar configuation loaded.."

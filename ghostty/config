@@ -1,0 +1,21 @@
+theme = black-metal-gorgoroth
+# theme = rose-pine
+# theme = vague
+# theme = catppuccin-mocha
+
+background-opacity = 0.8
+# background-opacity = 1
+background-blur-radius = 10
+
+window-padding-x = 1
+window-padding-y = 1
+# window-decoration = false
+macos-titlebar-style = hidden
+
+font-size = 14
+font-family = "JetBrainsMonoNL Nerd Font"
+font-thicken = true
+
+confirm-close-surface = false
+
+# cursor-color = "#f2FFf7"

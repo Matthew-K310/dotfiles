@@ -1,0 +1,44 @@
+account matthew@matthew-kennedy.com
+host mail.matthew-kennedy.com
+port 465
+from matthew@matthew-kennedy.com
+user matthew@matthew-kennedy.com
+passwordeval "pass matthew@matthew-kennedy.com"
+auth on
+tls on
+tls_trust_file	/etc/ssl/cert.pem
+logfile /Users/matthewkennedy/.local/state/msmtp/msmtp.log
+tls_starttls off
+account business@matthew-kennedy.com
+host mail.matthew-kennedy.com
+port 465
+from business@matthew-kennedy.com
+user business@matthew-kennedy.com
+passwordeval "pass business@matthew-kennedy.com"
+auth on
+tls on
+tls_trust_file	/etc/ssl/cert.pem
+logfile /Users/matthewkennedy/.local/state/msmtp/msmtp.log
+tls_starttls off
+account matthew@matthew-kennedy.com
+host mail.matthew-kennedy.com
+port 465
+from matthew@matthew-kennedy.com
+user matthew@matthew-kennedy.com
+passwordeval "pass matthew@matthew-kennedy.com"
+auth on
+tls on
+tls_trust_file	/etc/ssl/cert.pem
+logfile /Users/matthewkennedy/.local/state/msmtp/msmtp.log
+tls_starttls off
+account business@matthew-kennedy.com
+host mail.matthew-kennedy.com
+port 465
+from business@matthew-kennedy.com
+user business@matthew-kennedy.com
+passwordeval "pass business@matthew-kennedy.com"
+auth on
+tls on
+tls_trust_file	/etc/ssl/cert.pem
+logfile /Users/matthewkennedy/.local/state/msmtp/msmtp.log
+tls_starttls off

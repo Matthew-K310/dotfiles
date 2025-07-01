@@ -1,0 +1,49 @@
+#!/bin/sh
+
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+# default programs
+export EDITOR="nvim"
+export TERMINAL="kitty"
+export BROWSER="zen-browser"
+export BROWSER2="qutebrowser"
+export MANPAGER='nvim +Man!'
+
+export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --preview-window=right"
+
+# follow XDG base dir specification
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# bootstrap .zshrc to ~/.config/zsh/.zshrc, any other zsh config files can also reside here
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# history files
+export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
+export PYTHON_HISTORY="$XDG_DATA_HOME/python/history"
+
+# moving other files and some other vars
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
+export FFMPEG_DATADIR="$XDG_CONFIG_HOME/ffmpeg"
+export QUTEBROWSERPATH="$XDG_CONFIG_HOME/qutebrowser"
+export NEWSBOATPATH="$XDG_CONFIG_HOME/newsboat"
+
+# custom paths
+export PATH="$XDG_CONFIG_HOME/scripts:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
+export PATH="/opt/homebrew/bin/cb:$PATH"
+export PATH="/opt/homebrew/bin/mpv:$PATH"
+export PATH="$PATH:$HOME/go/bin"
+export PATH="${PATH}:/Users/matthewkennedy/.local/lib/python3.12/site-packages"
+export PATH="${PATH}:/Library/TeX/texbin"
