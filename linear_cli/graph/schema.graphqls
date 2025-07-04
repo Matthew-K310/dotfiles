@@ -1,0 +1,34 @@
+type Issue {
+  id: ID!
+  title: String!
+  description: String!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type Query {
+  issues: [Issue!]!
+}
+
+input NewIssue {
+  title: String!
+  description: String!
+}
+
+input RefreshTokenInput{
+  token: String!
+}
+
+input Login {
+  email: String!
+}
+
+type Mutation {
+  createIssue(input: NewIssue!): Issue!
+  login(input: Login!): String!
+  refreshToken(inputk: RefreshTokenInput!): String!
+}
