@@ -1,0 +1,74 @@
+#!/bin/sh
+
+# Use neovim for vim if present.
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
+# Use $XINITRC variable if file exists.
+[ -f "$XINITRC" ] && alias startx='startx $XINITRC'
+
+[ -f "$MBSYNCRC" ] && alias mbsync='mbsync -c $MBSYNCRC'
+
+# sudo not required for some system commands
+for command in mount umount sv pacman updatedb su shutdown poweroff reboot; do
+	alias $command="sudo $command"
+done
+unset command
+
+se() {
+	choice="$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)"
+	[ -f "$HOME/.local/bin/$choice" ] && $EDITOR "$HOME/.local/bin/$choice"
+}
+
+# Verbosity and settings that you pretty much just always are going to want.
+alias \
+	c="clear" \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -vI" \
+	bc="bc -ql" \
+	rsync="rsync -vrPlu" \
+	mkd="mkdir -pv" \
+	yt="yt-dlp --embed-metadata -i" \
+	yta="yt -x -f bestaudio/best" \
+	ytt="yt --skip-download --write-thumbnail" \
+	ffmpeg="ffmpeg -hide_banner"
+
+# Colorize commands when possible.
+alias \
+	ls="ls -a" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi" \
+	ip="ip -color=auto"
+
+# These common commands are just too long! Abbreviate them.
+alias \
+	ka="killall" \
+	YT="youtube-viewer" \
+	sdn="shutdown -h now" \
+	v='$EDITOR' \
+	e='emacs'
+
+alias \
+	lf="lfub" \
+	y="ycd" \
+	magit="nvim -c MagitOnly" \
+	ref='shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutenvrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc'# lf="lfub" # y="lfcd" \
+
+alias \
+	mail="neomutt" \
+	rss='newsboat' \
+	dev='cd ~/Developer' \
+	vault='cd ~/Notes/obsidian-vault' \
+	til='cd ~/Notes/obsidian-vault/today_i_learned' \
+	info='fastfetch' \
+	weather="curl wttr.in" \
+	astroterm='astroterm --color --constellations --speed 1000 --fps 120 --city Dallas' \
+	lc='linear-cli issues create' \
+	lls='linear-cli issues list'
+
+alias ff="fd --type f | fzf | sed 's/\ /\\\ /g' "
+alias ffn="fd --type f | fzf | sed 's/\ /\\\ /g' | xargs nvim"
+
+# Run this if you ever run into errors while doing a `dotnet restore`
+alias nugetclean="dotnet nuget locals --clear all"
