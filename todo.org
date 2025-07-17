@@ -1,8 +1,0 @@
-#+title: Todo
-
-* Inbox
-** TODO  BELLE-12 Design Shop Page
-*** TODO Create product component
-- Image
-- Product name
-- Price
