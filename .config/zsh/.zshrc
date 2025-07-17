@@ -94,8 +94,9 @@ source <(fzf --zsh) # allow for fzf history widget
 function ycd() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
 	rm -f -- "$tmp"
 }
 
@@ -133,8 +134,3 @@ fi
 #
 # syntax highlighting
 source /usr/local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/matthewkennedy/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions

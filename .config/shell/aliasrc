@@ -47,7 +47,7 @@ alias \
 	YT="youtube-viewer" \
 	sdn="shutdown -h now" \
 	v='$EDITOR' \
-	e='emacs'
+	e='emacs -nw'
 
 alias \
 	lf="lfub" \
