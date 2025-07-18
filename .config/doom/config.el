@@ -3,7 +3,6 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-                                        ; clients, file templates and snippets. It is optional.
 (setq user-full-name "Matthew Kennedy"
       user-mail-address "matthew@matthew-kennedy.com")
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -22,30 +21,30 @@
 ;; Setup custom splashscreen
 (defun glory-to-the-omnissiah ()
   (let* ((banner '(
-"πππππππππππ=÷÷÷ππππππ÷÷××÷≠ππππππ÷÷÷÷÷÷÷÷÷÷×≠πππ"
-"ππππππππππ×÷÷÷÷÷√ππππ÷÷÷××÷πππππ√÷÷÷≠÷÷÷÷≠×÷≠πππ"
-"πππππππππππ÷÷÷×÷÷÷÷÷÷÷÷×÷÷×÷÷÷÷××÷×÷×÷≈÷≠÷×÷≠πππ"
-"ππππππππππππ÷×≠÷÷÷÷÷÷÷÷=÷×÷÷×÷×÷÷÷÷÷÷÷≠×=×××÷πππ"
-"πππ√÷÷∞πππ∞÷÷÷÷÷÷÷≠≠----+---≈×÷÷÷÷÷÷×÷×××÷×-÷√ππ"
-"ππ√÷÷÷÷÷÷÷÷×÷÷×≠-----÷÷××÷----÷-×÷÷÷×××××÷÷÷×≈ππ"
-"πππ×××÷÷≠÷÷÷÷≠-----÷-=÷÷==≠÷××-----÷÷-×÷××∞π÷≠ππ"
-"πππππ÷÷÷÷÷≠=---×-÷÷÷×÷=≠≠∞∞∞≠=×----÷=×-×-πππππππ"
-"ππππππ÷÷÷÷÷-----×--=≠÷≠÷÷÷∞≠=≠------÷----πππππππ"
-"πππππ√÷÷÷÷≠-×-÷=×-÷==×÷÷≈≈≈∞≈≠=------×-×-×ππππππ"
-"÷÷÷≠-××÷÷÷---÷-÷∞≠≠≈∞≠=≠≠≈≠≈≠≈≠×-----÷×-×--×××÷÷"
-"÷×÷×=≠≈÷÷×---×--≠=-×-≠-=≠≠-≈÷-÷÷×----÷×--÷÷-×××÷"
-"××--×××=÷÷----÷≈÷-≈π∞-≠÷÷------≠÷÷≠×-=×-××××-××="
-"πππππ√÷÷×÷=----×-÷-÷-÷--÷≈××÷÷≈≠≠----÷×-×-ππππππ"
-"ππππππ××=×÷----×---------÷=-×××-××---×-××√ππππππ"
-"πππππ×-×××÷----+---÷÷×-×=÷÷---=----÷--××××ππππππ"
-"πππ≠×÷÷×=×××÷=--------×÷≈≠÷----÷--÷×÷÷-×÷××-≠πππ"
-"πππ÷×××××××--×÷≈-------÷÷÷÷-×---÷÷××-×××××-×-πππ"
-"ππππ-×=πππ≈×××÷×××÷---------÷÷××÷××-÷ππππ---ππππ"
-"ππππππππππππ÷÷=÷×××÷÷÷×==×÷÷×××××÷÷÷ππππππππππππ"
-"πππππππππππ÷×=×××÷×=-×××××××÷÷×××÷÷÷∞πππππππππππ"
-"ππππππππππ÷÷××÷×∞πππ√×÷×××÷ππππ×=×-××πππππππππππ"
-"πππππππππππ÷×××ππππππ×××××∞πππππ√×××√πππππππππππ"
-))
+                   "πππππππππππ=÷÷÷ππππππ÷÷××÷≠ππππππ÷÷÷÷÷÷÷÷÷÷×≠πππ"
+                   "ππππππππππ×÷÷÷÷÷√ππππ÷÷÷××÷πππππ√÷÷÷≠÷÷÷÷≠×÷≠πππ"
+                   "πππππππππππ÷÷÷×÷÷÷÷÷÷÷÷×÷÷×÷÷÷÷××÷×÷×÷≈÷≠÷×÷≠πππ"
+                   "ππππππππππππ÷×≠÷÷÷÷÷÷÷÷=÷×÷÷×÷×÷÷÷÷÷÷÷≠×=×××÷πππ"
+                   "πππ√÷÷∞πππ∞÷÷÷÷÷÷÷≠≠----+---≈×÷÷÷÷÷÷×÷×××÷×-÷√ππ"
+                   "ππ√÷÷÷÷÷÷÷÷×÷÷×≠-----÷÷××÷----÷-×÷÷÷×××××÷÷÷×≈ππ"
+                   "πππ×××÷÷≠÷÷÷÷≠-----÷-=÷÷==≠÷××-----÷÷-×÷××∞π÷≠ππ"
+                   "πππππ÷÷÷÷÷≠=---×-÷÷÷×÷=≠≠∞∞∞≠=×----÷=×-×-πππππππ"
+                   "ππππππ÷÷÷÷÷-----×--=≠÷≠÷÷÷∞≠=≠------÷----πππππππ"
+                   "πππππ√÷÷÷÷≠-×-÷=×-÷==×÷÷≈≈≈∞≈≠=------×-×-×ππππππ"
+                   "÷÷÷≠-××÷÷÷---÷-÷∞≠≠≈∞≠=≠≠≈≠≈≠≈≠×-----÷×-×--×××÷÷"
+                   "÷×÷×=≠≈÷÷×---×--≠=-×-≠-=≠≠-≈÷-÷÷×----÷×--÷÷-×××÷"
+                   "××--×××=÷÷----÷≈÷-≈π∞-≠÷÷------≠÷÷≠×-=×-××××-××="
+                   "πππππ√÷÷×÷=----×-÷-÷-÷--÷≈××÷÷≈≠≠----÷×-×-ππππππ"
+                   "ππππππ××=×÷----×---------÷=-×××-××---×-××√ππππππ"
+                   "πππππ×-×××÷----+---÷÷×-×=÷÷---=----÷--××××ππππππ"
+                   "πππ≠×÷÷×=×××÷=--------×÷≈≠÷----÷--÷×÷÷-×÷××-≠πππ"
+                   "πππ÷×××××××--×÷≈-------÷÷÷÷-×---÷÷××-×××××-×-πππ"
+                   "ππππ-×=πππ≈×××÷×××÷---------÷÷××÷××-÷ππππ---ππππ"
+                   "ππππππππππππ÷÷=÷×××÷÷÷×==×÷÷×××××÷÷÷ππππππππππππ"
+                   "πππππππππππ÷×=×××÷×=-×××××××÷÷×××÷÷÷∞πππππππππππ"
+                   "ππππππππππ÷÷××÷×∞πππ√×÷×××÷ππππ×=×-××πππππππππππ"
+                   "πππππππππππ÷×××ππππππ×××××∞πππππ√×××√πππππππππππ"
+                   ))
          (longest-line (apply #'max (mapcar #'length banner))))
     (put-text-property
      (point)
@@ -72,34 +71,6 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Notes/obsidian-vault/org")
-(setq org-agenda-files "~/Notes/obsidian-vault/org/agenda")
-
-;; Capture templates
-(setq org-capture-templates
-      '(("t" "Todo" entry
-         (file+headline "~/obsidian-vault/org/inbox.org" "Inbox")
-         "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
-
-        ("e" "Event" entry
-         (file+headline "~/obsidian-vault/org/calendar.org" "Events")
-         "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:CONTACT: %(org-capture-ref-link \"~/org/contacts.org\")\n:END:\n%?")
-
-        ("d" "Deadline" entry
-         (file+headline "~/obsidian-vault/org/calendar.org" "Deadlines")
-         "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
-
-        ("p" "Project" entry
-         (file+headline "~/obsidian-vault/org/projects.org" "Projects")
-         "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n** TODO %?")
-
-        ("i" "Idea" entry
-         (file+headline "~/obsidian-vault/org/ideas.org" "Ideas")
-         "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
-
-        ("n" "Note" entry
-         (file+headline "~/obsidian-vault/org/notes.org" "Inbox")
-         "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
-         :prepend t)))
 
 ;; source: https://nayak.io/posts/golang-development-doom-emacs/
 ;; golang formatting set up
@@ -124,16 +95,3 @@
                            (useany . t)
                            (unusedvariable . t)))
   )
-
-(after! projectile
-  (setq projectile-enable-caching t)
-  (setq projectile-indexing-method 'hybrid))
-
-;; Path completion
-(projectile-add-known-project "~/Notes/obsidian-vault")
-(projectile-add-known-project "~/Notes/obsidian-vault/org")
-(projectile-add-known-project "~/Developer")
-(projectile-add-known-project "~/Developer/web-dev")
-(projectile-add-known-project "~/Developer/rust")
-(projectile-add-known-project "~/Developer/golang")
-
