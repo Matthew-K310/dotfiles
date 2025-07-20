@@ -34,14 +34,12 @@ vim.keymap.set('n', '<leader>td', ':Td<CR>', { silent = true })
 vim.keymap.set('n', '<leader>fn', ':Fn<CR>', { silent = true })
 
 -- fzf-lua mappings
-vim.keymap.set('n', '<leader>sf', ":lua require('fzf-lua').files({ cwd = '..' })<CR>") --search above
-vim.keymap.set('n', '<leader>sF', ":lua require('fzf-lua').files()<CR>") --search cwd
-vim.keymap.set('n', '<leader>sh', ":lua require('fzf-lua').files({ cwd = '~/' })<CR>") --search home
-vim.keymap.set('n', '<leader>sc', ":lua require('fzf-lua').files({ cwd = '~/.config' })<CR>") --search .config
-vim.keymap.set('n', '<leader>sn', ":lua require('fzf-lua').files({ cwd = '~/.config/nvim' })<CR>") --search nvim config
-vim.keymap.set('n', '<leader>sd', ":lua require('fzf-lua').files({ cwd = '~/Developer' })<CR>") --search Developer
-vim.keymap.set('n', '<leader>so', ":lua require('fzf-lua').files({ cwd = '~/obsidian-vault' })<CR>") --search Obsidians
-vim.keymap.set('n', '<leader>sr', ":lua require('fzf-lua').oldfiles()<CR>") --last search
+vim.keymap.set('n', '<leader>.', ":lua require('fzf-lua').files({ cwd = '..' })<CR>") --search above
+-- find files in project
+vim.keymap.set('n', '<leader> ', ":lua require('fzf-lua').files()<CR>") --search cwd
+vim.keymap.set('n', '<leader>pf', ":lua require('fzf-lua').files()<CR>") --search cwd
+vim.keymap.set('n', '<leader>ns', ":lua require('fzf-lua').files({ cwd = '~/Notes/obsidian-vault' })<CR>") --search notes
+vim.keymap.set('n', '<leader>fr', ":lua require('fzf-lua').oldfiles()<CR>") --last search
 vim.keymap.set('n', '<leader>sg', ":lua require('fzf-lua').grep()<CR>") --grep
 vim.keymap.set('n', '<leader>sG', ":lua require('fzf-lua').grep_cword()<CR>") --grep word under cursor
 vim.keymap.set('n', '<leader>s/', ":lua require('fzf-lua').grep_curbuf()<CR>") -- grep in current file
@@ -54,4 +52,4 @@ vim.keymap.set('n', '<leader>dr', ":lua require('fzf-lua').lsp_references()<CR>"
 vim.keymap.set('n', '<leader>U', vim.cmd.UndotreeToggle)
 
 -- Fugitive (git status)
-vim.keymap.set('n', '<leader>gs', vim.cmd.Git)
+vim.keymap.set('n', '<leader>gg', vim.cmd.Git)

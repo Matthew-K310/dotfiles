@@ -58,5 +58,6 @@
 
 ;; Theme
 (package! catppuccin-theme)
+(package! nord-theme)
 
 (package! templ-ts-mode)

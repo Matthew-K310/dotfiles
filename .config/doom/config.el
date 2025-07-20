@@ -9,9 +9,9 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (add-to-list 'custom-theme-load-path "~/.config/doom/themes/")
-(load-theme 'catppuccin `relative)
-;; (setq doom-theme 'catppuccin)
-(setq catppuccin-flavor 'macchiato) ; or 'frappe 'latte, 'macchiato, or 'mocha
+(load-theme 'doom-nord t)
+;; (load-theme 'catppuccin `relative)
+;; (setq catppuccin-flavor 'macchiato)
 
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -71,6 +71,7 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Notes/obsidian-vault/org")
+(setq diary-file "~/Notes/obsidian-vault/org/agenda.org")
 
 ;; source: https://nayak.io/posts/golang-development-doom-emacs/
 ;; golang formatting set up

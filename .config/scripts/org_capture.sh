@@ -6,4 +6,4 @@
 # @raycast.mode silent
 # @raycast.refreshTime 1h
 
-open -na Kitty --args emacs ~/Notes/obsidian-vault/org/inbox.org
+open -na Ghostty --args emacs ~/Notes/obsidian-vault/org/inbox.org

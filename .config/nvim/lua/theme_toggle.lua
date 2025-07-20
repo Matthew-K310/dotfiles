@@ -8,10 +8,11 @@ local theme_file = vim.fn.stdpath 'config' .. '/lua/saved_theme' -- Changed file
 -- Make sure these names match how the colorschemes are registered by their plugins/files.
 local themes = {
   -- Add the *exact names* used with :colorscheme here
-  'base16-black-metal-gorgoroth', -- Name used by base16-nvim
-  'rose-pine', -- Check your rose-pine setup for the exact name (e.g., 'rose-pine', 'rose-pine-moon')
-  'vague', -- Check vague.nvim for the exact name, often 'vague'
-  'catppuccin-macchiato', -- Check your catppuccin setup for the exact name (e.g., 'catppuccin-mocha')
+  'base16-black-metal-gorgoroth',
+  'catppuccin-macchiato',
+  'nord',
+  'rose-pine',
+  'vague',
   -- Add any other colorscheme names you have installed and want to cycle
 }
 
