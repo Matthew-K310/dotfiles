@@ -1,0 +1,19 @@
+# vim: filetype=neomuttrc
+# muttrc file for account it@matthew-kennedy.com
+set real_name = "it"
+set from = "it@matthew-kennedy.com"
+set sendmail = "msmtp -a it@matthew-kennedy.com"
+alias me it <it@matthew-kennedy.com>
+set folder = "/Users/matthewkennedy/.local/share/mail/it@matthew-kennedy.com"
+set header_cache = "/Users/matthewkennedy/.cache/mutt-wizard/it_matthew-kennedy.com/headers"
+set message_cachedir = "/Users/matthewkennedy/.cache/mutt-wizard/it_matthew-kennedy.com/bodies"
+set mbox_type = Maildir
+set hostname = "matthew-kennedy.com"
+source /usr/local/share/mutt-wizard/switch.muttrc
+set spool_file = "+INBOX"
+set postponed = "+Drafts"
+set trash = "+Trash"
+set record = "+Sent"
+
+macro index o "<shell-escape>mailsync it@matthew-kennedy.com<enter>" "sync it@matthew-kennedy.com"
+mailboxes "=Drafts" "=Sent" "=Trash" "=Junk" "=INBOX"

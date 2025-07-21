@@ -135,7 +135,7 @@
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        gdscript          ; the language you waited for
-       (go +lsp +treesitter)         ; the hipster dialect
+       (go +tree-sitter +lsp)           ; the hipster dialect
        (graphql +lsp)    ; Give queries a REST
        (haskell +lsp +treesitter)    ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
@@ -192,3 +192,4 @@
        :config
        ;;literate
        (default +bindings +smartparens))
+

@@ -16,7 +16,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type `relative)
 
 ;; Setup custom splashscreen
 (defun glory-to-the-omnissiah ()
@@ -63,7 +63,7 @@
 
 ;; set zen as default browser
 (setq browse-url-browser-function 'browse-url-generic)
-(setq browse-url-generic-program "zen")  ; replace with actual executable name
+(setq browse-url-generic-program "zen-browser")  ; replace with actual executable name
 
 ;; Speed of which-key popup
 (setq which-key-idle-delay 0.2)
@@ -73,18 +73,11 @@
 (setq org-directory "~/Notes/obsidian-vault/org")
 (setq diary-file "~/Notes/obsidian-vault/org/agenda.org")
 
-;; source: https://nayak.io/posts/golang-development-doom-emacs/
-;; golang formatting set up
-;; use gofumpt
-(after! lsp-mode
-  (setq  lsp-go-use-gofumpt t)
-  )
-;; automatically organize imports
-(add-hook 'go-mode-hook #'lsp-deferred)
-;; Make sure you don't have other goimports hooks enabled.
-(defun lsp-go-install-save-hooks ()
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
-(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+(load! "lisp/org-gcal-credentials")
+
+(after! tree-sitter
+  (require 'tree-sitter-langs)
+  (add-to-list 'tree-sitter-major-mode-language-alist '(org-mode . go)))
 
 ;; enable all analyzers; not done by default
 (after! lsp-mode

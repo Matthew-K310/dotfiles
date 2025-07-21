@@ -61,3 +61,7 @@
 (package! nord-theme)
 
 (package! templ-ts-mode)
+(package! go-mode)
+
+(unpin! org-roam)
+(package! org-roam-ui)
