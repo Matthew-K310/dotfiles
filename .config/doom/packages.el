@@ -59,9 +59,7 @@
 ;; Theme
 (package! catppuccin-theme)
 (package! nord-theme)
-
 (package! templ-ts-mode)
 (package! go-mode)
-
-(unpin! org-roam)
-(package! org-roam-ui)
+(package! org-gcal)
+(package! emacs-w3m)

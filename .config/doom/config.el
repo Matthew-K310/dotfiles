@@ -61,9 +61,13 @@
 
 (assoc-delete-all "Reload last session" +doom-dashboard-menu-sections)
 
-;; set zen as default browser
-(setq browse-url-browser-function 'browse-url-generic)
-(setq browse-url-generic-program "zen-browser")  ; replace with actual executable name
+(setq browse-url-browser-function 'w3m-browse-url)
+(map! :leader
+      :desc "Search web for text between BEG/END"
+      "s w" #'eww-search-words
+      (:prefix ("e" . "evaluate/ERC/EWW")
+       :desc "w3m web browser" "w" #'w3m
+       :desc "w3m reload page" "R" #'w3m-reload-this-page))
 
 ;; Speed of which-key popup
 (setq which-key-idle-delay 0.2)
@@ -73,7 +77,61 @@
 (setq org-directory "~/Notes/obsidian-vault/org")
 (setq diary-file "~/Notes/obsidian-vault/org/agenda.org")
 
-(load! "lisp/org-gcal-credentials")
+;; Capture templates
+(after! org
+  (setq org-capture-templates
+        '(("t" "Todo" entry
+           (file+headline "~/Notes/obsidian-vault/org/inbox.org" "Inbox")
+           "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+
+          ("e" "Event" entry
+           (file+headline "~/Notes/obsidian-vault/org/calendar.org" "Events")
+           "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+
+          ("d" "Deadline" entry
+           (file+headline "~/Notes/obsidian-vault/org/calendar.org" "Deadlines")
+           "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+
+          ("p" "Project" entry
+           (file+headline "~/Notes/obsidian-vault/org/projects.org" "Projects")
+           "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n** TODO %?")
+
+          ("i" "Idea" entry
+           (file+headline "~/Notes/obsidian-vault/org/ideas.org" "Ideas")
+           "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+
+          ("b" "Bookmark" entry
+           (file+headline "~/Notes/obsidian-vault/org/bookmarks.org" "Inbox")
+           "** [[%^{URL}][%^{Title}]]\n:PROPERTIES:\n:CREATED: %U\n:TAGS: %(org-capture-bookmark-tags)\n:END:\n\n"
+           :empty-lines 0)
+
+          ("n" "Note" entry
+           (file+headline "~/Notes/obsidian-vault/org/notes.org" "Inbox")
+           "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
+           :prepend t))))
+
+(defun org-capture-bookmark-tags ()
+  "Get tags from existing bookmarks and prompt for tags with completion."
+  (save-window-excursion
+    (let ((tags-list '()))
+      ;; Collect existing tags
+      (with-current-buffer (find-file-noselect "~/Notes/obsidian-vault/org/bookmarks.org")
+        (save-excursion
+          (goto-char (point-min))
+          (while (re-search-forward "^:TAGS:\\s-*\\(.+\\)$" nil t)
+            (let ((tag-string (match-string 1)))
+              (dolist (tag (split-string tag-string "[,;]" t "[[:space:]]"))
+                (push (string-trim tag) tags-list))))))
+      ;; Remove duplicates and sort
+      (setq tags-list (sort (delete-dups tags-list) 'string<))
+      ;; Prompt user with completion
+      (let ((selected-tags (completing-read-multiple "Tags (comma-separated): " tags-list)))
+        ;; Return as a comma-separated string
+        (mapconcat 'identity selected-tags ", ")))))
+
+(let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
+  (when (file-exists-p private-config)
+    (load private-config)))
 
 (after! tree-sitter
   (require 'tree-sitter-langs)
@@ -82,10 +140,38 @@
 ;; enable all analyzers; not done by default
 (after! lsp-mode
   (setq  lsp-go-analyses '((fieldalignment . t)
-                           (nilness . t)
+                            (nilness . t)
                            (shadow . t)
                            (unusedparams . t)
                            (unusedwrite . t)
                            (useany . t)
                            (unusedvariable . t)))
   )
+
+
+;; Custom keymaps
+(map! :leader
+      ;; Magit mode mappngs
+      (:prefix ("g" . "magit")  ; Use 'g' as the main prefix
+       :desc "Stage all files"          "a" #'magit-stage-modified
+       :desc "Push"                     "P" #'magit-push
+       :desc "Pull"                     "p" #'magit-pull
+       :desc "Merge"                    "m" #'magit-merge
+       :desc "Quick commit and push"    "z" #'my/magit-stage-commit-push
+       )
+      ;; Org mode mappings
+      (:prefix("y" . "org-mode-specifics")
+       :desc "Export as markdown"               "e" #'org-md-export-as-markdown
+       :desc "Preview markdown file"            "p" #'markdown-preview
+       :desc "Export as html"                   "h" #'org-html-export-as-html
+       :desc "Export as LaTeX then PDF"         "l" #'org-latex-export-to-pdf
+       :desc "Find definition"                  "f" #'lsp-find-definition
+       )
+      ;; Various other commands
+      (:prefix("o" . "open")
+       :desc "Calendar"                  "c" #'=calendar
+       :desc "Bookmarks"                 "l" #'list-bookmarks
+       )
+      (:prefix("b" . "+buffer")
+       :desc "Save Bookmarks"                 "P" #'bookmark-save
+       ))

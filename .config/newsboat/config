@@ -1,8 +1,8 @@
 # general settings
 max-items 50
 auto-reload yes
-browser qutebrowser
-html-renderer "qutebrowser -dump"
+browser librewolf
+html-renderer "librewolf"
 pager internal
 cleanup-on-quit yes
 download-path "/Users/matthewkennedy/Downloads/newsboat"
