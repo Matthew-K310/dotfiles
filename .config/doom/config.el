@@ -13,6 +13,8 @@
 ;; (load-theme 'catppuccin `relative)
 ;; (setq catppuccin-flavor 'macchiato)
 
+(setq auth-sources
+      '((:source "~/.config/doom/private/.authinfo")))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -175,7 +177,9 @@
 (require 'org-caldav)
 
 (setq org-caldav-url "https://100.78.236.53/remote.php/dav/calendars/admin")
-(setq org-caldav-calendar-id "personal")
+(setq org-caldav-calendar-id "calendar")
 (setq org-caldav-inbox "~/Notes/obsidian-vault/org/calendar.org")
 (setq org-caldav-files (list (expand-file-name "~/Notes/obsidian-vault/org/agenda.org")))
+(setq org-icalendar-include-todo 'all
+      org-caldav-sync-todo t)
 (setq org-icalendar-timezone "America/Chicago")
