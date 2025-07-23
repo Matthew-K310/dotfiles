@@ -101,7 +101,7 @@
            "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("b" "Bookmark" entry
-           (file+headline "~/Notes/obsidian-vault/org/bookmarks.org" "Inbox")
+           (file+headline "~/Notes/obsidian-vault/org/bookmarks.html" "Inbox")
            "** [[%^{URL}][%^{Title}]]\n:PROPERTIES:\n:CREATED: %U\n:TAGS: %(org-capture-bookmark-tags)\n:END:\n\n"
            :empty-lines 0)
 
@@ -170,8 +170,12 @@
       ;; Various other commands
       (:prefix("o" . "open")
        :desc "Calendar"                  "c" #'=calendar
-       :desc "Bookmarks"                 "l" #'list-bookmarks
-       )
-      (:prefix("b" . "+buffer")
-       :desc "Save Bookmarks"                 "P" #'bookmark-save
        ))
+
+(require 'org-caldav)
+
+(setq org-caldav-url "https://100.78.236.53/remote.php/dav/calendars/admin")
+(setq org-caldav-calendar-id "personal")
+(setq org-caldav-inbox "~/Notes/obsidian-vault/org/calendar.org")
+(setq org-caldav-files (list (expand-file-name "~/Notes/obsidian-vault/org/agenda.org")))
+(setq org-icalendar-timezone "America/Chicago")

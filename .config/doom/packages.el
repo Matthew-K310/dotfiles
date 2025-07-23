@@ -62,4 +62,5 @@
 (package! templ-ts-mode)
 (package! go-mode)
 (package! org-gcal)
+(package! org-caldav)
 (package! emacs-w3m)
