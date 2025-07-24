@@ -20,6 +20,11 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type `relative)
 
+(use-package org-bullets
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+
 ;; Setup custom splashscreen
 (defun glory-to-the-omnissiah ()
   (let* ((banner '(
@@ -139,13 +144,27 @@
            "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
            :prepend t))))
 
-;;
+;; Set archive location to done.org under current date
+(defun my/archive-done-task ()
+  "Archive current task to done.org under today's date"
+  (interactive)
+  (let* ((date-header (format-time-string "%Y-%m-%d %A"))
+         (archive-file (expand-file-name "~/Notes/obsidian-vault/org/done.org"))
+         (location (format "%s::* %s" archive-file date-header)))
+    ;; Only archive if not a habit
+    (unless (org-is-habit-p)
+      ;; Add COMPLETED property if it doesn't exist
+      (org-set-property "COMPLETED" (format-time-string "[%Y-%m-%d %a %H:%M]"))
+      ;; Set archive location and archive
+      (setq org-archive-location location)
+      (org-archive-subtree))))
+
 ;; Keybinds for org mode
 (with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c C-x C-a") 'my/archive-done-task)
   (define-key org-mode-map (kbd "C-c e") #'org-set-effort)
   (define-key org-mode-map (kbd "C-c i") #'org-clock-in)
-  (define-key org-mode-map (kbd "C-c o") #'org-clock-out)
-  (define-key org-mode-map (kbd "C-c C-x C-a") 'my/archive-done-task))
+  (define-key org-mode-map (kbd "C-c o") #'org-clock-out))
 
 (let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
   (when (file-exists-p private-config)
@@ -199,3 +218,89 @@
 (setq org-icalendar-include-todo 'all
       org-caldav-sync-todo t)
 (setq org-icalendar-timezone "America/Chicago")
+
+;; daily journal
+(defun create-daily-file ()
+  "Create a daily journal file organized by year and week number."
+  (interactive)
+
+  (let* ((current-time (current-time))
+         (decoded-time (decode-time current-time))
+
+         ;; Get the year (like 2025)
+         (year (format-time-string "%Y" current-time))
+
+         ;; Get week number (1-53) - using %V instead of %U
+         ;; %V gives ISO week number where weeks start on Monday
+         ;; This should correctly identify March 24, 2025 as week 13
+         (week-number (string-to-number (format-time-string "%V" current-time)))
+
+         ;; Get friendly date format like "March 24, 2025"
+         (date-string (format-time-string "%B %d, %Y" current-time))
+
+         ;; Create folder paths
+         (year-dir (expand-file-name year "~/Notes/obsidian-vault/org/journal/"))
+         (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
+
+         ;; Create file path/name
+         (file-path (expand-file-name (concat date-string ".org") week-dir)))
+
+    ;; Step 2: Make sure folders exist
+    (unless (file-exists-p year-dir)
+      (make-directory year-dir t))
+
+    (unless (file-exists-p week-dir)
+      (make-directory week-dir t))
+
+    ;; Step 3: Create the file (or open it if it exists)
+    (find-file file-path)
+
+    ;; Step 4: Insert template if file is empty
+    (when (= (buffer-size) 0)
+      (yas-expand-snippet
+       (with-temp-buffer
+         (insert-file-contents "~/.config/doom/snippets/daily")
+         (buffer-string))))))
+
+
+;; refile on done
+(defun my/move-to-done-org ()
+  "Move the current org heading to done.org under today's date."
+  (interactive)
+  (let* ((done-file (expand-file-name "~/Notes/obsidian-vault/org/done.org"))
+         (today-heading (format-time-string "* %Y-%m-%d %A")))
+
+    ;; First, mark the task as DONE if it's not already
+    (when (org-entry-is-todo-p)
+      (org-todo 'done))
+
+    ;; Add CLOSED property if it doesn't exist
+    (unless (org-entry-get nil "CLOSED")
+      (org-add-planning-info 'closed (org-current-effective-time)))
+
+    ;; Ensure done.org exists and has today's date heading
+    (with-current-buffer (find-file-noselect done-file)
+      (goto-char (point-min))
+      ;; Find or create today's heading
+      (unless (re-search-forward (concat "^" (regexp-quote today-heading) "$") nil t)
+        (goto-char (point-max))
+        (unless (bolp) (insert "\n"))
+        (insert today-heading "\n")
+        (save-buffer)))
+
+    ;; Use org-refile to move the subtree
+    (let* ((rfloc (with-current-buffer (find-file-noselect done-file)
+                    (goto-char (point-min))
+                    (re-search-forward (concat "^" (regexp-quote today-heading) "$"))
+                    (list today-heading
+                          done-file
+                          nil
+                          (point)))))
+      (org-refile nil nil rfloc))
+
+    (message "Task moved to done.org under %s" today-heading)))
+
+;; Bind to a convenient key
+(global-set-key (kbd "C-c d") 'my/move-to-done-org)
+
+(provide 'done-refile)
