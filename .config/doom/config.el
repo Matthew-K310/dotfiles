@@ -79,6 +79,33 @@
 (setq org-directory "~/Notes/obsidian-vault/org")
 (setq diary-file "~/Notes/obsidian-vault/org/agenda.org")
 
+(after! org
+  (map! :map org-mode-map
+        :n "<M-left>" #'org-do-promote
+        :n "<M-right>" #'org-do-demote)
+  )
+
+;; Auto-clock in when state changes to STRT
+(defun my/org-clock-in-if-starting ()
+  "Clock in when the task state changes to STRT"
+  (when (and (string= org-state "STRT")
+             (not (org-clock-is-active)))
+    (org-clock-in)))
+
+;; Auto-clock out when leaving STRT state
+(defun my/org-clock-out-if-not-starting ()
+  "Clock out when leaving STRT state"
+  (when (and (org-clock-is-active)
+             (not (string= org-state "STRT")))
+    (org-clock-out)))
+
+;; Add these functions to org-after-todo-state-change-hook
+(add-hook 'org-after-todo-state-change-hook 'my/org-clock-in-if-starting)
+(add-hook 'org-after-todo-state-change-hook 'my/org-clock-out-if-not-starting)
+
+;; Prevent clock from stopping when marking subtasks as done
+(setq org-clock-out-when-done nil)
+
 ;; Capture templates
 (after! org
   (setq org-capture-templates
@@ -112,24 +139,13 @@
            "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
            :prepend t))))
 
-(defun org-capture-bookmark-tags ()
-  "Get tags from existing bookmarks and prompt for tags with completion."
-  (save-window-excursion
-    (let ((tags-list '()))
-      ;; Collect existing tags
-      (with-current-buffer (find-file-noselect "~/Notes/obsidian-vault/org/bookmarks.org")
-        (save-excursion
-          (goto-char (point-min))
-          (while (re-search-forward "^:TAGS:\\s-*\\(.+\\)$" nil t)
-            (let ((tag-string (match-string 1)))
-              (dolist (tag (split-string tag-string "[,;]" t "[[:space:]]"))
-                (push (string-trim tag) tags-list))))))
-      ;; Remove duplicates and sort
-      (setq tags-list (sort (delete-dups tags-list) 'string<))
-      ;; Prompt user with completion
-      (let ((selected-tags (completing-read-multiple "Tags (comma-separated): " tags-list)))
-        ;; Return as a comma-separated string
-        (mapconcat 'identity selected-tags ", ")))))
+;;
+;; Keybinds for org mode
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c e") #'org-set-effort)
+  (define-key org-mode-map (kbd "C-c i") #'org-clock-in)
+  (define-key org-mode-map (kbd "C-c o") #'org-clock-out)
+  (define-key org-mode-map (kbd "C-c C-x C-a") 'my/archive-done-task))
 
 (let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
   (when (file-exists-p private-config)
@@ -177,7 +193,7 @@
 (require 'org-caldav)
 
 (setq org-caldav-url "https://100.78.236.53/remote.php/dav/calendars/admin")
-(setq org-caldav-calendar-id "calendar")
+(setq org-caldav-calendar-id "nextcal")
 (setq org-caldav-inbox "~/Notes/obsidian-vault/org/calendar.org")
 (setq org-caldav-files (list (expand-file-name "~/Notes/obsidian-vault/org/agenda.org")))
 (setq org-icalendar-include-todo 'all
