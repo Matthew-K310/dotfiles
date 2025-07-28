@@ -59,8 +59,14 @@
 ;; Theme
 (package! catppuccin-theme)
 (package! nord-theme)
+
+;; go dev
 (package! templ-ts-mode)
 (package! go-mode)
+
+;; org shizz
+(package! org-bullets)
 (package! org-gcal)
 (package! org-caldav)
-(package! emacs-w3m)
+(package! org-roam-ui)
+(package! websocket) ;; for org-roam-ui

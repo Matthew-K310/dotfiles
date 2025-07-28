@@ -24,6 +24,8 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
+(setq browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program "librewolf")
 
 ;; Setup custom splashscreen
 (defun glory-to-the-omnissiah ()
@@ -68,21 +70,13 @@
 
 (assoc-delete-all "Reload last session" +doom-dashboard-menu-sections)
 
-(setq browse-url-browser-function 'w3m-browse-url)
-(map! :leader
-      :desc "Search web for text between BEG/END"
-      "s w" #'eww-search-words
-      (:prefix ("e" . "evaluate/ERC/EWW")
-       :desc "w3m web browser" "w" #'w3m
-       :desc "w3m reload page" "R" #'w3m-reload-this-page))
-
 ;; Speed of which-key popup
 (setq which-key-idle-delay 0.2)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Notes/obsidian-vault/org")
-(setq diary-file "~/Notes/obsidian-vault/org/agenda.org")
+(setq org-directory "~/Notes/org")
+(setq diary-file "~/Notes/org/agenda.org")
 
 (after! org
   (map! :map org-mode-map
@@ -115,41 +109,84 @@
 (after! org
   (setq org-capture-templates
         '(("t" "Todo" entry
-           (file+headline "~/Notes/obsidian-vault/org/inbox.org" "Inbox")
+           (file+headline "~/Notes/org/inbox.org" "Inbox")
            "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("e" "Event" entry
-           (file+headline "~/Notes/obsidian-vault/org/calendar.org" "Events")
+           (file+headline "~/Notes/org/calendar.org" "Events")
            "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("d" "Deadline" entry
-           (file+headline "~/Notes/obsidian-vault/org/calendar.org" "Deadlines")
+           (file+headline "~/Notes/org/calendar.org" "Deadlines")
            "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("p" "Project" entry
-           (file+headline "~/Notes/obsidian-vault/org/projects.org" "Projects")
+           (file+headline "~/Notes/org/projects.org" "Projects")
            "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n** TODO %?")
 
           ("i" "Idea" entry
-           (file+headline "~/Notes/obsidian-vault/org/ideas.org" "Ideas")
+           (file+headline "~/Notes/org/ideas.org" "Ideas")
            "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("b" "Bookmark" entry
-           (file+headline "~/Notes/obsidian-vault/org/bookmarks.html" "Inbox")
+           (file+headline "~/Notes/org/bookmarks.html" "Inbox")
            "** [[%^{URL}][%^{Title}]]\n:PROPERTIES:\n:CREATED: %U\n:TAGS: %(org-capture-bookmark-tags)\n:END:\n\n"
            :empty-lines 0)
 
           ("n" "Note" entry
-           (file+headline "~/Notes/obsidian-vault/org/notes.org" "Inbox")
+           (file+headline "~/Notes/org/notes.org" "Inbox")
            "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
            :prepend t))))
+
+;; daily journal
+(defun create-daily-file ()
+  "Create a daily journal file organized by year and week number."
+  (interactive)
+
+  (let* ((current-time (current-time))
+         (decoded-time (decode-time current-time))
+
+         ;; Get the year (like 2025)
+         (year (format-time-string "%Y" current-time))
+
+         ;; Get week number (1-53) - using %V instead of %U
+         ;; %V gives ISO week number where weeks start on Monday
+         ;; This should correctly identify March 24, 2025 as week 13
+         (week-number (string-to-number (format-time-string "%V" current-time)))
+
+         ;; Get friendly date format like "March 24, 2025"
+         (date-string (format-time-string "%B %d, %Y" current-time))
+
+         ;; Create folder paths
+         (year-dir (expand-file-name year "~/Notes/org/journal/"))
+         (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
+
+         ;; Create file path/name
+         (file-path (expand-file-name (concat date-string ".org") week-dir)))
+
+    ;; Step 2: Make sure folders exist
+    (unless (file-exists-p year-dir)
+      (make-directory year-dir t))
+
+    (unless (file-exists-p week-dir)
+      (make-directory week-dir t))
+
+    ;; Step 3: Create the file (or open it if it exists)
+    (find-file file-path)
+
+    ;; Step 4: Insert template if file is empty
+    (when (= (buffer-size) 0)
+      (yas-expand-snippet
+       (with-temp-buffer
+         (insert-file-contents "~/.config/doom/snippets/daily")
+         (buffer-string))))))
 
 ;; Set archive location to done.org under current date
 (defun my/archive-done-task ()
   "Archive current task to done.org under today's date"
   (interactive)
   (let* ((date-header (format-time-string "%Y-%m-%d %A"))
-         (archive-file (expand-file-name "~/Notes/obsidian-vault/org/done.org"))
+         (archive-file (expand-file-name "~/Notes/org/done.org"))
          (location (format "%s::* %s" archive-file date-header)))
     ;; Only archive if not a habit
     (unless (org-is-habit-p)
@@ -158,6 +195,48 @@
       ;; Set archive location and archive
       (setq org-archive-location location)
       (org-archive-subtree))))
+
+;; refile on done
+(defun my/move-to-done-org ()
+  "Move the current org heading to done.org under today's date."
+  (interactive)
+  (let* ((done-file (expand-file-name "~/Notes/org/done.org"))
+         (today-heading (format-time-string "* %Y-%m-%d %A")))
+
+    ;; First, mark the task as DONE if it's not already
+    (when (org-entry-is-todo-p)
+      (org-todo 'done))
+
+    ;; Add CLOSED property if it doesn't exist
+    (unless (org-entry-get nil "CLOSED")
+      (org-add-planning-info 'closed (org-current-effective-time)))
+
+    ;; Ensure done.org exists and has today's date heading
+    (with-current-buffer (find-file-noselect done-file)
+      (goto-char (point-min))
+      ;; Find or create today's heading
+      (unless (re-search-forward (concat "^" (regexp-quote today-heading) "$") nil t)
+        (goto-char (point-max))
+        (unless (bolp) (insert "\n"))
+        (insert today-heading "\n")
+        (save-buffer)))
+
+    ;; Use org-refile to move the subtree
+    (let* ((rfloc (with-current-buffer (find-file-noselect done-file)
+                    (goto-char (point-min))
+                    (re-search-forward (concat "^" (regexp-quote today-heading) "$"))
+                    (list today-heading
+                          done-file
+                          nil
+                          (point)))))
+      (org-refile nil nil rfloc))
+
+    (message "Task moved to done.org under %s" today-heading)))
+
+;; Bind to a convenient key
+(global-set-key (kbd "C-c d") 'my/move-to-done-org)
+
+(provide 'done-refile)
 
 ;; Keybinds for org mode
 (with-eval-after-load 'org
@@ -213,94 +292,148 @@
 
 (setq org-caldav-url "https://100.78.236.53/remote.php/dav/calendars/admin")
 (setq org-caldav-calendar-id "nextcal")
-(setq org-caldav-inbox "~/Notes/obsidian-vault/org/calendar.org")
-(setq org-caldav-files (list (expand-file-name "~/Notes/obsidian-vault/org/agenda.org")))
+(setq org-caldav-inbox "~/Notes/org/calendar.org")
+(setq org-caldav-files (list (expand-file-name "~/Notes/org/agenda.org")))
 (setq org-icalendar-include-todo 'all
       org-caldav-sync-todo t)
 (setq org-icalendar-timezone "America/Chicago")
 
-;; daily journal
-(defun create-daily-file ()
-  "Create a daily journal file organized by year and week number."
-  (interactive)
+;;Org-Roam
+;; Org-Roam Configuration with SQLite Built-in Connector
+(use-package! org-roam
+  :custom
+  ;; Set your org-roam directory
+  (org-roam-directory "~/Notes/org/roam/")
 
-  (let* ((current-time (current-time))
-         (decoded-time (decode-time current-time))
+  ;; Explicitly use the built-in SQLite connector
+  (org-roam-database-connector 'sqlite-builtin)
 
-         ;; Get the year (like 2025)
-         (year (format-time-string "%Y" current-time))
+  ;; Set an absolute path for the database file
+  (org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory))
 
-         ;; Get week number (1-53) - using %V instead of %U
-         ;; %V gives ISO week number where weeks start on Monday
-         ;; This should correctly identify March 24, 2025 as week 13
-         (week-number (string-to-number (format-time-string "%V" current-time)))
+  :config
+  ;; Make sure the directory exists
+  (unless (file-exists-p org-roam-directory)
+    (make-directory org-roam-directory t))
 
-         ;; Get friendly date format like "March 24, 2025"
-         (date-string (format-time-string "%B %d, %Y" current-time))
+  ;; Add error handling for database operations
+  (advice-add 'org-roam-db-query :around
+              (lambda (fn &rest args)
+                (condition-case err
+                    (apply fn args)
+                  (error
+                   (message "Database error in org-roam: %S" err)
+                   nil))))
 
-         ;; Create folder paths
-         (year-dir (expand-file-name year "~/Notes/obsidian-vault/org/journal/"))
-         (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
+  ;; Enable auto-sync mode to keep the database updated
+  (org-roam-db-autosync-mode +1))
+;
+; ;; Org-Roam UI setup - only load after org-roam is properly initialized
+; (use-package! websocket
+;   :after org-roam)
+;
+; (use-package! org-roam-ui
+;   :after org-roam
+;   :config
+;   (setq org-roam-ui-sync-theme t
+;         org-roam-ui-follow t
+;         org-roam-ui-update-on-save t
+;         org-roam-ui-open-on-start t))
+;
+; ;; org-download customizations
+; (require 'org-download)
+; (setq-default org-download-screenshot-method "scrot -s %s")
+;
+; ;; Debugging function for SQLite issues
+; (defun debug-org-roam-db ()
+;   "Debug function to test org-roam database connection."
+;   (interactive)
+;   (message "Testing org-roam database...")
+;   (message "Directory exists: %s" (file-exists-p org-roam-directory))
+;   (message "Database path: %s" org-roam-db-location)
+;   (message "Database connector: %s" org-roam-database-connector)
+;   (condition-case err
+;       (progn
+;         (org-roam-db-sync)
+;         (message "Database synced successfully!"))
+;     (error (message "Database sync error: %S" err))))
+;
+;; rust dev
+(use-package rustic
+  :ensure
+  :bind (:map rustic-mode-map
+              ("M-j" . lsp-ui-imenu)
+              ("M-?" . lsp-find-references)
+              ("C-c C-c l" . flycheck-list-errors)
+              ("C-c C-c a" . lsp-execute-code-action)
+              ("C-c C-c r" . lsp-rename)
+              ("C-c C-c q" . lsp-workspace-restart)
+              ("C-c C-c Q" . lsp-workspace-shutdown)
+              ("C-c C-c s" . lsp-rust-analyzer-status))
+  :config
+  ;; uncomment for less flashiness
+  ;; (setq lsp-eldoc-hook nil)
+  ;; (setq lsp-enable-symbol-highlighting nil)
+  ;; (setq lsp-signature-auto-activate nil)
 
-         ;; Create file path/name
-         (file-path (expand-file-name (concat date-string ".org") week-dir)))
+  ;; comment to disable rustfmt on save
+  (setq rustic-format-on-save t)
+  (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
 
-    ;; Step 2: Make sure folders exist
-    (unless (file-exists-p year-dir)
-      (make-directory year-dir t))
+(defun rk/rustic-mode-hook ()
+  ;; so that run C-c C-c C-r works without having to confirm, but don't try to
+  ;; save rust buffers that are not file visiting. Once
+  ;; https://github.com/brotzeit/rustic/issues/253 has been resolved this should
+  ;; no longer be necessary.
+  (when buffer-file-name
+    (setq-local buffer-save-without-query t))
+  (add-hook 'before-save-hook 'lsp-format-buffer nil t))
 
-    (unless (file-exists-p week-dir)
-      (make-directory week-dir t))
+;; rust-analyzer integration
+(use-package lsp-mode
+  :ensure
+  :commands lsp
+  :custom
+  ;; what to use when checking on-save. "check" is default, I prefer clippy
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
+  (lsp-eldoc-render-all t)
+  (lsp-idle-delay 0.6)
+  ;; enable / disable the hints as you prefer:
+  (lsp-inlay-hint-enable t)
+  ;; These are optional configurations. See https://emacs-lsp.github.io/lsp-mode/page/lsp-rust-analyzer/#lsp-rust-analyzer-display-chaining-hints for a full list
+  (lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial")
+  (lsp-rust-analyzer-display-chaining-hints t)
+  (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil)
+  (lsp-rust-analyzer-display-closure-return-type-hints t)
+  (lsp-rust-analyzer-display-parameter-hints nil)
+  (lsp-rust-analyzer-display-reborrow-hints nil)
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
-    ;; Step 3: Create the file (or open it if it exists)
-    (find-file file-path)
+(use-package lsp-ui
+  :ensure
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-doc-enable nil))
 
-    ;; Step 4: Insert template if file is empty
-    (when (= (buffer-size) 0)
-      (yas-expand-snippet
-       (with-temp-buffer
-         (insert-file-contents "~/.config/doom/snippets/daily")
-         (buffer-string))))))
+;; rust completions
+(use-package company
+  :ensure
+  :custom
+  (company-idle-delay 0.5) ;; how long to wait until popup
+  ;; (company-begin-commands nil) ;; uncomment to disable popup
+  :bind
+  (:map company-active-map
+	("C-n". company-select-next)
+	("C-p". company-select-previous)
+	("M-<". company-select-first)
+	("M->". company-select-last)))
 
-
-;; refile on done
-(defun my/move-to-done-org ()
-  "Move the current org heading to done.org under today's date."
-  (interactive)
-  (let* ((done-file (expand-file-name "~/Notes/obsidian-vault/org/done.org"))
-         (today-heading (format-time-string "* %Y-%m-%d %A")))
-
-    ;; First, mark the task as DONE if it's not already
-    (when (org-entry-is-todo-p)
-      (org-todo 'done))
-
-    ;; Add CLOSED property if it doesn't exist
-    (unless (org-entry-get nil "CLOSED")
-      (org-add-planning-info 'closed (org-current-effective-time)))
-
-    ;; Ensure done.org exists and has today's date heading
-    (with-current-buffer (find-file-noselect done-file)
-      (goto-char (point-min))
-      ;; Find or create today's heading
-      (unless (re-search-forward (concat "^" (regexp-quote today-heading) "$") nil t)
-        (goto-char (point-max))
-        (unless (bolp) (insert "\n"))
-        (insert today-heading "\n")
-        (save-buffer)))
-
-    ;; Use org-refile to move the subtree
-    (let* ((rfloc (with-current-buffer (find-file-noselect done-file)
-                    (goto-char (point-min))
-                    (re-search-forward (concat "^" (regexp-quote today-heading) "$"))
-                    (list today-heading
-                          done-file
-                          nil
-                          (point)))))
-      (org-refile nil nil rfloc))
-
-    (message "Task moved to done.org under %s" today-heading)))
-
-;; Bind to a convenient key
-(global-set-key (kbd "C-c d") 'my/move-to-done-org)
-
-(provide 'done-refile)
+(use-package yasnippet
+  :ensure
+  :config
+  (yas-reload-all)
+  (add-hook 'prog-mode-hook 'yas-minor-mode)
+  (add-hook 'text-mode-hook 'yas-minor-mode))

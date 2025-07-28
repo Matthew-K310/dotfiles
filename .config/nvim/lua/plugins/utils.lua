@@ -37,6 +37,8 @@ return {
       },
     },
   },
+  -- fancy notifications
+  { 'rcarriga/nvim-notify' },
   { -- Magit for nvim
     'tpope/vim-fugitive',
   },
