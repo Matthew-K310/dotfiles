@@ -8,13 +8,13 @@ fi
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
 setopt PROMPT_SUBST
-parse_git_branch() {
-  git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
-}
+# parse_git_branch() {
+#   git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
+# }
 # PS1='%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%} %{$fg[magenta]%}%~%{$fg[cyan]%}$(parse_git_branch)%{$fg[red]%}]%{$reset_color%} '
-PS1='$fg[yellow]%}%n%{$fg[green]%} %{$fg[magenta]%}%~%{$fg[cyan]%}$(parse_git_branch)%{$fg[red]%} >%{$reset_color%} '
+# PS1='$fg[yellow]%}%n%{$fg[green]%} %{$fg[magenta]%}%~%{$fg[cyan]%}$(parse_git_branch)%{$fg[red]%} >%{$reset_color%} '
+PS1='$fg[yellow]%}%n%{$fg[green]%} %{$fg[magenta]%}%~%{$fg[cyan]%} >%{$reset_color%} '
 setopt autocd		# Automatically cd into typed directory.
-stty stop undef		# Disable ctrl-s to freeze terminal.
 setopt interactive_comments
 
 # History
