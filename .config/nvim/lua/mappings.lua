@@ -53,3 +53,17 @@ vim.keymap.set('n', '<leader>U', vim.cmd.UndotreeToggle)
 
 -- Fugitive (git status)
 vim.keymap.set('n', '<leader>gg', vim.cmd.Git)
+
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'LazyVimStarted', -- Waits for Lazy.nvim to complete
+  callback = function()
+    local custom_projects = require 'custom.projects'
+    vim.keymap.set('n', '<leader>pp', function()
+      custom_projects.projects {
+        '~/.config/nvim',
+        '~/Developer',
+        '~/Notes', -- Replace with your paths
+      }
+    end, { desc = 'Fuzzy find and switch projects' })
+  end,
+})

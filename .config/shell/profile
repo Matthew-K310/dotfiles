@@ -48,6 +48,7 @@ export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export MPD_DIR="$XDG_CONFIG_HOME/mpd"
 export EMACS_DIR="$XDG_CONFIG_HOME/emacs"
+export NODE_PATH=$NODE_PATH:$(npm root -g)
 
 # Other program settings:
 export DICS="/usr/share/stardict/dic/"

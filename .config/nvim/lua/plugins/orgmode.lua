@@ -9,8 +9,8 @@ return {
         org_default_notes_file = '~/Notes/org/inbox.org',
         mappings = {
           global = {
-            org_agenda = '<leader>na',
-            org_capture = '<leader>nc',
+            org_agenda = '<leader>oA',
+            org_capture = '<leader>nn',
           },
         },
         org_capture_templates = {

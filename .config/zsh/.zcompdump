@@ -706,6 +706,7 @@ _comps=(
 'guilt-status' '_guilt'
 'guilt-top' '_guilt'
 'guilt-unapplied' '_guilt'
+'gum' '_gum'
 'guname' '_uname'
 'gunexpand' '_unexpand'
 'guniq' '_uniq'
@@ -1503,7 +1504,6 @@ _comps=(
 'trap' '_trap'
 'trash' '_trash'
 'tree' '_tree'
-'tree-sitter' '_tree-sitter'
 'trial' '_twisted'
 'trove' '_openstack'
 'true' '_nothing'
@@ -1867,10 +1867,10 @@ bindkey '^[~' _bash_complete-word
 
 autoload -Uz _aerospace _bat _brew _cargo _cb \
             _dotnet _email-notmuch _fastfetch _fd _gh \
-            _git _git-lfs _img2sixel _lf _lftp \
-            _luarocks _meson _mpv _newsboat _ninja \
-            _nnn _notmuch _pass _pastel _pipx \
-            _pnpm _rg _tldr _tree-sitter _ya \
+            _git _git-lfs _gum _img2sixel _lf \
+            _lftp _luarocks _meson _mpv _newsboat \
+            _ninja _nnn _notmuch _pass _pastel \
+            _pipx _pnpm _rg _tldr _ya \
             _yazi _yt-dlp _zathura _zoxide _mutt-wizard.zsh \
             __arguments _a2ps _a2utils _aap _abcde \
             _absolute_command_paths _ack _acpi _acpitool _acroread \

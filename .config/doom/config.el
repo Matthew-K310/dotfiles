@@ -25,7 +25,7 @@
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (setq browse-url-browser-function 'browse-url-generic)
-(setq browse-url-generic-program "librewolf")
+(setq browse-url-generic-program "qutebrowser")
 
 ;; Setup custom splashscreen
 (defun glory-to-the-omnissiah ()
@@ -69,6 +69,8 @@
   (insert "\n" (+doom-dashboard--center +doom-dashboard--width "May the machine spirit be pleased by your work.")))
 
 (assoc-delete-all "Reload last session" +doom-dashboard-menu-sections)
+(assoc-delete-all "Jump to bookmark" +doom-dashboard-menu-sections)
+(assoc-delete-all "Open documentation" +doom-dashboard-menu-sections)
 
 ;; Speed of which-key popup
 (setq which-key-idle-delay 0.2)
@@ -77,6 +79,8 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Notes/org")
 (setq diary-file "~/Notes/org/agenda.org")
+(add-to-list 'org-agenda-files "~/Notes/org/agenda.org")
+
 
 (after! org
   (map! :map org-mode-map
@@ -156,6 +160,50 @@
 
          ;; Get friendly date format like "March 24, 2025"
          (date-string (format-time-string "%B %d, %Y" current-time))
+
+         ;; Create folder paths
+         (year-dir (expand-file-name year "~/Notes/org/journal/"))
+         (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
+
+         ;; Create file path/name
+         (file-path (expand-file-name (concat date-string ".org") week-dir)))
+
+    ;; Step 2: Make sure folders exist
+    (unless (file-exists-p year-dir)
+      (make-directory year-dir t))
+
+    (unless (file-exists-p week-dir)
+      (make-directory week-dir t))
+
+    ;; Step 3: Create the file (or open it if it exists)
+    (find-file file-path)
+
+    ;; Step 4: Insert template if file is empty
+    (when (= (buffer-size) 0)
+      (yas-expand-snippet
+       (with-temp-buffer
+         (insert-file-contents "~/.config/doom/snippets/daily")
+         (buffer-string))))))
+
+;; daily journal
+(defun create-tomorrows-daily-file ()
+  "Create a daily journal file organized by year and week number for tomorrow."
+  (interactive)
+
+  (let* ((current-time (current-time))
+         ;; Calculate tomorrow's time by adding one day (86400 seconds)
+         (tomorrow-time (time-add current-time (seconds-to-time (* 24 60 60))))
+         (decoded-time (decode-time tomorrow-time)) ;; Use tomorrow-time
+
+         ;; Get the year for tomorrow (like 2025)
+         (year (format-time-string "%Y" tomorrow-time))
+
+         ;; Get week number for tomorrow (1-53) - using %V instead of %U
+         ;; %V gives ISO week number where weeks start on Monday
+         (week-number (string-to-number (format-time-string "%V" tomorrow-time)))
+
+         ;; Get friendly date format for tomorrow like "August 04, 2025"
+         (date-string (format-time-string "%B %d, %Y" tomorrow-time))
 
          ;; Create folder paths
          (year-dir (expand-file-name year "~/Notes/org/journal/"))
@@ -327,37 +375,37 @@
 
   ;; Enable auto-sync mode to keep the database updated
   (org-roam-db-autosync-mode +1))
-;
-; ;; Org-Roam UI setup - only load after org-roam is properly initialized
-; (use-package! websocket
-;   :after org-roam)
-;
-; (use-package! org-roam-ui
-;   :after org-roam
-;   :config
-;   (setq org-roam-ui-sync-theme t
-;         org-roam-ui-follow t
-;         org-roam-ui-update-on-save t
-;         org-roam-ui-open-on-start t))
-;
-; ;; org-download customizations
-; (require 'org-download)
-; (setq-default org-download-screenshot-method "scrot -s %s")
-;
-; ;; Debugging function for SQLite issues
-; (defun debug-org-roam-db ()
-;   "Debug function to test org-roam database connection."
-;   (interactive)
-;   (message "Testing org-roam database...")
-;   (message "Directory exists: %s" (file-exists-p org-roam-directory))
-;   (message "Database path: %s" org-roam-db-location)
-;   (message "Database connector: %s" org-roam-database-connector)
-;   (condition-case err
-;       (progn
-;         (org-roam-db-sync)
-;         (message "Database synced successfully!"))
-;     (error (message "Database sync error: %S" err))))
-;
+                                        ;
+                                        ; ;; Org-Roam UI setup - only load after org-roam is properly initialized
+                                        ; (use-package! websocket
+                                        ;   :after org-roam)
+                                        ;
+                                        ; (use-package! org-roam-ui
+                                        ;   :after org-roam
+                                        ;   :config
+                                        ;   (setq org-roam-ui-sync-theme t
+                                        ;         org-roam-ui-follow t
+                                        ;         org-roam-ui-update-on-save t
+                                        ;         org-roam-ui-open-on-start t))
+                                        ;
+                                        ; ;; org-download customizations
+                                        ; (require 'org-download)
+                                        ; (setq-default org-download-screenshot-method "scrot -s %s")
+                                        ;
+                                        ; ;; Debugging function for SQLite issues
+                                        ; (defun debug-org-roam-db ()
+                                        ;   "Debug function to test org-roam database connection."
+                                        ;   (interactive)
+                                        ;   (message "Testing org-roam database...")
+                                        ;   (message "Directory exists: %s" (file-exists-p org-roam-directory))
+                                        ;   (message "Database path: %s" org-roam-db-location)
+                                        ;   (message "Database connector: %s" org-roam-database-connector)
+                                        ;   (condition-case err
+                                        ;       (progn
+                                        ;         (org-roam-db-sync)
+                                        ;         (message "Database synced successfully!"))
+                                        ;     (error (message "Database sync error: %S" err))))
+                                        ;
 ;; rust dev
 (use-package rustic
   :ensure

@@ -47,6 +47,7 @@ alias \
 	til='cd ~/Notes/obsidian-vault/today_i_learned' \
 	info='fastfetch' \
 	weather="curl wttr.in" \
+	yt="yt-x" \
 	astroterm='astroterm --color --constellations --speed 1000 --fps 120 --city Dallas' \
 	lc='linear-cli issues create' \
 	lls='linear-cli issues list'

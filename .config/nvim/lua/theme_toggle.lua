@@ -80,7 +80,7 @@ end
 
 -- Map the <leader>p key in normal mode to call the switch_theme function
 -- Ensure this is in a file that gets sourced by your init.lua
-vim.keymap.set('n', '<leader>p', _G.switch_theme, {
+vim.keymap.set('n', '<leader>ht', _G.switch_theme, {
   noremap = true, -- Prevent recursive mapping
   silent = true, -- Don't show the command in the command line
   desc = 'Switch Colorscheme', -- Add a description for built-in help

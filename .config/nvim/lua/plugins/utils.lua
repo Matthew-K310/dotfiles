@@ -42,6 +42,7 @@ return {
   { -- Magit for nvim
     'tpope/vim-fugitive',
   },
+  { 'nvim-lua/plenary.nvim' },
   { -- Tmux navigation
     'christoomey/vim-tmux-navigator',
     cmd = {
