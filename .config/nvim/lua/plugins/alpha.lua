@@ -36,10 +36,10 @@ return {
     }
 
     dashboard.section.buttons.val = {
-      dashboard.button('<leader>fr', ' Recently opened files'),
-      dashboard.button('<leader>oA', ' Open org-agenda'),
-      dashboard.button('<leader>pp', ' Open project'),
-      dashboard.button('<leader>fP', ' Open private configuration', ':e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>'),
+      dashboard.button('<leader>fr', '  Recently opened files'),
+      dashboard.button('<leader>oA', '  Open org-agenda'),
+      dashboard.button('<leader>pp', '  Open project'),
+      dashboard.button('<leader>fP', '  Open private configuration', ':e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>'),
     }
 
     dashboard.section.footer.val = { 'May the machine spirit be pleased by your work.' }
