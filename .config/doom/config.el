@@ -7,6 +7,12 @@
       user-mail-address "matthew@matthew-kennedy.com")
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
+
+;; (setq doom-font (font-spec :family "Terminess Nerd Font Mono" :size 14)
+(setq doom-font (font-spec :family "JetBrains Mono NL" :size 15)
+      ;; doom-big-font (font-spec :family "Terminess Nerd Font Mono" :size 22))
+      doom-big-font (font-spec :family "JetBrains Mono NL" :size 22))
+
 ;; `load-theme' function. This is the default:
 (add-to-list 'custom-theme-load-path "~/.config/doom/themes/")
 (load-theme 'doom-nord t)
