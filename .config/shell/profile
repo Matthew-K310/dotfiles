@@ -37,8 +37,9 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export GOPATH="$XDG_DATA_HOME/go"
-export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$HOME/go/bin" # templ path
+export GOMODCACHE="$HOME/go/mod"
 export ANSIBLE_CONFIG="$XDG_CONFIG_HOME/ansible/ansible.cfg"
 export UNISON="$XDG_DATA_HOME/unison"
 export HISTFILE="$XDG_DATA_HOME/history"
@@ -73,9 +74,6 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
 export PATH="/opt/homebrew/bin/cb:$PATH"
 export PATH="/opt/homebrew/bin/mpv:$PATH"
-export PATH="$PATH:$HOME/go/bin"
-export PATH="${PATH}:/Users/matthewkennedy/.local/lib/python3.12/site-packages"
-export PATH="${PATH}:/Library/TeX/texbin"
 
 export GODOT="$XDG_CONFIG_HOME/godotenv/godot/bin"
 
@@ -90,3 +88,9 @@ export PATH="$DOTNET_ROOT/sdk:$PATH"
 export PATH="$HOME/.dotnet/tools:$PATH"
 
 [ ! -f "$XDG_CONFIG_HOME/shell/shortcutrc" ] && setsid -f shortcuts >/dev/null 2>&1
+
+# Start graphical server on user's current tty if not already running.
+[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
+
+# Switch escape and caps if tty and no passwd required:
+sudo -n loadkeys "$XDG_DATA_HOME/larbs/ttymaps.kmap" 2>/dev/null

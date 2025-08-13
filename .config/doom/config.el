@@ -7,6 +7,10 @@
       user-mail-address "matthew@matthew-kennedy.com")
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
+
+(setq doom-font (font-spec :family "JetBrains Mono NL" :size 16)
+      doom-big-font (font-spec :family "JetBrains Mono NL" :size 22))
+
 ;; `load-theme' function. This is the default:
 (add-to-list 'custom-theme-load-path "~/.config/doom/themes/")
 (load-theme 'doom-nord t)
@@ -376,35 +380,35 @@
   ;; Enable auto-sync mode to keep the database updated
   (org-roam-db-autosync-mode +1))
                                         ;
-                                        ; ;; Org-Roam UI setup - only load after org-roam is properly initialized
-                                        ; (use-package! websocket
-                                        ;   :after org-roam)
-                                        ;
-                                        ; (use-package! org-roam-ui
-                                        ;   :after org-roam
-                                        ;   :config
-                                        ;   (setq org-roam-ui-sync-theme t
-                                        ;         org-roam-ui-follow t
-                                        ;         org-roam-ui-update-on-save t
-                                        ;         org-roam-ui-open-on-start t))
-                                        ;
-                                        ; ;; org-download customizations
-                                        ; (require 'org-download)
-                                        ; (setq-default org-download-screenshot-method "scrot -s %s")
-                                        ;
-                                        ; ;; Debugging function for SQLite issues
-                                        ; (defun debug-org-roam-db ()
-                                        ;   "Debug function to test org-roam database connection."
-                                        ;   (interactive)
-                                        ;   (message "Testing org-roam database...")
-                                        ;   (message "Directory exists: %s" (file-exists-p org-roam-directory))
-                                        ;   (message "Database path: %s" org-roam-db-location)
-                                        ;   (message "Database connector: %s" org-roam-database-connector)
-                                        ;   (condition-case err
-                                        ;       (progn
-                                        ;         (org-roam-db-sync)
-                                        ;         (message "Database synced successfully!"))
-                                        ;     (error (message "Database sync error: %S" err))))
+;; Org-Roam UI setup - only load after org-roam is properly initialized
+(use-package! websocket
+  :after org-roam)
+
+(use-package! org-roam-ui
+  :after org-roam
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+
+;; org-download customizations
+(require 'org-download)
+(setq-default org-download-screenshot-method "scrot -s %s")
+
+;; Debugging function for SQLite issues
+(defun debug-org-roam-db ()
+  "Debug function to test org-roam database connection."
+  (interactive)
+  (message "Testing org-roam database...")
+  (message "Directory exists: %s" (file-exists-p org-roam-directory))
+  (message "Database path: %s" org-roam-db-location)
+  (message "Database connector: %s" org-roam-database-connector)
+  (condition-case err
+      (progn
+        (org-roam-db-sync)
+        (message "Database synced successfully!"))
+    (error (message "Database sync error: %S" err))))
                                         ;
 ;; rust dev
 (use-package rustic

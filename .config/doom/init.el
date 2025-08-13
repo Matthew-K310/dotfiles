@@ -44,7 +44,7 @@
        ophints           ; highlight the region an operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
        ;;tabs              ; a tab bar for Emacs
-       treemacs          ; a project drawer, like neotree but cooler
+       ;; treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
        (vc-gutter +pretty) ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
@@ -68,6 +68,7 @@
 
        :emacs
        (dired +icons)             ; making dired pretty [functional]
+       dirvish
        electric          ; smarter, keyword-based electric-indent
        eww
        ;;ibuffer         ; interactive buffer management
@@ -192,8 +193,8 @@
 
        :app
        calendar
-       ;;emms
-       ;;everywhere        ; *leave* Emacs!? You must be joking
+       emms
+       everywhere        ; *leave* Emacs!? You must be joking
        ;;irc               ; how neckbeards socialize
        ;; (rss +org +web)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought

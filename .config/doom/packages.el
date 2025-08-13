@@ -70,3 +70,5 @@
 (package! org-caldav)
 (package! org-roam-ui)
 (package! websocket) ;; for org-roam-ui
+
+(package! dirvish)
