@@ -123,9 +123,9 @@ bindkey -M visual '^[[P' vi-delete
 # # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ompconfig.toml)"
 
 # tmux session startup
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  tmux attach-session -t default || tmux new-session -s default
-fi
+# if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+#   tmux attach-session -t default || tmux new-session -s default
+# fi
 
 # # Open yazi with ctrl-n keybind
 # bindkey -s '^o' 'y\n'

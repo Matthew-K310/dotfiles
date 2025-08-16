@@ -17,6 +17,7 @@
 +
 +
 
+
 * Morning Foundation [/]
 ** [ ] Wake up, drink water
 ** [ ] Read Scripture
@@ -33,8 +34,10 @@
 
 * Faith
 ** [ ] Prayer
-** [ ] Vespers
-** [ ] Holy Liturgy
+*** - What did I pray about?
+** [ ] Vespers (Morning)
+** [ ] Holy Liturgy (Afternoon)
+** [ ] Theological Reading
 ** [ ] Bible Study
 
 * Evening Review
@@ -43,6 +46,9 @@
 
 ** Growth Areas
 - What could improve:
+
+** Losses
+- What went poorly:
 
 ** Gratitude
 - Three things, ideas, people etc. I'm grateful for:
@@ -53,7 +59,7 @@
 ** Evening Routine
 *** Tomorrow's Preparation [/]
 **** [ ] Setup tomorrows journal file
-**** [ ] Post priorities from [[file:~/Notes/obsidian-vault/org/projects.org][projects.org]] file
+**** [ ] Post priorities from [[file:~/Notes/org/projects.org][projects.org]] file
 **** [ ] Set clothes out for morning
 
 * Daily Reflection

@@ -7,13 +7,12 @@ local theme_file = vim.fn.stdpath 'config' .. '/lua/saved_theme' -- Changed file
 -- These are the names you would use with `:colorscheme <name>`.
 -- Make sure these names match how the colorschemes are registered by their plugins/files.
 local themes = {
-  -- Add the *exact names* used with :colorscheme here
-  'base16-black-metal-gorgoroth',
-  'catppuccin-macchiato',
+  'pywal16',
   'nord',
+  'catppuccin-macchiato',
+  'base16-black-metal-gorgoroth',
   'rose-pine',
   'vague',
-  -- Add any other colorscheme names you have installed and want to cycle
 }
 
 -- Find the initial index based on the loaded theme, or default to 1

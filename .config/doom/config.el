@@ -121,11 +121,11 @@
            "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("e" "Event" entry
-           (file+headline "~/Notes/org/calendar.org" "Events")
+           (file+headline "~/Notes/org/agenda.org" "Events")
            "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("d" "Deadline" entry
-           (file+headline "~/Notes/org/calendar.org" "Deadlines")
+           (file+headline "~/Notes/org/agenda.org" "Deadlines")
            "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("p" "Project" entry
@@ -136,15 +136,62 @@
            (file+headline "~/Notes/org/ideas.org" "Ideas")
            "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
-          ("b" "Bookmark" entry
-           (file+headline "~/Notes/org/bookmarks.html" "Inbox")
-           "** [[%^{URL}][%^{Title}]]\n:PROPERTIES:\n:CREATED: %U\n:TAGS: %(org-capture-bookmark-tags)\n:END:\n\n"
-           :empty-lines 0)
+          ("c" "Contact" entry
+           (file+headline "~/org/contacts.org" "Inbox")
+           "* %^{Name}
+
+:PROPERTIES:
+:CREATED: %U
+:EMAIL: %^{Email}
+:PHONE: %^{Phone}
+:BIRTHDAY: %^{Birthday +1y}u
+:LOCATION: %^{Address}
+:END:
+\\ *** Notes
+%?")
 
           ("n" "Note" entry
            (file+headline "~/Notes/org/notes.org" "Inbox")
            "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
            :prepend t))))
+
+;; weekly journal
+(defun create-weekly-journal-file ()
+  "Create a weekly journal file for review and habit tracking."
+  (interactive)
+
+  (let* ((current-time (current-time))
+         ;; Get the year (like 2025)
+         (year (format-time-string "%Y" current-time))
+
+         ;; Get ISO week number (01–53, starts on Monday)
+         (week-number (string-to-number (format-time-string "%V" current-time)))
+
+         ;; Filename like "Week 33, 2025"
+         (date-string (format "Week %02d, %s" week-number year))
+
+         ;; Folder paths
+         (year-dir (expand-file-name year "~/Notes/org/journal/"))
+         (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
+
+         ;; Full file path
+         (file-path (expand-file-name (concat date-string ".org") week-dir)))
+
+    ;; Ensure folders exist
+    (unless (file-exists-p year-dir)
+      (make-directory year-dir t))
+    (unless (file-exists-p week-dir)
+      (make-directory week-dir t))
+
+    ;; Open or create the file
+    (find-file file-path)
+
+    ;; Insert template if file is empty
+    (when (= (buffer-size) 0)
+      (yas-expand-snippet
+       (with-temp-buffer
+         (insert-file-contents "~/.config/doom/snippets/weekly")
+         (buffer-string))))))
 
 ;; daily journal
 (defun create-daily-file ()
@@ -163,7 +210,7 @@
          (week-number (string-to-number (format-time-string "%V" current-time)))
 
          ;; Get friendly date format like "March 24, 2025"
-         (date-string (format-time-string "%B %d, %Y" current-time))
+         (format-time-string "%A, %B %d, %Y" current-time)
 
          ;; Create folder paths
          (year-dir (expand-file-name year "~/Notes/org/journal/"))
@@ -189,7 +236,7 @@
          (insert-file-contents "~/.config/doom/snippets/daily")
          (buffer-string))))))
 
-;; daily journal
+;; tomorrow's daily journal
 (defun create-tomorrows-daily-file ()
   "Create a daily journal file organized by year and week number for tomorrow."
   (interactive)
@@ -344,8 +391,7 @@
 
 (setq org-caldav-url "https://100.78.236.53/remote.php/dav/calendars/admin")
 (setq org-caldav-calendar-id "nextcal")
-(setq org-caldav-inbox "~/Notes/org/calendar.org")
-(setq org-caldav-files (list (expand-file-name "~/Notes/org/agenda.org")))
+(setq org-caldav-inbox "~/Notes/org/agenda.org")
 (setq org-icalendar-include-todo 'all
       org-caldav-sync-todo t)
 (setq org-icalendar-timezone "America/Chicago")

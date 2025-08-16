@@ -13,7 +13,7 @@ export EDITOR="nvim"
 export TERMINAL="kitty"
 export TERMINAL_PROG="kitty"
 export BROWSER="qutebrowser"
-# export BROWSER="zen-browser"
+export MANPAGER="nvim +Man!"
 
 # Change the default crypto/weather monitor sites.
 # export CRYPTOURL="rate.sx"
