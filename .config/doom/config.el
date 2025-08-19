@@ -4,7 +4,7 @@
 ;; sync' after modifying this file!
 
 (setq user-full-name "Matthew Kennedy"
-      user-mail-address "matthew@matthew-kennedy.com")
+      user-mail-address "business@matthew-kennedy.com")
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 
@@ -29,7 +29,7 @@
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (setq browse-url-browser-function 'browse-url-generic)
-(setq browse-url-generic-program "qutebrowser")
+(setq browse-url-generic-program "librewolf")
 
 ;; Setup custom splashscreen
 (defun glory-to-the-omnissiah ()
