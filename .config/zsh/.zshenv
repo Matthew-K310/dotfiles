@@ -1,1 +1,1 @@
-. "/home/matthewkennedy/.local/share/cargo/env"
+. "$XDG_DATA_HOME/cargo/env"

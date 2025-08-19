@@ -8,7 +8,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 
-(setq doom-font (font-spec :family "JetBrains Mono NL" :size 16)
+(setq doom-font (font-spec :family "JetBrains Mono NL" :size 14)
       doom-big-font (font-spec :family "JetBrains Mono NL" :size 22))
 
 ;; `load-theme' function. This is the default:
@@ -155,6 +155,7 @@
            "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
            :prepend t))))
 
+
 ;; weekly journal
 (defun create-weekly-journal-file ()
   "Create a weekly journal file for review and habit tracking."
@@ -192,6 +193,47 @@
        (with-temp-buffer
          (insert-file-contents "~/.config/doom/snippets/weekly")
          (buffer-string))))))
+
+;; next week's journal
+(defun create-next-weekly-journal-file ()
+  "Create a weekly journal file for next week's review and habit tracking."
+  (interactive)
+
+  (let* (;; Add 7 days (7 * 24 * 60 * 60 seconds) to current time
+         (next-week-time (time-add (current-time) (days-to-time 7)))
+
+         ;; Get the year (like 2025)
+         (year (format-time-string "%Y" next-week-time))
+
+         ;; Get ISO week number (01–53, starts on Monday)
+         (week-number (string-to-number (format-time-string "%V" next-week-time)))
+
+         ;; Filename like "Week 33, 2025"
+         (date-string (format "Week %02d, %s" week-number year))
+
+         ;; Folder paths
+         (year-dir (expand-file-name year "~/Notes/org/journal/"))
+         (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
+
+         ;; Full file path
+         (file-path (expand-file-name (concat date-string ".org") week-dir)))
+
+    ;; Ensure folders exist
+    (unless (file-exists-p year-dir)
+      (make-directory year-dir t))
+    (unless (file-exists-p week-dir)
+      (make-directory week-dir t))
+
+    ;; Open or create the file
+    (find-file file-path)
+
+    ;; Insert template if file is empty
+    (when (= (buffer-size) 0)
+      (yas-expand-snippet
+       (with-temp-buffer
+         (insert-file-contents "~/.config/doom/snippets/weekly")
+         (buffer-string))))))
+
 
 ;; daily journal
 (defun create-daily-file ()

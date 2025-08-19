@@ -2,8 +2,10 @@ return {
   -- pyywal
   {
     'uZer/pywal16.nvim',
-    -- for local dev replace with:
-    -- dir = '~/your/path/pywal16.nvim',
+    cond = function()
+      -- Only load on Linux
+      return vim.loop.os_uname().sysname == 'Linux'
+    end,
     config = function()
       vim.cmd.colorscheme 'pywal16'
     end,
