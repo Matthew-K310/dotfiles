@@ -193,6 +193,44 @@
          (insert-file-contents "~/.config/doom/snippets/weekly")
          (buffer-string))))))
 
+;; next week's journal
+(defun create-next-weeks-journal-file ()
+  "Create a weekly journal file for NEXT week for review and habit tracking."
+  (interactive)
+
+  (let* ((next-week-time (time-add (current-time) (days-to-time 7))) ; Add 7 days
+         ;; Get the year (like 2025)
+         (year (format-time-string "%Y" next-week-time))
+
+         ;; Get ISO week number (01–53, starts on Monday)
+         (week-number (string-to-number (format-time-string "%V" next-week-time)))
+
+         ;; Filename like "Week 33, 2025"
+         (date-string (format "Week %02d, %s" week-number year))
+
+         ;; Folder paths
+         (year-dir (expand-file-name year "~/Notes/org/journal/"))
+         (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
+
+         ;; Full file path
+         (file-path (expand-file-name (concat date-string ".org") week-dir)))
+
+    ;; Ensure folders exist
+    (unless (file-exists-p year-dir)
+      (make-directory year-dir t))
+    (unless (file-exists-p week-dir)
+      (make-directory week-dir t))
+
+    ;; Open or create the file
+    (find-file file-path)
+
+    ;; Insert template if file is empty
+    (when (= (buffer-size) 0)
+      (yas-expand-snippet
+       (with-temp-buffer
+         (insert-file-contents "~/.config/doom/snippets/weekly")
+         (buffer-string))))))
+
 ;; daily journal
 (defun create-daily-file ()
   "Create a daily journal file organized by year and week number."
@@ -204,13 +242,11 @@
          ;; Get the year (like 2025)
          (year (format-time-string "%Y" current-time))
 
-         ;; Get week number (1-53) - using %V instead of %U
-         ;; %V gives ISO week number where weeks start on Monday
-         ;; This should correctly identify March 24, 2025 as week 13
+         ;; Get week number (1-53) - using %V for ISO week number
          (week-number (string-to-number (format-time-string "%V" current-time)))
 
-         ;; Get friendly date format like "March 24, 2025"
-         (format-time-string "%A, %B %d, %Y" current-time)
+         ;; Get friendly date format like "Monday, March 24, 2025"
+         (date-string (format-time-string "%A, %B %d, %Y" current-time))
 
          ;; Create folder paths
          (year-dir (expand-file-name year "~/Notes/org/journal/"))
@@ -254,7 +290,7 @@
          (week-number (string-to-number (format-time-string "%V" tomorrow-time)))
 
          ;; Get friendly date format for tomorrow like "August 04, 2025"
-         (date-string (format-time-string "%B %d, %Y" tomorrow-time))
+         (date-string (format-time-string "%A, %B %d, %Y" tomorrow-time))
 
          ;; Create folder paths
          (year-dir (expand-file-name year "~/Notes/org/journal/"))
