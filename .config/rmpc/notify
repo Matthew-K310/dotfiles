@@ -1,11 +1,7 @@
 #!/bin/bash
 
 # Directory where to store temporary data
-<<<<<<< HEAD
-TMP_DIR="/tmp/rmpc"
-=======
-TMP_DIR="$HOME/.config/rmpc/tmp/rmpc"
->>>>>>> f1615d286fab96def234427e3b01ea0515756f4d
+TMP_DIR="$HOME/.config/rmpc/tmp/"
 
 # Ensure the directory is created
 mkdir -p "$TMP_DIR"
@@ -14,22 +10,11 @@ mkdir -p "$TMP_DIR"
 ALBUM_ART_PATH="$TMP_DIR/notification_cover"
 
 # Path to fallback album art if no album art is found by rmpc/mpd
-<<<<<<< HEAD
 # Change this to your needs
-=======
->>>>>>> f1615d286fab96def234427e3b01ea0515756f4d
 DEFAULT_ALBUM_ART_PATH="$TMP_DIR/default_album_art.jpg"
 
 # Save album art of the currently playing song to a file
 if ! rmpc albumart --output "$ALBUM_ART_PATH"; then
-<<<<<<< HEAD
-    # Use default album art if rmpc returns non-zero exit code
-    ALBUM_ART_PATH="${DEFAULT_ALBUM_ART_PATH}"
-fi
-
-# Send the notification
-notify-send -i "${ALBUM_ART_PATH}" "Now Playing" "$ARTIST - $TITLE"
-=======
 	# Use default album art if rmpc returns non-zero exit code
 	ALBUM_ART_PATH="${DEFAULT_ALBUM_ART_PATH}"
 fi
@@ -42,4 +27,3 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	# /opt/homebrew/bin/terminal-notifier -appIcon "${ALBUM_ART_PATH}" -title "Now Playing" -message "$ARTIST - $TITLE"
 	/opt/homebrew/bin/terminal-notifier -title "Now Playing" -message "$ARTIST - $TITLE"
 fi
->>>>>>> f1615d286fab96def234427e3b01ea0515756f4d

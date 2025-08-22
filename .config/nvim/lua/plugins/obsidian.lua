@@ -9,11 +9,7 @@ return {
     'nvim-lua/plenary.nvim',
   },
   opts = {
-<<<<<<< HEAD
-    dir = '~/notes/obsidian-vault',
-=======
     dir = '~/obsidian-vault',
->>>>>>> f1615d286fab96def234427e3b01ea0515756f4d
 
     vim.keymap.set('n', '<leader>nn', ':ObsidianNew<CR>', { desc = '[O]pen [N]ew Note' }),
     vim.keymap.set('n', '<leader>nt', ':ObsidianNewFromTemplate<CR>', { desc = '[O]pen from [T]emplate' }),

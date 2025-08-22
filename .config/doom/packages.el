@@ -72,3 +72,4 @@
 (package! websocket) ;; for org-roam-ui
 
 (package! dirvish)
+(package! harpoon)
