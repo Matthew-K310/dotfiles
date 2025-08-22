@@ -81,9 +81,9 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Notes/org")
-(setq diary-file "~/Notes/org/agenda.org")
-(add-to-list 'org-agenda-files "~/Notes/org/agenda.org")
+(setq org-directory "~/Sync/Notes/org")
+(setq diary-file "~/Sync/Notes/org/agenda.org")
+(add-to-list 'org-agenda-files "~/Sync/Notes/org/agenda.org")
 
 
 (after! org
@@ -117,27 +117,27 @@
 (after! org
   (setq org-capture-templates
         '(("t" "Todo" entry
-           (file+headline "~/Notes/org/inbox.org" "Inbox")
+           (file+headline "~/Sync/Notes/org/inbox.org" "Inbox")
            "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("e" "Event" entry
-           (file+headline "~/Notes/org/agenda.org" "Events")
+           (file+headline "~/Sync/Notes/org/agenda.org" "Events")
            "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("d" "Deadline" entry
-           (file+headline "~/Notes/org/agenda.org" "Deadlines")
+           (file+headline "~/Sync/Notes/org/agenda.org" "Deadlines")
            "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("p" "Project" entry
-           (file+headline "~/Notes/org/projects.org" "Projects")
+           (file+headline "~/Sync/Notes/org/projects.org" "Projects")
            "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n** TODO %?")
 
           ("i" "Idea" entry
-           (file+headline "~/Notes/org/ideas.org" "Ideas")
+           (file+headline "~/Sync/Notes/org/ideas.org" "Ideas")
            "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("c" "Contact" entry
-           (file+headline "~/org/contacts.org" "Inbox")
+           (file+headline "~/Sync/Notes/org/contacts.org" "Inbox")
            "* %^{Name}
 
 :PROPERTIES:
@@ -151,7 +151,7 @@
 %?")
 
           ("n" "Note" entry
-           (file+headline "~/Notes/org/notes.org" "Inbox")
+           (file+headline "~/Sync/Notes/org/notes.org" "Inbox")
            "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
            :prepend t))))
 
@@ -209,7 +209,7 @@
          (date-string (format "Week %02d, %s" week-number year))
 
          ;; Folder paths
-         (year-dir (expand-file-name year "~/Notes/org/journal/"))
+         (year-dir (expand-file-name year "~/Sync/Notes/org/journal/"))
          (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
 
          ;; Full file path
@@ -249,7 +249,7 @@
          (date-string (format-time-string "%A, %B %d, %Y" current-time))
 
          ;; Create folder paths
-         (year-dir (expand-file-name year "~/Notes/org/journal/"))
+         (year-dir (expand-file-name year "~/Sync/Notes/org/journal/"))
          (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
 
          ;; Create file path/name
@@ -293,7 +293,7 @@
          (date-string (format-time-string "%A, %B %d, %Y" tomorrow-time))
 
          ;; Create folder paths
-         (year-dir (expand-file-name year "~/Notes/org/journal/"))
+         (year-dir (expand-file-name year "~/Sync/Notes/org/journal/"))
          (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
 
          ;; Create file path/name
@@ -321,7 +321,7 @@
   "Archive current task to done.org under today's date"
   (interactive)
   (let* ((date-header (format-time-string "%Y-%m-%d %A"))
-         (archive-file (expand-file-name "~/Notes/org/done.org"))
+         (archive-file (expand-file-name "~/Sync/Notes/org/done.org"))
          (location (format "%s::* %s" archive-file date-header)))
     ;; Only archive if not a habit
     (unless (org-is-habit-p)
@@ -335,7 +335,7 @@
 (defun my/move-to-done-org ()
   "Move the current org heading to done.org under today's date."
   (interactive)
-  (let* ((done-file (expand-file-name "~/Notes/org/done.org"))
+  (let* ((done-file (expand-file-name "~/Sync/Notes/org/done.org"))
          (today-heading (format-time-string "* %Y-%m-%d %A")))
 
     ;; First, mark the task as DONE if it's not already
@@ -427,7 +427,7 @@
 
 (setq org-caldav-url "https://100.78.236.53/remote.php/dav/calendars/admin")
 (setq org-caldav-calendar-id "nextcal")
-(setq org-caldav-inbox "~/Notes/org/agenda.org")
+(setq org-caldav-inbox "~/Sync/Notes/org/agenda.org")
 (setq org-icalendar-include-todo 'all
       org-caldav-sync-todo t)
 (setq org-icalendar-timezone "America/Chicago")
@@ -437,7 +437,7 @@
 (use-package! org-roam
   :custom
   ;; Set your org-roam directory
-  (org-roam-directory "~/Notes/org/roam/")
+  (org-roam-directory "~/Sync/Notes/org/roam/")
 
   ;; Explicitly use the built-in SQLite connector
   (org-roam-database-connector 'sqlite-builtin)
