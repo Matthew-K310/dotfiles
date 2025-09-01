@@ -491,7 +491,7 @@
         (org-roam-db-sync)
         (message "Database synced successfully!"))
     (error (message "Database sync error: %S" err))))
-                                        ;
+
 ;; rust dev
 (use-package rustic
   :ensure

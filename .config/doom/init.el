@@ -186,16 +186,16 @@
        (zig +lsp)               ; C, but simpler
 
        :email
-       ;; (mu4e +org +gmail)
+       ;;(mu4e +org +gmail)
        ;;notmuch
        ;;(wanderlust +gmail)
 
        :app
        calendar
-       ;; emms
-       everywhere        ; *leave* Emacs!? You must be joking
-       ;;irc               ; how neckbeards socialize
-       ;; (rss +org +web)        ; emacs as an RSS reader
+       ;;emms
+       (everywhere +protocol)       ; leave emacs? never.
+       irc               ; how neckbeards socialize
+       (rss +org +web)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
 
        :config
