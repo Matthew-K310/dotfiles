@@ -73,3 +73,6 @@
 
 (package! dirvish)
 (package! harpoon)
+
+(package! elfeed-tube)
+(package! elfeed-tube-mpv)

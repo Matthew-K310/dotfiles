@@ -20,6 +20,23 @@
 (setq auth-sources
       '((:source "~/.config/doom/private/.authinfo")))
 
+;; Maintain terminal transparency in Doom Emacs
+(after! doom-themes
+  (unless (display-graphic-p)
+    (set-face-background 'default "undefined")))
+
+;; remove top frame bar in emacs
+(add-to-list 'default-frame-alist '(undecorated . t))
+
+(setq doom-modeline-icon t)
+(setq doom-modeline-major-mode-icon t)
+(setq doom-modeline-lsp-icon t)
+(setq doom-modeline-major-mode-color-icon t)
+
+;; Transparency
+(set-frame-parameter (selected-frame) 'alpha '(96 . 97))
+(add-to-list 'default-frame-alist '(alpha . (96 . 97)))
+
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type `relative)
@@ -611,3 +628,43 @@
 (map! :leader "7" 'harpoon-go-to-7)
 (map! :leader "8" 'harpoon-go-to-8)
 (map! :leader "9" 'harpoon-go-to-9)
+
+;; Load elfeed-download package
+(load! "lisp/elfeed-download")
+
+(make-directory "~/.elfeed" t)
+
+;; Force load elfeed-org
+(require 'elfeed-org)
+(elfeed-org)
+
+;; Set org feed file
+(setq rmh-elfeed-org-files '("~/.config/doom/elfeed.org"))
+
+;; Configure elfeed - consolidate all elfeed config in one after! block
+(after! elfeed
+  (setq elfeed-db-directory "~/.elfeed")
+  (setq elfeed-search-filter "@1-week-ago +unread -4chan -news -Reddit")
+
+  ;; Set up elfeed-download
+  (elfeed-download-setup)
+
+  ;; Key bindings
+  (map! :map elfeed-search-mode-map
+        :n "d" #'elfeed-download-current-entry
+        :n "O" #'elfeed-search-browse-url))
+
+;; Update hourly
+(run-at-time nil (* 60 60) #'elfeed-update)
+
+;; Elfeed-tube configuration
+(use-package! elfeed-tube
+  :after elfeed
+  :config
+  (elfeed-tube-setup)
+  :bind (:map elfeed-show-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)
+         :map elfeed-search-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)))
