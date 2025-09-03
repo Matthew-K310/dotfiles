@@ -4,13 +4,11 @@
 ;; sync' after modifying this file!
 
 (setq user-full-name "Matthew Kennedy"
-      user-mail-address "matthew@matthew-kennedy.com")
+      user-mail-address "business@matthew-kennedy.com")
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 
-;; (setq doom-font (font-spec :family "Terminess Nerd Font Mono" :size 14)
-(setq doom-font (font-spec :family "JetBrains Mono NL" :size 15)
-      ;; doom-big-font (font-spec :family "Terminess Nerd Font Mono" :size 22))
+(setq doom-font (font-spec :family "JetBrains Mono NL" :size 14)
       doom-big-font (font-spec :family "JetBrains Mono NL" :size 22))
 
 ;; `load-theme' function. This is the default:
@@ -22,6 +20,23 @@
 (setq auth-sources
       '((:source "~/.config/doom/private/.authinfo")))
 
+;; Maintain terminal transparency in Doom Emacs
+(after! doom-themes
+  (unless (display-graphic-p)
+    (set-face-background 'default "undefined")))
+
+;; remove top frame bar in emacs
+(add-to-list 'default-frame-alist '(undecorated . t))
+
+(setq doom-modeline-icon t)
+(setq doom-modeline-major-mode-icon t)
+(setq doom-modeline-lsp-icon t)
+(setq doom-modeline-major-mode-color-icon t)
+
+;; Transparency
+(set-frame-parameter (selected-frame) 'alpha '(96 . 97))
+(add-to-list 'default-frame-alist '(alpha . (96 . 97)))
+
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type `relative)
@@ -31,7 +46,7 @@
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (setq browse-url-browser-function 'browse-url-generic)
-(setq browse-url-generic-program "qutebrowser")
+(setq browse-url-generic-program "librewolf")
 
 ;; Setup custom splashscreen
 (defun glory-to-the-omnissiah ()
@@ -83,9 +98,9 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Notes/org")
-(setq diary-file "~/Notes/org/agenda.org")
-(add-to-list 'org-agenda-files "~/Notes/org/agenda.org")
+(setq org-directory "~/Sync/Notes/org")
+(setq diary-file "~/Sync/Notes/org/agenda.org")
+(add-to-list 'org-agenda-files "~/Sync/Notes/org/agenda.org")
 
 
 (after! org
@@ -119,34 +134,119 @@
 (after! org
   (setq org-capture-templates
         '(("t" "Todo" entry
-           (file+headline "~/Notes/org/inbox.org" "Inbox")
+           (file+headline "~/Sync/Notes/org/inbox.org" "Inbox")
            "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("e" "Event" entry
-           (file+headline "~/Notes/org/calendar.org" "Events")
+           (file+headline "~/Sync/Notes/org/agenda.org" "Events")
            "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("d" "Deadline" entry
-           (file+headline "~/Notes/org/calendar.org" "Deadlines")
+           (file+headline "~/Sync/Notes/org/agenda.org" "Deadlines")
            "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("p" "Project" entry
-           (file+headline "~/Notes/org/projects.org" "Projects")
+           (file+headline "~/Sync/Notes/org/projects.org" "Projects")
            "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n** TODO %?")
 
           ("i" "Idea" entry
-           (file+headline "~/Notes/org/ideas.org" "Ideas")
+           (file+headline "~/Sync/Notes/org/ideas.org" "Ideas")
            "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
-          ("b" "Bookmark" entry
-           (file+headline "~/Notes/org/bookmarks.html" "Inbox")
-           "** [[%^{URL}][%^{Title}]]\n:PROPERTIES:\n:CREATED: %U\n:TAGS: %(org-capture-bookmark-tags)\n:END:\n\n"
-           :empty-lines 0)
+          ("c" "Contact" entry
+           (file+headline "~/Sync/Notes/org/contacts.org" "Inbox")
+           "* %^{Name}
+
+:PROPERTIES:
+:CREATED: %U
+:EMAIL: %^{Email}
+:PHONE: %^{Phone}
+:BIRTHDAY: %^{Birthday +1y}u
+:LOCATION: %^{Address}
+:END:
+\\ *** Notes
+%?")
 
           ("n" "Note" entry
-           (file+headline "~/Notes/org/notes.org" "Inbox")
+           (file+headline "~/Sync/Notes/org/notes.org" "Inbox")
            "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
            :prepend t))))
+
+;; weekly journal
+(defun create-weekly-journal-file ()
+  "Create a weekly journal file for review and habit tracking."
+  (interactive)
+
+  (let* ((current-time (current-time))
+         ;; Get the year (like 2025)
+         (year (format-time-string "%Y" current-time))
+
+         ;; Get ISO week number (01–53, starts on Monday)
+         (week-number (string-to-number (format-time-string "%V" current-time)))
+
+         ;; Filename like "Week 33, 2025"
+         (date-string (format "Week %02d, %s" week-number year))
+
+         ;; Folder paths
+         (year-dir (expand-file-name year "~/Notes/org/journal/"))
+         (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
+
+         ;; Full file path
+         (file-path (expand-file-name (concat date-string ".org") week-dir)))
+
+    ;; Ensure folders exist
+    (unless (file-exists-p year-dir)
+      (make-directory year-dir t))
+    (unless (file-exists-p week-dir)
+      (make-directory week-dir t))
+
+    ;; Open or create the file
+    (find-file file-path)
+
+    ;; Insert template if file is empty
+    (when (= (buffer-size) 0)
+      (yas-expand-snippet
+       (with-temp-buffer
+         (insert-file-contents "~/.config/doom/snippets/weekly")
+         (buffer-string))))))
+
+;; next week's journal
+(defun create-next-weeks-journal-file ()
+  "Create a weekly journal file for NEXT week for review and habit tracking."
+  (interactive)
+
+  (let* ((next-week-time (time-add (current-time) (days-to-time 7))) ; Add 7 days
+         ;; Get the year (like 2025)
+         (year (format-time-string "%Y" next-week-time))
+
+         ;; Get ISO week number (01–53, starts on Monday)
+         (week-number (string-to-number (format-time-string "%V" next-week-time)))
+
+         ;; Filename like "Week 33, 2025"
+         (date-string (format "Week %02d, %s" week-number year))
+
+         ;; Folder paths
+         (year-dir (expand-file-name year "~/Sync/Notes/org/journal/"))
+         (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
+
+         ;; Full file path
+         (file-path (expand-file-name (concat date-string ".org") week-dir)))
+
+    ;; Ensure folders exist
+    (unless (file-exists-p year-dir)
+      (make-directory year-dir t))
+    (unless (file-exists-p week-dir)
+      (make-directory week-dir t))
+
+    ;; Open or create the file
+    (find-file file-path)
+
+    ;; Insert template if file is empty
+    (when (= (buffer-size) 0)
+      (yas-expand-snippet
+       (with-temp-buffer
+         (insert-file-contents "~/.config/doom/snippets/weekly")
+         (buffer-string))))))
 
 ;; daily journal
 (defun create-daily-file ()
@@ -159,16 +259,14 @@
          ;; Get the year (like 2025)
          (year (format-time-string "%Y" current-time))
 
-         ;; Get week number (1-53) - using %V instead of %U
-         ;; %V gives ISO week number where weeks start on Monday
-         ;; This should correctly identify March 24, 2025 as week 13
+         ;; Get week number (1-53) - using %V for ISO week number
          (week-number (string-to-number (format-time-string "%V" current-time)))
 
-         ;; Get friendly date format like "March 24, 2025"
-         (date-string (format-time-string "%B %d, %Y" current-time))
+         ;; Get friendly date format like "Monday, March 24, 2025"
+         (date-string (format-time-string "%A, %B %d, %Y" current-time))
 
          ;; Create folder paths
-         (year-dir (expand-file-name year "~/Notes/org/journal/"))
+         (year-dir (expand-file-name year "~/Sync/Notes/org/journal/"))
          (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
 
          ;; Create file path/name
@@ -191,7 +289,7 @@
          (insert-file-contents "~/.config/doom/snippets/daily")
          (buffer-string))))))
 
-;; daily journal
+;; tomorrow's daily journal
 (defun create-tomorrows-daily-file ()
   "Create a daily journal file organized by year and week number for tomorrow."
   (interactive)
@@ -209,10 +307,10 @@
          (week-number (string-to-number (format-time-string "%V" tomorrow-time)))
 
          ;; Get friendly date format for tomorrow like "August 04, 2025"
-         (date-string (format-time-string "%B %d, %Y" tomorrow-time))
+         (date-string (format-time-string "%A, %B %d, %Y" tomorrow-time))
 
          ;; Create folder paths
-         (year-dir (expand-file-name year "~/Notes/org/journal/"))
+         (year-dir (expand-file-name year "~/Sync/Notes/org/journal/"))
          (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
 
          ;; Create file path/name
@@ -240,7 +338,7 @@
   "Archive current task to done.org under today's date"
   (interactive)
   (let* ((date-header (format-time-string "%Y-%m-%d %A"))
-         (archive-file (expand-file-name "~/Notes/org/done.org"))
+         (archive-file (expand-file-name "~/Sync/Notes/org/done.org"))
          (location (format "%s::* %s" archive-file date-header)))
     ;; Only archive if not a habit
     (unless (org-is-habit-p)
@@ -254,7 +352,7 @@
 (defun my/move-to-done-org ()
   "Move the current org heading to done.org under today's date."
   (interactive)
-  (let* ((done-file (expand-file-name "~/Notes/org/done.org"))
+  (let* ((done-file (expand-file-name "~/Sync/Notes/org/done.org"))
          (today-heading (format-time-string "* %Y-%m-%d %A")))
 
     ;; First, mark the task as DONE if it's not already
@@ -340,14 +438,15 @@
       ;; Various other commands
       (:prefix("o" . "open")
        :desc "Calendar"                  "c" #'=calendar
+       :desc "Elfeed"                    "e" #'elfeed
+       :desc "elfeed-tube-mpv"           "m" #'elfeed-tube-mpv
        ))
 
 (require 'org-caldav)
 
 (setq org-caldav-url "https://100.78.236.53/remote.php/dav/calendars/admin")
 (setq org-caldav-calendar-id "nextcal")
-(setq org-caldav-inbox "~/Notes/org/calendar.org")
-(setq org-caldav-files (list (expand-file-name "~/Notes/org/agenda.org")))
+(setq org-caldav-inbox "~/Sync/Notes/org/agenda.org")
 (setq org-icalendar-include-todo 'all
       org-caldav-sync-todo t)
 (setq org-icalendar-timezone "America/Chicago")
@@ -357,7 +456,7 @@
 (use-package! org-roam
   :custom
   ;; Set your org-roam directory
-  (org-roam-directory "~/Notes/org/roam/")
+  (org-roam-directory "~/Sync/Notes/org/roam/")
 
   ;; Explicitly use the built-in SQLite connector
   (org-roam-database-connector 'sqlite-builtin)
@@ -382,36 +481,36 @@
   ;; Enable auto-sync mode to keep the database updated
   (org-roam-db-autosync-mode +1))
                                         ;
-                                        ; ;; Org-Roam UI setup - only load after org-roam is properly initialized
-                                        ; (use-package! websocket
-                                        ;   :after org-roam)
-                                        ;
-                                        ; (use-package! org-roam-ui
-                                        ;   :after org-roam
-                                        ;   :config
-                                        ;   (setq org-roam-ui-sync-theme t
-                                        ;         org-roam-ui-follow t
-                                        ;         org-roam-ui-update-on-save t
-                                        ;         org-roam-ui-open-on-start t))
-                                        ;
-                                        ; ;; org-download customizations
-                                        ; (require 'org-download)
-                                        ; (setq-default org-download-screenshot-method "scrot -s %s")
-                                        ;
-                                        ; ;; Debugging function for SQLite issues
-                                        ; (defun debug-org-roam-db ()
-                                        ;   "Debug function to test org-roam database connection."
-                                        ;   (interactive)
-                                        ;   (message "Testing org-roam database...")
-                                        ;   (message "Directory exists: %s" (file-exists-p org-roam-directory))
-                                        ;   (message "Database path: %s" org-roam-db-location)
-                                        ;   (message "Database connector: %s" org-roam-database-connector)
-                                        ;   (condition-case err
-                                        ;       (progn
-                                        ;         (org-roam-db-sync)
-                                        ;         (message "Database synced successfully!"))
-                                        ;     (error (message "Database sync error: %S" err))))
-                                        ;
+;; Org-Roam UI setup - only load after org-roam is properly initialized
+(use-package! websocket
+  :after org-roam)
+
+(use-package! org-roam-ui
+  :after org-roam
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+
+;; org-download customizations
+(require 'org-download)
+(setq-default org-download-screenshot-method "scrot -s %s")
+
+;; Debugging function for SQLite issues
+(defun debug-org-roam-db ()
+  "Debug function to test org-roam database connection."
+  (interactive)
+  (message "Testing org-roam database...")
+  (message "Directory exists: %s" (file-exists-p org-roam-directory))
+  (message "Database path: %s" org-roam-db-location)
+  (message "Database connector: %s" org-roam-database-connector)
+  (condition-case err
+      (progn
+        (org-roam-db-sync)
+        (message "Database synced successfully!"))
+    (error (message "Database sync error: %S" err))))
+
 ;; rust dev
 (use-package rustic
   :ensure
@@ -491,3 +590,83 @@
   (yas-reload-all)
   (add-hook 'prog-mode-hook 'yas-minor-mode)
   (add-hook 'text-mode-hook 'yas-minor-mode))
+
+;; harpoon keybinds
+;; On vanilla (You can use another prefix instead C-c h)
+
+;; You can use this hydra menu that have all the commands
+(global-set-key (kbd "C-c a") 'harpoon-quick-menu-hydra)
+(global-set-key (kbd "C-c h <return>") 'harpoon-add-file)
+
+;; And the vanilla commands
+(global-set-key (kbd "C-c h f") 'harpoon-toggle-file)
+(global-set-key (kbd "C-c h h") 'harpoon-toggle-quick-menu)
+(global-set-key (kbd "C-c h c") 'harpoon-clear)
+(global-set-key (kbd "C-c h 1") 'harpoon-go-to-1)
+(global-set-key (kbd "C-c h 2") 'harpoon-go-to-2)
+(global-set-key (kbd "C-c h 3") 'harpoon-go-to-3)
+(global-set-key (kbd "C-c h 4") 'harpoon-go-to-4)
+(global-set-key (kbd "C-c h 5") 'harpoon-go-to-5)
+(global-set-key (kbd "C-c h 6") 'harpoon-go-to-6)
+(global-set-key (kbd "C-c h 7") 'harpoon-go-to-7)
+(global-set-key (kbd "C-c h 8") 'harpoon-go-to-8)
+(global-set-key (kbd "C-c h 9") 'harpoon-go-to-9)
+
+;; On doom emacs
+
+;; You can use this hydra menu that have all the commands
+(map! :n "C-SPC" 'harpoon-quick-menu-hydra)
+(map! :n "C-s" 'harpoon-add-file)
+
+;; And the vanilla commands
+(map! :leader "j c" 'harpoon-clear)
+(map! :leader "j f" 'harpoon-toggle-file)
+(map! :leader "1" 'harpoon-go-to-1)
+(map! :leader "2" 'harpoon-go-to-2)
+(map! :leader "3" 'harpoon-go-to-3)
+(map! :leader "4" 'harpoon-go-to-4)
+(map! :leader "5" 'harpoon-go-to-5)
+(map! :leader "6" 'harpoon-go-to-6)
+(map! :leader "7" 'harpoon-go-to-7)
+(map! :leader "8" 'harpoon-go-to-8)
+(map! :leader "9" 'harpoon-go-to-9)
+
+;; Load elfeed-download package
+(load! "lisp/elfeed-download")
+
+(make-directory "~/.local/share/elfeed" t)
+
+;; Force load elfeed-org
+(require 'elfeed-org)
+(elfeed-org)
+
+;; Set org feed file
+(setq rmh-elfeed-org-files '("~/.config/doom/elfeed.org"))
+
+;; Configure elfeed - consolidate all elfeed config in one after! block
+(after! elfeed
+  (setq elfeed-db-directory "~/.local/share/elfeed")
+  (setq elfeed-search-filter "@1-week-ago +unread -4chan -news -Reddit")
+
+  ;; Set up elfeed-download
+  (elfeed-download-setup)
+
+  ;; Key bindings
+  (map! :map elfeed-search-mode-map
+        :n "d" #'elfeed-download-current-entry
+        :n "O" #'elfeed-search-browse-url))
+
+;; Update hourly
+(run-at-time nil (* 60 60) #'elfeed-update)
+
+;; Elfeed-tube configuration
+(use-package! elfeed-tube
+  :after elfeed
+  :config
+  (elfeed-tube-setup)
+  :bind (:map elfeed-show-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)
+         :map elfeed-search-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)))
