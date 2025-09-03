@@ -1,15 +1,4 @@
 return {
-  -- pyywal
-  {
-    'uZer/pywal16.nvim',
-    cond = function()
-      -- Only load on Linux
-      return vim.loop.os_uname().sysname == 'Linux'
-    end,
-    config = function()
-      vim.cmd.colorscheme 'pywal16'
-    end,
-  },
   -- Nord
   {
     'shaunsingh/nord.nvim',
@@ -31,13 +20,12 @@ return {
       }
     end,
   },
-  -- Gorgoroth
+  -- Vague
   {
-    'RRethy/base16-nvim',
-    lazy = false,
-    config = function()
-      vim.cmd 'silent! colorscheme base16-black-metal-gorgoroth'
-    end,
+    'https://github.com/vague2k/vague.nvim', -- Assuming this is the correct repo
+    name = 'vague', -- Set a name
+    lazy = true,
+    -- transparent_background = true,
   },
   -- Rose-pine
   {
@@ -51,11 +39,12 @@ return {
       }
     end,
   },
-  -- Vague
+  -- Gorgoroth
   {
-    'https://github.com/vague2k/vague.nvim', -- Assuming this is the correct repo
-    name = 'vague', -- Set a name
-    lazy = true,
-    -- transparent_background = true,
+    'RRethy/base16-nvim',
+    lazy = false,
+    config = function()
+      vim.cmd 'silent! colorscheme base16-black-metal-gorgoroth'
+    end,
   },
 }

@@ -1,0 +1,27 @@
+{
+	"description": "Caps lock to escape on tap and left_control on hold.",
+	"manipulators": [
+		{
+			"from": {
+				"key_code": "caps_lock",
+				"modifiers": {
+					"optional": [
+						"any"
+					]
+				}
+			},
+			"to": [
+				{
+					"key_code": "left_control",
+					"lazy": true
+				}
+			],
+			"to_if_alone": [
+				{
+					"key_code": "escape"
+				}
+			],
+			"type": "basic"
+		}
+	]
+}

@@ -34,8 +34,8 @@
 (setq doom-modeline-major-mode-color-icon t)
 
 ;; Transparency
-(set-frame-parameter (selected-frame) 'alpha '(96 . 97))
-(add-to-list 'default-frame-alist '(alpha . (96 . 97)))
+(set-frame-parameter (selected-frame) 'alpha '(79. 80))
+(add-to-list 'default-frame-alist '(alpha . (79. 80)))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -668,3 +668,4 @@
          :map elfeed-search-mode-map
          ("F" . elfeed-tube-fetch)
          ([remap save-buffer] . elfeed-tube-save)))
+

@@ -1,2 +1,3 @@
 #!/bin/bash
-open -na Kitty --args profanity
+# open -na Kitty --args profanity
+open -na Alacritty --args -e /opt/homebrew/bin/profanity

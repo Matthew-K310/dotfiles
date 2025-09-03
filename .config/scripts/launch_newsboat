@@ -1,2 +1,3 @@
 #!/bin/bash
-open -na Kitty --args newsboat
+# open -na Kitty --args newsboat
+open -na Alacritty --args -e /opt/homebrew/bin/newsboat
