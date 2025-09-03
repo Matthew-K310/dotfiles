@@ -70,9 +70,3 @@
 (package! org-caldav)
 (package! org-roam-ui)
 (package! websocket) ;; for org-roam-ui
-
-(package! dirvish)
-(package! harpoon)
-
-(package! elfeed-tube)
-(package! elfeed-tube-mpv)
