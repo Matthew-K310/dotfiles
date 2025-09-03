@@ -34,8 +34,8 @@
 (setq doom-modeline-major-mode-color-icon t)
 
 ;; Transparency
-(set-frame-parameter (selected-frame) 'alpha '(79. 80))
-(add-to-list 'default-frame-alist '(alpha . (79. 80)))
+;; (set-frame-parameter (selected-frame) 'alpha '(79. 80))
+;; (add-to-list 'default-frame-alist '(alpha . (79. 80)))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -438,6 +438,8 @@
       ;; Various other commands
       (:prefix("o" . "open")
        :desc "Calendar"                  "c" #'=calendar
+       :desc "Elfeed"                  "e" #'elfeed
+       :desc "elfeed-mpv"                  "m" #'elfeed-tube-mpv
        ))
 
 (require 'org-caldav)
@@ -632,19 +634,20 @@
 ;; Load elfeed-download package
 (load! "lisp/elfeed-download")
 
-(make-directory "~/.elfeed" t)
+(make-directory "~/.local/share/elfeed" t)
 
 ;; Force load elfeed-org
 (require 'elfeed-org)
 (elfeed-org)
 
 ;; Set org feed file
-(setq rmh-elfeed-org-files '("~/.config/doom/elfeed.org"))
+(setq rmh-elfeed-org-files '("~/.dotfiles/.config/doom/elfeed.org"))
 
 ;; Configure elfeed - consolidate all elfeed config in one after! block
 (after! elfeed
-  (setq elfeed-db-directory "~/.elfeed")
-  (setq elfeed-search-filter "@1-week-ago +unread -4chan -news -Reddit")
+  (setq elfeed-db-directory "~/.local/share/elfeed")
+  ;; (setq elfeed-search-filter "@1-week-ago +unread -4chan -news -Reddit")
+  (setq elfeed-search-filter "@1-week-ago -4chan -news -Reddit")
 
   ;; Set up elfeed-download
   (elfeed-download-setup)
@@ -668,4 +671,3 @@
          :map elfeed-search-mode-map
          ("F" . elfeed-tube-fetch)
          ([remap save-buffer] . elfeed-tube-save)))
-

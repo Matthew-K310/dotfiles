@@ -97,7 +97,7 @@
                   "modifiers": { "mandatory": ["option"] }
                 },
                 "to": [
-                  { "shell_command": "open -n -a Alacritty --args -e rmpc" }
+                  { "shell_command": "/bin/bash ~/.config/scripts/launch_rmpc" }
                 ],
                 "type": "basic"
               },
@@ -118,7 +118,11 @@
                   "key_code": "n",
                   "modifiers": { "mandatory": ["option", "shift"] }
                 },
-                "to": [{ "shell_command": "emacs --eval 'elfeed'" }],
+                "to": [
+                  {
+                    "shell_command": "/bin/bash ~/.config/scripts/launch_newsboat"
+                  }
+                ],
                 "type": "basic"
               },
               {
@@ -188,35 +192,6 @@
                   {
                     "shell_command": "/bin/bash -c 'osascript -e \"set volume output volume ((output volume of (get volume settings)) - 5)\"'"
                   }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "terminal on alt-return",
-            "enabled": false,
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "return",
-                  "modifiers": { "mandatory": ["left_option"] }
-                },
-                "to": [{ "shell_command": "open '/Applications/kitty.app'" }],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "org-capture on shift-alt-c",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "c",
-                  "modifiers": { "mandatory": ["left_shift", "left_option"] }
-                },
-                "to": [
-                  { "shell_command": "emacs --eval '(emacs-everywhere)'" }
                 ],
                 "type": "basic"
               }
@@ -1098,4 +1073,3 @@
     }
   ]
 }
-

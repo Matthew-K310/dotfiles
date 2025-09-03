@@ -5,7 +5,6 @@
 * Feeds :elfeed:
 ** News
 *** [[https://feeds.bbci.co.uk/news/rss.xml][BBC]] :news:
-
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCdFcGPb4xQ6X4QOoRU6ROYw][Brett Cooper]]
 ** Science & Technology :science:tech:
 *** [[https://feeds.arstechnica.com/arstechnica/index][Arstechnica]] :tech:
@@ -15,12 +14,10 @@
 *** [[https://lwn.net/headlines/rss][LWN.net]] :linux:
 *** [[https://computer.rip/rss.xml][Computers Are Bad]]
 *** [[https://itsfoss.com/feed/][It's FOSS]]
-*** [[https://www.phoronix.com/rss.php][Phoronix]]
 *** [[https://www.linuxjournal.com/node/feed][Linux Journal]] :linux:
 *** [[https://raphlinus.github.io/feed.xml][RaphLinus]]
 *** [[https://susam.net/feed.xml][Susam.net]]
 *** [[https://battlepenguin.com/feed.xml][BattlePenguin]]
-*** [[https://www.lifeintech.com/feed.xml][LifeinTech]]
 ** Emacs
 *** [[https://sachachua.com/blog/category/emacs/feed/][Sacha Chua]] :emacs:
 *** [[https://irreal.org/blog/?feed=rss2][Irreal]] :emacs:
@@ -28,14 +25,12 @@
 *** [[https://protesilaos.com/codelog.xml][Protesilaos Stavrou]] :emacs:
 *** [[https://with-emacs.com/rss.xml][With Emacs]] :emacs:
 *** [[https://emacsredux.com/atom.xml][Emacs Redux]] :emacs:
-
 ** Programming
 *** [[https://jvns.ca/atom.xml][Julia Evans]]
 *** [[https://blog.pragmaticengineer.com/rss/][The Pragmatic Engineer]]
 *** [[https://martinfowler.com/feed.atom][Martin Fowler]]
 *** [[https://www.joelonsoftware.com/feed/][Joel on Software]]
 *** [[https://eli.thegreenplace.net/feeds/all.atom.xml][Eli Bendersky]]
-
 *** [[https://mitchellh.com/feed.xml][Mitchell Hashimoto]]
 *** [[https://massicotte.org/feed.xml][Massicotte]]
 *** [[https://world.hey.com/dhh/feed.atom][David Heinemeir Hansson]]
@@ -53,7 +48,6 @@
 *** [[https://www.eff.org/rss/updates.xml][EFF]]
 *** [[https://www.privacytools.io/feed.xml][Privacy Tools]]
 *** [[https://www.privateinternetaccess.com/blog/feed/][Private Internet Access]]
-
 ** Philosophy
 *** [[https://lindypress.net/rss][Lindypress]]
 *** [[https://jaredhenderson.substack.com/feed][Jared Henderson's Substack]]
@@ -61,7 +55,6 @@
 *** [[https://dailynous.com/feed/][Daily Nous]]
 *** [[https://plato.stanford.edu/rss/sep.xml][Stanford Encyclopedia of Philosophy]]
 *** [[https://philosophybites.com/atom.xml][Philosophy Bites]]
-
 ** Theology
 *** [[https://askligonier.ligonier.org/rss][Ligonier]]
 ** Blogs :blog:
