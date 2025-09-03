@@ -13,7 +13,7 @@ setopt PROMPT_SUBST
 # }
 # PS1='%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%} %{$fg[magenta]%}%~%{$fg[cyan]%}$(parse_git_branch)%{$fg[red]%}]%{$reset_color%} '
 # PS1='$fg[yellow]%}%n%{$fg[green]%} %{$fg[magenta]%}%~%{$fg[cyan]%}$(parse_git_branch)%{$fg[red]%} >%{$reset_color%} '
-PS1='$fg[red]%}%n%{$fg[green]%} %{$fg[magenta]%}%~%{$fg[cyan]%} >%{$reset_color%} '
+PS1='$fg[cyan]%}%n%{$fg[green]%} %{$fg[magenta]%}%~%{$fg[cyan]%} >%{$reset_color%} '
 setopt autocd		# Automatically cd into typed directory.
 setopt interactive_comments
 
