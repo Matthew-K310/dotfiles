@@ -188,7 +188,7 @@
          (date-string (format "Week %02d, %s" week-number year))
 
          ;; Folder paths
-         (year-dir (expand-file-name year "~/Notes/org/journal/"))
+         (year-dir (expand-file-name year "~/Sync/Notes/org/journal/"))
          (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
 
          ;; Full file path
