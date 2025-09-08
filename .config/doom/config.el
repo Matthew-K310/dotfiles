@@ -4,12 +4,12 @@
 ;; sync' after modifying this file!
 
 (setq user-full-name "Matthew Kennedy"
-      user-mail-address "business@matthew-kennedy.com")
+      user-mail-address "matthew@matthew-kennedy.com")
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 
-(setq doom-font (font-spec :family "JetBrains Mono NL" :size 14)
-      doom-big-font (font-spec :family "JetBrains Mono NL" :size 22))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 14)
+      doom-big-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 22))
 
 ;; `load-theme' function. This is the default:
 (add-to-list 'custom-theme-load-path "~/.config/doom/themes/")
@@ -397,10 +397,6 @@
   (define-key org-mode-map (kbd "C-c i") #'org-clock-in)
   (define-key org-mode-map (kbd "C-c o") #'org-clock-out))
 
-(let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
-  (when (file-exists-p private-config)
-    (load private-config)))
-
 (after! tree-sitter
   (require 'tree-sitter-langs)
   (add-to-list 'tree-sitter-major-mode-language-alist '(org-mode . go)))
@@ -415,7 +411,6 @@
                            (useany . t)
                            (unusedvariable . t)))
   )
-
 
 ;; Custom keymaps
 (map! :leader
@@ -442,8 +437,8 @@
        :desc "elfeed-tube-mpv"           "m" #'elfeed-tube-mpv
        )
       (:prefix("e" . "elfeed")
-       :desc "Open elfeed"                    "e" #'=calendar
-       :desc "Update elfeed"                  "u" #'elfeed
+       :desc "Open elfeed"                    "e" #'elfeed
+       :desc "Update elfeed"                  "u" #'elfeed-update
        :desc "Open elfeed-tube-mpv"           "t" #'elfeed-tube-mpv
        ))
 
@@ -451,7 +446,7 @@
 
 (setq org-caldav-url "https://100.78.236.53/remote.php/dav/calendars/admin")
 (setq org-caldav-calendar-id "nextcal")
-(setq org-caldav-inbox "~/Notes/agenda.org")
+(setq org-caldav-inbox "~/Notes/calendar.org")
 (setq org-icalendar-include-todo 'all
       org-caldav-sync-todo t)
 (setq org-icalendar-timezone "America/Chicago")
@@ -591,7 +586,7 @@
 ;; Configure elfeed - consolidate all elfeed config in one after! block
 (after! elfeed
   (setq elfeed-db-directory "~/.local/share/elfeed")
-  (setq elfeed-search-filter "@1-week-ago +unread -4chan -news -Reddit")
+  (setq elfeed-search-filter "@3-weeks-ago +unread -4chan -news -Reddit")
 
   ;; Set up elfeed-download
   (elfeed-download-setup)

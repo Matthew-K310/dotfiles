@@ -1,5 +1,7 @@
 #!/bin/bash
 
+git status
+
 TYPE=$(gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert")
 SCOPE=$(gum input --placeholder "scope")
 

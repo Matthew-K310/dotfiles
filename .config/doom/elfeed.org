@@ -11,6 +11,7 @@
 *** [[https://feeds.arstechnica.com/arstechnica/index][Arstechnica]] :tech:
 ** Linux
 *** [[https://xn--gckvb8fzb.com/index.xml][xn--gckvb8fzb]] :linux:
+*** [[https://xn--gckvb8fzb.com/collection/journal/][Merasmus]]
 *** [[https://taonaw.com/feed.xml][The Art of Not Asking Why]]
 *** [[https://lwn.net/headlines/rss][LWN.net]] :linux:
 *** [[https://computer.rip/rss.xml][Computers Are Bad]]
