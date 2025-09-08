@@ -1,0 +1,1120 @@
+{
+  "global": {
+    "check_for_updates_on_startup": false,
+    "show_in_menu_bar": false
+  },
+  "profiles": [
+    {
+      "complex_modifications": {
+        "parameters": {
+          "basic.to_if_alone_timeout_milliseconds": 150,
+          "basic.to_if_held_down_threshold_milliseconds": 225
+        },
+        "rules": [
+          {
+            "description": "Map fn+H, J, K, L as arrrow keys.",
+            "manipulators": [
+              {
+                "description": "fn+H to Left Arrow",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "mandatory": ["fn"],
+                    "optional": ["any"]
+                  }
+                },
+                "to": [{ "key_code": "left_arrow" }],
+                "type": "basic"
+              },
+              {
+                "description": "fn+J to Down Arrow",
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "mandatory": ["fn"],
+                    "optional": ["any"]
+                  }
+                },
+                "to": [{ "key_code": "down_arrow" }],
+                "type": "basic"
+              },
+              {
+                "description": "fn+K to Up Arrow",
+                "from": {
+                  "key_code": "k",
+                  "modifiers": {
+                    "mandatory": ["fn"],
+                    "optional": ["any"]
+                  }
+                },
+                "to": [{ "key_code": "up_arrow" }],
+                "type": "basic"
+              },
+              {
+                "description": "fn+L to Right Arrow",
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "mandatory": ["fn"],
+                    "optional": ["any"]
+                  }
+                },
+                "to": [{ "key_code": "right_arrow" }],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Launch apps by left option+letters.",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "return_or_enter",
+                  "modifiers": { "mandatory": ["option"] }
+                },
+                "to": [{ "shell_command": "open -na Alacritty" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "w",
+                  "modifiers": { "mandatory": ["option"] }
+                },
+                "to": [{ "shell_command": "open -na Librewolf" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "e",
+                  "modifiers": { "mandatory": ["option"] }
+                },
+                "to": [{ "shell_command": "open -na Thunderbird" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "m",
+                  "modifiers": { "mandatory": ["option"] }
+                },
+                "to": [
+                  { "shell_command": "/bin/bash ~/.config/scripts/launch_rmpc" }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "m",
+                  "modifiers": { "mandatory": ["option", "shift"] }
+                },
+                "to": [
+                  {
+                    "shell_command": "/bin/bash ~/.config/scripts/launch_profanity"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "n",
+                  "modifiers": { "mandatory": ["option", "shift"] }
+                },
+                "to": [
+                  {
+                    "shell_command": "/bin/bash ~/.config/scripts/launch_newsboat"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "r",
+                  "modifiers": { "mandatory": ["option"] }
+                },
+                "to": [
+                  { "shell_command": "/bin/bash ~/.config/scripts/launch_yazi" }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "p",
+                  "modifiers": { "mandatory": ["option"] }
+                },
+                "to": [
+                  {
+                    "shell_command": "/bin/bash -c '/opt/homebrew/bin/mpc toggle'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "period",
+                  "modifiers": { "mandatory": ["option"] }
+                },
+                "to": [
+                  {
+                    "shell_command": "/bin/bash -c '/opt/homebrew/bin/mpc next'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "comma",
+                  "modifiers": { "mandatory": ["option"] }
+                },
+                "to": [
+                  {
+                    "shell_command": "/bin/bash -c '/opt/homebrew/bin/mpc prev'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "equal_sign",
+                  "modifiers": { "mandatory": ["option"] }
+                },
+                "to": [
+                  {
+                    "shell_command": "/bin/bash -c 'osascript -e \"set volume output volume ((output volume of (get volume settings)) + 5)\"'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "hyphen",
+                  "modifiers": { "mandatory": ["option"] }
+                },
+                "to": [
+                  {
+                    "shell_command": "/bin/bash -c 'osascript -e \"set volume output volume ((output volume of (get volume settings)) - 5)\"'"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "terminal on alt-return",
+            "enabled": false,
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "return",
+                  "modifiers": { "mandatory": ["left_option"] }
+                },
+                "to": [{ "shell_command": "open '/Applications/kitty.app'" }],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "org-capture on shift-alt-c",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "c",
+                  "modifiers": { "mandatory": ["left_shift", "left_option"] }
+                },
+                "to": [
+                  { "shell_command": "emacs --eval '(emacs-everywhere)'" }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Home row mods - ctrl, opt, shift, command",
+            "enabled": false,
+            "manipulators": [
+              {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "a" },
+                    { "key_code": "s" },
+                    { "key_code": "d" },
+                    { "key_code": "f" }
+                  ]
+                },
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_shift",
+                    "modifiers": ["left_command", "left_option", "left_control"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "a" },
+                    { "key_code": "s" },
+                    { "key_code": "d" }
+                  ]
+                },
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_control",
+                    "modifiers": ["left_option", "left_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "a" },
+                    { "key_code": "d" },
+                    { "key_code": "f" }
+                  ]
+                },
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_shift",
+                    "modifiers": ["left_command", "left_control"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "s" },
+                    { "key_code": "d" },
+                    { "key_code": "f" }
+                  ]
+                },
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_option",
+                    "modifiers": ["left_command", "left_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "a" }, { "key_code": "s" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "a" }, { "key_code": "s" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_control",
+                    "modifiers": ["left_option"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "s" }, { "key_code": "a" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "s" }, { "key_code": "a" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_control",
+                    "modifiers": ["left_option"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "a" }, { "key_code": "d" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "a" }, { "key_code": "d" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_control",
+                    "modifiers": ["left_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "d" }, { "key_code": "a" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "d" }, { "key_code": "a" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_control",
+                    "modifiers": ["left_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "a" }, { "key_code": "f" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "a" }, { "key_code": "f" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_control",
+                    "modifiers": ["left_command"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "f" }, { "key_code": "a" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "f" }, { "key_code": "a" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_control",
+                    "modifiers": ["left_command"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "s" }, { "key_code": "d" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "s" }, { "key_code": "d" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_option",
+                    "modifiers": ["left_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "d" }, { "key_code": "s" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "d" }, { "key_code": "s" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_option",
+                    "modifiers": ["left_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "s" }, { "key_code": "f" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "s" }, { "key_code": "f" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_option",
+                    "modifiers": ["left_command"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "f" }, { "key_code": "s" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "f" }, { "key_code": "s" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_option",
+                    "modifiers": ["left_command"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "d" }, { "key_code": "f" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "d" }, { "key_code": "f" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_command",
+                    "modifiers": ["left_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "f" }, { "key_code": "d" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "f" }, { "key_code": "d" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "left_command",
+                    "modifiers": ["left_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": { "key_code": "a" },
+                "to_delayed_action": {
+                  "to_if_canceled": [{ "key_code": "a" }],
+                  "to_if_invoked": [{ "key_code": "vk_none" }]
+                },
+                "to_if_alone": [
+                  {
+                    "halt": true,
+                    "key_code": "a"
+                  }
+                ],
+                "to_if_held_down": [
+                  {
+                    "halt": true,
+                    "key_code": "left_control"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": { "key_code": "s" },
+                "to_delayed_action": {
+                  "to_if_canceled": [{ "key_code": "s" }],
+                  "to_if_invoked": [{ "key_code": "vk_none" }]
+                },
+                "to_if_alone": [
+                  {
+                    "halt": true,
+                    "key_code": "s"
+                  }
+                ],
+                "to_if_held_down": [
+                  {
+                    "halt": true,
+                    "key_code": "left_option"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": { "key_code": "d" },
+                "to_delayed_action": {
+                  "to_if_canceled": [{ "key_code": "d" }],
+                  "to_if_invoked": [{ "key_code": "vk_none" }]
+                },
+                "to_if_alone": [
+                  {
+                    "halt": true,
+                    "key_code": "d"
+                  }
+                ],
+                "to_if_held_down": [
+                  {
+                    "halt": true,
+                    "key_code": "left_shift"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": { "key_code": "f" },
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "halt": true,
+                      "key_code": "f"
+                    }
+                  ],
+                  "to_if_invoked": [{ "key_code": "vk_none" }]
+                },
+                "to_if_alone": [
+                  {
+                    "halt": true,
+                    "key_code": "f"
+                  }
+                ],
+                "to_if_held_down": [
+                  {
+                    "halt": true,
+                    "key_code": "left_command"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "j" },
+                    { "key_code": "k" },
+                    { "key_code": "l" },
+                    { "key_code": "semicolon" }
+                  ]
+                },
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_shift",
+                    "modifiers": [
+                      "right_command",
+                      "right_option",
+                      "right_control"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "semicolon" },
+                    { "key_code": "l" },
+                    { "key_code": "k" }
+                  ]
+                },
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_shift",
+                    "modifiers": ["right_option", "right_control"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "semicolon" },
+                    { "key_code": "k" },
+                    { "key_code": "j" }
+                  ]
+                },
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_shift",
+                    "modifiers": ["right_command", "right_option"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "l" },
+                    { "key_code": "k" },
+                    { "key_code": "j" }
+                  ]
+                },
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_control",
+                    "modifiers": ["right_command", "right_option"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "semicolon" },
+                    { "key_code": "l" }
+                  ],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [
+                  { "key_code": "semicolon" },
+                  { "key_code": "l" }
+                ],
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_control",
+                    "modifiers": ["right_option"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "l" },
+                    { "key_code": "semicolon" }
+                  ],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [
+                  { "key_code": "l" },
+                  { "key_code": "semicolon" }
+                ],
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_control",
+                    "modifiers": ["right_option"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "semicolon" },
+                    { "key_code": "k" }
+                  ],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [
+                  { "key_code": "semicolon" },
+                  { "key_code": "k" }
+                ],
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_control",
+                    "modifiers": ["right_command"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "k" },
+                    { "key_code": "semicolon" }
+                  ],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [
+                  { "key_code": "k" },
+                  { "key_code": "semicolon" }
+                ],
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_control",
+                    "modifiers": ["right_command"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "semicolon" },
+                    { "key_code": "j" }
+                  ],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [
+                  { "key_code": "semicolon" },
+                  { "key_code": "j" }
+                ],
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_control",
+                    "modifiers": ["right_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [
+                    { "key_code": "j" },
+                    { "key_code": "semicolon" }
+                  ],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [
+                  { "key_code": "j" },
+                  { "key_code": "semicolon" }
+                ],
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_control",
+                    "modifiers": ["right_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "l" }, { "key_code": "k" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "l" }, { "key_code": "k" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_option",
+                    "modifiers": ["right_command"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "k" }, { "key_code": "l" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "k" }, { "key_code": "l" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_option",
+                    "modifiers": ["right_command"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "l" }, { "key_code": "j" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "l" }, { "key_code": "j" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_option",
+                    "modifiers": ["right_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "j" }, { "key_code": "l" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "j" }, { "key_code": "l" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_option",
+                    "modifiers": ["right_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "k" }, { "key_code": "j" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "k" }, { "key_code": "j" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_command",
+                    "modifiers": ["right_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [{ "key_code": "j" }, { "key_code": "k" }],
+                  "simultaneous_options": { "key_down_order": "strict" }
+                },
+                "to_if_alone": [{ "key_code": "j" }, { "key_code": "k" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "right_command",
+                    "modifiers": ["right_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": { "key_code": "semicolon" },
+                "to_delayed_action": {
+                  "to_if_canceled": [{ "key_code": "semicolon" }],
+                  "to_if_invoked": [{ "key_code": "vk_none" }]
+                },
+                "to_if_alone": [
+                  {
+                    "halt": true,
+                    "key_code": "semicolon"
+                  }
+                ],
+                "to_if_held_down": [
+                  {
+                    "halt": true,
+                    "key_code": "right_control"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": { "key_code": "l" },
+                "to_delayed_action": {
+                  "to_if_canceled": [{ "key_code": "l" }],
+                  "to_if_invoked": [{ "key_code": "vk_none" }]
+                },
+                "to_if_alone": [
+                  {
+                    "halt": true,
+                    "key_code": "l"
+                  }
+                ],
+                "to_if_held_down": [
+                  {
+                    "halt": true,
+                    "key_code": "right_option"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": { "key_code": "k" },
+                "to_delayed_action": {
+                  "to_if_canceled": [{ "key_code": "k" }],
+                  "to_if_invoked": [{ "key_code": "vk_none" }]
+                },
+                "to_if_alone": [
+                  {
+                    "halt": true,
+                    "key_code": "k"
+                  }
+                ],
+                "to_if_held_down": [
+                  {
+                    "halt": true,
+                    "key_code": "right_shift"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": { "key_code": "j" },
+                "to_delayed_action": {
+                  "to_if_canceled": [{ "key_code": "j" }],
+                  "to_if_invoked": [{ "key_code": "vk_none" }]
+                },
+                "to_if_alone": [
+                  {
+                    "halt": true,
+                    "key_code": "j"
+                  }
+                ],
+                "to_if_held_down": [
+                  {
+                    "halt": true,
+                    "key_code": "right_command"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Caps Lock to Escape when tapped and Control when held; Escape to Caps Lock",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": { "optional": ["any"] }
+                },
+                "to": [
+                  {
+                    "key_code": "left_control",
+                    "lazy": true
+                  }
+                ],
+                "to_if_alone": [{ "key_code": "escape" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "escape",
+                  "modifiers": { "optional": ["any"] }
+                },
+                "to": [{ "key_code": "caps_lock" }],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Right command to right option when tapped, and Raycast hyper when held.",
+            "enabled": false,
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "right_command",
+                  "modifiers": { "optional": ["any"] }
+                },
+                "to": [
+                  {
+                    "key_code": "left_shift",
+                    "modifiers": ["left_command", "left_control", "left_option"]
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "period",
+                    "modifiers": ["left_command"]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Launch apps by option+letters.",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "return_or_enter",
+                  "modifiers": {
+                    "mandatory": ["left_option"],
+                    "optional": ["right_option"]
+                  }
+                },
+                "to": [{ "shell_command": "open -na Kitty" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "w",
+                  "modifiers": {
+                    "mandatory": ["left_option"],
+                    "optional": ["right_option"]
+                  }
+                },
+                "to": [{ "shell_command": "open -na Librewolf" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "e",
+                  "modifiers": {
+                    "mandatory": ["left_option"],
+                    "optional": ["right_option"]
+                  }
+                },
+                "to": [{ "shell_command": "open -na Thunderbird" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "m",
+                  "modifiers": {
+                    "mandatory": ["left_option"],
+                    "optional": ["right_option"]
+                  }
+                },
+                "to": [
+                  { "shell_command": "/bin/bash ~/.config/scripts/launch_rmpc" }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "n",
+                  "modifiers": {
+                    "mandatory": ["left_option", "left_shift"],
+                    "optional": ["right_option"]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/bin/bash ~/.config/scripts/launch_newsboat"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "r",
+                  "modifiers": {
+                    "mandatory": ["left_option"],
+                    "optional": ["right_option"]
+                  }
+                },
+                "to": [
+                  { "shell_command": "/bin/bash ~/.config/scripts/launch_yazi" }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "p",
+                  "modifiers": {
+                    "mandatory": ["left_option"],
+                    "optional": ["right_option"]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/bin/bash -c '/opt/homebrew/bin/mpc toggle'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "period",
+                  "modifiers": {
+                    "mandatory": ["left_option"],
+                    "optional": ["right_option"]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/bin/bash -c '/opt/homebrew/bin/mpc next'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "comma",
+                  "modifiers": {
+                    "mandatory": ["left_option"],
+                    "optional": ["right_option"]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/bin/bash -c '/opt/homebrew/bin/mpc prev'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "equal_sign",
+                  "modifiers": {
+                    "mandatory": ["left_option"],
+                    "optional": ["right_option"]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/bin/bash -c '/opt/homebrew/bin/mpc volume +5'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "hyphen",
+                  "modifiers": {
+                    "mandatory": ["left_option"],
+                    "optional": ["right_option"]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/bin/bash -c '/opt/homebrew/bin/mpc volume -5'"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          }
+        ]
+      },
+      "name": "Default profile",
+      "selected": true,
+      "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+    }
+  ]
+}
+

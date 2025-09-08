@@ -29,6 +29,7 @@ alias \
 alias \
 	ka="killall" \
 	YT="youtube-viewer" \
+	mpdc="mpd ~/.config/mpd/mpd.conf" \
 	sdn="shutdown -h now" \
 	v='$EDITOR' \
 	e='emacs -nw'

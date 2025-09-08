@@ -2,6 +2,9 @@ require 'vimopts'
 require 'mappings'
 require 'theme_toggle'
 
+-- for os specific configs
+local uname = vim.loop.os_uname()
+
 -- local floating_note = require 'floating-note'
 -- floating_note.setup {
 --   target_file = '~/obsidian-vault/quicknote.md',
@@ -53,24 +56,24 @@ vim.filetype.add {
 vim.opt.colorcolumn = '80'
 
 -- Markdown line limit
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'markdown',
-  callback = function()
-    vim.bo.textwidth = 80
-    -- vim.bo.wrap = true
-    vim.bo.formatoptions = 't'
-  end,
-})
-
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = 'markdown',
+--   callback = function()
+--     vim.bo.textwidth = 80
+--     -- vim.bo.wrap = true
+--     vim.bo.formatoptions = 't'
+--   end,
+-- })
+--
 -- LaTeX line limit
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'latex',
-  callback = function()
-    vim.bo.textwidth = 80
-    -- vim.bo.wrap = true
-    vim.bo.formatoptions = 't'
-  end,
-})
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = 'latex',
+--   callback = function()
+--     vim.bo.textwidth = 80
+--     -- vim.bo.wrap = true
+--     vim.bo.formatoptions = 't'
+--   end,
+-- })
 
 -- LaTeX compile on write
 vim.api.nvim_create_autocmd('BufWritePost', {

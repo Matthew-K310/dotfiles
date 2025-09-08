@@ -10,10 +10,11 @@ unsetopt PROMPT_SP 2>/dev/null
 
 # Default programs:
 export EDITOR="nvim"
-export TERMINAL="kitty"
-export TERMINAL_PROG="kitty"
-export BROWSER="qutebrowser"
-# export BROWSER="zen-browser"
+export TERMINAL="st"
+export TERMINAL_PROG="st"
+export BROWSER="librewolf"
+# export BROWSER="qutebrowser"
+export MANPAGER="nvim +Man!"
 
 # Change the default crypto/weather monitor sites.
 # export CRYPTOURL="rate.sx"
@@ -38,7 +39,7 @@ export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GOPATH="$XDG_DATA_HOME/go"
-export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
+export GOMODCACHE="$XDG_DATA_HOME/go/mod"
 export ANSIBLE_CONFIG="$XDG_CONFIG_HOME/ansible/ansible.cfg"
 export UNISON="$XDG_DATA_HOME/unison"
 export HISTFILE="$XDG_DATA_HOME/history"
@@ -64,18 +65,19 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 
 # Other paths
-export PATH="$XDG_CONFIG_HOME/scripts:$PATH"
+export PATH="$XDG_CONFIG_HOME/scripts:$PATH" # scripts path
+export PATH="$PATH:$XDG_DATA_HOME/go/bin"    # templ path
 export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --preview-window=right"
 export PATH="/usr/bin:$PATH"
 export PATH="$XDG_CONFIG_HOME/emacs/bin:$PATH"
 export PATH="$XDG_CONFIG_HOME/scripts:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
-export PATH="/opt/homebrew/bin/cb:$PATH"
-export PATH="/opt/homebrew/bin/mpv:$PATH"
-export PATH="$PATH:$HOME/go/bin"
-export PATH="${PATH}:/Users/matthewkennedy/.local/lib/python3.12/site-packages"
-export PATH="${PATH}:/Library/TeX/texbin"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	export PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
+	export PATH="/opt/homebrew/bin/cb:$PATH"
+	export PATH="/opt/homebrew/bin/mpv:$PATH"
+	export PATH="${PATH}:/Users/matthewkennedy/py/venv/lib/python3.13/site-packages"
+fi
 
 export GODOT="$XDG_CONFIG_HOME/godotenv/godot/bin"
 
@@ -90,3 +92,9 @@ export PATH="$DOTNET_ROOT/sdk:$PATH"
 export PATH="$HOME/.dotnet/tools:$PATH"
 
 [ ! -f "$XDG_CONFIG_HOME/shell/shortcutrc" ] && setsid -f shortcuts >/dev/null 2>&1
+
+# Start graphical server on user's current tty if not already running.
+[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
+
+# Switch escape and caps if tty and no passwd required:
+sudo -n loadkeys "$XDG_DATA_HOME/larbs/ttymaps.kmap" 2>/dev/null

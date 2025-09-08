@@ -18,7 +18,7 @@ return {
         yaml = { 'yamlfmt' },
         html = { 'prettier' },
         json = { 'prettier' },
-        markdown = { 'prettier' },
+        -- markdown = { 'prettier' },
         asm = { 'asmfmt' },
         css = { 'prettier', stop_after_first = true },
         sql = { 'sqruff', 'sql-formatter' },

@@ -1,11 +1,7 @@
 return {
-  -- Gorgoroth
+  -- Nord
   {
-    'RRethy/base16-nvim',
-    lazy = false,
-    config = function()
-      vim.cmd 'silent! colorscheme base16-black-metal-gorgoroth'
-    end,
+    'shaunsingh/nord.nvim',
   },
   -- Catppuccin
   {
@@ -24,9 +20,12 @@ return {
       }
     end,
   },
-  -- Nord
+  -- Vague
   {
-    'shaunsingh/nord.nvim',
+    'https://github.com/vague2k/vague.nvim', -- Assuming this is the correct repo
+    name = 'vague', -- Set a name
+    lazy = true,
+    -- transparent_background = true,
   },
   -- Rose-pine
   {
@@ -40,11 +39,12 @@ return {
       }
     end,
   },
-  -- Vague
+  -- Gorgoroth
   {
-    'https://github.com/vague2k/vague.nvim', -- Assuming this is the correct repo
-    name = 'vague', -- Set a name
-    lazy = true,
-    -- transparent_background = true,
+    'RRethy/base16-nvim',
+    lazy = false,
+    config = function()
+      vim.cmd 'silent! colorscheme base16-black-metal-gorgoroth'
+    end,
   },
 }

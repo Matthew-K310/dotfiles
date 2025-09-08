@@ -13,7 +13,7 @@ setopt PROMPT_SUBST
 # }
 # PS1='%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%} %{$fg[magenta]%}%~%{$fg[cyan]%}$(parse_git_branch)%{$fg[red]%}]%{$reset_color%} '
 # PS1='$fg[yellow]%}%n%{$fg[green]%} %{$fg[magenta]%}%~%{$fg[cyan]%}$(parse_git_branch)%{$fg[red]%} >%{$reset_color%} '
-PS1='$fg[yellow]%}%n%{$fg[green]%} %{$fg[magenta]%}%~%{$fg[cyan]%} >%{$reset_color%} '
+PS1='$fg[red]%}%n%{$fg[green]%} %{$fg[magenta]%}%~%{$fg[cyan]%} >%{$reset_color%} '
 setopt autocd		# Automatically cd into typed directory.
 setopt interactive_comments
 
@@ -123,9 +123,9 @@ bindkey -M visual '^[[P' vi-delete
 # # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ompconfig.toml)"
 
 # tmux session startup
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  tmux attach-session -t default || tmux new-session -s default
-fi
+# if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+#   tmux attach-session -t default || tmux new-session -s default
+# fi
 
 # # Open yazi with ctrl-n keybind
 # bindkey -s '^o' 'y\n'
