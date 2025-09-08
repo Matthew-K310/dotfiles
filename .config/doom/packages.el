@@ -66,10 +66,11 @@
 
 ;; org shizz
 (package! org-bullets)
-(package! org-gcal)
 (package! org-caldav)
-(package! org-roam-ui)
-(package! websocket) ;; for org-roam-ui
+(package! denote)
+;; (package! org-gcal)
+;; (package! org-roam-ui)
+;; (package! websocket) ;; for org-roam-ui
 
 (package! dirvish)
 (package! harpoon)

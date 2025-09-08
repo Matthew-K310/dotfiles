@@ -157,7 +157,6 @@
        (org                ; organize your plain life in plain text
         +pretty
         +journal
-        +roam2
         +hugo
         +noter
         +dragndrop
