@@ -442,15 +442,6 @@
        :desc "Open elfeed-tube-mpv"           "t" #'elfeed-tube-mpv
        ))
 
-(require 'org-caldav)
-
-(setq org-caldav-url "https://100.78.236.53/remote.php/dav/calendars/admin")
-(setq org-caldav-calendar-id "nextcal")
-(setq org-caldav-inbox "~/Notes/calendar.org")
-(setq org-icalendar-include-todo 'all
-      org-caldav-sync-todo t)
-(setq org-icalendar-timezone "America/Chicago")
-
 ;; rust dev
 (use-package rustic
   :ensure
