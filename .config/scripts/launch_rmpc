@@ -1,2 +1,2 @@
 #!/bin/bash
-open -na Kitty --args rmpc
+open -na Alacritty --args -e rmpc
