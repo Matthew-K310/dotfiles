@@ -1,11 +1,7 @@
 return {
   -- pyywal
   {
-    'uZer/pywal16.nvim',
-    cond = function()
-      -- Only load on Linux
-      return vim.loop.os_uname().sysname == 'Linux'
-    end,
+    'Matthew-K310/pywal16.nvim',
     config = function()
       vim.cmd.colorscheme 'pywal16'
     end,
@@ -13,6 +9,7 @@ return {
   -- Nord
   {
     'shaunsingh/nord.nvim',
+    transparent_background = false,
   },
   -- Catppuccin
   {
@@ -28,6 +25,7 @@ return {
         integrations = {
           harpoon = true,
         },
+        transparent_background = false,
       }
     end,
   },
@@ -38,6 +36,7 @@ return {
     config = function()
       vim.cmd 'silent! colorscheme base16-black-metal-gorgoroth'
     end,
+    transparent_background = false,
   },
   -- Rose-pine
   {
@@ -47,7 +46,7 @@ return {
     config = function()
       require('rose-pine').setup {
         variant = 'moon', -- "main", "moon" or "dawn"
-        -- transparent_background = true,
+        transparent_background = false,
       }
     end,
   },
@@ -56,6 +55,6 @@ return {
     'https://github.com/vague2k/vague.nvim', -- Assuming this is the correct repo
     name = 'vague', -- Set a name
     lazy = true,
-    -- transparent_background = true,
+    transparent_background = false,
   },
 }

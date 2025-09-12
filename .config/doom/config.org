@@ -1,15 +1,25 @@
+#+title: Config
+
+#+begin_src elisp
 (setq user-full-name "Matthew Kennedy"
       user-mail-address "matthew@matthew-kennedy.com")
+#+end_src
 
+** Theming
+#+begin_src elisp
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 14)
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 22))
+#+end_src
 
+#+begin_src elisp
 ;; `load-theme' function. This is the default:
 (add-to-list 'custom-theme-load-path "~/.config/doom/themes/")
 (load-theme 'doom-nord t)
 ;; (load-theme 'catppuccin `relative)
 ;; (setq catppuccin-flavor 'macchiato)
+#+end_src
 
+#+begin_src elisp
 ;; Remove top frame bar in emacs
 (add-to-list 'default-frame-alist '(undecorated . t))
 
@@ -18,7 +28,13 @@
 (setq doom-modeline-major-mode-icon t)
 (setq doom-modeline-lsp-icon t)
 (setq doom-modeline-major-mode-color-icon t)
+#+end_src
 
+** Utility settings
+- Relative line numbers for easier vim motions
+- Scroll margin for easier scroll tracking
+-
+#+begin_src elisp
 ;; Relative line numbers
 (setq display-line-numbers-type `relative)
 
@@ -34,7 +50,10 @@
 
 ;; Change focus highlight mode
 '((prog-mode . defun) (text-mode . paragraph))
+#+end_src
 
+** Splash screen customization
+#+begin_src elisp
 ;; Setup custom splashscreen
 (defun glory-to-the-omnissiah ()
   (let* ((banner '(
@@ -79,7 +98,10 @@
 (assoc-delete-all "Reload last session" +doom-dashboard-menu-sections)
 (assoc-delete-all "Jump to bookmark" +doom-dashboard-menu-sections)
 (assoc-delete-all "Open documentation" +doom-dashboard-menu-sections)
+#+end_src
 
+** Basic org-mode settings
+#+begin_src elisp
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Notes")
@@ -91,7 +113,9 @@
         :n "<M-left>" #'org-do-promote
         :n "<M-right>" #'org-do-demote)
   )
+#+end_src
 
+#+begin_src elisp
 ;; Auto-clock in when state changes to STRT
 (defun my/org-clock-in-if-starting ()
   "Clock in when the task state changes to STRT"
@@ -112,7 +136,22 @@
 
 ;; Prevent clock from stopping when marking subtasks as done
 (setq org-clock-out-when-done nil)
+#+end_src
 
+** Org capture templates
+*** Todo
+For personal or quick capture todo items, where some items will be moved to projects.org if needed.
+*** Event
+Calendar events, (anniversaries, and birthdays (eventually)). Synced via the beorg iOS app to my personal calendar.
+*** Deadline
+Anything that has a deadline. i.e. college projects, personal projects, work projects, and whatever else may have a hard deadline.
+*** Project
+Personal, work, or school projects. This is my main method of project management, with projects captured here containing todos and other relevant project info.
+*** Ideas
+Smaller ideas and projects that have not been solidified.
+*** Contact
+
+#+begin_src elisp
 ;; Capture templates
 (after! org
   (setq org-capture-templates
@@ -154,7 +193,9 @@
            (file+headline "~/Notes/notes.org" "Inbox")
            "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
            :prepend t))))
+#+end_src
 
+#+begin_src elisp
 ;; weekly journal
 (defun create-weekly-journal-file ()
   "Create a weekly journal file for review and habit tracking."
@@ -192,7 +233,9 @@
        (with-temp-buffer
          (insert-file-contents "~/.config/doom/snippets/weekly")
          (buffer-string))))))
+#+end_src
 
+#+begin_src elisp
 ;; next week's journal
 (defun create-next-weeks-journal-file ()
   "Create a weekly journal file for NEXT week for review and habit tracking."
@@ -230,7 +273,9 @@
        (with-temp-buffer
          (insert-file-contents "~/.config/doom/snippets/weekly")
          (buffer-string))))))
+#+end_src
 
+#+begin_src elisp
 ;; daily journal
 (defun create-daily-file ()
   "Create a daily journal file organized by year and week number."
@@ -271,7 +316,9 @@
        (with-temp-buffer
          (insert-file-contents "~/.config/doom/snippets/daily")
          (buffer-string))))))
+#+end_src
 
+#+begin_src elisp
 ;; tomorrow's daily journal
 (defun create-tomorrows-daily-file ()
   "Create a daily journal file organized by year and week number for tomorrow."
@@ -315,7 +362,9 @@
        (with-temp-buffer
          (insert-file-contents "~/.config/doom/snippets/daily")
          (buffer-string))))))
+#+end_src
 
+#+begin_src elisp
 ;; Set archive location to done.org under current date
 (defun my/archive-done-task ()
   "Archive current task to done.org under today's date"
@@ -372,7 +421,9 @@
 (global-set-key (kbd "C-c d") 'my/move-to-done-org)
 
 (provide 'done-refile)
+#+end_src
 
+#+begin_src elisp
 ;; Keybinds for org mode
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c C-x C-a") 'my/archive-done-task)
@@ -428,7 +479,9 @@
        :desc "Toggle zen mode"                    "z" #'+zen/toggle
        :desc "Toggle focus mode"                  "f" #'focus-mode
        ))
+#+end_src
 
+#+begin_src elisp
 ;; rust dev
 (use-package rustic
   :ensure
@@ -488,7 +541,9 @@
   (lsp-ui-peek-always-show t)
   (lsp-ui-sideline-show-hover t)
   (lsp-ui-doc-enable nil))
+#+end_src
 
+#+begin_src elisp
 (use-package company
   :ensure
   :custom
@@ -507,7 +562,9 @@
   (yas-reload-all)
   (add-hook 'prog-mode-hook 'yas-minor-mode)
   (add-hook 'text-mode-hook 'yas-minor-mode))
+#+end_src
 
+#+begin_src elisp
 ;; Load elfeed-download package
 (load! "lisp/elfeed-download")
 
@@ -547,7 +604,11 @@
          :map elfeed-search-mode-map
          ("F" . elfeed-tube-fetch)
          ([remap save-buffer] . elfeed-tube-save)))
+#+end_src
 
+** org-caldav configuration
+This is for synching to my Nextcloud calendar server.
+#+begin_src elisp
 (require 'org-caldav)
 ;; URL of the caldav server
 (setq org-caldav-url "https://nextcloud.matthewcloud.us/remote.php/dav/calendars/matthewkennedy")
@@ -559,3 +620,4 @@
 (setq org-caldav-files "~/Notes/agenda.org" "~/Notes/todo.org")
 ;; Usually a good idea to set the timezone manually
 (setq org-icalendar-timezone "US/Chicago")
+#+end_src

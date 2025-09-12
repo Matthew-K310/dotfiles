@@ -38,6 +38,7 @@ alias \
 	lf="lfub" \
 	y="ycd" \
 	gco="git_conventions" \
+	ghd="gh dash" \
 	magit="nvim -c MagitOnly" \
 	ref='shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutenvrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc'# lf="lfub" # y="lfcd" \
 

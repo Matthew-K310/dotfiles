@@ -22,27 +22,12 @@ return {
       mode = 'background', -- Set the display mode.
     },
   },
-  { -- Faster Finding
-    'folke/flash.nvim',
-    lazy = 'true',
-    opts = {},
-    keys = {
-      {
-        'zk',
-        mode = { 'n', 'x', 'o' },
-        function()
-          require('flash').jump()
-        end,
-        desc = 'Flash',
-      },
-    },
-  },
-  -- fancy notifications
-  { 'rcarriga/nvim-notify' },
   { -- Magit for nvim
     'tpope/vim-fugitive',
   },
-  { 'nvim-lua/plenary.nvim' },
+  { -- Lua lib utils
+    'nvim-lua/plenary.nvim',
+  },
   { -- Tmux navigation
     'christoomey/vim-tmux-navigator',
     cmd = {
@@ -61,10 +46,18 @@ return {
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
   },
-  -- { -- Transparency
-  --   'xiyaowong/transparent.nvim',
-  --   vim.keymap.set('n', '<leader>te', ':TransparentToggle<CR>'),
-  -- },
+  { -- Transparency
+    'xiyaowong/transparent.nvim',
+    opts = {
+      vim.keymap.set('n', '<leader>wt', ':TransparentToggle<CR>'),
+    },
+  },
+  { -- Dimming for writing focus
+    'folke/twilight.nvim',
+    opts = {
+      vim.keymap.set('n', '<leader>zf', ':Twilight<CR>'),
+    },
+  },
   { -- Undotree
     'mbbill/undotree',
   },

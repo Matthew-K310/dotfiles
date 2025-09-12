@@ -1,22 +1,11 @@
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Appearance                                                                 ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-theme                              = nord
+# theming
+# theme                              = nord
+theme                              = "/home/matthewkennedy/.cache/wal/colors-ghostty"
 background-opacity                 = 0.9
 background-blur                    = true
 
-#custom-shader                     = ~/.config/ghostty/bettercrt.glsl
-#custom-shader                     = ~/.config/ghostty/tft.glsl
-#custom-shader                     = ~/.config/ghostty/bloom.glsl
-#custom-shader                     = ~/.config/ghostty/glitchy.glsl
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Font                                                                       ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
-font-size                          = 14
+# font
+font-size                          = 12
 font-family                        = "JetBrainsMono Nerd Font Mono"
 font-style-bold                    = false
 font-style-italic                  = false
@@ -25,11 +14,7 @@ font-feature			   = -calt
 bold-is-bright                     = true
 adjust-cell-height                 = 1
 
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Window                                                                     ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
+# window
 window-padding-x                   = 6
 window-padding-y                   = 12
 window-padding-balance             = true
@@ -39,42 +24,23 @@ window-decoration                  = none
 window-theme                       = ghostty
 window-width                       = 80
 window-height                      = 28
-
 resize-overlay                     = never
-
 confirm-close-surface              = false
 
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Features                                                                   ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
+# shell
 scrollback-limit                   = 125000
 link-url                           = true
 vt-kam-allowed                     = false
 
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Clipboard                                                                  ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
+# clipboard
 clipboard-trim-trailing-spaces     = true
 clipboard-paste-bracketed-safe     = true
 copy-on-select                     = true
 
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ GTK                                                                        ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
-
+# gtk
 gtk-single-instance                = true
 gtk-tabs-location                  = bottom
 #gtk-adwaita                       = false
 gtk-opengl-debug                   = false
-
-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ Update                                                                     ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
 
 auto-update                        = off
