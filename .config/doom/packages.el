@@ -9,6 +9,7 @@
 ;; Theme
 (package! catppuccin-theme)
 (package! nord-theme)
+(package! ewal-spacemacs-themes)
 
 ;; go dev
 (package! templ-ts-mode)

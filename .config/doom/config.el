@@ -4,9 +4,12 @@
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 14)
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 22))
 
-;; `load-theme' function. This is the default:
-(add-to-list 'custom-theme-load-path "~/.config/doom/themes/")
-(load-theme 'doom-nord t)
+;; Check the system type and load themes accordingly
+(cond
+ ((eq system-type 'darwin)  ;; macOS
+  (load-theme 'doom-nord t))      ;; Load Nord theme on macOS
+ ((eq system-type 'gnu/linux)  ;; Linux
+  (load-theme 'ewal-spacemacs-modern t)))  ;; Load Spacemacs theme on Linux
 ;; (load-theme 'catppuccin `relative)
 ;; (setq catppuccin-flavor 'macchiato)
 
@@ -556,6 +559,6 @@
 ;; Org filename where new entries from calendar stored
 (setq org-caldav-inbox "~/Notes/calendar.org")
 ;; Additional Org files to check for calendar events
-(setq org-caldav-files "~/Notes/agenda.org" "~/Notes/todo.org")
+(setq org-caldav-files "~/Notes/agenda.org")
 ;; Usually a good idea to set the timezone manually
 (setq org-icalendar-timezone "US/Chicago")
