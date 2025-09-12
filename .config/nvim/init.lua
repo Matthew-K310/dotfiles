@@ -3,7 +3,7 @@ require 'mappings'
 require 'theme_toggle'
 
 -- for os specific configs
-local uname = vim.loop.os_uname()
+local os_name = vim.loop.os_uname()
 
 -- local floating_note = require 'floating-note'
 -- floating_note.setup {

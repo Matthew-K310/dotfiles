@@ -2,6 +2,7 @@ return {
   -- pyywal
   {
     'Matthew-K310/pywal16.nvim',
+    cond = vim.loop.os_uname().sysname == 'Linux',
     config = function()
       vim.cmd.colorscheme 'pywal16'
     end,
@@ -14,18 +15,16 @@ return {
   -- Catppuccin
   {
     'catppuccin/nvim',
-    name = 'catppuccin', -- Set a name for the plugin
+    name = 'catppuccin',
     lazy = true,
     config = function()
       require('catppuccin').setup {
-        -- your configuration, for example...
-        flavour = 'macchiato', -- latte, frappe, macchiato, mocha
-        -- transparent_background = true,
+        flavour = 'macchiato',
+        transparent_background = false,
         default_integrations = true,
         integrations = {
           harpoon = true,
         },
-        transparent_background = false,
       }
     end,
   },

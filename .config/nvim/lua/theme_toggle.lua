@@ -84,14 +84,3 @@ vim.keymap.set('n', '<leader>ht', _G.switch_theme, {
   silent = true, -- Don't show the command in the command line
   desc = 'Switch Colorscheme', -- Add a description for built-in help
 })
-
--- IMPORTANT: You need to call _G.load_theme() somewhere in your startup process
--- to load the saved theme. With LazyVim, you should call this *after* your
--- plugins are loaded. A common place is at the end of your init.lua or
--- within a VeryLazy hook.
--- Example:
--- vim.api.nvim_create_autocmd("VeryLazy", {
---   callback = function()
---     _G.load_theme()
---   end
--- })
