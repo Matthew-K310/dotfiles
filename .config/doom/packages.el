@@ -7,7 +7,7 @@
 (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 ;; Theme
-(package! catppuccin-theme)
+;; (package! catppuccin-theme)
 (package! nord-theme)
 (package! ewal-spacemacs-themes)
 
@@ -16,9 +16,12 @@
 (package! go-mode)
 
 ;; org mode
+(package! org-roam)
+(package! org-roam-ui)
+(package! org-roam-bibtex)
 (package! org-bullets)
-(package! denote)
 (package! org-caldav)
+;; (package! denote)
 
 ;; writing tools
 (package! focus)
@@ -30,3 +33,6 @@
 ;; elfeed utilities
 (package! elfeed-tube)
 (package! elfeed-tube-mpv)
+
+;; Other tools
+(package! syncthing)

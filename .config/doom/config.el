@@ -413,7 +413,7 @@
        :desc "Export as markdown"               "e" #'org-md-export-as-markdown
        :desc "Preview markdown file"            "p" #'markdown-preview
        :desc "Export as html"                   "h" #'org-html-export-as-html
-       :desc "Export as LaTeX then PDF"         "l" #'org-latex-export-to-pdf
+       :desc "Export as LaTeX then PDF"         "l" #'org-pandoc-export-to-latex-pdf
        :desc "Find definition"                  "f" #'lsp-find-definition
        )
       ;; Various other commands
@@ -558,7 +558,30 @@
 (setq org-caldav-calendar-id "org-calendar")
 ;; Org filename where new entries from calendar stored
 (setq org-caldav-inbox "~/Notes/calendar.org")
-;; Additional Org files to check for calendar events
-(setq org-caldav-files "~/Notes/agenda.org")
+(setq org-caldav-files '("~/Notes/agenda.org"))
 ;; Usually a good idea to set the timezone manually
 (setq org-icalendar-timezone "US/Chicago")
+
+(use-package emacs-everywhere
+  :load-path "~/.config/doom/lisp/"
+  :config
+  (setq emacs-everywhere-frame-parameters
+        '((name . "emacs-everywhere")
+          (width . 80)
+          (height . 24))))
+
+(defvar my/emacs-everywhere-file "~/Notes/inbox.org")
+
+(defun my/emacs-everywhere-append-to-file ()
+  "Insert captured content with timestamp into the inbox file
+   and switch to it for editing."
+  (let ((text (buffer-string))
+        (timestamp (format-time-string "%Y%m%d%H%M%S")))
+    ;; Don’t kill this buffer, just grab the text then switch
+    (find-file my/emacs-everywhere-file)
+    (goto-char (point-max))
+    (insert (format "\n\n* %s\n%s" timestamp text))
+    ;; Leave point ready for editing at the end
+    (goto-char (point-max))))
+
+(add-hook 'emacs-everywhere-mode-hook #'my/emacs-everywhere-append-to-file)

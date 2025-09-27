@@ -56,6 +56,7 @@ alias \
 	lls='linear-cli issues list' \
 	aseprite='/home/matthewkennedy/src/aseprite/build/bin/aseprite'
 
+alias fzf="fzf --preview='chafa {}'"
 alias ff="fd --type f | fzf | sed 's/\ /\\\ /g' "
 alias ffn="fd --type f | fzf | sed 's/\ /\\\ /g' | xargs nvim"
 

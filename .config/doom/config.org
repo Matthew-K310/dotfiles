@@ -5,6 +5,8 @@
       user-mail-address "matthew@matthew-kennedy.com")
 #+end_src
 
+(setq org-pandoc-options '((pdf-engine . "lualatex")))
+
 ** Theming
 #+begin_src elisp
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 14)
@@ -426,6 +428,72 @@ Smaller ideas and projects that have not been solidified.
 (provide 'done-refile)
 #+end_src
 
+** Org Roam
+#+begin_src
+;;Org-Roam
+;; Org-Roam Configuration with SQLite Built-in Connector
+(use-package! org-roam
+  :custom
+  ;; Set your org-roam directory
+  (org-roam-directory "~/Notes/roam")
+
+  ;; Explicitly use the built-in SQLite connector
+  (org-roam-database-connector 'sqlite-builtin)
+
+  ;; Set an absolute path for the database file
+  (org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory))
+
+  :config
+  ;; Make sure the directory exists
+  (unless (file-exists-p org-roam-directory)
+    (make-directory org-roam-directory t))
+
+  ;; Add error handling for database operations
+  (advice-add 'org-roam-db-query :around
+              (lambda (fn &rest args)
+                (condition-case err
+                    (apply fn args)
+                  (error
+                   (message "Database error in org-roam: %S" err)
+                   nil))))
+
+  ;; Enable auto-sync mode to keep the database updated
+  (org-roam-db-autosync-mode +1))
+
+;; Org-Roam UI setup - only load after org-roam is properly initialized
+(use-package! websocket
+  :after org-roam)
+
+(use-package! org-roam-ui
+  :after org-roam
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+
+;; org-download customizations
+(require 'org-download)
+(setq-default org-download-screenshot-method "scrot -s %s")
+
+;; Debugging function for SQLite issues
+(defun debug-org-roam-db ()
+  "Debug function to test org-roam database connection."
+  (interactive)
+  (message "Testing org-roam database...")
+  (message "Directory exists: %s" (file-exists-p org-roam-directory))
+  (message "Database path: %s" org-roam-db-location)
+  (message "Database connector: %s" org-roam-database-connector)
+  (condition-case err
+      (progn
+        (org-roam-db-sync)
+        (message "Database synced successfully!"))
+    (error (message "Database sync error: %S" err))))
+#+end_src
+
+#+end_src
+
+*** Custom Keybinds
 #+begin_src elisp
 ;; Keybinds for org mode
 (with-eval-after-load 'org
@@ -464,7 +532,7 @@ Smaller ideas and projects that have not been solidified.
        :desc "Export as markdown"               "e" #'org-md-export-as-markdown
        :desc "Preview markdown file"            "p" #'markdown-preview
        :desc "Export as html"                   "h" #'org-html-export-as-html
-       :desc "Export as LaTeX then PDF"         "l" #'org-latex-export-to-pdf
+       :desc "Export as LaTeX then PDF"         "l" #'org-pandoc-export-to-latex-pdf
        :desc "Find definition"                  "f" #'lsp-find-definition
        )
       ;; Various other commands
@@ -619,8 +687,36 @@ This is for synching to my Nextcloud calendar server.
 (setq org-caldav-calendar-id "org-calendar")
 ;; Org filename where new entries from calendar stored
 (setq org-caldav-inbox "~/Notes/calendar.org")
-;; Additional Org files to check for calendar events
-(setq org-caldav-files "~/Notes/agenda.org")
+(setq org-caldav-files '("~/Notes/agenda.org"))
 ;; Usually a good idea to set the timezone manually
 (setq org-icalendar-timezone "US/Chicago")
+#+end_src
+
+emacs-everywhere for org-capture within any window of my DWM environment.
+#+begin_src elisp
+(use-package emacs-everywhere
+  :load-path "~/.config/doom/lisp/"
+  :config
+  (setq emacs-everywhere-frame-parameters
+        '((name . "emacs-everywhere")
+          (width . 80)
+          (height . 24))))
+#+end_src
+
+#+begin_src elisp
+(defvar my/emacs-everywhere-file "~/Notes/inbox.org")
+
+(defun my/emacs-everywhere-append-to-file ()
+  "Insert captured content with timestamp into the inbox file
+   and switch to it for editing."
+  (let ((text (buffer-string))
+        (timestamp (format-time-string "%Y%m%d%H%M%S")))
+    ;; Don’t kill this buffer, just grab the text then switch
+    (find-file my/emacs-everywhere-file)
+    (goto-char (point-max))
+    (insert (format "\n\n* %s\n%s" timestamp text))
+    ;; Leave point ready for editing at the end
+    (goto-char (point-max))))
+
+(add-hook 'emacs-everywhere-mode-hook #'my/emacs-everywhere-append-to-file)
 #+end_src
