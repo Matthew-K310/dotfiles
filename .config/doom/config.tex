@@ -1,19 +1,48 @@
-#+title: Config
+% Created 2025-09-29 Mon 15:05
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Matthew Kennedy}
+\date{\today}
+\title{Config}
+\hypersetup{
+ pdfauthor={Matthew Kennedy},
+ pdftitle={Config},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 30.2 (Org mode 9.7.31)}, 
+ pdflang={English}}
+\usepackage{biblatex}
 
-#+begin_src elisp
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\begin{verbatim}
 (setq user-full-name "Matthew Kennedy"
       user-mail-address "matthew@matthew-kennedy.com")
-#+end_src
+\end{verbatim}
 
-(setq org-pandoc-options '((pdf-engine . "lualatex")))
-
-** Theming
-#+begin_src elisp
+(setq org-pandoc-options '((pdf-engine . ``lualatex'')))
+\section{Theming}
+\label{sec:org8c15005}
+\begin{verbatim}
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 14)
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 22))
-#+end_src
+\end{verbatim}
 
-#+begin_src elisp
+\begin{verbatim}
 ;; Check the system type and load themes accordingly
 (cond
  ((eq system-type 'darwin)  ;; macOS
@@ -22,9 +51,9 @@
   (load-theme 'ewal-spacemacs-modern t)))  ;; Load Spacemacs theme on Linux
 ;; (load-theme 'catppuccin `relative)
 ;; (setq catppuccin-flavor 'macchiato)
-#+end_src
+\end{verbatim}
 
-#+begin_src elisp
+\begin{verbatim}
 ;; Remove top frame bar in emacs
 (add-to-list 'default-frame-alist '(undecorated . t))
 
@@ -33,10 +62,15 @@
 (setq doom-modeline-major-mode-icon t)
 (setq doom-modeline-lsp-icon t)
 (setq doom-modeline-major-mode-color-icon t)
-#+end_src
-
-** Utility settings
-#+begin_src elisp
+\end{verbatim}
+\section{Utility settings}
+\label{sec:orgccb5168}
+\begin{itemize}
+\item Relative line numbers for easier vim motions
+\item Scroll margin for easier scroll tracking
+\item 
+\end{itemize}
+\begin{verbatim}
 ;; Relative line numbers
 (setq display-line-numbers-type `relative)
 
@@ -48,16 +82,14 @@
 
 ;; Set browser for opening links
 (setq browse-url-browser-function 'browse-url-generic)
-(setq browse-url-generic-program "chromium")
-;; (setq browse-url-generic-program "librewolf")
-;; (setq browse-url-generic-program "qutebrowser")
+(setq browse-url-generic-program "librewolf")
 
 ;; Change focus highlight mode
 '((prog-mode . defun) (text-mode . paragraph))
-#+end_src
-
-** Splash screen customization
-#+begin_src elisp
+\end{verbatim}
+\section{Splash screen customization}
+\label{sec:org2e31bd3}
+\begin{verbatim}
 ;; Setup custom splashscreen
 (defun glory-to-the-omnissiah ()
   (let* ((banner '(
@@ -102,10 +134,10 @@
 (assoc-delete-all "Reload last session" +doom-dashboard-menu-sections)
 (assoc-delete-all "Jump to bookmark" +doom-dashboard-menu-sections)
 (assoc-delete-all "Open documentation" +doom-dashboard-menu-sections)
-#+end_src
-
-** Basic org-mode settings
-#+begin_src elisp
+\end{verbatim}
+\section{Basic org-mode settings}
+\label{sec:org55720de}
+\begin{verbatim}
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Notes")
@@ -117,9 +149,9 @@
         :n "<M-left>" #'org-do-promote
         :n "<M-right>" #'org-do-demote)
   )
-#+end_src
+\end{verbatim}
 
-#+begin_src elisp
+\begin{verbatim}
 ;; Auto-clock in when state changes to STRT
 (defun my/org-clock-in-if-starting ()
   "Clock in when the task state changes to STRT"
@@ -140,22 +172,28 @@
 
 ;; Prevent clock from stopping when marking subtasks as done
 (setq org-clock-out-when-done nil)
-#+end_src
-
-** Org capture templates
-*** Todo
+\end{verbatim}
+\section{Org capture templates}
+\label{sec:org6f667cc}
+\subsection{Todo}
+\label{sec:orgcef35b6}
 For personal or quick capture todo items, where some items will be moved to projects.org if needed.
-*** Event
+\subsection{Event}
+\label{sec:org003eba0}
 Calendar events, (anniversaries, and birthdays (eventually)). Synced via the beorg iOS app to my personal calendar.
-*** Deadline
+\subsection{Deadline}
+\label{sec:orgb0070d9}
 Anything that has a deadline. i.e. college projects, personal projects, work projects, and whatever else may have a hard deadline.
-*** Project
+\subsection{Project}
+\label{sec:orgf21e824}
 Personal, work, or school projects. This is my main method of project management, with projects captured here containing todos and other relevant project info.
-*** Ideas
+\subsection{Ideas}
+\label{sec:orgc264ef4}
 Smaller ideas and projects that have not been solidified.
-*** Contact
+\subsection{Contact}
+\label{sec:orgdc8a062}
 
-#+begin_src elisp
+\begin{verbatim}
 ;; Capture templates
 (after! org
   (setq org-capture-templates
@@ -205,9 +243,9 @@ SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
            (file+headline "~/Notes/notes.org" "Inbox")
            "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
            :prepend t))))
-#+end_src
+\end{verbatim}
 
-#+begin_src elisp
+\begin{verbatim}
 ;; weekly journal
 (defun create-weekly-journal-file ()
   "Create a weekly journal file for review and habit tracking."
@@ -245,9 +283,9 @@ SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
        (with-temp-buffer
          (insert-file-contents "~/.config/doom/snippets/weekly")
          (buffer-string))))))
-#+end_src
+\end{verbatim}
 
-#+begin_src elisp
+\begin{verbatim}
 ;; next week's journal
 (defun create-next-weeks-journal-file ()
   "Create a weekly journal file for NEXT week for review and habit tracking."
@@ -285,9 +323,9 @@ SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
        (with-temp-buffer
          (insert-file-contents "~/.config/doom/snippets/weekly")
          (buffer-string))))))
-#+end_src
+\end{verbatim}
 
-#+begin_src elisp
+\begin{verbatim}
 ;; daily journal
 (defun create-daily-file ()
   "Create a daily journal file organized by year and week number."
@@ -328,9 +366,9 @@ SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
        (with-temp-buffer
          (insert-file-contents "~/.config/doom/snippets/daily")
          (buffer-string))))))
-#+end_src
+\end{verbatim}
 
-#+begin_src elisp
+\begin{verbatim}
 ;; tomorrow's daily journal
 (defun create-tomorrows-daily-file ()
   "Create a daily journal file organized by year and week number for tomorrow."
@@ -374,9 +412,9 @@ SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
        (with-temp-buffer
          (insert-file-contents "~/.config/doom/snippets/daily")
          (buffer-string))))))
-#+end_src
+\end{verbatim}
 
-#+begin_src elisp
+\begin{verbatim}
 ;; Set archive location to done.org under current date
 (defun my/archive-done-task ()
   "Archive current task to done.org under today's date"
@@ -433,34 +471,41 @@ SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
 (global-set-key (kbd "C-c d") 'my/move-to-done-org)
 
 (provide 'done-refile)
-#+end_src
-
-** Org Roam
-#+begin_src elisp
-;; Set this *before* loading org-roam so Doom doesn’t override it.
-(setq org-roam-directory (expand-file-name "~/Notes/roam")
-      +org-roam-dir      (expand-file-name "~/Notes/roam")
-      org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory)
-      org-roam-database-connector 'sqlite-builtin)
-
+\end{verbatim}
+\section{Org Roam}
+\label{sec:org276f1be}
+\begin{verbatim}
+;;Org-Roam
+;; Org-Roam Configuration with SQLite Built-in Connector
 (use-package! org-roam
+  :custom
+  ;; Set your org-roam directory
+  (org-roam-directory "~/Notes/roam")
+
+  ;; Explicitly use the built-in SQLite connector
+  (org-roam-database-connector 'sqlite-builtin)
+
+  ;; Set an absolute path for the database file
+  (org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory))
+
   :config
-  ;; Ensure directory exists
+  ;; Make sure the directory exists
   (unless (file-exists-p org-roam-directory)
     (make-directory org-roam-directory t))
 
-  ;; Extra safety: catch database errors gracefully
+  ;; Add error handling for database operations
   (advice-add 'org-roam-db-query :around
               (lambda (fn &rest args)
                 (condition-case err
                     (apply fn args)
                   (error
-                   (message "Org-roam DB error: %S" err)
+                   (message "Database error in org-roam: %S" err)
                    nil))))
 
-  ;; Keep DB in sync automatically
+  ;; Enable auto-sync mode to keep the database updated
   (org-roam-db-autosync-mode +1))
 
+;; Org-Roam UI setup - only load after org-roam is properly initialized
 (use-package! websocket
   :after org-roam)
 
@@ -472,48 +517,35 @@ SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
 
-(use-package! org-download
-  :after org
-  :config
-  (setq-default org-download-screenshot-method "scrot -s %s"))
+;; org-download customizations
+(require 'org-download)
+(setq-default org-download-screenshot-method "scrot -s %s")
 
+;; Debugging function for SQLite issues
 (defun debug-org-roam-db ()
-  "Test org-roam DB connection and settings."
+  "Debug function to test org-roam database connection."
   (interactive)
-  (message "Org-roam dir: %s (exists: %s)"
-           org-roam-directory
-           (file-exists-p org-roam-directory))
-  (message "DB path: %s" org-roam-db-location)
-  (message "Connector: %s" org-roam-database-connector)
+  (message "Testing org-roam database...")
+  (message "Directory exists: %s" (file-exists-p org-roam-directory))
+  (message "Database path: %s" org-roam-db-location)
+  (message "Database connector: %s" org-roam-database-connector)
   (condition-case err
       (progn
         (org-roam-db-sync)
         (message "Database synced successfully!"))
     (error (message "Database sync error: %S" err))))
-#+end_src
+\end{verbatim}
 
-*** Custom Keybinds
-#+begin_src elisp
+\#+end\textsubscript{src}
+\subsection{Custom Keybinds}
+\label{sec:orgfb4c332}
+\begin{verbatim}
 ;; Keybinds for org mode
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c C-x C-a") 'my/archive-done-task)
-  (define-key org-mode-map (kbd "C-c n l") #'org-roam-buffer-toggle)
-  (define-key org-mode-map (kbd "C-c n f") #'org-roam-node-find)
-  (define-key org-mode-map (kbd "C-c n i") #'org-roam-node-insert)
   (define-key org-mode-map (kbd "C-c e") #'org-set-effort)
   (define-key org-mode-map (kbd "C-c i") #'org-clock-in)
   (define-key org-mode-map (kbd "C-c o") #'org-clock-out))
-
-(defun my/org-checkbox-intermediate ()
-  "Set checkbox at point to [-]."
-  (interactive)
-  (when (org-at-item-checkbox-p)
-    (replace-match "-" t t nil 1)))
-
-(map! :map org-mode-map
-      :leader
-      :desc "Mark checkbox intermediate"
-      "m c i" #'my/org-checkbox-intermediate)
 
 (after! tree-sitter
   (require 'tree-sitter-langs)
@@ -570,12 +602,9 @@ SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
        :desc "Toggle zen mode"                    "z" #'+zen/toggle
        :desc "Toggle focus mode"                  "f" #'focus-mode
        ))
-#+end_src
+\end{verbatim}
 
-#+RESULTS:
-: focus-mode
-
-#+begin_src elisp
+\begin{verbatim}
 ;; rust dev
 (use-package rustic
   :ensure
@@ -635,9 +664,9 @@ SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
   (lsp-ui-peek-always-show t)
   (lsp-ui-sideline-show-hover t)
   (lsp-ui-doc-enable nil))
-#+end_src
+\end{verbatim}
 
-#+begin_src elisp
+\begin{verbatim}
 (use-package company
   :ensure
   :custom
@@ -656,9 +685,9 @@ SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
   (yas-reload-all)
   (add-hook 'prog-mode-hook 'yas-minor-mode)
   (add-hook 'text-mode-hook 'yas-minor-mode))
-#+end_src
+\end{verbatim}
 
-#+begin_src elisp
+\begin{verbatim}
 ;; Load elfeed-download package
 (load! "lisp/elfeed-download")
 
@@ -698,11 +727,11 @@ SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
          :map elfeed-search-mode-map
          ("F" . elfeed-tube-fetch)
          ([remap save-buffer] . elfeed-tube-save)))
-#+end_src
-
-** org-caldav configuration
+\end{verbatim}
+\section{org-caldav configuration}
+\label{sec:org3be2e9b}
 This is for synching to my Nextcloud calendar server.
-#+begin_src elisp
+\begin{verbatim}
 (require 'org-caldav)
 ;; URL of the caldav server
 (setq org-caldav-url "https://nextcloud.matthewcloud.us/remote.php/dav/calendars/matthewkennedy")
@@ -713,10 +742,10 @@ This is for synching to my Nextcloud calendar server.
 (setq org-caldav-files '("~/Notes/agenda.org"))
 ;; Usually a good idea to set the timezone manually
 (setq org-icalendar-timezone "US/Chicago")
-#+end_src
+\end{verbatim}
 
 emacs-everywhere for org-capture within any window of my DWM environment.
-#+begin_src elisp
+\begin{verbatim}
 (use-package emacs-everywhere
   :load-path "~/.config/doom/lisp/"
   :config
@@ -724,9 +753,9 @@ emacs-everywhere for org-capture within any window of my DWM environment.
         '((name . "emacs-everywhere")
           (width . 80)
           (height . 24))))
-#+end_src
+\end{verbatim}
 
-#+begin_src elisp
+\begin{verbatim}
 (defvar my/emacs-everywhere-file "~/Notes/inbox.org")
 
 (defun my/emacs-everywhere-append-to-file ()
@@ -742,4 +771,5 @@ emacs-everywhere for org-capture within any window of my DWM environment.
     (goto-char (point-max))))
 
 (add-hook 'emacs-everywhere-mode-hook #'my/emacs-everywhere-append-to-file)
-#+end_src
+\end{verbatim}
+\end{document}

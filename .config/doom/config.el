@@ -33,7 +33,9 @@
 
 ;; Set browser for opening links
 (setq browse-url-browser-function 'browse-url-generic)
-(setq browse-url-generic-program "librewolf")
+(setq browse-url-generic-program "chromium")
+;; (setq browse-url-generic-program "librewolf")
+;; (setq browse-url-generic-program "qutebrowser")
 
 ;; Change focus highlight mode
 '((prog-mode . defun) (text-mode . paragraph))
@@ -152,6 +154,14 @@
 :END:
 \\ *** Notes
 %?")
+
+          ;; issue tracker template
+          ("g" "Issue" entry
+           (file+olp+datetree "~/Notes/issues.org" "Inbox")
+           "* TODO %?\n :PROPERTIES:\n :ID: %(org-id-new)\n :CREATED: %U\n :END:\n
+SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
+           :time-prompt t
+           :prepend t)
 
           ("n" "Note" entry
            (file+headline "~/Notes/notes.org" "Inbox")
@@ -376,12 +386,80 @@
 
 (provide 'done-refile)
 
+;; Set this *before* loading org-roam so Doom doesn’t override it.
+(setq org-roam-directory (expand-file-name "~/Notes/roam")
+      +org-roam-dir      (expand-file-name "~/Notes/roam")
+      org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory)
+      org-roam-database-connector 'sqlite-builtin)
+
+(use-package! org-roam
+  :config
+  ;; Ensure directory exists
+  (unless (file-exists-p org-roam-directory)
+    (make-directory org-roam-directory t))
+
+  ;; Extra safety: catch database errors gracefully
+  (advice-add 'org-roam-db-query :around
+              (lambda (fn &rest args)
+                (condition-case err
+                    (apply fn args)
+                  (error
+                   (message "Org-roam DB error: %S" err)
+                   nil))))
+
+  ;; Keep DB in sync automatically
+  (org-roam-db-autosync-mode +1))
+
+(use-package! websocket
+  :after org-roam)
+
+(use-package! org-roam-ui
+  :after org-roam
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+
+(use-package! org-download
+  :after org
+  :config
+  (setq-default org-download-screenshot-method "scrot -s %s"))
+
+(defun debug-org-roam-db ()
+  "Test org-roam DB connection and settings."
+  (interactive)
+  (message "Org-roam dir: %s (exists: %s)"
+           org-roam-directory
+           (file-exists-p org-roam-directory))
+  (message "DB path: %s" org-roam-db-location)
+  (message "Connector: %s" org-roam-database-connector)
+  (condition-case err
+      (progn
+        (org-roam-db-sync)
+        (message "Database synced successfully!"))
+    (error (message "Database sync error: %S" err))))
+
 ;; Keybinds for org mode
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c C-x C-a") 'my/archive-done-task)
+  (define-key org-mode-map (kbd "C-c n l") #'org-roam-buffer-toggle)
+  (define-key org-mode-map (kbd "C-c n f") #'org-roam-node-find)
+  (define-key org-mode-map (kbd "C-c n i") #'org-roam-node-insert)
   (define-key org-mode-map (kbd "C-c e") #'org-set-effort)
   (define-key org-mode-map (kbd "C-c i") #'org-clock-in)
   (define-key org-mode-map (kbd "C-c o") #'org-clock-out))
+
+(defun my/org-checkbox-intermediate ()
+  "Set checkbox at point to [-]."
+  (interactive)
+  (when (org-at-item-checkbox-p)
+    (replace-match "-" t t nil 1)))
+
+(map! :map org-mode-map
+      :leader
+      :desc "Mark checkbox intermediate"
+      "m c i" #'my/org-checkbox-intermediate)
 
 (after! tree-sitter
   (require 'tree-sitter-langs)
@@ -400,9 +478,10 @@
 
 ;; Custom keymaps
 (map! :leader
-      ;; Magit mode mappngs
+;; Magit mode mappngs
       (:prefix ("g" . "magit")  ; Use 'g' as the main prefix
        :desc "Stage all files"          "a" #'magit-stage-modified
+       :desc "goto function definition" "d" #'evil-goto-definition
        :desc "Push"                     "P" #'magit-push
        :desc "Pull"                     "p" #'magit-pull
        :desc "Merge"                    "m" #'magit-merge
@@ -413,7 +492,13 @@
        :desc "Export as markdown"               "e" #'org-md-export-as-markdown
        :desc "Preview markdown file"            "p" #'markdown-preview
        :desc "Export as html"                   "h" #'org-html-export-as-html
+       :desc "Org Roam UI"                      "u" #'org-roam-ui-mode
+       :desc "Search dictionary at word"        "d" #'dictionary-lookup-definition
+       :desc "Powerthesaurus lookup word"       "t" #'powerthesaurus-lookup-word-at-point
+       :desc "Read Aloud This"                  "r" #'read-aloud-this
        :desc "Export as LaTeX then PDF"         "l" #'org-pandoc-export-to-latex-pdf
+       :desc "Export as LaTeX then PDF then Open"         "L" #'org-pandoc-export-to-latex-pdf-and-open
+       :desc "spell check"                      "z" #'ispell-word
        :desc "Find definition"                  "f" #'lsp-find-definition
        )
       ;; Various other commands

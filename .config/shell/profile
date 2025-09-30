@@ -12,7 +12,8 @@ unsetopt PROMPT_SP 2>/dev/null
 export EDITOR="nvim"
 export TERMINAL="st"
 export TERMINAL_PROG="st"
-export BROWSER="librewolf"
+export BROWSER="chromium"
+# export BROWSER="librewolf"
 # export BROWSER="qutebrowser"
 export MANPAGER="nvim +Man!"
 
