@@ -15,11 +15,12 @@
 
 #+begin_src elisp
 ;; Check the system type and load themes accordingly
-(cond
- ((eq system-type 'darwin)  ;; macOS
-  (load-theme 'doom-nord t))      ;; Load Nord theme on macOS
- ((eq system-type 'gnu/linux)  ;; Linux
-  (load-theme 'ewal-spacemacs-modern t)))  ;; Load Spacemacs theme on Linux
+;; (cond
+;; ((eq system-type 'darwin)  ;; macOS
+;;  (load-theme 'doom-nord t))      ;; Load Nord theme on macOS
+;; ((eq system-type 'gnu/linux)  ;; Linux
+;;  (load-theme 'ewal-spacemacs-modern t)))  ;; Load Spacemacs theme on Linux
+ (load-theme 'doom-nord t)
 ;; (load-theme 'catppuccin `relative)
 ;; (setq catppuccin-flavor 'macchiato)
 #+end_src
@@ -45,6 +46,9 @@
 
 ;; Speed of which-key popup
 (setq which-key-idle-delay 0.2)
+
+;; Set tab width
+(setq-default tab-width 4)
 
 ;; Set browser for opening links
 (setq browse-url-browser-function 'browse-url-generic)
@@ -742,4 +746,24 @@ emacs-everywhere for org-capture within any window of my DWM environment.
     (goto-char (point-max))))
 
 (add-hook 'emacs-everywhere-mode-hook #'my/emacs-everywhere-append-to-file)
+#+end_src
+
+*** inhibit-mouse.el
+Disable the bloody mouse, ya numpty!
+
+#+begin_src elisp
+(use-package inhibit-mouse
+  :ensure t
+  :custom
+  ;; Disable highlighting of clickable text such as URLs and hyperlinks when
+  ;; hovered by the mouse pointer.
+  (inhibit-mouse-adjust-mouse-highlight t)
+
+  ;; Disables the use of tooltips (show-help-function) during mouse events.
+  (inhibit-mouse-adjust-show-help-function t)
+
+  :config
+  (if (daemonp)
+      (add-hook 'server-after-make-frame-hook #'inhibit-mouse-mode)
+    (inhibit-mouse-mode 1)))
 #+end_src

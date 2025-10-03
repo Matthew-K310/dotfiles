@@ -7,6 +7,11 @@ vim.o.conceallevel = 1
 
 vim.opt.scrolloff = 20
 
+vim.opt.tabstop = 8
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+-- vim.opt.expandtab = true
+
 vim.g.have_nerd_font = true
 
 vim.opt.number = true

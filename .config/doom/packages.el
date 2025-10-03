@@ -36,3 +36,4 @@
 
 ;; Other tools
 (package! syncthing)
+(package! inhibit-mouse)

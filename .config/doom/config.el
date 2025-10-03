@@ -5,11 +5,12 @@
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 22))
 
 ;; Check the system type and load themes accordingly
-(cond
- ((eq system-type 'darwin)  ;; macOS
-  (load-theme 'doom-nord t))      ;; Load Nord theme on macOS
- ((eq system-type 'gnu/linux)  ;; Linux
-  (load-theme 'ewal-spacemacs-modern t)))  ;; Load Spacemacs theme on Linux
+;; (cond
+;; ((eq system-type 'darwin)  ;; macOS
+;;  (load-theme 'doom-nord t))      ;; Load Nord theme on macOS
+;; ((eq system-type 'gnu/linux)  ;; Linux
+;;  (load-theme 'ewal-spacemacs-modern t)))  ;; Load Spacemacs theme on Linux
+ (load-theme 'doom-nord t)
 ;; (load-theme 'catppuccin `relative)
 ;; (setq catppuccin-flavor 'macchiato)
 
@@ -30,6 +31,9 @@
 
 ;; Speed of which-key popup
 (setq which-key-idle-delay 0.2)
+
+;; Set tab width
+(setq-default tab-width 4)
 
 ;; Set browser for opening links
 (setq browse-url-browser-function 'browse-url-generic)
@@ -670,3 +674,18 @@ SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
     (goto-char (point-max))))
 
 (add-hook 'emacs-everywhere-mode-hook #'my/emacs-everywhere-append-to-file)
+
+(use-package inhibit-mouse
+  :ensure t
+  :custom
+  ;; Disable highlighting of clickable text such as URLs and hyperlinks when
+  ;; hovered by the mouse pointer.
+  (inhibit-mouse-adjust-mouse-highlight t)
+
+  ;; Disables the use of tooltips (show-help-function) during mouse events.
+  (inhibit-mouse-adjust-show-help-function t)
+
+  :config
+  (if (daemonp)
+      (add-hook 'server-after-make-frame-hook #'inhibit-mouse-mode)
+    (inhibit-mouse-mode 1)))
