@@ -37,3 +37,4 @@
 ;; Other tools
 (package! syncthing)
 (package! inhibit-mouse)
+(package! emacs-w3m)

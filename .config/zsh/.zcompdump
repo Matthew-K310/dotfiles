@@ -853,7 +853,6 @@ _comps=(
 'nginx' '_nginx'
 'ngrep' '_ngrep'
 'nice' '_nice'
-'ninja' '_ninja'
 'nkf' '_nkf'
 'nl' '_nl'
 'nm' '_nm'
@@ -1024,6 +1023,7 @@ _comps=(
 'pswrap' '_postscript'
 'ptx' '_ptx'
 'pulseaudio' '_pulseaudio'
+'pulseaudio-ctl' '_pulseaudio-ctl'
 'pump' '_pump'
 'pushd' '_cd'
 'pv' '_pv'
@@ -1704,9 +1704,9 @@ autoload -Uz _bat _bindgen _bluetoothctl _bootctl _busctl \
             _img2sixel _insmod _journalctl _kdeconnect _kernel-install \
             _kitty _libinput _localectl _loginctl _lsmod \
             _machinectl _mkinitcpio _mpv _mutt-wizard.zsh _networkctl \
-            _newsboat _ninja _notmuch _oomctl _p11-kit \
-            _pacman _parallel _pass _pastel _patchelf \
-            _playerctl _pulseaudio _qpdf _resolvectl _rg \
+            _newsboat _notmuch _oomctl _p11-kit _pacman \
+            _parallel _pass _pastel _patchelf _playerctl \
+            _pulseaudio _pulseaudio-ctl _qpdf _resolvectl _rg \
             _rmmod _rmpc _run0 _sd_hosts_or_user_at_host _sd_machines \
             _sd_outputmodes _sd_unit_files _sensors _sensors-detect _systemctl \
             _systemd _systemd-analyze _systemd-delta _systemd-inhibit _systemd-nspawn \
