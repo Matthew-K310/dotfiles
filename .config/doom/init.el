@@ -194,7 +194,7 @@
        emms
        (everywhere +protocol)       ; leave emacs? never.
        ;; irc               ; how neckbeards socialize
-       (rss +org +web)        ; emacs as an RSS reader
+       (rss +org +web +search)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
 
        :config

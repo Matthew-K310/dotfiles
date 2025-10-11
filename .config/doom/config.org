@@ -55,10 +55,10 @@
 (setq display-line-numbers-type `relative)
 
 ;; Better readability while scrolling
-(setq scroll-margin 20)
+(setq scroll-margin 40)
 
 ;; Speed of which-key popup
-(setq which-key-idle-delay 0.2)
+(setq which-key-idle-delay 0.1)
 
 ;; Set tab width
 (setq-default tab-width 4)
@@ -71,8 +71,6 @@
 
 ;; Change focus highlight mode
 '((prog-mode . defun) (text-mode . paragraph))
-
-(setq org-pandoc-options '((pdf-engine . "lualatex")))
 
 (setq tramp-default-method "ssh")
 
@@ -195,4 +193,187 @@
   (yas-reload-all)
   (add-hook 'prog-mode-hook 'yas-minor-mode)
   (add-hook 'text-mode-hook 'yas-minor-mode))
+#+end_src
+
+* Org Mode
+
+** Org capture templates
+#+begin_src elisp
+;; Capture templates
+(after! org
+  (setq org-capture-templates
+        '(("t" "Todo" entry
+           (file+headline "~/Notes/inbox.org" "Inbox")
+           "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+
+          ("e" "Event" entry
+           (file+headline "~/Notes/agenda.org" "Events")
+           "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+
+          ("d" "Deadline" entry
+           (file+headline "~/Notes/agenda.org" "Deadlines")
+           "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+
+          ("p" "Project" entry
+           (file+headline "~/Notes/projects.org" "Projects")
+           "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n** TODO %?")
+
+          ("i" "Idea" entry
+           (file+headline "~/Notes/ideas.org" "Ideas")
+           "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+
+          ("c" "Contact" entry
+           (file+headline "~/Notes/contacts.org" "Inbox")
+           "* %^{Name}
+
+:PROPERTIES:
+:CREATED: %U
+:EMAIL: %^{Email}
+:PHONE: %^{Phone}
+:BIRTHDAY: %^{Birthday +1y}u
+:LOCATION: %^{Address}
+:END:
+\\ *** Notes
+%?")
+
+          ("g" "Issue" entry
+           (file+olp+datetree "~/Notes/issues.org" "Inbox")
+           "* TODO %?\n :PROPERTIES:\n :ID: %(org-id-new)\n :CREATED: %U\n :END:\n
+SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
+           :time-prompt t
+           :prepend t)
+
+          ("b" "Blog" entry
+           (file+olp+datetree "~/Notes/blog/" "Inbox")
+           "* TODO %?\n :PROPERTIES:\n :ID: %(org-id-new)\n :CREATED: %U\n :END:\n
+SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
+           :time-prompt t
+           :prepend t)
+
+          ("n" "Note" entry
+           (file+headline "~/Notes/notes.org" "Inbox")
+           "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
+           :prepend t))))
+#+end_src
+
+** Org mode keymaps
+#+begin_src elisp
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c C-x C-a") 'my/archive-done-task)
+  (define-key org-mode-map (kbd "C-c n l") #'org-roam-buffer-toggle)
+  (define-key org-mode-map (kbd "C-c n f") #'org-roam-node-find)
+  (define-key org-mode-map (kbd "C-c n i") #'org-roam-node-insert)
+  (define-key org-mode-map (kbd "C-c e") #'org-set-effort)
+  (define-key org-mode-map (kbd "C-c i") #'org-clock-in)
+  (define-key org-mode-map (kbd "C-c o") #'org-clock-out))
+#+end_src
+
+** Org-publish
+#+begin_src elisp
+;; Blog export configuration for Org-publish
+(defun blog/sitemap-format-entry (entry style project)
+  "Format each post entry in the sitemap.
+ENTRY is the filename, STYLE is ignored, PROJECT is the current publishing project."
+  (format "[[file:%s][%s]] — %s"
+          entry
+          (org-publish-find-title entry project)
+          (format-time-string "%Y-%m-%d"
+                              (org-publish-find-date entry project))))
+
+(setq org-publish-use-timestamps-flag nil)
+
+(setq org-publish-project-alist
+      '(("blog"
+         ;; Root folder for your posts
+         :base-directory "~/Notes/blog/"
+         :base-extension "org"
+         :recursive nil
+         ;; Destination (using TRAMP rsync)
+         :publishing-directory "/rsync:matthew-kennedy.com:/home/user-data/www/matthew-kennedy.com/"
+         ;; Convert Org → HTML
+         :publishing-function org-html-publish-to-html
+         ;; HTML options
+         :section-numbers nil
+         :with-toc nil
+         :html-html5-fancy t
+         :html-doctype "html5"
+         ;; Add CSS globally to every HTML file
+         :html-head "<link rel=\"stylesheet\" href=\"other/site.css\" type=\"text/css\" />"
+         ;; Sitemap (index page)
+         :auto-sitemap t
+         :sitemap-filename "index.org"
+         :sitemap-title "Blog | Matthew Kennedy"
+         :sitemap-sort-files anti-chronologically
+         :sitemap-format-entry blog/sitemap-format-entry)
+
+        ;; Static files: CSS, images, JS, etc.
+        ("blog-static"
+         :base-directory "~/Notes/blog/other"
+         :base-extension "css\\|png\\|jpg\\|gif\\|svg\\|js"
+         :publishing-directory "/rsync:matthew-kennedy.com:/home/user-data/www/matthew-kennedy.com/other"
+         :publishing-function org-publish-attachment
+         :recursive t)
+
+        ;; Meta-project to publish everything
+        ("website" :components ("blog" "blog-static"))))
+
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c n b") #'blog/new-post)
+  (define-key org-mode-map (kbd "C-c b d") #'blog/clear-publishing-directory)
+  (define-key org-mode-map (kbd "C-c b e") #'org-publish))
+
+(defun blog/clear-publishing-directory ()
+  "Delete all files in the publishing directory."
+  (interactive)
+  (let ((dir "/rsync:matthew-kennedy.com:/home/user-data/www/matthew-kennedy.com/"))
+    (when (yes-or-no-p (format "Delete ALL files in %s? " dir))
+      (dolist (f (directory-files dir t "^[^.]" t))
+        (if (file-directory-p f)
+            (delete-directory f t)
+          (delete-file f))))))
+
+#+end_src
+
+** blog capture
+#+begin_src elisp
+(defun blog/new-post (title)
+  "Create a new blog post in `~/Notes/blog/posts/` with TITLE.
+Inserts Org front-matter and opens the file."
+  (interactive "sPost title: ")
+  (let* ((slug (downcase
+                (replace-regexp-in-string "[^a-z0-9]+" "-" title)))
+         (date (format-time-string "%Y%m%d%H%M%s"))
+         (filename (format "%s-%s.org" date slug))
+         (dir "~/Notes/blog/")
+         (filepath (expand-file-name filename dir)))
+    (unless (file-exists-p dir)
+      (make-directory dir t))
+    (find-file filepath)
+    (unless (file-exists-p filepath)
+      (insert (format "#+TITLE: %s\n#+DATE: %s\n#+TAGS: \n#+OPTIONS: toc:nil num:nil\n\n"
+                      title date))
+      (save-buffer))))
+#+end_src
+
+** xmpp link def
+#+begin_src elisp
+(org-link-set-parameters
+ "xmpp"
+ :follow (lambda (path) (browse-url (concat "xmpp:" path)))
+ :export (lambda (path desc backend)
+           (cond
+            ((eq backend 'html)
+             (format "<a href=\"xmpp:%s\">%s</a>" path (or desc path)))
+            ((eq backend 'latex)
+             (format "\\href{x-math:%s}{%s}" path (or desc path)))
+            (t path))))
+#+end_src
+
+** inline image support
+#+begin_src elisp
+;; Enable inline images in HTML export
+(setq org-html-inline-images t
+      org-html-htmlize-output-type 'inline-css
+      org-html-inline-image-rules
+      '(("file" . "\\.\\(png\\|jpe?g\\|gif\\|svg\\)\\'")))
 #+end_src

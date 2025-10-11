@@ -433,7 +433,6 @@ _comps=(
 'gh' '_gh'
 'ghead' '_head'
 'ghostscript' '_ghostscript'
-'ghostty' '_ghostty'
 'ghostview' '_pspdf'
 'gid' '_id'
 'ginstall' '_install'
@@ -445,6 +444,7 @@ _comps=(
 'git-upload-archive' '_git'
 'git-upload-pack' '_git'
 'gjoin' '_join'
+'glab' '_glab'
 'glance' '_openstack'
 'gln' '_ln'
 'global' '_global'
@@ -1700,7 +1700,7 @@ bindkey '^[~' _bash_complete-word
 autoload -Uz _bat _bindgen _bluetoothctl _bootctl _busctl \
             _bwrap _cargo _chafa _coredumpctl _curl \
             _dkms _dunst _dunstctl _email-notmuch _fastfetch \
-            _fd _gh _ghostty _hostnamectl _hugo \
+            _fd _gh _glab _hostnamectl _hugo \
             _img2sixel _insmod _journalctl _kdeconnect _kernel-install \
             _kitty _libinput _localectl _loginctl _lsmod \
             _machinectl _mkinitcpio _mpv _mutt-wizard.zsh _networkctl \

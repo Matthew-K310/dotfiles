@@ -126,8 +126,8 @@
             ),
         ),
         (
-            name: "Directories",
-            pane: Pane(Directories),
+            name: "Albums",
+            pane: Pane(Albums),
         ),
         (
             name: "Album Artists",

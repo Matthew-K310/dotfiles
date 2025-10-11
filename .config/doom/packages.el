@@ -7,7 +7,7 @@
 (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 ;; Theme
-;; (package! catppuccin-theme)
+(package! catppuccin-theme)
 (package! nord-theme)
 (package! ewal-spacemacs-themes)
 
@@ -15,16 +15,19 @@
 (package! templ-ts-mode)
 (package! go-mode)
 
-;; org mode
+;; essential org
 (package! org-roam)
-(package! org-roam-ui)
 (package! org-roam-bibtex)
-(package! org-bullets)
+(package! ox-hugo)
+
+;; org mode
 (package! org-caldav)
-;; (package! denote)
 
 ;; writing tools
+(package! org-roam-ui)
+(package! org-bullets)
 (package! focus)
+(package! citar-org-roam)
 
 ;; file navigation
 (package! dirvish)
@@ -38,3 +41,6 @@
 (package! syncthing)
 (package! inhibit-mouse)
 (package! emacs-w3m)
+
+;; Communication
+(package! jabber)

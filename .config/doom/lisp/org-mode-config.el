@@ -33,55 +33,6 @@
 ;; Prevent clock from stopping when marking subtasks as done
 (setq org-clock-out-when-done nil)
 
-;; Capture templates
-(after! org
-  (setq org-capture-templates
-        '(("t" "Todo" entry
-           (file+headline "~/Notes/inbox.org" "Inbox")
-           "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
-
-          ("e" "Event" entry
-           (file+headline "~/Notes/agenda.org" "Events")
-           "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
-
-          ("d" "Deadline" entry
-           (file+headline "~/Notes/agenda.org" "Deadlines")
-           "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
-
-          ("p" "Project" entry
-           (file+headline "~/Notes/projects.org" "Projects")
-           "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n** TODO %?")
-
-          ("i" "Idea" entry
-           (file+headline "~/Notes/ideas.org" "Ideas")
-           "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
-
-          ("c" "Contact" entry
-           (file+headline "~/Notes/contacts.org" "Inbox")
-           "* %^{Name}
-
-:PROPERTIES:
-:CREATED: %U
-:EMAIL: %^{Email}
-:PHONE: %^{Phone}
-:BIRTHDAY: %^{Birthday +1y}u
-:LOCATION: %^{Address}
-:END:
-\\ *** Notes
-%?")
-
-          ;; issue tracker template
-          ("g" "Issue" entry
-           (file+olp+datetree "~/Notes/issues.org" "Inbox")
-           "* TODO %?\n :PROPERTIES:\n :ID: %(org-id-new)\n :CREATED: %U\n :END:\n
-SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
-           :time-prompt t
-           :prepend t)
-
-          ("n" "Note" entry
-           (file+headline "~/Notes/notes.org" "Inbox")
-           "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
-           :prepend t))))
 
 ;; weekly journal
 (defun create-weekly-journal-file ()

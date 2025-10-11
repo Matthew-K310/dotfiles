@@ -46,6 +46,17 @@
     ;; Add line spacing for better readability
     (setq-local line-spacing 0.2)
     (set-window-buffer (selected-window) (current-buffer))))
+;;
+;; Ensure browser functionality
+(setq emms-browser-default-browse-type 'album)
+;; (add-to-list 'emms-info-functions 'emms-info-mp3info)
+;; (add-to-list 'emms-info-functions 'emms-info-ogginfo)
+(add-to-list 'emms-info-functions 'emms-info-metaflac)
+(add-to-list 'emms-info-functions 'emms-info-tinytag)
+
+;; Ensure tracks play when selected
+(define-key emms-browser-mode-map (kbd "RET") 'emms-browser-add-tracks-and-play)
+(define-key emms-browser-mode-map (kbd "SPC") 'emms-pause)
 
 ;; Your keybindings
 (after! emms
@@ -58,6 +69,7 @@
          :desc "Emms pause track"         "p" #'emms-pause
          :desc "Emms stop track"          "x" #'emms-stop
          :desc "Emms play previous track" "," #'emms-previous
+         :desc "EMMS Browser"             "o" #'emms-browser
          :desc "Emms play next track"     "." #'emms-next)))
 
 ;; Enhanced cover art function (used by both browser and notifications)
