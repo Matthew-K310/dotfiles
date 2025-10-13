@@ -1,72 +1,77 @@
 #+TITLE: Elfeed Backup 2025-09-24
 #+STARTUP: content
 
-* Feeds :elfeed:
+* Feeds
 ** Linux
-*** [[https://xn--gckvb8fzb.com/index.xml][xn--gckvb8fzb]] :linux:
-*** [[https://taonaw.com/feed.xml][The Art of Not Asking Why]] :linux:
-*** [[https://lwn.net/headlines/rss][LWN.net]] :linux:
-*** [[https://computer.rip/rss.xml][Computers Are Bad]] :linux:
-*** [[https://itsfoss.com/feed/][It's FOSS]] :linux:
-*** [[https://www.linuxjournal.com/node/feed][Linux Journal]] :linux:
-*** [[https://raphlinus.github.io/feed.xml][RaphLinus]] :linux:
-*** [[https://susam.net/feed.xml][Susam.net]] :linux:
-*** [[https://battlepenguin.com/feed.xml][BattlePenguin]] :linux:
+*** [[https://xn--gckvb8fzb.com/index.xml][xn--gckvb8fzb]]
+*** [[https://taonaw.com/feed.xml][The Art of Not Asking Why]]
+*** [[https://lwn.net/headlines/rss][LWN.net]]
+*** [[https://computer.rip/rss.xml][Computers Are Bad]]
+*** [[https://itsfoss.com/feed/][It's FOSS]]
+*** [[https://www.linuxjournal.com/node/feed][Linux Journal]]
+*** [[https://raphlinus.github.io/feed.xml][RaphLinus]]
+*** [[https://susam.net/feed.xml][Susam.net]]
+*** [[https://battlepenguin.com/feed.xml][BattlePenguin]]
 ** Emacs
-*** [[https://sachachua.com/blog/category/emacs/feed/][Sacha Chua]] :emacs:
-*** [[https://irreal.org/blog/?feed=rss2][Irreal]] :emacs:
-*** [[https://systemcrafters.net/rss/content.xml][System Crafters]] :emacs:
-*** [[https://protesilaos.com/codelog.xml][Protesilaos Stavrou]] :emacs:
-*** [[https://with-emacs.com/rss.xml][With Emacs]] :emacs:
-*** [[https://emacsredux.com/atom.xml][Emacs Redux]] :emacs:
-*** [[https://baty.net/index.xml][Jack Baty]] :emacs:
+*** [[https://sachachua.com/blog/category/emacs/feed/][Sacha Chua]]
+*** [[https://irreal.org/blog/?feed=rss2][Irreal]]
+*** [[https://systemcrafters.net/rss/content.xml][System Crafters]]
+*** [[https://with-emacs.com/rss.xml][With Emacs]]
+*** [[https://emacsredux.com/atom.xml][Emacs Redux]]
+*** [[https://baty.net/index.xml][Jack Baty]]
 ** Programming
-*** [[https://charm.land/blog/rss.xml][charm.sh]] :programming:
-*** [[https://jvns.ca/atom.xml][Julia Evans]] :programming:
-*** [[https://blog.pragmaticengineer.com/rss/][The Pragmatic Engineer]] :programming:
-*** [[https://martinfowler.com/feed.atom][Martin Fowler]] :programming:
-*** [[https://www.joelonsoftware.com/feed/][Joel on Software]] :programming:
-*** [[https://eli.thegreenplace.net/feeds/all.atom.xml][Eli Bendersky]] :programming:
-*** [[https://mitchellh.com/feed.xml][Mitchell Hashimoto]] :programming:
-*** [[https://massicotte.org/feed.xml][Massicotte]] :programming:
-*** [[https://world.hey.com/dhh/feed.atom][David Heinemeir Hansson]] :programming:
-*** [[https://blog.dreamsofcode.io/rss.xml][Dreams of Code]] :programming:
-*** [[https://thorstenball.com/atom.xml][Thorsten Ball]] :programming:
-*** [[https://carlosbecker.com/posts/index.xml][Carlos Becker]] :programming:
-*** [[https://hamvocke.com/feed.xml][Ham Vocke]] :programming:
+*** [[https://charm.land/blog/rss.xml][charm.sh]]
+*** [[https://jvns.ca/atom.xml][Julia Evans]]
+*** [[https://blog.pragmaticengineer.com/rss/][The Pragmatic Engineer]]
+*** [[https://martinfowler.com/feed.atom][Martin Fowler]]
+*** [[https://www.joelonsoftware.com/feed/][Joel on Software]]
+*** [[https://eli.thegreenplace.net/feeds/all.atom.xml][Eli Bendersky]]
+*** [[https://mitchellh.com/feed.xml][Mitchell Hashimoto]]
+*** [[https://massicotte.org/feed.xml][Massicotte]]
+*** [[https://world.hey.com/dhh/feed.atom][David Heinemeir Hansson]]
+*** [[https://blog.dreamsofcode.io/rss.xml][Dreams of Code]]
+*** [[https://thorstenball.com/atom.xml][Thorsten Ball]]
+*** [[https://carlosbecker.com/posts/index.xml][Carlos Becker]]
+*** [[https://hamvocke.com/feed.xml][Ham Vocke]]
 ** Privacy and Security
-*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC-ufRLYrXxrIEApGn9VG5pQ][Reject Convenience]] :privacy:
-*** [[https://krebsonsecurity.com/feed/][Krebs on Security]] :privacy:
-*** [[https://www.schneier.com/feed/atom/][Schneier on Security]] :privacy:
-*** [[https://portswigger.net/daily-swig/rss][The Daily Swig]] :privacy:
-*** [[https://threatpost.com/feed/][ThreatPost]] :privacy:
-*** [[https://www.eff.org/rss/updates.xml][EFF]] :privacy:
-*** [[https://www.privacytools.io/feed.xml][Privacy Tools]] :privacy:
-*** [[https://www.privateinternetaccess.com/blog/feed/][Private Internet Access]] :privacy:
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC-ufRLYrXxrIEApGn9VG5pQ][Reject Convenience]]
+*** [[https://krebsonsecurity.com/feed/][Krebs on Security]]
+*** [[https://www.schneier.com/feed/atom/][Schneier on Security]]
+*** [[https://portswigger.net/daily-swig/rss][The Daily Swig]]
+*** [[https://threatpost.com/feed/][ThreatPost]]
+*** [[https://www.eff.org/rss/updates.xml][EFF]]
+*** [[https://www.privacytools.io/feed.xml][Privacy Tools]]
+*** [[https://www.privateinternetaccess.com/blog/feed/][Private Internet Access]]
 ** Philosophy
-*** [[https://lindypress.net/rss][Lindypress]] :philosophy:
-*** [[https://jaredhenderson.substack.com/feed][Jared Henderson's Substack]] :philosophy:
-*** [[https://philosophybites.com/atom.xml][Philosophy Bites]] :philosophy:
+*** [[https://lindypress.net/rss][Lindypress]]
+*** [[https://jaredhenderson.substack.com/feed][Jared Henderson's Substack]]
+*** [[https://philosophybites.com/atom.xml][Philosophy Bites]]
 ** Theology
-*** [[https://askligonier.ligonier.org/rss][Ligonier]] :theology:
-*** [[https://www.challies.com/feed/][Tim Challies]] :theology:
-*** [[https://michellelesley.com/][Michelle Lesley]] :theology:
-** Blogs :blog:
-*** [[https://joshblais.com/index.xml][Joshua Blais]] :blog:
-*** [[https://adactio.com/rss/][Jeremy Keith]] :tech:indieweb:blog:
-*** [[https://wrongthink.link/posts/index.xml][Wrong Think]] :tech:security:blog:
-*** [[https://drewdevault.com/blog/index.xml][Drew DeVault]] :tech:blog:
-*** [[https://sive.rs/en.atom][Derek Sivers]] :tech:blog:
-*** [[https://lukesmith.xyz/rss.xml][Luke Smith]] :tech:meta:blog:
-*** [[https://landchad.net/rss.xml][LandChad]] :blog:
-*** [[https://based.cooking/index.xml][Based.Cooking]] :blog:
-*** [[https://notrelated.xyz/rss][Not Related]] :meta:blog:
-*** [[https://solar.lowtechmagazine.com/feeds/all-en.atom.xml][Low Tech Magazine]] :tech:minimalism:blog:
-*** [[https://digdeeper.neocities.org/atom.xml][Dig Deeper]] :tech:security:blog:
-*** [[https://sizeof.cat/index.xml][Sizeof Cat]] :tech:blog:
-*** [[https://icyphox.sh/blog/feed.xml][Icyphox]] :tech:blog:
-*** [[https://unixdigest.com/feed.rss][Unix Digest]] :tech:blog:
-*** [[https://danluu.com/atom.xml][Dan Luu]] :tech:blog:
-*** [[https://kevquirk.com/feed][KevQuirk]] :tech:blog:
-*** [[https://hamatti.org/feed/feed.xml][Juhis]] :tech:blog:
-*** [[https://her.st/rss.xml][her.st]] :tech:security:blog:
+*** [[https://askligonier.ligonier.org/rss][Ligonier]]
+*** [[https://www.challies.com/feed/][Tim Challies]]
+*** [[https://michellelesley.com/][Michelle Lesley]]
+** Blogs
+*** [[https://joshblais.com/index.xml][Joshua Blais]]
+*** [[https://adactio.com/rss/][Jeremy Keith]]
+*** [[https://wrongthink.link/posts/index.xml][Wrong Think]]
+*** [[https://drewdevault.com/blog/index.xml][Drew DeVault]]
+*** [[https://sive.rs/en.atom][Derek Sivers]]
+*** [[https://lukesmith.xyz/rss.xml][Luke Smith]]
+*** [[https://landchad.net/rss.xml][LandChad]]
+*** [[https://based.cooking/index.xml][Based.Cooking]]
+*** [[https://notrelated.xyz/rss][Not Related]]
+*** [[https://solar.lowtechmagazine.com/feeds/all-en.atom.xml][Low Tech Magazine]]
+*** [[https://digdeeper.neocities.org/atom.xml][Dig Deeper]]
+*** [[https://sizeof.cat/index.xml][Sizeof Cat]]
+*** [[https://icyphox.sh/blog/feed.xml][Icyphox]]
+*** [[https://unixdigest.com/feed.rss][Unix Digest]]
+*** [[https://danluu.com/atom.xml][Dan Luu]]
+*** [[https://kevquirk.com/feed][KevQuirk]]
+*** [[https://hamatti.org/feed/feed.xml][Juhis]]
+*** [[https://her.st/rss.xml][her.st]]
+*** [[https://protesilaos.com/master.xml][Protesilaos Stavrou]]
+** YouTube
+*** Linux
+*** Tech
+*** Gaming
+*** Entertainment

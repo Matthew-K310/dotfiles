@@ -1,0 +1,1 @@
+((current-tab (name . " .dotfiles ") (explicit-name)))
