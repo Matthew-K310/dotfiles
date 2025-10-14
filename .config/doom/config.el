@@ -77,7 +77,7 @@
 (setq display-line-numbers-type `relative)
 
 ;; Better readability while scrolling
-(setq scroll-margin 40)
+(setq scroll-margin 20)
 
 ;; Speed of which-key popup
 (setq which-key-idle-delay 0.1)
