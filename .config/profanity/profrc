@@ -1,11 +1,11 @@
 [connection]
-account=mattken@xmpp.jp
+account=mattken@msg.matthewservers.org
 mam=true
 carbons=true
 receipts.request=true
 receipts.send=true
 reconnect=15
-defaccount=mattken@xmpp.jp
+defaccount=mattken@msg.matthewservers.org
 
 [omemo]
 trustmode=blind

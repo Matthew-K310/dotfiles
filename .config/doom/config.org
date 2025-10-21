@@ -38,6 +38,8 @@ I primarily use Nord for system cohesion, but the spacemacs theme is for if I wa
 ;; Remove top frame bar in emacs
 (add-to-list 'default-frame-alist '(undecorated . t))
 
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+
 ;; Emacs statusline
 (setq doom-modeline-icon t)
 (setq doom-modeline-major-mode-icon t)
@@ -290,8 +292,8 @@ I primarily use Nord for system cohesion, but the spacemacs theme is for if I wa
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Notes")
-(setq diary-file "~/Notes/agenda.org")
+(setq org-directory "~/notes")
+(setq diary-file "~/notes/agenda.org")
 ;; (add-to-list 'org-agenda-files "~/Notes/agenda.org")
 
 (after! org
@@ -338,7 +340,7 @@ I primarily use Nord for system cohesion, but the spacemacs theme is for if I wa
          (date-string (format "Week %02d, %s" week-number year))
 
          ;; Folder paths
-         (year-dir (expand-file-name year "~/Notes/org/journal/"))
+         (year-dir (expand-file-name year "~/notes/org/journal/"))
          (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
 
          ;; Full file path
@@ -376,7 +378,7 @@ I primarily use Nord for system cohesion, but the spacemacs theme is for if I wa
          (date-string (format "Week %02d, %s" week-number year))
 
          ;; Folder paths
-         (year-dir (expand-file-name year "~/Notes/journal/"))
+         (year-dir (expand-file-name year "~/notes/journal/"))
          (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
 
          ;; Full file path
@@ -416,7 +418,7 @@ I primarily use Nord for system cohesion, but the spacemacs theme is for if I wa
          (date-string (format-time-string "%A, %B %d, %Y" current-time))
 
          ;; Create folder paths
-         (year-dir (expand-file-name year "~/Notes/journal/"))
+         (year-dir (expand-file-name year "~/notes/journal/"))
          (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
 
          ;; Create file path/name
@@ -460,7 +462,7 @@ I primarily use Nord for system cohesion, but the spacemacs theme is for if I wa
          (date-string (format-time-string "%A, %B %d, %Y" tomorrow-time))
 
          ;; Create folder paths
-         (year-dir (expand-file-name year "~/Notes/journal/"))
+         (year-dir (expand-file-name year "~/notes/journal/"))
          (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
 
          ;; Create file path/name
@@ -488,7 +490,7 @@ I primarily use Nord for system cohesion, but the spacemacs theme is for if I wa
   "Archive current task to done.org under today's date"
   (interactive)
   (let* ((date-header (format-time-string "%Y-%m-%d %A"))
-         (archive-file (expand-file-name "~/Notes/done.org"))
+         (archive-file (expand-file-name "~/notes/done.org"))
          (location (format "%s::* %s" archive-file date-header)))
     ;; Only archive if not a habit
     (unless (org-is-habit-p)
@@ -502,7 +504,7 @@ I primarily use Nord for system cohesion, but the spacemacs theme is for if I wa
 (defun my/move-to-done-org ()
   "Move the current org heading to done.org under today's date."
   (interactive)
-  (let* ((done-file (expand-file-name "~/Notes/done.org"))
+  (let* ((done-file (expand-file-name "~/notes/done.org"))
          (today-heading (format-time-string "* %Y-%m-%d %A")))
 
     ;; First, mark the task as DONE if it's not already
@@ -541,8 +543,8 @@ I primarily use Nord for system cohesion, but the spacemacs theme is for if I wa
 (provide 'done-refile)
 
 ;; Set this *before* loading org-roam so Doom doesn’t override it.
-(setq org-roam-directory (expand-file-name "~/Notes/roam")
-      +org-roam-dir      (expand-file-name "~/Notes/roam")
+(setq org-roam-directory (expand-file-name "~/notes/roam")
+      +org-roam-dir      (expand-file-name "~/notes/roam")
       org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory)
       org-roam-database-connector 'sqlite-builtin)
 
@@ -617,33 +619,36 @@ I primarily use Nord for system cohesion, but the spacemacs theme is for if I wa
 
 #+end_src
 
+#+RESULTS:
+: my/org-checkbox-intermediate
+
 ** Org capture templates
 #+begin_src elisp
 ;; Capture templates
 (after! org
   (setq org-capture-templates
         '(("t" "Todo" entry
-           (file+headline "~/Notes/inbox.org" "Inbox")
+           (file+headline "~/notes/inbox.org" "Inbox")
            "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("e" "Event" entry
-           (file+headline "~/Notes/agenda.org" "Events")
-           "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+           (file+headline "~/notes/calendar.org" "Events")
+           "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
 
           ("d" "Deadline" entry
-           (file+headline "~/Notes/agenda.org" "Deadlines")
-           "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+           (file+headline "~/notes/calendar.org" "Deadlines")
+           "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
 
           ("p" "Project" entry
-           (file+headline "~/Notes/projects.org" "Projects")
+           (file+headline "~/notes/projects.org" "Projects")
            "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n** TODO %?")
 
           ("i" "Idea" entry
-           (file+headline "~/Notes/ideas.org" "Ideas")
+           (file+headline "~/notes/ideas.org" "Ideas")
            "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
 
           ("c" "Contact" entry
-           (file+headline "~/Notes/contacts.org" "Inbox")
+           (file+headline "~/notes/contacts.org" "Inbox")
            "* %^{Name}
 
 :PROPERTIES:
@@ -657,21 +662,21 @@ I primarily use Nord for system cohesion, but the spacemacs theme is for if I wa
 %?")
 
           ("g" "Issue" entry
-           (file+olp+datetree "~/Notes/issues.org" "Inbox")
+           (file+olp+datetree "~/notes/issues.org" "Inbox")
            "* TODO %?\n :PROPERTIES:\n :ID: %(org-id-new)\n :CREATED: %U\n :END:\n
 SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
            :time-prompt t
            :prepend t)
 
           ("b" "Blog" entry
-           (file+olp+datetree "~/Notes/blog/" "Inbox")
+           (file+olp+datetree "~/notes/blog/" "Blog")
            "* TODO %?\n :PROPERTIES:\n :ID: %(org-id-new)\n :CREATED: %U\n :END:\n
 SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
            :time-prompt t
            :prepend t)
 
           ("n" "Note" entry
-           (file+headline "~/Notes/notes.org" "Inbox")
+           (file+headline "~/notes/inbox.org" "Inbox")
            "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
            :prepend t))))
 #+end_src
@@ -684,8 +689,8 @@ SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
 ;; calendar ID on server
 (setq org-caldav-calendar-id "org-calendar")
 ;; Org filename where new entries from calendar stored
-(setq org-caldav-inbox "~/Notes/calendar.org")
-(setq org-caldav-files '("~/Notes/agenda.org"))
+;; (setq org-caldav-inbox "~/notes/calendar.org")
+(setq org-caldav-files '("~/notes/calendar.org"))
 ;; Usually a good idea to set the timezone manually
 (setq org-icalendar-timezone "US/Chicago")
 #+end_src
@@ -724,7 +729,7 @@ ENTRY is the filename, STYLE is ignored, PROJECT is the current publishing proje
 (setq org-publish-project-alist
       '(("blog"
          ;; Root folder for your posts
-         :base-directory "~/Notes/blog/"
+         :base-directory "~/notes/blog/"
          :base-extension "org"
          :recursive nil
          ;; Destination (using TRAMP rsync)
@@ -747,7 +752,7 @@ ENTRY is the filename, STYLE is ignored, PROJECT is the current publishing proje
 
         ;; Static files: CSS, images, JS, etc.
         ("blog-static"
-         :base-directory "~/Notes/blog/other"
+         :base-directory "~/notes/blog/other"
          :base-extension "css\\|png\\|jpg\\|gif\\|svg\\|js"
          :publishing-directory "/rsync:matthew-kennedy.com:/home/user-data/www/matthew-kennedy.com/other"
          :publishing-function org-publish-attachment
@@ -771,7 +776,7 @@ ENTRY is the filename, STYLE is ignored, PROJECT is the current publishing proje
 ** blog capture
 #+begin_src elisp
 (defun blog/new-post (title)
-  "Create a new blog post in `~/Notes/blog/posts/` with TITLE.
+  "Create a new blog post in `~/notes/blog/posts/` with TITLE.
 Inserts Org front-matter and opens the file."
   (interactive "sPost title: ")
   (let* ((slug (downcase
@@ -856,47 +861,6 @@ Inserts Org front-matter and opens the file."
           `(lambda () (interactive)
              (my/tab-bar-select-or-create ,n))))))
   (add-hook 'vterm-mode-hook #'my/vterm-tab-bar-bindings))
-
-;;; --- Persistent tab-bar setup ---
-
-(setq user-emacs-directory "~/.config/doom/")
-(setq desktop-path '("~/.config/doom/"))
-(setq desktop-auto-save-timeout 30)
-(setq desktop-save 'if-exists)
-(setq desktop-restore-frames t)
-
-(desktop-save-mode 1)
-
-(defun my/tab-state-file ()
-  "Return the file path for saved tabs."
-  (expand-file-name "tabs.el" user-emacs-directory))
-
-(defun my/save-tab-state ()
-  "Save current tab-bar tabs to ~/.config/doom/tabs.el."
-  (interactive)
-  (let ((file (my/tab-state-file)))
-    (with-temp-file file
-      (prin1 (tab-bar-tabs) (current-buffer)))
-    (message "Saved tab state to %s" file)))
-
-(defun my/load-tab-state ()
-  "Load tab-bar tabs from ~/.config/doom/tabs.el."
-  (interactive)
-  (let ((file (my/tab-state-file)))
-    (if (file-exists-p file)
-        (let ((tabs (with-temp-buffer
-                      (insert-file-contents file)
-                      (read (current-buffer)))))
-          (setq tab-bar-tabs tabs)
-          (tab-bar--update-tab-bar-lines)
-          (message "Restored %d tabs" (length tabs)))
-      (message "No saved tab state found at %s" file))))
-
-(add-hook 'kill-emacs-hook #'my/save-tab-state)
-(add-hook 'emacs-startup-hook #'my/load-tab-state)
-
-(global-set-key (kbd "C-c w s") #'my/save-tab-state)
-(global-set-key (kbd "C-c w l") #'my/load-tab-state)
 #+end_src
 
 ** EMMS configuration
@@ -999,104 +963,98 @@ Inserts Org front-matter and opens the file."
 
 ** Elfeed configuration
 #+begin_src elisp
-;; Ensure elfeed DB directory exists
-(make-directory "~/.local/share/elfeed" t)
-
-;; Load elfeed-org safely
-(use-package! elfeed-org
-  :after elfeed
+(use-package! elfeed
+  :commands (elfeed)
   :config
-  (elfeed-org)
-  (setq rmh-elfeed-org-files '("~/.config/doom/elfeed.org")))
+  ;; Where to store the Elfeed database
+  (setq elfeed-db-directory (expand-file-name "~/.local/share/elfeed"))
+  (make-directory elfeed-db-directory t)
 
-;; Consolidated Elfeed configuration
-(after! elfeed
-  ;; DB directory
-  (setq elfeed-db-directory "~/.local/share/elfeed"
-        elfeed-search-filter "@3-weeks-ago +unread -4chan -news -Reddit")
+  ;; Update every hour automatically
+  (run-at-time nil (* 60 60) #'elfeed-update)
 
-  ;; Define elfeed-download directories
-  (defvar elfeed-download-base-dir "~/Downloads/Elfeed/"
-    "Base directory for downloaded content.")
-  (defvar elfeed-download-youtube-dir "youtube/"
-    "Subdirectory for YouTube videos (relative to base dir).")
-  (defvar elfeed-download-articles-dir "articles/"
-    "Subdirectory for articles (relative to base dir).")
-  (defvar elfeed-download-node-script-path
-    (expand-file-name "~/.config/scripts/save-article.js")
-    "Path to Node.js Playwright script for saving articles as PDFs.")
+  (use-package! elfeed-org
+    :after elfeed
+    :config
+    (setq rmh-elfeed-org-files
+          (list (expand-file-name "~/.config/doom/feeds.org")))
+    (elfeed-org)))
 
-  ;; Helper functions
-  (defun elfeed-download--ensure-directory (dir)
-    "Ensure directory DIR exists."
-    (unless (file-exists-p dir)
-      (make-directory dir t)))
+(defvar elfeed-download-base-dir (expand-file-name "~/Downloads/Elfeed/")
+  "Base directory for all Elfeed downloads.")
 
-  (defun elfeed-download--sanitize-filename (filename)
-    "Sanitize FILENAME for safe filesystem use."
-    (replace-regexp-in-string "[^a-zA-Z0-9-_. ]" "_" filename))
+(defvar elfeed-download-youtube-dir "youtube/"
+  "Subdirectory for YouTube videos (relative to base dir).")
 
-  (defun elfeed-download--get-youtube-dir ()
-    (expand-file-name elfeed-download-youtube-dir elfeed-download-base-dir))
+(defvar elfeed-download-articles-dir "articles/"
+  "Subdirectory for saved articles (relative to base dir).")
 
-  (defun elfeed-download--get-articles-dir ()
-    (expand-file-name elfeed-download-articles-dir elfeed-download-base-dir))
+(defvar elfeed-download-node-script-path
+  (expand-file-name "~/.config/scripts/save-article.js")
+  "Path to Node.js Playwright script that saves articles as PDFs.")
 
-  ;; Download functions
-  (defun elfeed-download-youtube (url title)
-    (let ((dir (elfeed-download--get-youtube-dir)))
-      (elfeed-download--ensure-directory dir)
-      (start-process "yt-dlp" "*yt-dlp*" "yt-dlp"
-                     "-o" (concat dir "%(title)s.%(ext)s")
-                     url)))
+(defun elfeed-download--ensure-directory (dir)
+  "Ensure directory DIR exists."
+  (unless (file-directory-p dir)
+    (make-directory dir t)))
 
-  (defun elfeed-download-article (url title)
-    (let* ((dir (elfeed-download--get-articles-dir))
-           (safe-title (elfeed-download--sanitize-filename title))
-           (pdf-file (concat dir safe-title ".pdf")))
-      (elfeed-download--ensure-directory dir)
-      (start-process "playwright-pdf" "*pdf-gen*" "node"
-                     elfeed-download-node-script-path url pdf-file)))
+(defun elfeed-download--sanitize-filename (filename)
+  "Make FILENAME safe for use on the filesystem."
+  (replace-regexp-in-string "[^a-zA-Z0-9-_. ]" "_" filename))
 
-  ;; Main entry download function
-  (defun elfeed-download-current-entry ()
-    "Download current elfeed entry and mark as read."
-    (interactive)
-    (let ((entries (elfeed-search-selected)))
-      (when entries
-        (let* ((entry (if (listp entries) (car entries) entries))
-               (url (elfeed-entry-link entry))
-               (title (elfeed-entry-title entry)))
-          (cond
-           ((string-match-p "youtube\\.com\\|youtu\\.be" url)
-            (elfeed-download-youtube url title))
-           (t
-            (elfeed-download-article url title)))
-          (elfeed-untag entry 'unread)
-          (elfeed-tag entry 'read)
-          (elfeed-search-update-entry entry)
-          (message "Downloaded and marked: %s" title)
-          (forward-line 1)))))
+(defun elfeed-download--youtube-dir ()
+  (expand-file-name elfeed-download-youtube-dir elfeed-download-base-dir))
 
-  ;; Setup function
-  (defun elfeed-download-setup ()
-    "Create directories and bind keys."
-    (interactive)
-    (elfeed-download--ensure-directory elfeed-download-base-dir)
-    (elfeed-download--ensure-directory (elfeed-download--get-youtube-dir))
-    (elfeed-download--ensure-directory (elfeed-download--get-articles-dir))
-    ;; Key binding
+(defun elfeed-download--articles-dir ()
+  (expand-file-name elfeed-download-articles-dir elfeed-download-base-dir))
+
+(defun elfeed-download-youtube (url title)
+  "Download a YouTube video at URL with TITLE using yt-dlp."
+  (let ((dir (elfeed-download--youtube-dir)))
+    (elfeed-download--ensure-directory dir)
+    (start-process "yt-dlp" "*yt-dlp*"
+                   "yt-dlp"
+                   "-o" (concat dir "%(title)s.%(ext)s")
+                   url)))
+
+(defun elfeed-download-article (url title)
+  "Save article at URL with TITLE as a PDF using Node/Playwright."
+  (let* ((dir (elfeed-download--articles-dir))
+         (safe-title (elfeed-download--sanitize-filename title))
+         (pdf-file (concat dir safe-title ".pdf")))
+    (elfeed-download--ensure-directory dir)
+    (start-process "playwright-pdf" "*pdf-gen*"
+                   "node"
+                   elfeed-download-node-script-path
+                   url pdf-file)))
+
+(defun elfeed-download-current-entry ()
+  "Download the current Elfeed entry (video or article) and mark it read."
+  (interactive)
+  (let ((entries (elfeed-search-selected)))
+    (when entries
+      (let* ((entry (if (listp entries) (car entries) entries))
+             (url (elfeed-entry-link entry))
+             (title (elfeed-entry-title entry)))
+        (if (string-match-p "youtube\\.com\\|youtu\\.be" url)
+            (elfeed-download-youtube url title)
+          (elfeed-download-article url title))
+        (elfeed-untag entry 'unread)
+        (elfeed-tag entry 'read)
+        (elfeed-search-update-entry entry)))))
+
+(defun elfeed-download-setup ()
+  "Ensure directories exist and add keybindings for Elfeed downloads."
+  (elfeed-download--ensure-directory elfeed-download-base-dir)
+  (elfeed-download--ensure-directory (elfeed-download--youtube-dir))
+  (elfeed-download--ensure-directory (elfeed-download--articles-dir))
+  (when (boundp 'elfeed-search-mode-map)
     (map! :map elfeed-search-mode-map
-          :n "d" #'elfeed-download-current-entry)
-    (message "elfeed-download setup complete!"))
+          :n "d" #'elfeed-download-current-entry))
+  (message "Elfeed download integration ready."))
 
-  ;; Initialize elfeed-download
-  (elfeed-download-setup)
+(add-hook 'elfeed-search-mode-hook #'elfeed-download-setup)
 
-  ;; Update hourly
-  (run-at-time nil (* 60 60) #'elfeed-update))
-
-;; Elfeed-tube setup
 (use-package! elfeed-tube
   :after elfeed
   :config
@@ -1107,29 +1065,6 @@ Inserts Org front-matter and opens the file."
          :map elfeed-search-mode-map
          ("F" . elfeed-tube-fetch)
          ([remap save-buffer] . elfeed-tube-save)))
-#+end_src
-
-** MU4E configuration
-#+begin_src elisp
-(require 'mu4e)
-;; SMTP settings:
-(setq send-mail-function 'smtpmail-send-it)    ; should not be modified
-(setq smtpmail-smtp-server "mail.matthew-kennedy.com") ; host running SMTP server
-(setq smtpmail-smtp-service 587)               ; SMTP service port number
-(setq smtpmail-stream-type 'starttls)          ; type of SMTP connections to use
-;; Mail folders:
-(setq mu4e-drafts-folder "/emacs/Drafts")
-(setq mu4e-sent-folder   "/emacs/Sent")
-(setq mu4e-trash-folder  "/emacs/Trash")
-(setq mu4e-archive-folder  "/emacs/Archive")
-;; The command used to get your emails (adapt this line, see section 2.3):
-(setq mu4e-get-mail-command "mbsync --config ~/.config/doom/.mbsyncrc -a")
-;; Further customization:
-(setq mu4e-html2text-command "w3m -T text/html" ; how to hanfle html-formatted emails
-      mu4e-headers-auto-update t                ; avoid to type `g' to update
-      mu4e-view-show-images t                   ; show images in the view buffer
-      mu4e-compose-signature-auto-include nil   ; I don't want a message signature
-      mu4e-use-fancy-chars t)                   ; allow fancy icons for mail threads
 #+end_src
 
 ** inhibit-mouse.el
@@ -1147,3 +1082,4 @@ Inserts Org front-matter and opens the file."
   (add-hook 'after-init-hook #'inhibit-mouse-mode)
   (add-hook 'server-after-make-frame-hook #'inhibit-mouse-mode))
 #+end_src
+
