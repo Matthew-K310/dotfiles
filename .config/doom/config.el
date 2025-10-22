@@ -724,7 +724,7 @@ Inserts Org front-matter and opens the file."
                 (replace-regexp-in-string "[^a-z0-9]+" "-" title)))
          (date (format-time-string "%Y%m%d%H%M%s"))
          (filename (format "%s-%s.org" date slug))
-         (dir "~/Notes/blog/")
+         (dir "~/notes/blog/")
          (filepath (expand-file-name filename dir)))
     (unless (file-exists-p dir)
       (make-directory dir t))
@@ -1009,3 +1009,6 @@ Inserts Org front-matter and opens the file."
   ;; Enable in both daemon and normal sessions
   (add-hook 'after-init-hook #'inhibit-mouse-mode)
   (add-hook 'server-after-make-frame-hook #'inhibit-mouse-mode))
+
+;; (add-to-list 'load-path "~/dev/forks/emacs-jabber/lisp/")
+;; (load "~/dev/forks/emacs-jabber/lisp/jabber-autoloads")
