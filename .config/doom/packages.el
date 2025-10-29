@@ -11,6 +11,10 @@
 (package! nord-theme)
 (package! ewal-spacemacs-themes)
 
+;; Dev tools
+(package! forge)
+(package! ghub)
+
 ;; go dev
 (package! templ-ts-mode)
 (package! go-mode)
@@ -29,6 +33,9 @@
 (package! focus)
 (package! citar-org-roam)
 
+;; Communication
+(package! jabber)
+
 ;; file navigation
 (package! dirvish)
 (package! harpoon)
@@ -41,6 +48,3 @@
 (package! syncthing)
 (package! inhibit-mouse)
 (package! emacs-w3m)
-
-;; Communication
-(package! jabber)

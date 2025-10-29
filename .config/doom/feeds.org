@@ -34,6 +34,7 @@
 *** [[https://thorstenball.com/atom.xml][Thorsten Ball]]
 *** [[https://carlosbecker.com/posts/index.xml][Carlos Becker]]
 *** [[https://hamvocke.com/feed.xml][Ham Vocke]]
+*** [[https://codeberg.org/Matthew-K310/emacs-xmpp.rss][emacs-xmpp commits]]
 ** Privacy and Security
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC-ufRLYrXxrIEApGn9VG5pQ][Reject Convenience]]
 *** [[https://krebsonsecurity.com/feed/][Krebs on Security]]

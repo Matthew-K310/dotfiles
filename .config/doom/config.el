@@ -1,10 +1,11 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "Matthew Kennedy"
-      user-mail-address "it@matthew-kennedy.com")
+(setq user-full-name "Matthew Kennedy")
 
 (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo")
       auth-source-cache-expiry nil) ; default is 7200 (2h)
+
+(setq epg-pinentry-mode 'loopback)
 
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 14)
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 22))
@@ -21,8 +22,6 @@
 
 ;; Remove top frame bar in emacs
 (add-to-list 'default-frame-alist '(undecorated . t))
-
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 ;; Emacs statusline
 (setq doom-modeline-icon t)
@@ -72,7 +71,6 @@
   (insert "\n" (+doom-dashboard--center +doom-dashboard--width "May the machine spirit be pleased by your work.")))
 
 ;; (assoc-delete-all "Reload last session" +doom-dashboard-menu-sections)
-(assoc-delete-all "Jump to bookmark" +doom-dashboard-menu-sections)
 (assoc-delete-all "Open documentation" +doom-dashboard-menu-sections)
 
 ;; Relative line numbers
@@ -209,7 +207,8 @@
 
       ;; open calendar
       (:prefix ("o" . "open")
-       :desc "Calendar" "c" #'=calendar)
+       :desc "Calendar" "c" #'=calendar
+       :desc "MU4E" "m" #'mu4e)
 
       ;; Org mode mappings
       (:prefix ("y" . "org-mode-specifics")
@@ -249,13 +248,44 @@
   (add-hook 'prog-mode-hook 'yas-minor-mode)
   (add-hook 'text-mode-hook 'yas-minor-mode))
 
+(define-key global-map (kbd "C-c a") 'org-agenda)
+(define-key global-map (kbd "C-c c") 'org-capture)
+
+;; inbox capture
+(defun org-capture-inbox ()
+     (interactive)
+     (call-interactively 'org-store-link)
+     (org-capture nil "n"))
+
+(define-key global-map (kbd "C-c f") 'org-capture-inbox)
+
+;; random global bind lol
+(global-set-key (kbd "C-c n f") #'org-roam-node-find)
+
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c C-x C-a") 'my/archive-done-task)
+  (define-key org-mode-map (kbd "C-c n l") #'org-roam-buffer-toggle)
+  (define-key org-mode-map (kbd "C-c n i") #'org-roam-node-insert)
+  (define-key org-mode-map (kbd "C-c e") #'org-set-effort)
+  (define-key org-mode-map (kbd "C-c i") #'org-clock-in)
+  (define-key org-mode-map (kbd "C-c o") #'org-clock-out)
+  (define-key org-mode-map (kbd "C-c n b") #'blog/new-post)
+  (define-key org-mode-map (kbd "C-c b d") #'blog/clear-publishing-directory)
+  (define-key org-mode-map (kbd "C-c b e") #'org-publish))
+
 (require 'org)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/notes")
-(setq diary-file "~/notes/agenda.org")
-;; (add-to-list 'org-agenda-files "~/Notes/agenda.org")
+(setq diary-file "~/notes/calendar.org")
+;; (setq diary-file "~/notes/agenda.org")
+(setq org-agenda-files
+      (append org-agenda-files
+              '("~/notes/calendar.org"
+                "~/notes/inbox.org"
+                "~/notes/todo.org"
+                "~/notes/projects.org")))
 
 (after! org
   (map! :map org-mode-map
@@ -635,29 +665,11 @@ SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
            :prepend t))))
 
 (require 'org-caldav)
-;; URL of the caldav server
-(setq org-caldav-url "https://nextcloud.matthewcloud.us/remote.php/dav/calendars/matthewkennedy")
-;; calendar ID on server
+(setq org-caldav-url "https://cal.matthewcloud.us/matthewkennedy/")
 (setq org-caldav-calendar-id "org-calendar")
-;; Org filename where new entries from calendar stored
-;; (setq org-caldav-inbox "~/notes/calendar.org")
 (setq org-caldav-files '("~/notes/calendar.org"))
-;; Usually a good idea to set the timezone manually
-(setq org-icalendar-timezone "US/Chicago")
-
-(with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-c C-x C-a") 'my/archive-done-task)
-  (define-key org-mode-map (kbd "C-c n l") #'org-roam-buffer-toggle)
-  (define-key org-mode-map (kbd "C-c n i") #'org-roam-node-insert)
-  (define-key org-mode-map (kbd "C-c e") #'org-set-effort)
-  (define-key org-mode-map (kbd "C-c i") #'org-clock-in)
-  (define-key org-mode-map (kbd "C-c o") #'org-clock-out)
-  (define-key org-mode-map (kbd "C-c n b") #'blog/new-post)
-  (define-key org-mode-map (kbd "C-c b d") #'blog/clear-publishing-directory)
-  (define-key org-mode-map (kbd "C-c b e") #'org-publish))
-
-;; random global bind lol
-(global-set-key (kbd "C-c n f") #'org-roam-node-find)
+(setq org-caldav-inbox "~/notes/inbox.org")
+(setq org-caldav-delete-calendar-entries 'never)
 
 ;; Blog export configuration for Org-publish
 (defun blog/sitemap-format-entry (entry style project)
@@ -733,71 +745,6 @@ Inserts Org front-matter and opens the file."
       (insert (format "#+TITLE: %s\n#+DATE: %s\n#+TAGS: \n#+OPTIONS: toc:nil num:nil\n\n"
                       title date))
       (save-buffer))))
-
-;; Enable tab-bar
-(tab-bar-mode 1)
-(tab-bar-history-mode 1)
-
-(setq
- tab-bar-new-tab-choice "*scratch*"          ; default buffer for new tabs
- tab-bar-close-button-show nil
- tab-bar-new-button-show nil
- tab-bar-tab-hints t                         ; show tab numbers
- tab-bar-show 1                              ; only show bar if >1 tab
- tab-bar-new-tab-to 'rightmost
- tab-bar-format '(tab-bar-format-history
-                  tab-bar-format-tabs
-                  tab-bar-separator
-                  tab-bar-format-align-right
-                  tab-bar-format-global))
-
-;; Smarter tab naming — show project or buffer
-(defun my/tab-bar-tab-name ()
-  "Return a name for the tab: project or current buffer."
-  (let* ((proj (when (fboundp 'project-current)
-                 (when-let ((p (project-current)))
-                   (file-name-nondirectory
-                    (directory-file-name (project-root p))))))
-         (buf (buffer-name (window-buffer (minibuffer-selected-window)))))
-    (if proj (format " %s " proj)
-      (format " %s " buf))))
-(setq tab-bar-tab-name-function #'my/tab-bar-tab-name)
-
-;; Helper: create tab N if missing, then switch
-(defun my/tab-bar-select-or-create (n)
-  "Switch to tab N, creating it if it doesn't exist."
-  (interactive "nTab number: ")
-  (let* ((tabs (tab-bar-tabs))
-         (count (length tabs)))
-    (if (<= n count)
-        (tab-bar-select-tab n)
-      (dotimes (_ (- n count))
-        (tab-bar-new-tab))
-      (tab-bar-select-tab n))))
-
-;; DWM-style bindings M-1 .. M-9
-(dotimes (i 9)
-  (let ((n (1+ i)))
-    (global-set-key (kbd (format "M-%d" n))
-                    `(lambda () (interactive)
-                       (my/tab-bar-select-or-create ,n)))))
-
-;; Optional: cycle and rename
-(global-set-key (kbd "M-[") #'tab-bar-switch-to-prev-tab)
-(global-set-key (kbd "M-]") #'tab-bar-switch-to-next-tab)
-(global-set-key (kbd "M-`") #'tab-bar-rename-tab)
-
-;; --- Ensure vterm doesn't override the keys ---
-(with-eval-after-load 'vterm
-  (defun my/vterm-tab-bar-bindings ()
-    "Let M-1..M-9 switch tabs even inside vterm."
-    (dotimes (i 9)
-      (let ((n (1+ i)))
-        (define-key vterm-mode-map
-          (kbd (format "M-%d" n))
-          `(lambda () (interactive)
-             (my/tab-bar-select-or-create ,n))))))
-  (add-hook 'vterm-mode-hook #'my/vterm-tab-bar-bindings))
 
 (require 'emms-setup)
 (emms-all)
@@ -1010,5 +957,120 @@ Inserts Org front-matter and opens the file."
   (add-hook 'after-init-hook #'inhibit-mouse-mode)
   (add-hook 'server-after-make-frame-hook #'inhibit-mouse-mode))
 
-;; (add-to-list 'load-path "~/dev/forks/emacs-jabber/lisp/")
-;; (load "~/dev/forks/emacs-jabber/lisp/jabber-autoloads")
+(require 'auth-source)
+(require 'erc)
+
+(defun run-erc ()
+  "Connect to irc.matthewservers.org, reading the password from ~/.authinfo.gpg."
+  (interactive)
+  (let* ((host "irc.matthewservers.org")
+         (port 6697)
+         (auth (car (auth-source-search :host host :port port :require '(:secret))))
+         (secret (plist-get auth :secret))
+         (password (if (functionp secret) (funcall secret) secret)))
+    (erc-tls :server host
+             :port port
+             :nick "mattken"
+             :user "mattken/irc.libera.chat"
+             :password password)))
+
+;; (use-package forge
+;;   :after magit
+;;   :config
+;; (with-eval-after-load 'forge
+;;   (add-to-list 'forge-alist
+;;                '("codeberg.org"
+;;                  "codeberg.org/api/v1"
+;;                  "codeberg.org"
+;;                  forge-gitea-repository-p))))
+;; (setq forge-user-login "Matthew-K310")
+
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+(require 'mu4e)
+
+;; Global settings
+(setq mu4e-get-mail-command "mbsync --all"     ;; We'll sync all channels
+      mu4e-update-interval 300
+      mu4e-headers-auto-update t
+      mu4e-view-show-images t
+      mu4e-compose-signature-auto-include nil
+      mu4e-use-fancy-chars t
+      send-mail-function 'smtpmail-send-it)
+
+(require 'smtpmail)
+
+;; Define contexts (one per account)
+(setq mu4e-contexts
+      (list
+       ;; === Personal ===
+       (make-mu4e-context
+        :name "Personal"
+        :match-func
+        (lambda (msg)
+          (when msg
+            (string-match-p "matthew@matthew-kennedy\\.com"
+                            (or (mu4e-message-field msg :to) ""))))
+        :vars '((user-mail-address . "matthew@matthew-kennedy.com")
+                (user-full-name    . "Matthew Kennedy")
+                (smtpmail-smtp-user . "matthew@matthew-kennedy.com")
+                (smtpmail-smtp-server . "mail.matthew-kennedy.com")
+                (smtpmail-smtp-service . 587)
+                (smtpmail-stream-type . starttls)
+                (mu4e-sent-folder   . "/matthew@matthew-kennedy.com/Sent")
+                (mu4e-drafts-folder . "/matthew@matthew-kennedy.com/Drafts")
+                (mu4e-trash-folder  . "/matthew@matthew-kennedy.com/Trash")
+                (mu4e-refile-folder . "/matthew@matthew-kennedy.com/Archive")))
+
+       ;; === Business ===
+       (make-mu4e-context
+        :name "Business"
+        :match-func
+        (lambda (msg)
+          (when msg
+            (string-match-p "business@matthew-kennedy\\.com"
+                            (or (mu4e-message-field msg :to) ""))))
+        :vars '((user-mail-address . "business@matthew-kennedy.com")
+                (user-full-name    . "Matthew Kennedy")
+                (smtpmail-smtp-user . "business@matthew-kennedy.com")
+                (smtpmail-smtp-server . "mail.matthew-kennedy.com")
+                (smtpmail-smtp-service . 587)
+                (smtpmail-stream-type . starttls)
+                (mu4e-sent-folder   . "/business@matthew-kennedy.com/Sent")
+                (mu4e-drafts-folder . "/business@matthew-kennedy.com/Drafts")
+                (mu4e-trash-folder  . "/business@matthew-kennedy.com/Trash")
+                (mu4e-refile-folder . "/business@matthew-kennedy.com/Archive")))))
+
+;; Use last used or default context automatically
+(setq mu4e-context-policy 'pick-first
+      mu4e-compose-context-policy 'ask)
+
+;; send and receive
+(defvar xmpp-daemon-process nil)
+
+(defun xmpp-start-daemon ()
+  "Start the Go XMPP daemon in the specified project directory."
+  (interactive)
+  ;; dir in which to run `go run .`
+  ;; (let ((default-directory "/home/matthewkennedy/dev/personal/emacs-xmpp/daemon/"))
+  (let ((default-directory "/home/matthewkennedy/dev/personal/emacs-xmpp/"))
+    (setq xmpp-daemon-process
+          ;; (start-process "xmpp-daemon" "*xmpp-output*" "just" "run"))
+          (start-process "xmpp-daemon" "*xmpp-output*" "just" "run"))
+    (set-process-filter
+     xmpp-daemon-process
+     ;; process output to buffer to be read by user (for dev testing)
+     (lambda (proc output)
+       (with-current-buffer (get-buffer-create "*xmpp-output*")
+         (goto-char (point-max))
+         (insert output))))))
+
+
+(defun xmpp-send (text)
+  (interactive "sMessage: ")
+  (let ((socket (make-network-process
+                 :name "xmpp-daemon"
+                 :buffer "*xmpp-daemon*"
+                 :family 'local
+                 :service "/tmp/xmpp-daemon.sock")))
+    (process-send-string socket (concat text "\n"))
+    (delete-process socket)))
