@@ -48,3 +48,6 @@
 (package! syncthing)
 (package! inhibit-mouse)
 (package! emacs-w3m)
+
+(package! ledger-mode)
+(package! evil-ledger)

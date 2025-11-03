@@ -5,6 +5,7 @@
 (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo")
       auth-source-cache-expiry nil) ; default is 7200 (2h)
 
+;; allow unlocking of GPG keys in mini-buffer
 (setq epg-pinentry-mode 'loopback)
 
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 14)
@@ -74,7 +75,7 @@
 (assoc-delete-all "Open documentation" +doom-dashboard-menu-sections)
 
 ;; Relative line numbers
-(setq display-line-numbers-type `relative)
+;; (setq display-line-numbers-type `relative)
 
 ;; Better readability while scrolling
 (setq scroll-margin 20)
@@ -280,12 +281,6 @@
 (setq org-directory "~/notes")
 (setq diary-file "~/notes/calendar.org")
 ;; (setq diary-file "~/notes/agenda.org")
-(setq org-agenda-files
-      (append org-agenda-files
-              '("~/notes/calendar.org"
-                "~/notes/inbox.org"
-                "~/notes/todo.org"
-                "~/notes/projects.org")))
 
 (after! org
   (map! :map org-mode-map
@@ -608,6 +603,63 @@
       :desc "Mark checkbox intermediate"
       "m c i" #'my/org-checkbox-intermediate)
 
+(setq org-agenda-files
+      (append org-agenda-files
+              '("~/notes/calendar.org"
+                "~/notes/inbox.org"
+                "~/notes/todo.org"
+                "~/notes/projects.org")))
+
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "WORK(w)" "HOLD(h)" "|" "DONE(d)")))
+
+(setq org-agenda-custom-commands
+      '(("g" "Get Things Done (GTD)"
+         ((agenda ""
+                  ((org-agenda-skip-function
+                    '(org-agenda-skip-entry-if 'deadline))
+                   (org-deadline-warning-days 0)))
+          (tags-todo "inbox"
+                     ((org-agenda-prefix-format "  %?-12t% s")
+                      (org-agenda-overriding-header "\nInbox\n")))
+          (todo "TODO"
+                ((org-agenda-skip-function
+                  '(org-agenda-skip-entry-if 'deadline))
+                 (org-agenda-prefix-format "  %?-12t% s")
+                 (org-agenda-overriding-header "\nTasks\n")))
+         (agenda ""
+                  ((org-agenda-overriding-header "\nWork Schedule")
+                   (org-agenda-entry-types '(:scheduled))
+                   (org-agenda-format-date "%A, %B %d")
+                   (org-agenda-skip-function
+                    '(org-agenda-skip-entry-if 'notregexp "^*+ WORK"))
+                   (org-deadline-warning-days 7)
+                   (org-agenda-files '("~/notes/calendar.org"))))
+         (agenda ""
+                 ((org-agenda-overriding-header "\nEvents")
+                  (org-agenda-entry-types '(:scheduled))
+                  (org-agenda-format-date "%A, %B %d")
+                  (org-agenda-skip-function
+                   '(org-agenda-skip-entry-if 'regexp "^*+ WORK"))
+                  (org-deadline-warning-days 7)
+                  (org-agenda-files '("~/notes/calendar.org"))))
+         (agenda ""
+                  ((org-agenda-overriding-header "\nDeadlines")
+                   (org-agenda-entry-types '(:deadline))
+                   (org-agenda-format-date "%A, %B %d")
+                   (org-agenda-skip-function
+                    '(org-agenda-skip-entry-if 'notregexp "\\* NEXT"))
+                   (org-deadline-warning-days 7)
+                   (org-agenda-files '("~/notes/calendar.org"
+                                       "~/notes/projects.org"
+                                       "~/notes/todo.org"))))
+          (tags "CLOSED>=\"<today>\""
+                ((org-agenda-overriding-header "\nCompleted today\n"))))
+         ((org-agenda-files '("~/notes/inbox.org"
+                              "~/notes/todo.org"
+                              "~/notes/projects.org"
+                              "~/notes/calendar.org"))))))
+
 ;; Capture templates
 (after! org
   (setq org-capture-templates
@@ -617,19 +669,31 @@
 
           ("e" "Event" entry
            (file+headline "~/notes/calendar.org" "Events")
-           "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
+           ;; "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
+           "* %^{Event}\nSCHEDULED: %^T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
 
           ("d" "Deadline" entry
            (file+headline "~/notes/calendar.org" "Deadlines")
            "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
 
+          ("w" "Work" entry
+           (file+headline "~/notes/calendar.org" "Events")
+           ;; "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
+           "* WORK %^{Event}\nSCHEDULED: %^T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
+
           ("p" "Project" entry
            (file+headline "~/notes/projects.org" "Projects")
            "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n** TODO %?")
 
-          ("i" "Idea" entry
-           (file+headline "~/notes/ideas.org" "Ideas")
-           "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+          ("l" "TIL" entry
+           (file+headline "~/notes/til.org" "Learning")
+           "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:TAGS: \n:END:\n%?"
+           :prepend t)
+
+          ("n" "Note" entry
+           (file+headline "~/notes/inbox.org" "Inbox")
+           "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
+           :prepend t)
 
           ("c" "Contact" entry
            (file+headline "~/notes/contacts.org" "Inbox")
@@ -643,26 +707,7 @@
 :LOCATION: %^{Address}
 :END:
 \\ *** Notes
-%?")
-
-          ("g" "Issue" entry
-           (file+olp+datetree "~/notes/issues.org" "Inbox")
-           "* TODO %?\n :PROPERTIES:\n :ID: %(org-id-new)\n :CREATED: %U\n :END:\n
-SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
-           :time-prompt t
-           :prepend t)
-
-          ("b" "Blog" entry
-           (file+olp+datetree "~/notes/blog/" "Blog")
-           "* TODO %?\n :PROPERTIES:\n :ID: %(org-id-new)\n :CREATED: %U\n :END:\n
-SCHEDULED: %t\n :LOGBOOK:\n - State \"TODO\" from \"\" %U\n :END:"
-           :time-prompt t
-           :prepend t)
-
-          ("n" "Note" entry
-           (file+headline "~/notes/inbox.org" "Inbox")
-           "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
-           :prepend t))))
+%?"))))
 
 (require 'org-caldav)
 (setq org-caldav-url "https://cal.matthewcloud.us/matthewkennedy/")
@@ -974,75 +1019,132 @@ Inserts Org front-matter and opens the file."
              :user "mattken/irc.libera.chat"
              :password password)))
 
-;; (use-package forge
-;;   :after magit
-;;   :config
-;; (with-eval-after-load 'forge
-;;   (add-to-list 'forge-alist
-;;                '("codeberg.org"
-;;                  "codeberg.org/api/v1"
-;;                  "codeberg.org"
-;;                  forge-gitea-repository-p))))
-;; (setq forge-user-login "Matthew-K310")
-
+;; === Load and core setup ===
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 (require 'mu4e)
-
-;; Global settings
-(setq mu4e-get-mail-command "mbsync --all"     ;; We'll sync all channels
-      mu4e-update-interval 300
-      mu4e-headers-auto-update t
-      mu4e-view-show-images t
-      mu4e-compose-signature-auto-include nil
-      mu4e-use-fancy-chars t
-      send-mail-function 'smtpmail-send-it)
-
 (require 'smtpmail)
 
-;; Define contexts (one per account)
+(setq
+ mu4e-maildir "~/.local/share/mail"
+ mu4e-get-mail-command "mbsync --all"
+ mu4e-update-interval 300
+ mu4e-headers-auto-update t
+ mu4e-view-show-images t
+ mu4e-compose-signature-auto-include nil
+ mu4e-use-fancy-chars t
+
+ ;; Sending mail
+ sendmail-program "/usr/bin/msmtp"
+ message-send-mail-function 'message-send-mail-with-sendmail
+
+ ;; Context behavior
+ mu4e-context-policy 'pick-first
+ mu4e-compose-context-policy 'ask
+
+ ;; Quality of life
+ mu4e-compose-format-flowed t
+ mu4e-view-show-addresses t
+ mu4e-change-filenames-when-moving t
+ mu4e-attachment-dir "~/cloud/downloads/mail")
+
+;; === Contexts ===
 (setq mu4e-contexts
       (list
-       ;; === Personal ===
+       ;; Personal
        (make-mu4e-context
         :name "Personal"
         :match-func
         (lambda (msg)
           (when msg
-            (string-match-p "matthew@matthew-kennedy\\.com"
-                            (or (mu4e-message-field msg :to) ""))))
+            (string-match-p "matthew@matthew-kennedy.com"
+                            (concat (or (mu4e-message-field msg :to) "")
+                                    (or (mu4e-message-field msg :from) "")))))
         :vars '((user-mail-address . "matthew@matthew-kennedy.com")
                 (user-full-name    . "Matthew Kennedy")
-                (smtpmail-smtp-user . "matthew@matthew-kennedy.com")
-                (smtpmail-smtp-server . "mail.matthew-kennedy.com")
-                (smtpmail-smtp-service . 587)
-                (smtpmail-stream-type . starttls)
                 (mu4e-sent-folder   . "/matthew@matthew-kennedy.com/Sent")
                 (mu4e-drafts-folder . "/matthew@matthew-kennedy.com/Drafts")
                 (mu4e-trash-folder  . "/matthew@matthew-kennedy.com/Trash")
                 (mu4e-refile-folder . "/matthew@matthew-kennedy.com/Archive")))
 
-       ;; === Business ===
+       ;; IT
+       (make-mu4e-context
+        :name "IT"
+        :match-func
+        (lambda (msg)
+          (when msg
+            (string-match-p "it@matthew-kennedy.com"
+                            (concat (or (mu4e-message-field msg :to) "")
+                                    (or (mu4e-message-field msg :from) "")))))
+        :vars '((user-mail-address . "it@matthew-kennedy.com")
+                (user-full-name    . "Matthew Kennedy")
+                (mu4e-sent-folder   . "/it@matthew-kennedy.com/Sent")
+                (mu4e-drafts-folder . "/it@matthew-kennedy.com/Drafts")
+                (mu4e-trash-folder  . "/it@matthew-kennedy.com/Trash")
+                (mu4e-refile-folder . "/it@matthew-kennedy.com/Archive")))
+
+       ;; iCloud
+       (make-mu4e-context
+        :name "iCloud"
+        :match-func
+        (lambda (msg)
+          (when msg
+            (string-match-p "matthew_i_kennedy@icloud.com"
+                            (concat (or (mu4e-message-field msg :to) "")
+                                    (or (mu4e-message-field msg :from) "")))))
+        :vars '((user-mail-address . "matthew_i_kennedy@icloud.com")
+                (user-full-name    . "Matthew Kennedy")
+                (mu4e-sent-folder   . "/icloud/Sent Messages")
+                (mu4e-drafts-folder . "/icloud/Drafts")
+                (mu4e-trash-folder  . "/icloud/Deleted Messages")
+                (mu4e-refile-folder . "/icloud/Archive")))
+
+       ;; Business
        (make-mu4e-context
         :name "Business"
         :match-func
         (lambda (msg)
           (when msg
-            (string-match-p "business@matthew-kennedy\\.com"
-                            (or (mu4e-message-field msg :to) ""))))
+            (string-match-p "business@matthew-kennedy.com"
+                            (concat (or (mu4e-message-field msg :to) "")
+                                    (or (mu4e-message-field msg :from) "")))))
         :vars '((user-mail-address . "business@matthew-kennedy.com")
-                (user-full-name    . "Matthew Kennedy")
-                (smtpmail-smtp-user . "business@matthew-kennedy.com")
-                (smtpmail-smtp-server . "mail.matthew-kennedy.com")
-                (smtpmail-smtp-service . 587)
-                (smtpmail-stream-type . starttls)
+                (user-full-name    . "Matthew Kennedy Productions")
                 (mu4e-sent-folder   . "/business@matthew-kennedy.com/Sent")
                 (mu4e-drafts-folder . "/business@matthew-kennedy.com/Drafts")
                 (mu4e-trash-folder  . "/business@matthew-kennedy.com/Trash")
-                (mu4e-refile-folder . "/business@matthew-kennedy.com/Archive")))))
+                (mu4e-refile-folder . "/business@matthew-kennedy.com/Archive")))
 
-;; Use last used or default context automatically
-(setq mu4e-context-policy 'pick-first
-      mu4e-compose-context-policy 'ask)
+       ;; Accounts
+       (make-mu4e-context
+        :name "Accounts"
+        :match-func
+        (lambda (msg)
+          (when msg
+            (string-match-p "accounts@matthew-kennedy.com"
+                            (concat (or (mu4e-message-field msg :to) "")
+                                    (or (mu4e-message-field msg :from) "")))))
+        :vars '((user-mail-address . "accounts@matthew-kennedy.com")
+                (user-full-name    . "Matthew Kennedy")
+                (mu4e-sent-folder   . "/accounts@matthew-kennedy.com/Sent")
+                (mu4e-drafts-folder . "/accounts@matthew-kennedy.com/Drafts")
+                (mu4e-trash-folder  . "/accounts@matthew-kennedy.com/Trash")
+                (mu4e-refile-folder . "/accounts@matthew-kennedy.com/Archive")))
+
+       ;; Mailing
+       (make-mu4e-context
+        :name "Mailing"
+        :match-func
+        (lambda (msg)
+          (when msg
+            (string-match-p "mailing@matthew-kennedy.com"
+                            (concat (or (mu4e-message-field msg :to) "")
+                                    (or (mu4e-message-field msg :from) "")))))
+        :vars '((user-mail-address . "mailing@matthew-kennedy.com")
+                (user-full-name    . "Matthew Kennedy")
+                (mu4e-sent-folder   . "/mailing@matthew-kennedy.com/Sent")
+                (mu4e-drafts-folder . "/mailing@matthew-kennedy.com/Drafts")
+                (mu4e-trash-folder  . "/mailing@matthew-kennedy.com/Trash")
+                (mu4e-refile-folder . "/mailing@matthew-kennedy.com/Archive")))))
 
 ;; send and receive
 (defvar xmpp-daemon-process nil)
@@ -1065,12 +1167,27 @@ Inserts Org front-matter and opens the file."
          (insert output))))))
 
 
-(defun xmpp-send (text)
+;; (defun xmpp-send (text)
+;;   (interactive "sMessage: ")
+;;   (let ((socket (make-network-process
+;;                  :name "xmpp-daemon"
+;;                  :buffer "*xmpp-daemon*"
+;;                  :family 'local
+;;                  :service "/tmp/xmpp-daemon.sock")))
+;;     (process-send-string socket (concat text "\n"))
+;;     (delete-process socket)))
+
+(defun xmpp-send-message (msg)
+  "Send MSG to the running Go XMPP client via Unix socket."
   (interactive "sMessage: ")
-  (let ((socket (make-network-process
-                 :name "xmpp-daemon"
-                 :buffer "*xmpp-daemon*"
-                 :family 'local
-                 :service "/tmp/xmpp-daemon.sock")))
-    (process-send-string socket (concat text "\n"))
-    (delete-process socket)))
+  (let ((sock "/tmp/xmpp_send.sock"))
+    (if (file-exists-p sock)
+        (let ((proc (make-network-process
+                     :name "xmpp-client"
+                     :family 'local
+                     :service sock
+                     :buffer nil
+                     :noquery t)))  ;; don’t prompt when killing Emacs
+          (process-send-string proc (concat msg "\n"))
+          (delete-process proc))
+      (message "Socket not found: %s (is xmpp client running?)" sock))))
