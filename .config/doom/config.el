@@ -11,13 +11,15 @@
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 14)
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 22))
 
+(add-to-list 'custom-theme-load-path "~/.config/doom/themes/")
 ;; Check the system type and load themes accordingly
 ;; (cond
 ;; ((eq system-type 'darwin)  ;; macOS
 ;;  (load-theme 'doom-nord t))      ;; Load Nord theme on macOS
 ;; ((eq system-type 'gnu/linux)  ;; Linux
 ;;  (load-theme 'ewal-spacemacs-modern t)))  ;; Load Spacemacs theme on Linux
- (load-theme 'doom-nord t)
+ (load-theme 'compline t)
+;; (load-theme 'doom-nord t)
 ;; (load-theme 'catppuccin `relative)
 ;; (setq catppuccin-flavor 'macchiato)
 
@@ -603,15 +605,32 @@
       :desc "Mark checkbox intermediate"
       "m c i" #'my/org-checkbox-intermediate)
 
+(defun hm/convert-org-to-docx-with-pandoc ()
+  "Use Pandoc to convert .org to .docx.
+Comments:
+- The `-N' flag numbers the headers lines.
+- Use the `--from org' flag to have this function work on files
+  that are in Org syntax but do not have a .org extension"
+  (interactive)
+  (message "exporting .org to .docx")
+  (shell-command
+   (concat "pandoc -N --from org " (buffer-file-name)
+           " -o "
+           (file-name-sans-extension (buffer-file-name))
+           (format-time-string "-%Y-%m-%d-%H%M%S") ".docx")))
+
+(setq org-agenda-diary-file "~/notes/agenda.org")
+
 (setq org-agenda-files
       (append org-agenda-files
               '("~/notes/calendar.org"
+                "~/notes/agenda.org"
                 "~/notes/inbox.org"
                 "~/notes/todo.org"
                 "~/notes/projects.org")))
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "WORK(w)" "HOLD(h)" "|" "DONE(d)")))
+      '((sequence "TODO(t)" "NEXT(n)" "STRT(s)" "WAIT(w)" "HOLD(h)" "WORK(W)""|" "DONE(d)")))
 
 (setq org-agenda-custom-commands
       '(("g" "Get Things Done (GTD)"
@@ -622,11 +641,11 @@
           (tags-todo "inbox"
                      ((org-agenda-prefix-format "  %?-12t% s")
                       (org-agenda-overriding-header "\nInbox\n")))
-          (todo "TODO"
-                ((org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'deadline))
-                 (org-agenda-prefix-format "  %?-12t% s")
-                 (org-agenda-overriding-header "\nTasks\n")))
+          ;; (todo "TODO"
+          ;;       ((org-agenda-skip-function
+          ;;         '(org-agenda-skip-entry-if 'deadline))
+          ;;        (org-agenda-prefix-format "  %?-12t% s")
+          ;;        (org-agenda-overriding-header "\nTasks\n")))
          (agenda ""
                   ((org-agenda-overriding-header "\nWork Schedule")
                    (org-agenda-entry-types '(:scheduled))
@@ -635,14 +654,14 @@
                     '(org-agenda-skip-entry-if 'notregexp "^*+ WORK"))
                    (org-deadline-warning-days 7)
                    (org-agenda-files '("~/notes/calendar.org"))))
-         (agenda ""
-                 ((org-agenda-overriding-header "\nEvents")
-                  (org-agenda-entry-types '(:scheduled))
-                  (org-agenda-format-date "%A, %B %d")
-                  (org-agenda-skip-function
-                   '(org-agenda-skip-entry-if 'regexp "^*+ WORK"))
-                  (org-deadline-warning-days 7)
-                  (org-agenda-files '("~/notes/calendar.org"))))
+         ;; (agenda ""
+         ;;         ((org-agenda-overriding-header "\nEvents")
+         ;;          (org-agenda-entry-types '(:scheduled))
+         ;;          (org-agenda-format-date "%A, %B %d")
+         ;;          (org-agenda-skip-function
+         ;;           '(org-agenda-skip-entry-if 'regexp "^*+ WORK"))
+         ;;          (org-deadline-warning-days 7)
+         ;;          (org-agenda-files '("~/notes/calendar.org"))))
          (agenda ""
                   ((org-agenda-overriding-header "\nDeadlines")
                    (org-agenda-entry-types '(:deadline))
@@ -658,6 +677,7 @@
          ((org-agenda-files '("~/notes/inbox.org"
                               "~/notes/todo.org"
                               "~/notes/projects.org"
+                              "~/notes/agenda.org"
                               "~/notes/calendar.org"))))))
 
 ;; Capture templates
@@ -790,101 +810,6 @@ Inserts Org front-matter and opens the file."
       (insert (format "#+TITLE: %s\n#+DATE: %s\n#+TAGS: \n#+OPTIONS: toc:nil num:nil\n\n"
                       title date))
       (save-buffer))))
-
-(require 'emms-setup)
-(emms-all)
-(emms-default-players)
-(emms-mode-line-mode 1)
-(emms-playing-time-mode 1)
-
-(setq emms-source-file-default-directory "~/Sync/Music"
-      emms-browser-covers #'emms-browser-cache-thumbnail-async
-      emms-browser-thumbnail-small-size 64
-      emms-browser-thumbnail-medium-size 128
-      emms-playlist-buffer-name "*Music*"
-      emms-info-asynchronously t
-      emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
-
-(require 'emms-player-mpd)
-(setq emms-player-mpd-server-name "localhost"
-      emms-player-mpd-server-port "6600"
-      emms-player-mpd-music-directory (expand-file-name "~/Sync/Music"))
-
-(add-to-list 'emms-player-list 'emms-player-mpd)
-(add-to-list 'emms-info-functions 'emms-info-mpd)
-
-(defun my/emms-mpd-connect ()
-  "Safely (re)connect to MPD without throwing errors."
-  (ignore-errors (emms-player-mpd-connect)))
-
-(my/emms-mpd-connect)
-
-(defun my/update-emms-from-mpd ()
-  "Update EMMS cache from MPD and refresh browser."
-  (interactive)
-  (message "Updating EMMS cache from MPD...")
-  (my/emms-mpd-connect)
-  (emms-cache-set-from-mpd-all)
-  (message "EMMS cache updated. Refreshing browser...")
-  (when (get-buffer "*EMMS Browser*")
-    (with-current-buffer "*EMMS Browser*"
-      (emms-browser-refresh))))
-
-(setq emms-player-list '(emms-player-mpd
-                         emms-player-mplayer
-                         emms-player-vlc
-                         emms-player-mpg321
-                         emms-player-ogg123))
-
-(require 'emms-browser)
-(setq emms-browser-default-browse-type 'info-artist)
-(setq emms-browser-current-browse-type 'info-artist)
-
-(add-to-list 'emms-info-functions 'emms-info-mp3info)
-(add-to-list 'emms-info-functions 'emms-info-ogginfo)
-(add-to-list 'emms-info-functions 'emms-info-metaflac)
-(add-to-list 'emms-info-functions 'emms-info-tinytag)
-
-(with-eval-after-load 'emms-browser
-  (define-key emms-browser-mode-map (kbd "RET") #'emms-browser-add-tracks-and-play))
-;; (define-key emms-browser-mode-map (kbd "SPC") #'emms-pause))
-
-(add-hook 'window-size-change-functions
-          (lambda (_)
-            (when (memq major-mode '(emms-browser-mode emms-playlist-mode))
-              (emms-center-buffer-in-frame))))
-
-(defun emms-cover-art-path ()
-  "Return the path of the cover art for the current track."
-  (let* ((track (emms-playlist-current-selected-track))
-         (path (emms-track-get track 'name))
-         (dir (file-name-directory path))
-         (standard-files '("cover.jpg" "cover.png" "folder.jpg" "folder.png"
-                           "album.jpg" "album.png" "front.jpg" "front.png"))
-         (standard-cover (seq-find (lambda (f)
-                                     (file-exists-p (expand-file-name f dir)))
-                                   standard-files)))
-    (if standard-cover
-        (expand-file-name standard-cover dir)
-      (let ((cover-files (directory-files dir nil ".*\\(jpg\\|png\\|jpeg\\)$")))
-        (when cover-files
-          (expand-file-name (car cover-files) dir))))))
-
-(defun emms-notify-song-change-with-artwork ()
-  "Send song change notification with album artwork to swaync via libnotify."
-  (let* ((track (emms-playlist-current-selected-track))
-         (artist (or (emms-track-get track 'info-artist) "Unknown Artist"))
-         (title (or (emms-track-get track 'info-title) "Unknown Title"))
-         (album (or (emms-track-get track 'info-album) "Unknown Album"))
-         (cover (emms-cover-art-path)))
-    (apply #'start-process
-           "emms-notify" nil "notify-send"
-           "-a" "EMMS" "-c" "music"
-           (append (when cover (list "-i" cover))
-                   (list (format "Now Playing: %s" title)
-                         (format "Artist: %s\nAlbum: %s" artist album))))))
-
-(add-hook 'emms-player-started-hook #'emms-notify-song-change-with-artwork)
 
 (use-package! elfeed
   :commands (elfeed)
@@ -1145,6 +1070,9 @@ Inserts Org front-matter and opens the file."
                 (mu4e-drafts-folder . "/mailing@matthew-kennedy.com/Drafts")
                 (mu4e-trash-folder  . "/mailing@matthew-kennedy.com/Trash")
                 (mu4e-refile-folder . "/mailing@matthew-kennedy.com/Archive")))))
+
+(use-package emacs-everywhere
+  :ensure t)
 
 ;; send and receive
 (defvar xmpp-daemon-process nil)
