@@ -1,38 +1,57 @@
 #!/bin/sh
 # shellcheck disable=SC2155
-
 # Profile file, runs on login. Environmental variables are set here.
 
-# Add all directories in `~/.local/bin` to $PATH
-export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
+# ----------------------------
+# PATH Setup
+# ----------------------------
+# Add all directories in ~/.local/bin to PATH
+export PATH="${PATH:+$PATH:}$(find ~/.local/bin -type d | paste -sd ':')"
 
-unsetopt PROMPT_SP 2>/dev/null
+# Add custom script and config directories
+export PATH="$XDG_CONFIG_HOME/scripts:$PATH"
+export PATH="$XDG_DATA_HOME/go/bin:$PATH"
+export PATH="$XDG_CONFIG_HOME/emacs/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/usr/bin:$PATH"
 
-# Default programs:
+# macOS-specific paths
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
+    export PATH="/opt/homebrew/bin/cb:$PATH"
+    export PATH="/opt/homebrew/bin/mpv:$PATH"
+    export PATH="${PATH}:/Users/matthewkennedy/py/venv/lib/python3.13/site-packages"
+fi
+
+# ----------------------------
+# Default programs
+# ----------------------------
 export EDITOR="nvim"
-export TERMINAL="st"
-export TERMINAL_PROG="st"
-export BROWSER="chromium"
-# export BROWSER="librewolf"
-# export BROWSER="qutebrowser"
-export MANPAGER="nvim +Man!"
+export TERMINAL="kitty"
+export TERMINAL_PROG="kitty"
+export BROWSER="librewolf"
+export MANPAGER="delta"
 
-# Change the default crypto/weather monitor sites.
-# export CRYPTOURL="rate.sx"
-# export WTTRURL="wttr.in"
-
-# ~/ Clean-up:
+# ----------------------------
+# XDG Base Directories
+# ----------------------------
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+
 export XINITRC="$XDG_CONFIG_HOME/x11/xinitrc"
-#export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
+#export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # Can break some DMs
+
+# ----------------------------
+# App-specific configurations
+# ----------------------------
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch-config"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export INPUTRC="$XDG_CONFIG_HOME/shell/inputrc"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 #export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export KODI_DATA="$XDG_DATA_HOME/kodi"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
@@ -50,54 +69,35 @@ export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export MPD_DIR="$XDG_CONFIG_HOME/mpd"
 export EMACS_DIR="$XDG_CONFIG_HOME/emacs"
-export NODE_PATH=$NODE_PATH:$(npm root -g)
 export ZEIT_DB="$XDG_DATA_HOME/zeit_db"
 
-# Other program settings:
-export DICS="/usr/share/stardict/dic/"
-export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
-export LESS="R"
-export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
-export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
-export LESS_TERMCAP_me="$(printf '%b' '[0m')"
-export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"
-export LESS_TERMCAP_se="$(printf '%b' '[0m')"
-export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
-export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
-export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
-
-# Other paths
-export PATH="$XDG_CONFIG_HOME/scripts:$PATH" # scripts path
-export PATH="$PATH:$XDG_DATA_HOME/go/bin"    # templ path
-export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --preview-window=right"
-export PATH="/usr/bin:$PATH"
-export PATH="$XDG_DATA_HOME/gem/ruby/3.4.0/bin:$PATH"
-export PATH="$XDG_CONFIG_HOME/emacs/bin:$PATH"
-export PATH="$XDG_CONFIG_HOME/scripts:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-if [[ "$OSTYPE" == "darwin"* ]]; then
-	export PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
-	export PATH="/opt/homebrew/bin/cb:$PATH"
-	export PATH="/opt/homebrew/bin/mpv:$PATH"
-	export PATH="${PATH}:/Users/matthewkennedy/py/venv/lib/python3.13/site-packages"
-fi
-
+export NODE_PATH=$NODE_PATH:$(npm root -g)
 export GODOT="$XDG_CONFIG_HOME/godotenv/godot/bin"
 
-# .NET SDK Configuration
-export DOTNET_ROOT="/usr/local/share/dotnet"
-export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Disable analytics
-export DOTNET_ROLL_FORWARD_TO_PRERELEASE=1
+# ----------------------------
+# Other program settings
+# ----------------------------
+export DICS="/usr/share/stardict/dic/"
+export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --preview-window=right"
+export LESS="R"
+export LESS_TERMCAP_mb="$(printf '%b' '\e[1;31m')"
+export LESS_TERMCAP_md="$(printf '%b' '\e[1;36m')"
+export LESS_TERMCAP_me="$(printf '%b' '\e[0m')"
+export LESS_TERMCAP_so="$(printf '%b' '\e[01;44;33m')"
+export LESS_TERMCAP_se="$(printf '%b' '\e[0m')"
+export LESS_TERMCAP_us="$(printf '%b' '\e[1;32m')"
+export LESS_TERMCAP_ue="$(printf '%b' '\e[0m')"
+export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 
-# Add the .NET SDK to the system paths so we can use the `dotnet` tool.
-export PATH="$DOTNET_ROOT:$PATH"
-export PATH="$DOTNET_ROOT/sdk:$PATH"
-export PATH="$HOME/.dotnet/tools:$PATH"
+# ----------------------------
+# Shell settings
+# ----------------------------
+unsetopt PROMPT_SP 2>/dev/null
 
+# Load shortcuts if not already loaded
 [ ! -f "$XDG_CONFIG_HOME/shell/shortcutrc" ] && setsid -f shortcuts >/dev/null 2>&1
 
-# Start graphical server on user's current tty if not already running.
-[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
-
-# Switch escape and caps if tty and no passwd required:
-sudo -n loadkeys "$XDG_DATA_HOME/larbs/ttymaps.kmap" 2>/dev/null
+# Remove duplicate PATH entries while preserving order
+export PATH=$(awk -v RS=: -v ORS=: '!seen[$0]++' <<< "$PATH")
+# Remove trailing colon
+export PATH=${PATH%:}

@@ -46,12 +46,6 @@ return {
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
   },
-  { -- Transparency
-    'xiyaowong/transparent.nvim',
-    opts = {
-      vim.keymap.set('n', '<leader>wt', ':TransparentToggle<CR>'),
-    },
-  },
   { -- Dimming for writing focus
     'folke/twilight.nvim',
     opts = {

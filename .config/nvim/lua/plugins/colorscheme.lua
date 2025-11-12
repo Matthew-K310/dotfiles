@@ -1,12 +1,4 @@
 return {
-  -- pyywal
-  {
-    'Matthew-K310/pywal16.nvim',
-    cond = vim.loop.os_uname().sysname == 'Linux',
-    config = function()
-      vim.cmd.colorscheme 'pywal16'
-    end,
-  },
   -- Nord
   {
     'shaunsingh/nord.nvim',

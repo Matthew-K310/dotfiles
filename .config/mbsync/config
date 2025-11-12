@@ -117,7 +117,8 @@ IMAPAccount icloud
 Host imap.mail.me.com
 Port 993
 User matthew_i_kennedy@icloud.com
-PassCmd "pass mu4e_icloud"
+# PassCmd "pass mu4e_icloud"
+PassCmd "pass outlook_icloud"
 TLSType IMAPS
 TLSVersions +1.3
 
