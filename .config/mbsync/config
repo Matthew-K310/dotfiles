@@ -1,6 +1,6 @@
 # Personal
 IMAPAccount Personal
-Host mail.matthew-kennedy.com
+Host imap.migadu.com
 User matthew@matthew-kennedy.com
 PassCmd "pass matthew@matthew-kennedy.com"
 TLSType IMAPS
@@ -10,8 +10,8 @@ IMAPStore Personal-remote
 Account Personal
 
 MaildirStore Personal-local
-Path ~/.local/share/mail/matthew@matthew-kennedy.com/
-Inbox ~/.local/share/mail/matthew@matthew-kennedy.com/Inbox
+Path ~/.local/share/mail/personal/
+Inbox ~/.local/share/mail/personal/Inbox
 SubFolders Verbatim
 
 Channel Personal
@@ -23,7 +23,7 @@ SyncState *
 
 # IT
 IMAPAccount IT
-Host mail.matthew-kennedy.com
+Host imap.migadu.com
 User it@matthew-kennedy.com
 PassCmd "pass it@matthew-kennedy.com"
 TLSType IMAPS
@@ -33,8 +33,8 @@ IMAPStore IT-remote
 Account IT
 
 MaildirStore IT-local
-Path ~/.local/share/mail/it@matthew-kennedy.com/
-Inbox ~/.local/share/mail/it@matthew-kennedy.com/Inbox
+Path ~/.local/share/mail/it/
+Inbox ~/.local/share/mail/it/Inbox
 SubFolders Verbatim
 
 Channel IT
@@ -46,7 +46,7 @@ SyncState *
 
 # Business
 IMAPAccount Business
-Host mail.matthew-kennedy.com
+Host imap.migadu.com
 User business@matthew-kennedy.com
 PassCmd "pass business@matthew-kennedy.com"
 TLSType IMAPS
@@ -56,8 +56,8 @@ IMAPStore Business-remote
 Account Business
 
 MaildirStore Business-local
-Path ~/.local/share/mail/business@matthew-kennedy.com/
-Inbox ~/.local/share/mail/business@matthew-kennedy.com/Inbox
+Path ~/.local/share/mail/business/
+Inbox ~/.local/share/mail/business/Inbox
 SubFolders Verbatim
 
 Channel Business
@@ -69,7 +69,7 @@ SyncState *
 
 # Accounts
 IMAPAccount Accounts
-Host mail.matthew-kennedy.com
+Host imap.migadu.com
 User accounts@matthew-kennedy.com
 PassCmd "pass accounts@matthew-kennedy.com"
 TLSType IMAPS
@@ -79,8 +79,8 @@ IMAPStore Accounts-remote
 Account Accounts
 
 MaildirStore Accounts-local
-Path ~/.local/share/mail/accounts@matthew-kennedy.com/
-Inbox ~/.local/share/mail/accounts@matthew-kennedy.com/Inbox
+Path ~/.local/share/mail/accounts/
+Inbox ~/.local/share/mail/accounts/Inbox
 SubFolders Verbatim
 
 Channel Accounts
@@ -92,7 +92,7 @@ SyncState *
 
 # Mailing
 IMAPAccount Mailing
-Host mail.matthew-kennedy.com
+Host imap.migadu.com
 User mailing@matthew-kennedy.com
 PassCmd "pass mailing@matthew-kennedy.com"
 TLSType IMAPS
@@ -102,8 +102,8 @@ IMAPStore Mailing-remote
 Account Mailing
 
 MaildirStore Mailing-local
-Path ~/.local/share/mail/mailing@matthew-kennedy.com/
-Inbox ~/.local/share/mail/mailing@matthew-kennedy.com/Inbox
+Path ~/.local/share/mail/mailing/
+Inbox ~/.local/share/mail/mailing/Inbox
 SubFolders Verbatim
 
 Channel Mailing

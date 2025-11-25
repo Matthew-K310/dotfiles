@@ -84,7 +84,7 @@
        ;; grammar           ; tasing grammar mistake every you make
 
        :tools
-       biblio            ; Writes a PhD for you (citation needed)
+       ;; biblio            ; Writes a PhD for you (citation needed)
        (debugger +lsp)          ; FIXME stepping through code, to help you add bugs
        ;; direnv
        docker
@@ -145,7 +145,7 @@
        ;;kotlin            ; a better, slicker Java(Script)
        (latex +tree-sitter)             ; writing papers in Emacs has never been so fun
        ;;lean              ; for folks with too much to prove
-       ;;ledger            ; be audit you can be
+       ledger            ; be audit you can be
        (lua +lsp +treesitter)               ; one-based indices? one-based indices
        markdown          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
@@ -176,6 +176,7 @@
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
        swift             ; who asked for emoji variables?
+       templ             ; no running allowed
        ;;terra             ; Earth and Moon in alignment for performance.
        web               ; the tubes
        yaml              ; JSON, but readable

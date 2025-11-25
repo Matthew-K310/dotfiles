@@ -8,7 +8,7 @@
 # === matthew@matthew-kennedy.com ===
 # -----------------------------------------------------------
 account matthew@matthew-kennedy.com
-host            mail.matthew-kennedy.com
+host            smtp.migadu.com
 port            465
 from            matthew@matthew-kennedy.com
 user            matthew@matthew-kennedy.com
@@ -24,7 +24,7 @@ aliases         ~/.config/msmtp/aliases
 # === it@matthew-kennedy.com ===
 # -----------------------------------------------------------
 account it@matthew-kennedy.com
-host            mail.matthew-kennedy.com
+host            smtp.migadu.com
 port            465
 from            it@matthew-kennedy.com
 user            it@matthew-kennedy.com
@@ -40,7 +40,7 @@ aliases         ~/.config/msmtp/aliases
 # === matthew_i_kennedy@icloud.com ===
 # -----------------------------------------------------------
 account matthew_i_kennedy@icloud.com
-host            smtp.mail.me.com
+host            smtp.migadu.com
 port            587
 from            matthew_i_kennedy@icloud.com
 user            matthew_i_kennedy@icloud.com
@@ -56,7 +56,7 @@ aliases         ~/.config/msmtp/aliases
 # === business@matthew-kennedy.com ===
 # -----------------------------------------------------------
 account business@matthew-kennedy.com
-host            mail.matthew-kennedy.com
+host            smtp.migadu.com
 port            465
 from            business@matthew-kennedy.com
 user            business@matthew-kennedy.com
@@ -72,7 +72,7 @@ aliases         ~/.config/msmtp/aliases
 # === accounts@matthew-kennedy.com ===
 # -----------------------------------------------------------
 account accounts@matthew-kennedy.com
-host            mail.matthew-kennedy.com
+host            smtp.migadu.com
 port            465
 from            accounts@matthew-kennedy.com
 user            accounts@matthew-kennedy.com
@@ -88,7 +88,7 @@ aliases         ~/.config/msmtp/aliases
 # === mailing@matthew-kennedy.com ===
 # -----------------------------------------------------------
 account mailing@matthew-kennedy.com
-host            mail.matthew-kennedy.com
+host            smtp.migadu.com
 port            465
 from            mailing@matthew-kennedy.com
 user            mailing@matthew-kennedy.com

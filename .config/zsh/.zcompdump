@@ -1,4 +1,4 @@
-#files: 831	version: 5.9
+#files: 841	version: 5.9
 
 _comps=(
 '-' '_precommand'
@@ -236,7 +236,7 @@ _comps=(
 'dd' '_dd'
 'declare' '_typeset'
 '-default-' '_default'
-'delta' '_sccs'
+'delta' '_delta'
 'designate' '_openstack'
 'devtodo' '_devtodo'
 'df' '_df'
@@ -323,6 +323,7 @@ _comps=(
 'fc' '_fc'
 'fc-list' '_xft_fonts'
 'fc-match' '_xft_fonts'
+'fd' '_fd'
 'feh' '_feh'
 'fetchmail' '_fetchmail'
 'ffmpeg' '_ffmpeg'
@@ -422,6 +423,7 @@ _comps=(
 'ggetopt' '_getopt'
 'ggrep' '_grep'
 'ggv' '_gnome-gv'
+'gh' '_gh'
 'ghead' '_head'
 'ghostscript' '_ghostscript'
 'ghostview' '_pspdf'
@@ -580,6 +582,7 @@ _comps=(
 'hostnamectl' '_hostnamectl'
 'hotjava' '_webbrowser'
 'htop' '_htop'
+'hugo' '_hugo'
 'hyprctl' '_hyprctl'
 'hyprpm' '_hyprpm'
 'iceweasel' '_mozilla'
@@ -638,6 +641,7 @@ _comps=(
 'join' '_join'
 'journalctl' '_journalctl'
 'jq' '_jq'
+'just' '_just'
 'kdeconnect-cli' '_kdeconnect'
 'kernel-install' '_kernel-install'
 'keystone' '_openstack'
@@ -750,6 +754,7 @@ _comps=(
 'mencal' '_mencal'
 'mere' '_mere'
 'merge' '_rcs'
+'meson' '_meson'
 'metaflac' '_flac'
 'mformat' '_mtools'
 'mgv' '_pspdf'
@@ -852,6 +857,7 @@ _comps=(
 'nocorrect' '_precommand'
 'noglob' '_precommand'
 'nohup' '_precommand'
+'notmuch' '_notmuch'
 'nova' '_openstack'
 'npm' '_npm'
 'ns' '_hosts'
@@ -1235,6 +1241,7 @@ _comps=(
 'tac' '_tac'
 'tacker' '_openstack'
 'tail' '_tail'
+'tailscale' '_tailscale'
 'talk' '_other_accounts'
 'tar' '_tar'
 'tardy' '_tardy'
@@ -1356,6 +1363,8 @@ _comps=(
 '-value-,CFLAGS,-default-' '_gcc'
 '-value-,CPPFLAGS,-default-' '_gcc'
 '-value-,CXXFLAGS,-default-' '_gcc'
+'-value-,DBUS_SESSION_BUS_ADDRESS,-default-' '_sd_bus_address'
+'-value-,DBUS_SYSTEM_BUS_ADDRESS,-default-' '_sd_bus_address'
 '-value-,-default-,-command-' '_zargs'
 '-value-,-default-,-default-' '_value'
 '-value-,DISPLAY,-default-' '_x_display'
@@ -1614,6 +1623,7 @@ _services=(
 
 _patcomps=(
 '*/(init|rc[0-9S]#).d/*' '_init_d'
+'notmuch-*' '_notmuch'
 )
 
 _postpatcomps=(
@@ -1679,16 +1689,18 @@ bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
 autoload -Uz _bindgen _bootctl _busctl _bwrap _cargo \
-            _coredumpctl _curl _fastfetch _hostnamectl _hyprctl \
-            _hyprpm _img2sixel _insmod _journalctl _kernel-install \
-            _kitty _libinput _localectl _loginctl _lsmod \
-            _machinectl _mkinitcpio _mpv _networkctl _ninja \
-            _oomctl _p11-kit _pacman _pass _playerctl \
-            _pulseaudio _resolvectl _rg _rmmod _rmpc \
-            _run0 _sd_hosts_or_user_at_host _sd_machines _sd_outputmodes _sd_unit_files \
-            _sensors _sensors-detect _swaync _swaync-client _swww \
-            _systemctl _systemd _systemd-analyze _systemd-delta _systemd-inhibit \
-            _systemd-nspawn _systemd-path _systemd-run _systemd-tmpfiles _timedatectl \
+            _coredumpctl _curl _delta _email-notmuch _fastfetch \
+            _fd _gh _hostnamectl _hugo _hyprctl \
+            _hyprpm _img2sixel _insmod _journalctl _just \
+            _kernel-install _kitty _libinput _localectl _loginctl \
+            _lsmod _machinectl _meson _mkinitcpio _mpv \
+            _networkctl _ninja _notmuch _oomctl _p11-kit \
+            _pacman _pass _playerctl _pulseaudio _resolvectl \
+            _rg _rmmod _rmpc _run0 _sd_bus_address \
+            _sd_hosts_or_user_at_host _sd_machines _sd_outputmodes _sd_unit_files _sensors \
+            _sensors-detect _swaync _swaync-client _swww _systemctl \
+            _systemd _systemd-analyze _systemd-delta _systemd-inhibit _systemd-nspawn \
+            _systemd-path _systemd-run _systemd-tmpfiles _tailscale _timedatectl \
             _trust _udevadm _upower _varlinkctl _wl-copy \
             _wl-paste _wpctl _yay _yazi _yt-dlp \
             _zathura _zoxide _cdr _all_labels _all_matches \

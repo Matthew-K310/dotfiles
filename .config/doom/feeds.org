@@ -20,6 +20,7 @@
 *** [[https://with-emacs.com/rss.xml][With Emacs]]
 *** [[https://emacsredux.com/atom.xml][Emacs Redux]]
 *** [[https://baty.net/index.xml][Jack Baty]]
+*** [[https://batsov.com/][Bohzidar Batsov (think)]]
 ** Programming
 *** [[https://charm.land/blog/rss.xml][charm.sh]]
 *** [[https://jvns.ca/atom.xml][Julia Evans]]

@@ -103,7 +103,7 @@
 ;; Enhanced logging function with better file handling
 (defun pomodoro-log-session (task completed)
   "Log the completed pomodoro session to done.org."
-  (let* ((done-file (expand-file-name "~/org/done.org"))
+  (let* ((done-file (expand-file-name "~/notes/done.org"))
          (today (format-time-string "* %Y-%m-%d %A"))
          (start-time (format-time-string "%H:%M" pomodoro-start-time))
          (end-time (format-time-string "%H:%M" (current-time)))

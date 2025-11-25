@@ -27,6 +27,7 @@ alias \
 
 # These common commands are just too long! Abbreviate them.
 alias \
+	hypr="hyprland" \
 	ka="killall" \
 	YT="youtube-viewer" \
 	mpdc="mpd ~/.config/mpd/mpd.conf" \

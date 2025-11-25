@@ -24,31 +24,30 @@
     (format "meeting-%s-%s" date-part random-part)))
 
 (defun my/jitsi-create-room ()
-  "Create a Jitsi meeting room and insert after properties drawer."
+  "Prompt for a Jitsi meeting room name, with auto-generation fallback, then insert after properties drawer."
   (interactive)
-  (let* ((room-name (my/jitsi-generate-room-name))
+  (let* ((input (read-string "Room name (leave empty to auto-generate): "))
+         (room-name (if (string-empty-p input)
+                        (my/jitsi-generate-room-name)
+                      input))
          (full-url (concat jitsi-base-url room-name)))
 
-    ;; Find the right insertion point
     (when (derived-mode-p 'org-mode)
       (save-excursion
         (org-back-to-heading)
-        ;; Look for :END: line (end of properties)
+        ;; Look for :END: line (end of properties drawer)
         (if (re-search-forward "^[ \t]*:END:[ \t]*$"
                                (save-excursion (outline-next-heading) (point)) t)
-            ;; Found properties drawer, go to end of line after :END:
             (progn
               (end-of-line)
               (insert "\n" full-url))
-          ;; No properties drawer, insert after heading and timestamp
+          ;; No properties drawer, insert after heading and timestamp/scheduling
           (progn
             (forward-line 1)
-            ;; Skip past any timestamps/scheduling
             (while (looking-at "^[ \t]*[<[]")
               (forward-line 1))
             (insert full-url "\n")))))
 
-    ;; Copy to clipboard
     (kill-new full-url)
     (message "Jitsi room created and copied: %s" full-url)
     full-url))

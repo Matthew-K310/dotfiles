@@ -97,8 +97,9 @@ FUNCTION
   (defvar +magit--refreshed-buffer nil)
   (add-hook! 'magit-pre-refresh-hook
     (defun +magit--set-window-state-h ()
-      (setq-local +magit--refreshed-buffer
-                  (list (current-buffer) (point) (window-start)))))
+      (when (doom-region-active-p)
+        (setq-local +magit--refreshed-buffer
+                    (list (current-buffer) (doom-region-beginning) (window-start))))))
   (add-hook! 'magit-post-refresh-hook
     (defun +magit--restore-window-state-h ()
       (cl-destructuring-bind (&optional buf pt beg) +magit--refreshed-buffer
@@ -297,22 +298,22 @@ FUNCTION
     (map! :map magit-section-mode-map :n "1" nil :n "2" nil :n "3" nil :n "4" nil)))
 
 
-; (use-package! git-commit
-;   :hook (doom-first-file . global-git-commit-mode)
-;   :config
-;   (set-yas-minor-mode! 'git-commit-mode)
+(use-package! git-commit
+  :hook (doom-first-file . global-git-commit-mode)
+  :config
+  (set-yas-minor-mode! 'git-commit-mode)
 
   ;; Enforce git commit conventions.
   ;; See https://chris.beams.io/posts/git-commit/
-;   (setq git-commit-summary-max-length 50
-;         git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
-;   (setq-hook! 'git-commit-mode-hook fill-column 72)
-;
-;   (add-hook! 'git-commit-setup-hook
-;     (defun +vc-start-in-insert-state-maybe-h ()
-;       "Start git-commit-mode in insert state if in a blank commit message,
-; otherwise in default state."
-;       (when (and (bound-and-true-p evil-local-mode)
-;                  (not (evil-emacs-state-p))
-;                  (bobp) (eolp))
-;         (evil-insert-state)))))
+  (setq git-commit-summary-max-length 50
+        git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
+  (setq-hook! 'git-commit-mode-hook fill-column 72)
+
+  (add-hook! 'git-commit-setup-hook
+    (defun +vc-start-in-insert-state-maybe-h ()
+      "Start git-commit-mode in insert state if in a blank commit message,
+otherwise in default state."
+      (when (and (bound-and-true-p evil-local-mode)
+                 (not (evil-emacs-state-p))
+                 (bobp) (eolp))
+        (evil-insert-state)))))

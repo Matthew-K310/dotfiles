@@ -139,3 +139,4 @@ bindkey -M visual '^[[P' vi-delete
 #
 # syntax highlighting
 source /usr/local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export PATH="/usr/local/bin:$PATH"

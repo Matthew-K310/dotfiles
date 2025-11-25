@@ -1,8 +1,28 @@
 return {
+  -- Compline theme
+  {
+    'jblais493/compline',
+    name = 'compline',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd 'colorscheme compline'
+    end,
+  },
+  -- Lauds theme
+  {
+    'jblais493/compline',
+    name = 'lauds',
+    lazy = true,
+    priority = 1000,
+    config = function()
+      vim.cmd 'colorscheme lauds'
+    end,
+  },
   -- Nord
   {
     'shaunsingh/nord.nvim',
-    transparent_background = false,
+    transparent_background = true,
   },
   -- Catppuccin
   {
@@ -23,7 +43,7 @@ return {
   -- Gorgoroth
   {
     'RRethy/base16-nvim',
-    lazy = false,
+    lazy = true,
     config = function()
       vim.cmd 'silent! colorscheme base16-black-metal-gorgoroth'
     end,
