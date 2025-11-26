@@ -3,8 +3,8 @@ audio_device_state:1:PipeWire Audio
 audio_device_state:1:album_art
 audio_device_state:1:HTTP Stream
 state: pause
-current: 18
-time: 169.309
+current: 586
+time: 121.516
 random: 0
 repeat: 0
 single: 0
@@ -293,4 +293,322 @@ playlist_begin
 276:my_music/Wreckage Remix Rough .wav
 277:my_music/Young Turks (Matthew Kennedy Remix) Export 22624 at 2125.wav
 278:my_music/circuit-jam-051525.wav
+279:A Unicorn Masquerade - A Unicorn Masquerade/Across an endless horizon.flac
+280:A Unicorn Masquerade - A Unicorn Masquerade/In dimly lit margins.flac
+281:A Unicorn Masquerade - A Unicorn Masquerade/It lingers.flac
+282:Barry Can't Swim - When Will We Land/Barry Can't Swim & Låpsley - When Will We Land- - 06 Woman.flac
+283:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 01 When Will We Land-.flac
+284:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 02 Deadbeat Gospel (feat. somedeadbeat).flac
+285:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 03 Sonder.flac
+286:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 04 How It Feels.flac
+287:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 05 Sunsleeper.flac
+288:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 07 I Won’t Let You Down (feat. Falle Nioke, Blackboxx).flac
+289:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 08 Always Get Through To You.flac
+290:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 09 Tell Me What You Need (feat. just lil).flac
+291:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 10 Dance of the Crab.flac
+292:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 11 Define Dancing.flac
+293:Jay Hosking - Celestial spheres/Jay Hosking - Celestial spheres - 02 Orrery.flac
+294:Jay Hosking - Celestial spheres/Jay Hosking - Celestial spheres - 03 Aphelion.flac
+295:Jay Hosking - Celestial spheres/Jay Hosking - Celestial spheres - 04 Precession.flac
+296:Jay Hosking - Celestial spheres/Jay Hosking - Celestial spheres - 05 Earthshine.flac
+297:Jay Hosking - Celestial spheres/Jay Hosking - Celestial spheres - 06 Tellurion.flac
+298:Jay Hosking - Celestial spheres/Jay Hosking - Celestial spheres - 07 Perihelion.flac
+299:Jay Hosking - Celestial spheres/Jay Hosking - Celestial spheres - 08 Nychthemeron.flac
+300:Jay Hosking - High time - Music for a productive day/Jay Hosking - High time - Music for a productive day - 02 Minutes.flac
+301:Jay Hosking - High time - Music for a productive day/Jay Hosking - High time - Music for a productive day - 03 Hours.flac
+302:Jay Hosking - High time - Music for a productive day/Jay Hosking - High time - Music for a productive day - 04 Days.flac
+303:Jay Hosking - High time - Music for a productive day/Jay Hosking - High time - Music for a productive day - 06 Years.flac
+304:Jay Hosking - Hoser/Jay Hosking - Hoser - 01 Tracker.flac
+305:Jay Hosking - Hoser/Jay Hosking - Hoser - 02 Deluge.flac
+306:Jay Hosking - Hoser/Jay Hosking - Hoser - 03 Scrooge.flac
+307:Jay Hosking - Hoser/Jay Hosking - Hoser - 04 Press.flac
+308:Jay Hosking - Hoser/Jay Hosking - Hoser - 05 XY.flac
+309:Jay Hosking - Hoser/Jay Hosking - Hoser - 07 Chips.flac
+310:Jay Hosking - Hoser/Jay Hosking - Hoser - 08 Cathedral revisited.flac
+311:Jay Hosking - It may take longer than you think/Jay Hosking - It may take longer than you think - 02 Dogsbody.flac
+312:Jay Hosking - It may take longer than you think/Jay Hosking - It may take longer than you think - 03 Queue.flac
+313:Jay Hosking - It may take longer than you think/Jay Hosking - It may take longer than you think - 04 Niche.flac
+314:Jay Hosking - It may take longer than you think/Jay Hosking - It may take longer than you think - 05 Amen, Grieg.flac
+315:Jay Hosking - It may take longer than you think/Jay Hosking - It may take longer than you think - 06 Come back.flac
+316:Jay Hosking - It may take longer than you think/Jay Hosking - It may take longer than you think - 07 Demon familiar.flac
+317:Jay Hosking - It may take longer than you think/Jay Hosking - It may take longer than you think - 08 Arp.flac
+318:Jay Hosking - It may take longer than you think/Jay Hosking - It may take longer than you think - 09 Wax.flac
+319:Jay Hosking - It may take longer than you think/Jay Hosking - It may take longer than you think - 10 Wane.flac
+320:Jay Hosking - Low tide - Music for a productive day/Jay Hosking - Low tide - Music for a productive day - 01 A1 Channel.flac
+321:Jay Hosking - Low tide - Music for a productive day/Jay Hosking - Low tide - Music for a productive day - 02 A2 Confluence.flac
+322:Jay Hosking - Low tide - Music for a productive day/Jay Hosking - Low tide - Music for a productive day - 03 A3 Cove.flac
+323:Jay Hosking - Low tide - Music for a productive day/Jay Hosking - Low tide - Music for a productive day - 04 A4 Estuary.flac
+324:Jay Hosking - Low tide - Music for a productive day/Jay Hosking - Low tide - Music for a productive day - 05 B1 Inlet.flac
+325:Jay Hosking - Low tide - Music for a productive day/Jay Hosking - Low tide - Music for a productive day - 06 B2 Lagoon.flac
+326:Jay Hosking - Low tide - Music for a productive day/Jay Hosking - Low tide - Music for a productive day - 07 B3 Reservoir.flac
+327:Jay Hosking - Low tide - Music for a productive day/Jay Hosking - Low tide - Music for a productive day - 08 B4 Sound.flac
+328:Jay Hosking - Low tide - Music for a productive day/Jay Hosking - Low tide - Music for a productive day - 09 B5 Tributary.flac
+329:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 01 Imaginary countries.flac
+330:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 02 Dreams must explain themselves.flac
+331:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 03 Very far away from anywhere else.flac
+332:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 04 The farthest shore.flac
+333:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 05 The unreal and the real.flac
+334:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 06 The word for world is forest.flac
+335:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 07 Dancing at the edge of the world.flac
+336:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 08 Always coming home.flac
+337:Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 01 In an empty field, you gave her a mix tape.flac
+338:Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 02 One of the few things that travels upward when you let it go.flac
+339:Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 04 They slipped away at intermission.flac
+340:Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 06 He kept it in the basement, with a tarp over it.flac
+341:Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 07 Bubbling up to the surface when least expected.flac
+342:Jay Hosking - Sketches for My Sweetheart the Drone/Jay Hosking - Sketches for My Sweetheart the Drone - 01 Relatively abstemious.flac
+343:Jay Hosking - Sketches for My Sweetheart the Drone/Jay Hosking - Sketches for My Sweetheart the Drone - 02 Occulta semina.flac
+344:Jay Hosking - Sketches for My Sweetheart the Drone/Jay Hosking - Sketches for My Sweetheart the Drone - 03 Trees under Venice.flac
+345:Jay Hosking - Sketches for My Sweetheart the Drone/Jay Hosking - Sketches for My Sweetheart the Drone - 04 Anthropodenial.flac
+346:Jay Hosking - Sketches for My Sweetheart the Drone/Jay Hosking - Sketches for My Sweetheart the Drone - 05 Walsham.flac
+347:Jay Hosking - The world will never survive without you - ambient works/Jay Hosking - The world will never survive without you - ambient works - 01 Majnoun.flac
+348:Jay Hosking - The world will never survive without you - ambient works/Jay Hosking - The world will never survive without you - ambient works - 02 Benjy.flac
+349:Jay Hosking - The world will never survive without you - ambient works/Jay Hosking - The world will never survive without you - ambient works - 03 Bobbie.flac
+350:Jay Hosking - The world will never survive without you - ambient works/Jay Hosking - The world will never survive without you - ambient works - 04 Atticus.flac
+351:Jay Hosking - The world will never survive without you - ambient works/Jay Hosking - The world will never survive without you - ambient works - 06 Apollo and Hermes.flac
+352:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 01 The Setting Sun.flac
+353:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 02 Night to Day.flac
+354:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 03 Mirror.flac
+355:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 04 Groove.flac
+356:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 05 Vintage Story.flac
+357:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 06 Sunny Village.flac
+358:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 07 Through the Grass at Night.flac
+359:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 08 Adventuring.flac
+360:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 09 To Dawn, from a Very Rainy Night.flac
+361:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 10 Building.flac
+362:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 11 Creating.flac
+363:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 12 Peaceful Village.flac
+364:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 13 Nostalgic.flac
+365:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 14 Midnight.flac
+366:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 15 Heartbeat.flac
+367:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 16 The Seraphs (Tuning Cylinder).flac
+368:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 17 Winter.flac
+369:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 18 Daylight.flac
+370:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 19 Quirky Tavern.flac
+371:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 20 Cultured Tavern.flac
+372:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 21 Hallowcroft.flac
+373:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 22 Fall-o'-croft.flac
+374:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 23 Summer Day.flac
+375:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 24 Roots.flac
+376:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 25 The Invention (Tuning Cylinder).flac
+377:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 26 Spring.flac
+378:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 27 Radiance and Rust.flac
+379:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 28 Eidolon Battle.flac
+380:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 29 The Resonance Archives (Library).flac
+381:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 30 Arctic Winds.flac
+382:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 31 Fall.flac
+383:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 32 Windy Village.flac
+384:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 33 Chilly Village.flac
+385:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 34 Summer Stroll (High Activity Version).flac
+386:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 35 Tenacious.flac
+387:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 36 The Lazaret.flac
+388:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 37 Devastation (with Fade-In).flac
+389:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 38 Nadiya (Spring).flac
+390:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 39 Nadiya (Summer).flac
+391:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 40 Nadiya (Fall).flac
+392:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 41 Nadiya (Winter).flac
+393:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 42 The Safety of a Warm Fire.flac
+394:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 43 V I N T A G e W A V e.flac
+395:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 44 Creative Mode Trailer - 2016.flac
+396:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 45 Feature Trailer - 2020.flac
+397:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 46 Feature Trailer - 2022.flac
+398:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 01 This Version Of You (feat. Julianna Barwick).flac
+399:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 02 Wide Awake (feat. Charlie Houston).flac
+400:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 03 Love Letter (feat. The Knocks).flac
+401:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 04 Behind The Sun.flac
+402:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 05 Forgive Me (feat. Izzy Bizu).flac
+403:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 06 North Garden.flac
+404:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 07 Better Now (feat. MARO).flac
+405:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 08 The Last Goodbye (feat. Bettye LaVette).flac
+406:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 09 All My Life.flac
+407:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 10 Equal (feat. Låpsley).flac
+408:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 11 Healing Grid.flac
+409:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 12 I Can’t Sleep.flac
+410:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 13 Light Of Day (feat. Ólafur Arnalds).flac
+411:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 01 LIGHTNING.flac
+412:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 02 START UP A RUMOUR.flac
+413:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 03 NERVOUS.flac
+414:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 04 CURIOUS (feat. Toro y Moi).flac
+415:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 05 DANGER!.flac
+416:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 06 ON&ON.flac
+417:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 07 LOVE ON ME.flac
+418:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 08 CLOUDS.flac
+419:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 09 RESTORE MY FAITH.flac
+420:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac
+421:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac
+422:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac
+423:The Midnight - Days of Thunder/The Midnight - Days of Thunder - 01 The Years (Prologue).flac
+424:The Midnight - Days of Thunder/The Midnight - Days of Thunder - 02 Gloria.flac
+425:The Midnight - Days of Thunder/The Midnight - Days of Thunder - 03 WeMoveForward.flac
+426:The Midnight - Days of Thunder/The Midnight - Days of Thunder - 04 Days of Thunder.flac
+427:The Prodigy - The Fat of the Land/05. Serial Thrilla.flac
+428:The Prodigy - The Fat of the Land/09. Climbatize.flac
+429:The Prodigy - The Fat of the Land/10. Fuel My Fire.flac
+430:[2007] Vangelis - Blade Runner Trilogy/CD1/01 Vangelis - Main Titles.flac
+431:[2007] Vangelis - Blade Runner Trilogy/CD1/02 Vangelis - Blush Response.flac
+432:[2007] Vangelis - Blade Runner Trilogy/CD1/03 Vangelis - Wait for Me.flac
+433:[2007] Vangelis - Blade Runner Trilogy/CD1/04 Vangelis - Rachel's Song.flac
+434:[2007] Vangelis - Blade Runner Trilogy/CD1/05 Vangelis - Love Theme.flac
+435:[2007] Vangelis - Blade Runner Trilogy/CD1/06 Vangelis - One More Kiss, Dear.flac
+436:[2007] Vangelis - Blade Runner Trilogy/CD1/07 Vangelis - Blade Runner Blues.flac
+437:[2007] Vangelis - Blade Runner Trilogy/CD1/08 Vangelis - Memories of Green.flac
+438:[2007] Vangelis - Blade Runner Trilogy/CD1/09 Vangelis - Tales of the Future.flac
+439:[2007] Vangelis - Blade Runner Trilogy/CD1/10 Vangelis - Damask Rose.flac
+440:[2007] Vangelis - Blade Runner Trilogy/CD1/11 Vangelis - End Titles.flac
+441:[2007] Vangelis - Blade Runner Trilogy/CD1/12 Vangelis - Tears in Rain.flac
+442:[2007] Vangelis - Blade Runner Trilogy/CD2/01 Vangelis - Longing.flac
+443:[2007] Vangelis - Blade Runner Trilogy/CD2/02 Vangelis - Unveiled Twinkling Space.flac
+444:[2007] Vangelis - Blade Runner Trilogy/CD2/03 Vangelis - Dr. Tyrell's Owl.flac
+445:[2007] Vangelis - Blade Runner Trilogy/CD2/04 Vangelis - At Mr. Chew's.flac
+446:[2007] Vangelis - Blade Runner Trilogy/CD2/05 Vangelis - Leo's Room.flac
+447:[2007] Vangelis - Blade Runner Trilogy/CD2/06 Vangelis - One Alone.flac
+448:[2007] Vangelis - Blade Runner Trilogy/CD2/07 Vangelis - Deckard and Roy's Duel.flac
+449:[2007] Vangelis - Blade Runner Trilogy/CD2/08 Vangelis - Dr. Tyrell's Death.flac
+450:[2007] Vangelis - Blade Runner Trilogy/CD2/09 Vangelis - Desolation Path.flac
+451:[2007] Vangelis - Blade Runner Trilogy/CD2/10 Vangelis - Empty Streets.flac
+452:[2007] Vangelis - Blade Runner Trilogy/CD2/11 Vangelis - Mechanical Dolls.flac
+453:[2007] Vangelis - Blade Runner Trilogy/CD2/12 Vangelis - Fading Away.flac
+454:[2007] Vangelis - Blade Runner Trilogy/CD3/01 Vangelis - Launch Approval.flac
+455:[2007] Vangelis - Blade Runner Trilogy/CD3/02 Vangelis - Up and Running.flac
+456:[2007] Vangelis - Blade Runner Trilogy/CD3/03 Vangelis - Mail from India.flac
+457:[2007] Vangelis - Blade Runner Trilogy/CD3/04 Vangelis - BR Downtown.flac
+458:[2007] Vangelis - Blade Runner Trilogy/CD3/05 Vangelis - Dimitri's Bar.flac
+459:[2007] Vangelis - Blade Runner Trilogy/CD3/06 Vangelis - Sweet Solitude.flac
+460:[2007] Vangelis - Blade Runner Trilogy/CD3/07 Vangelis - No Expectation Boulevard.flac
+461:[2007] Vangelis - Blade Runner Trilogy/CD3/08 Vangelis - Vadavarot.flac
+462:[2007] Vangelis - Blade Runner Trilogy/CD3/09 Vangelis - Perfume Exotico.flac
+463:[2007] Vangelis - Blade Runner Trilogy/CD3/10 Vangelis - Spotkanie Z Matka.flac
+464:[2007] Vangelis - Blade Runner Trilogy/CD3/11 Vangelis - Piano in an Empty Room.flac
+465:[2007] Vangelis - Blade Runner Trilogy/CD3/12 Vangelis - Keep Asking.flac
+466:addison rae - in the rain (sam gellaitry remix)/addison rae - in the rain (sam gellaitry remix).mp3
+467:arcologies - VAPOR DRIVE/arcologies - VAPOR DRIVE - 02 crystal stasis.flac
+468:arcologies - VAPOR DRIVE/arcologies - VAPOR DRIVE - 04 oblivion.flac
+469:arcologies - VAPOR DRIVE/arcologies - VAPOR DRIVE - 06 monsoon.flac
+470:arcologies - VAPOR DRIVE/arcologies - VAPOR DRIVE - 07 searcher.flac
+471:arcologies - VAPOR DRIVE/arcologies - VAPOR DRIVE - 08 three days later.flac
+472:arcologies - VAPOR DRIVE/arcologies - VAPOR DRIVE - 09 symmetry beyond.flac
+473:arcologies - VAPOR DRIVE/arcologies - VAPOR DRIVE - 10 visual memory unit.flac
+474:arcologies - VAPOR DRIVE/arcologies - VAPOR DRIVE - 11 the city at dusk (outro).flac
+475:arcologies - ocean deep/arcologies - ocean deep - 01 cosmic lens.flac
+476:arcologies - ocean deep/arcologies - ocean deep - 02 the dreaming dark.flac
+477:arcologies - ocean deep/arcologies - ocean deep - 03 rendevous.flac
+478:arcologies - ocean deep/arcologies - ocean deep - 04 cultivation.flac
+479:arcologies - ocean deep/arcologies - ocean deep - 05 coma.flac
+480:arcologies - ocean deep/arcologies - ocean deep - 07 many universes.flac
+481:arcologies - ocean deep/arcologies - ocean deep - 10 basement life.flac
+482:arcologies - ocean deep/arcologies - ocean deep - 11 drum machine dreams (yamaha rx5 demo).flac
+483:arcologies - ocean deep/arcologies - ocean deep - 12 suspended simulation.flac
+484:arcologies - ocean deep/arcologies - ocean deep - 13 silent lights.flac
+485:my_music/Add Drums Jazz Condensed.wav
+486:my_music/All Too Late Remix Snippet 2-24-25 2017.wav
+487:my_music/Am I Wrong (Matthew Kennedy Remix).wav
+488:my_music/Banana House copy.wav
+489:my_music/Break My Rules (Matthew Kennedy Remix).wav
+490:my_music/Casio (Matthew Kennedy Hydrasynth Exclusive Remix).wav
+491:my_music/Cinematic Concept Album/Creeping Death in the Black of Night copy.wav
+492:my_music/Cinematic Concept Album/Decisions (Nov. Day 1).wav
+493:my_music/Cinematic Concept Album/Drifting.wav
+494:my_music/Cinematic Concept Album/Footsteps of Gods.wav
+495:my_music/Cinematic Concept Album/Mysteries of the Space Between.wav
+496:my_music/Cinematic Concept Album/The Peace of a Spring Rainfall.wav
+497:my_music/Cinematic Concept Album/Welcome to Mars (Rough 122724 1347).wav
+498:my_music/Copy of High Remix Export 1 62924.wav
+499:my_music/Copy of Move Me Remix Export 1 71424 at 1643.wav
+500:my_music/Cruel Summer Remix.wav
+501:my_music/DIY (Matthew Kennedy Remix) Export 1 21224 at 1706.wav
+502:my_music/Damn Vincent.wav
+503:my_music/Deep Mist.wav
+504:my_music/Dizzy (Matthew Kennedy Remix).wav
+505:my_music/Drift and Drive (Proof of Concept).wav
+506:my_music/For the Glory of the Omnissiah.wav
+507:my_music/Galvanize (Low Flying Oscillator Remix) 2.wav
+508:my_music/Galvanize (Low Flying Oscillator Remix).wav
+509:my_music/Heartbreak on the Dancefloor (Low Flying Oscillator Remix) Master 101423 at 2127.wav
+510:my_music/High Remix Export 1 62924.wav
+511:my_music/Hounds of War (Rough 102624 1804).wav
+512:my_music/Internal (Nov. Day 4).wav
+513:my_music/Jason Remix (Nov. Day 15).wav
+514:my_music/Johnny and Mary (Low Flying Oscillator Remix).wav
+515:my_music/Lies of P Re-score copy.wav
+516:my_music/Life (Low Flying Oscillator Remix).wav
+517:my_music/Locked Out of Heaven (Low Flying Oscillator Remix).wav
+518:my_music/Move Me Remix Export 1 71424 at 1643.wav
+519:my_music/Movement (AudioHaze Cover) (Matthew Kennedy Remix) copy.wav
+520:my_music/My Trigger (Low Flying Oscillator Remix).wav
+521:my_music/Out of Focus Remix Export 1 62624.wav
+522:my_music/PS5 (Low Flying Oscillator Remix).wav
+523:my_music/Preparations.wav
+524:my_music/Project copy.wav
+525:my_music/Rude Awakenings.wav
+526:my_music/Rumble (Low Flying Oscillator Remix).wav
+527:my_music/Scatman (Low Flying Oscillator Remix.wav
+528:my_music/Starboy (Low Flying Oscillator Master Remix 91923 at 2052).wav
+529:my_music/Starboy (Low Flying Oscillator Master Remix).wav
+530:my_music/Start a Riot (Low Flying Oscillator Remix).wav
+531:my_music/Start a Riot (Low Flying Oscillator Slowed Remix) .wav
+532:my_music/Stumble (Nov. Day 5).wav
+533:my_music/Talk Slow Remix (Nov. Day 16) Rough Export.wav
+534:my_music/The Cold of Winter.wav
+535:my_music/The New Beginning of Fall.wav
+536:my_music/The Peace of a Spring Rainfall(1).wav
+537:my_music/Uh Oh Remix Export 71924 at 1727.wav
+538:my_music/War for Heavens Gates.wav
+539:my_music/Welcome to Mars (Rough 122724 1347).wav.wav
+540:my_music/Wreckage Remix Rough .wav
+541:my_music/Young Turks (Matthew Kennedy Remix) Export 22624 at 2125.wav
+542:my_music/circuit-jam-051525.wav
+543:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 01 LIGHTNING.flac
+544:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 02 START UP A RUMOUR.flac
+545:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 03 NERVOUS.flac
+546:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 04 CURIOUS (feat. Toro y Moi).flac
+547:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 05 DANGER!.flac
+548:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 06 ON&ON.flac
+549:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 07 LOVE ON ME.flac
+550:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 08 CLOUDS.flac
+551:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 09 RESTORE MY FAITH.flac
+552:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac
+553:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac
+554:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac
+555:The Midnight - Days of Thunder/The Midnight - Days of Thunder - 01 The Years (Prologue).flac
+556:The Midnight - Days of Thunder/The Midnight - Days of Thunder - 02 Gloria.flac
+557:The Midnight - Days of Thunder/The Midnight - Days of Thunder - 03 WeMoveForward.flac
+558:The Midnight - Days of Thunder/The Midnight - Days of Thunder - 04 Days of Thunder.flac
+559:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 01 LIGHTNING.flac
+560:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 02 START UP A RUMOUR.flac
+561:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 03 NERVOUS.flac
+562:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 04 CURIOUS (feat. Toro y Moi).flac
+563:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 05 DANGER!.flac
+564:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 06 ON&ON.flac
+565:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 07 LOVE ON ME.flac
+566:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 08 CLOUDS.flac
+567:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 09 RESTORE MY FAITH.flac
+568:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac
+569:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac
+570:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac
+571:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 01 LIGHTNING.flac
+572:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 02 START UP A RUMOUR.flac
+573:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 03 NERVOUS.flac
+574:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 04 CURIOUS (feat. Toro y Moi).flac
+575:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 05 DANGER!.flac
+576:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 06 ON&ON.flac
+577:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 07 LOVE ON ME.flac
+578:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 08 CLOUDS.flac
+579:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 09 RESTORE MY FAITH.flac
+580:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac
+581:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac
+582:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac
+583:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 02 START UP A RUMOUR.flac
+584:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 03 NERVOUS.flac
+585:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 01 LIGHTNING.flac
+586:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 02 START UP A RUMOUR.flac
+587:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 03 NERVOUS.flac
+588:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 04 CURIOUS (feat. Toro y Moi).flac
+589:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 05 DANGER!.flac
+590:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 06 ON&ON.flac
+591:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 07 LOVE ON ME.flac
+592:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 08 CLOUDS.flac
+593:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 09 RESTORE MY FAITH.flac
+594:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac
+595:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac
+596:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac
 playlist_end

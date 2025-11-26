@@ -20,6 +20,7 @@ alias \
 # Colorize commands when possible.
 alias \
 	ls="ls -a" \
+	exa="exa -a" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi" \

@@ -133,6 +133,7 @@
 (load! "lisp/jitsi-meeting")
 (load! "lisp/meeting-assistant")
 (load! "lisp/mu4e-contact")
+(load! "lisp/mu4e-dashboard")
 (load! "lisp/nm")
 (load! "lisp/org-caldav")
 (load! "lisp/pg-config")
@@ -237,11 +238,13 @@
 
 ;; Custom keymaps
 (map! :leader
-      ;; elfeed keybinds
+      ;; elfeed and erc keybinds
       (:prefix ("e" . "elfeed")
        :desc "Open elfeed"         "e" #'elfeed
        :desc "Update elfeed"       "u" #'elfeed-update
-       :desc "Open elfeed-tube-mpv" "t" #'elfeed-tube-mpv)
+       :desc "Open elfeed-tube-mpv" "t" #'elfeed-tube-mpv
+       :desc "Open ERC" "r" #'erc
+       :desc "Open EWW" "w" #'eww)
 
       ;; Magit mode mappings
       (:prefix ("g" . "magit")
@@ -645,16 +648,21 @@ Comments:
            (file+headline "~/notes/inbox.org" "Ideas")
            "* [%<%Y-%m-%d %a>] %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?"
            :prepend t)
+          
+          ("f" "Feynman Technique" entry
+           (file "~/notes/feynman.org")
+           "* %^{Topic}\n** Explanation (first pass)\n%?\n** Gaps / Questions\n** Refined Explanation\n** Final Simple Version")
+
 
           ("p" "Project" entry
            (file+headline "~/notes/projects.org" "Projects")
            "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:END:\n** TODO %?")
-
+          
           ("n" "Note" entry
            (file+headline "~/notes/inbox.org" "Inbox")
            "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
            :prepend t)
-          
+                
           ("b" "Bookmark" entry
            (file+headline "~/notes/bookmarks.org" "Inbox")
            "** [[%^{URL}][%^{Title}]]\n:PROPERTIES:\n:CREATED: %U\n:TAGS: %(org-capture-bookmark-tags)\n:END:\n\n"
@@ -674,24 +682,24 @@ Comments:
 \\ *** Notes
 %?"))))
 
-(defun org-capture-bookmark-tags ()
-  "Get tags from existing bookmarks and prompt for tags with completion."
-  (save-window-excursion
-    (let ((tags-list '()))
-      ;; Collect existing tags
-      (with-current-buffer (find-file-noselect "~/notes/bookmarks.org")
-        (save-excursion
-          (goto-char (point-min))
-          (while (re-search-forward "^:TAGS:\\s-*\\(.+\\)$" nil t)
-            (let ((tag-string (match-string 1)))
-              (dolist (tag (split-string tag-string "[,;]" t "[[:space:]]"))
-                (push (string-trim tag) tags-list))))))
-      ;; Remove duplicates and sort
-      (setq tags-list (sort (delete-dups tags-list) 'string<))
-      ;; Prompt user with completion
-      (let ((selected-tags (completing-read-multiple "Tags (comma-separated): " tags-list)))
-        ;; Return as a comma-separated string
-        (mapconcat 'identity selected-tags ", ")))))
+  (defun org-capture-bookmark-tags ()
+    "Get tags from existing bookmarks and prompt for tags with completion."
+    (save-window-excursion
+      (let ((tags-list '()))
+        ;; Collect existing tags
+        (with-current-buffer (find-file-noselect "~/notes/bookmarks.org")
+          (save-excursion
+            (goto-char (point-min))
+            (while (re-search-forward "^:TAGS:\\s-*\\(.+\\)$" nil t)
+              (let ((tag-string (match-string 1)))
+                (dolist (tag (split-string tag-string "[,;]" t "[[:space:]]"))
+                  (push (string-trim tag) tags-list))))))
+        ;; Remove duplicates and sort
+        (setq tags-list (sort (delete-dups tags-list) 'string<))
+        ;; Prompt user with completion
+        (let ((selected-tags (completing-read-multiple "Tags (comma-separated): " tags-list)))
+          ;; Return as a comma-separated string
+          (mapconcat 'identity selected-tags ", ")))))
 
 (defun blog/new-post (title)
   "Create a new blog post in `~/notes/blog/posts/` with TITLE.
@@ -876,154 +884,6 @@ Inserts Org front-matter and opens the file."
   (add-hook 'after-init-hook #'inhibit-mouse-mode)
   (add-hook 'server-after-make-frame-hook #'inhibit-mouse-mode))
 
-(require 'auth-source)
-(require 'erc)
-
-(defun run-erc ()
-  "Connect to irc.matthewservers.org, reading the password from ~/.authinfo.gpg."
-  (interactive)
-  (let* ((host "irc.matthewservers.org")
-         (port 6697)
-         (auth (car (auth-source-search :host host :port port :require '(:secret))))
-         (secret (plist-get auth :secret))
-         (password (if (functionp secret) (funcall secret) secret)))
-    (erc-tls :server host
-             :port port
-             :nick "mattken"
-             :user "mattken/irc.libera.chat"
-             :password password)))
-
-;; === Load and core setup ===
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-(require 'mu4e)
-(require 'smtpmail)
-
-(setq
- mu4e-maildir "~/.local/share/mail"
- mu4e-get-mail-command "mbsync --all"
- mu4e-update-interval 300
- mu4e-headers-auto-update t
- mu4e-view-show-images t
- mu4e-compose-signature-auto-include nil
- mu4e-use-fancy-chars t
-
- ;; Sending mail
- sendmail-program "/usr/bin/msmtp"
- message-send-mail-function 'message-send-mail-with-sendmail
-
- ;; Context behavior
- mu4e-context-policy 'pick-first
- mu4e-compose-context-policy 'ask
-
- ;; Quality of life
- mu4e-compose-format-flowed t
- mu4e-view-show-addresses t
- mu4e-change-filenames-when-moving t
- mu4e-attachment-dir "~/cloud/downloads/mail")
-
-;; suppress the personal account warning
-(setq mu4e-hide-personal-addresses t)
-
-;; === Contexts ===
-(setq mu4e-contexts
-      (list
-       ;; Personal
-       (make-mu4e-context
-        :name "Personal"
-        :match-func
-        (lambda (msg)
-          (when msg
-            (string-match-p "matthew@matthew-kennedy.com"
-                            (concat (or (mu4e-message-field msg :to) "")
-                                    (or (mu4e-message-field msg :from) "")))))
-        :vars '((user-mail-address . "matthew@matthew-kennedy.com")
-                (user-full-name    . "Matthew Kennedy")
-                (mu4e-sent-folder   . "/personal/Sent")
-                (mu4e-drafts-folder . "/personal/Drafts")
-                (mu4e-trash-folder  . "/personal/Trash")
-                (mu4e-refile-folder . "/personal/Archive")))
-
-       ;; IT
-       (make-mu4e-context
-        :name "IT"
-        :match-func
-        (lambda (msg)
-          (when msg
-            (string-match-p "it@matthew-kennedy.com"
-                            (concat (or (mu4e-message-field msg :to) "")
-                                    (or (mu4e-message-field msg :from) "")))))
-        :vars '((user-mail-address . "it@matthew-kennedy.com")
-                (user-full-name    . "Matthew Kennedy")
-                (mu4e-sent-folder   . "/it/Sent")
-                (mu4e-drafts-folder . "/it/Drafts")
-                (mu4e-trash-folder  . "/it/Trash")
-                (mu4e-refile-folder . "/it/Archive")))
-
-       ;; iCloud
-       (make-mu4e-context
-        :name "iCloud"
-        :match-func
-        (lambda (msg)
-          (when msg
-            (string-match-p "matthew_i_kennedy@icloud.com"
-                            (concat (or (mu4e-message-field msg :to) "")
-                                    (or (mu4e-message-field msg :from) "")))))
-        :vars '((user-mail-address . "matthew_i_kennedy@icloud.com")
-                (user-full-name    . "Matthew Kennedy")
-                (mu4e-sent-folder   . "/icloud/Sent Messages")
-                (mu4e-drafts-folder . "/icloud/Drafts")
-                (mu4e-trash-folder  . "/icloud/Deleted Messages")
-                (mu4e-refile-folder . "/icloud/Archive")))
-
-       ;; Business
-       (make-mu4e-context
-        :name "Business"
-        :match-func
-        (lambda (msg)
-          (when msg
-            (string-match-p "business@matthew-kennedy.com"
-                            (concat (or (mu4e-message-field msg :to) "")
-                                    (or (mu4e-message-field msg :from) "")))))
-        :vars '((user-mail-address . "business@matthew-kennedy.com")
-                (user-full-name    . "Matthew Kennedy Productions")
-                (mu4e-sent-folder   . "/business/Sent")
-                (mu4e-drafts-folder . "/business/Drafts")
-                (mu4e-trash-folder  . "/business/Trash")
-                (mu4e-refile-folder . "/business/Archive")))
-
-       ;; Accounts
-       (make-mu4e-context
-        :name "Accounts"
-        :match-func
-        (lambda (msg)
-          (when msg
-            (string-match-p "accounts@matthew-kennedy.com"
-                            (concat (or (mu4e-message-field msg :to) "")
-                                    (or (mu4e-message-field msg :from) "")))))
-        :vars '((user-mail-address . "accounts@matthew-kennedy.com")
-                (user-full-name    . "Matthew Kennedy")
-                (mu4e-sent-folder   . "/accounts/Sent")
-                (mu4e-drafts-folder . "/accounts/Drafts")
-                (mu4e-trash-folder  . "/accounts/Trash")
-                (mu4e-refile-folder . "/accounts/Archive")))
-       
-
-       ;; Mailing
-       (make-mu4e-context
-        :name "Mailing"
-        :match-func
-        (lambda (msg)
-          (when msg
-            (string-match-p "mailing@matthew-kennedy.com"
-                            (concat (or (mu4e-message-field msg :to) "")
-                                    (or (mu4e-message-field msg :from) "")))))
-        :vars '((user-mail-address . "mailing@matthew-kennedy.com")
-                (user-full-name    . "Matthew Kennedy")
-                (mu4e-sent-folder   . "/mailing/Sent")
-                (mu4e-drafts-folder . "/mailing/Drafts")
-                (mu4e-trash-folder  . "/mailing/Trash")
-                (mu4e-refile-folder . "/mailing/Archive")))))
-
 (defun my-open-vterm-at-point ()
   "Open vterm in the directory of the currently selected window's buffer.
 This function is designed to be called via `emacsclient -e`."
@@ -1141,7 +1001,7 @@ This function is designed to be called via `emacsclient -e`."
 
   ;; Browser keybindings
   (define-key emms-browser-mode-map (kbd "RET") 'emms-browser-add-tracks-and-play)
-  (define-key emms-browser-mode-map (kbd "SPC") 'emms-pause)
+  ;; (define-key emms-browser-mode-map (kbd "SPC") 'emms-pause)
 
   ;; Add notification hook
   (add-hook 'emms-player-started-hook 'emms-notify-song-change-with-artwork))

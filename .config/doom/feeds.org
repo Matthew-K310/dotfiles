@@ -92,14 +92,17 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC6KVHFHpCwujbw2TfKnQ3uQ][Ice Cream Sandwich]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC_EfRVbwrU-0dd-jpZn-gYw][Jared Henderson]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCa8W2_uf81Ew6gYuw0VPSeA][juxtopposed]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCQjBsscIa_mgEnSvWpm_9vw][odysseas__]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCQjBsscIa_mgEnSvWpm_9vw][Odysseas]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCib8MAX3TwtAPw007zcraRg][shar]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCfMJ2MchTSW2kWaT0kK94Yw][WilliamOsman2]]
 *** Linux
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwHwDuNd9lCdA7chyyquDXw][Bread On Penguins]]
+Brodie Robertson
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCEEVcDuBRDiwxfXAgQjLGug][Dreams of Code]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC1tV5SjRyejRGeHAaMGYSsQ][Joshua Blais]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCMHZ1P2iYimObhtHKfPz7gw][NoBoilerplate]]
+tony
+Veronica Explains
 *** Music
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCmtcum1LsGJN55l9yLkvA8g][Alex Ball]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC7yVe2k8-XJNBSNswEJWGOA][Camus]]
@@ -108,6 +111,7 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCu1R-PodIMk0liS7OGSUboQ][Jay Hosking]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCqhvpQUCBJKU80SNm-uvnGQ][Like It or Not]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC-RA5BzE_BnZhf5iVdNF1hA][loopop]]
+mayv
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC4OAAbxtB6QEKaTDb-SEe-Q][Ricky Tinez]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCzsd4-oyHhNbAXfceOQ5HTw][Venus Theory]]
 *** Technology

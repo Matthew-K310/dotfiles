@@ -11,46 +11,34 @@
 (package! nord-theme)
 (package! ewal-spacemacs-themes)
 
-;; Dev tools
-;; (package! forge)
-(package! ghub)
-
 ;; go dev
 (package! templ-ts-mode)
 (package! go-mode)
 
-;; org modules
+;; org
 (package! org-roam)
 (package! org-roam-ui)
-;; (package! org-roam-bibtex)
 (package! org-bullets)
 (package! ox-hugo)
 (package! org-noter)
 (package! org-noter-pdftools)
-
-;; org mode
 (package! org-caldav)
 
-;; writing tools
-(package! focus)
-;; (package! citar-org-roam)
-
-;; Communication
-(package! jabber)
-
-;; file navigation
-(package! dirvish)
-(package! harpoon)
-
-;; elfeed
+;; utils
+(package! nov)
+(package! djvu)
+;; accounting
+(package! evil-ledger)
+(package! ledger-mode)
+(package! inhibit-mouse)
 (package! elfeed-tube)
 (package! elfeed-tube-mpv)
+(package! focus)
 
-;; Other tools
+;; programs
+(package! bluetooth)
+(package! dirvish)
+(package! harpoon)
 (package! syncthing)
-(package! inhibit-mouse)
 (package! emacs-w3m)
-
-;; accounting
-(package! ledger-mode)
-(package! evil-ledger)
+(package! jabber)
