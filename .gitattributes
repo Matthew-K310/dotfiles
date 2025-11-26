@@ -1,2 +1,6 @@
+.config/aerc/** filter=git-crypt diff=git-crypt
 .config/doom/private/** filter=git-crypt diff=git-crypt
+.config/mbsync/** filter=git-crypt diff=git-crypt
+.config/msmtp/** filter=git-crypt diff=git-crypt
+.config/profanity/** filter=git-crypt diff=git-crypt
 .gitattributes !filter !diff

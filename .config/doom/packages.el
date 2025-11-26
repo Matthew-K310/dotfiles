@@ -23,6 +23,7 @@
 (package! org-noter)
 (package! org-noter-pdftools)
 (package! org-caldav)
+(package! org-habit-stats)
 
 ;; utils
 (package! nov)
@@ -37,7 +38,9 @@
 
 ;; programs
 (package! bluetooth)
+(package! elfeed)
 (package! dirvish)
+(package! pipewire)
 (package! harpoon)
 (package! syncthing)
 (package! emacs-w3m)
