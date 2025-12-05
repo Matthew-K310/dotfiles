@@ -1,9 +1,8 @@
 # -*- mode: snippet -*-
 # name: frontmatter
-# key: trigger-key
+# key: fm
 # condition: t
 # --
-
 #+TITLE: `(file-name-base (buffer-file-name))`
 #+DATE: ${1:`(format-time-string "%Y-%m-%d")`}
 #+DESCRIPTION: ${2:Brief description for SEO}

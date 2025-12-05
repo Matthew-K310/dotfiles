@@ -26,7 +26,7 @@ Accapted value types can be one or more of ref, hash, url, username, or name.")
 Accapted value types can be one or more of ref, hash, url, username, or name.")
 
 (defvar doom-ci-commit-types
-  '(bump dev docs feat fix merge nit perf refactor release revert test tweak)
+  '(bump dev docs feat fix merge nit perf refactor release revert test chore)
   "A list of valid commit types.")
 
 (defvar doom-ci-commit-scopeless-types '(bump merge release revert)

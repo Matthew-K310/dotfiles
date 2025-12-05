@@ -18,7 +18,7 @@
   (when (or (not (or (require 'mu4e-config nil t)
                      (require 'mu4e-meta nil t)))
             (version< mu4e-mu-version "1.4"))
-    (setq mu4e-maildir "~/.mail"
+    (setq mu4e-maildir "~/.local/share/mail"
           mu4e-user-mail-address-list nil))
   :config
   (set-debug-variable! 'mu4e-debug)
@@ -178,7 +178,14 @@ is non-nil."
 
   (plist-put (cdr (assoc :flags mu4e-header-info)) :shortname " Flags") ; default=Flgs
   (add-to-list 'mu4e-bookmarks
-               '("flag:flagged" "Flagged messages" ?f) t)
+               '(:name "Flagged messages"
+                 :query "flag:flagged"
+                 :key ?f) t)
+
+  (add-to-list 'mu4e-bookmarks
+               '(:name "Archived messages"
+                 :query "maildir:/personal/Archive OR maildir:/it/Archive OR maildir:/icloud/Archive OR maildir:/business/Archive OR maildir:/accounts/Archive OR maildir:/mailing/Archive" 
+                 :key ?a) t)
 
   ;; TODO avoid assuming that nerd-icons is present
   (defvar +mu4e-header-colorized-faces
@@ -214,28 +221,28 @@ is non-nil."
                  '+mu4e-header--maildir-colors
                  maildir)))))
           (:account-stripe .
-           (:name "Account"
-            :shortname "▐"
-            :help "Which account/maildir this email belongs to"
-            :function
-            (lambda (msg)
-              (let ((account
-                     (replace-regexp-in-string
-                      "\\`/?\\([^/]+\\)/.*\\'" "\\1"
-                      (mu4e-message-field msg :maildir))))
-                (propertize
-                 (+mu4e-colorize-str "▌" '+mu4e-header--maildir-colors account)
-                 'help-echo account)))))
+                           (:name "Account"
+                            :shortname "▐"
+                            :help "Which account/maildir this email belongs to"
+                            :function
+                            (lambda (msg)
+                              (let ((account
+                                     (replace-regexp-in-string
+                                      "\\`/?\\([^/]+\\)/.*\\'" "\\1"
+                                      (mu4e-message-field msg :maildir))))
+                                (propertize
+                                 (+mu4e-colorize-str "▌" '+mu4e-header--maildir-colors account)
+                                 'help-echo account)))))
           (:recipnum .
-           (:name "Number of recipients"
-            :shortname " ⭷"
-            :help "Number of recipients for this message"
-            :function
-            (lambda (msg)
-              (propertize (format "%2d"
-                                  (+ (length (mu4e-message-field msg :to))
-                                     (length (mu4e-message-field msg :cc))))
-                          'face 'mu4e-footer-face))))))
+                     (:name "Number of recipients"
+                      :shortname " ⭷"
+                      :help "Number of recipients for this message"
+                      :function
+                      (lambda (msg)
+                        (propertize (format "%2d"
+                                            (+ (length (mu4e-message-field msg :to))
+                                               (length (mu4e-message-field msg :cc))))
+                                    'face 'mu4e-footer-face))))))
 
   ;; Marks usually affect the current view
   (defadvice! +mu4e--refresh-current-view-a (&rest _)
@@ -281,8 +288,8 @@ is non-nil."
     (imagemagick-register-types))
 
   (map! (:when (modulep! :ui workspaces)
-         :map mu4e-main-mode-map
-         :ne "h" #'+workspace/other)
+          :map mu4e-main-mode-map
+          :ne "h" #'+workspace/other)
         :map mu4e-headers-mode-map
         :vne "l" #'+mu4e/capture-msg-to-agenda)
 
@@ -490,7 +497,7 @@ Must be set before org-msg is loaded to take effect.")
                (code-src
                 (mapcar (lambda (mode)
                           `(code ,(intern (concat "src src-" (symbol-name mode)))
-                                 ,inline-src))
+                            ,inline-src))
                         inline-modes))
                (base-quote '((padding-left . "5px") (margin-left . "10px")
                              (margin-top . "20px") (margin-bottom . "0")
@@ -502,10 +509,10 @@ Must be set before org-msg is loaded to take effect.")
                 (mapcar (lambda (x)
                           (let ((c (nth x quote-palette)))
                             `(div ,(intern (format "quote%d" (1+ x)))
-                                  (,@base-quote
-                                   (color . ,c)
-                                   (border-left . ,(concat "3px solid "
-                                                           (org-msg-lighten c)))))))
+                              (,@base-quote
+                               (color . ,c)
+                               (border-left . ,(concat "3px solid "
+                                                       (org-msg-lighten c)))))))
                         (number-sequence 0 (1- (length quote-palette))))))
           `((del nil ((color . "grey") (border-left . "none")
                       (text-decoration . "line-through") (margin-bottom . "0px")

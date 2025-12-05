@@ -6523,3 +6523,134 @@
 2025-11-25T22:55:59 exception: Bad song index
 2025-11-25T22:56:02 exception: Bad song index
 2025-11-25T23:00:25 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 01 LIGHTNING.flac"
+2025-11-27T23:12:28 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 02 START UP A RUMOUR.flac"
+2025-11-28T19:50:54 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 03 NERVOUS.flac"
+2025-11-28T20:40:12 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 03 NERVOUS.flac"
+2025-11-28T20:42:01 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 04 CURIOUS (feat. Toro y Moi).flac"
+2025-11-28T20:43:28 output: Failed to play on "PipeWire Audio" (pipewire): no target node available
+2025-11-28T20:45:29 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 04 CURIOUS (feat. Toro y Moi).flac"
+2025-11-28T20:49:18 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 05 DANGER!.flac"
+2025-11-28T20:53:22 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 06 ON&ON.flac"
+2025-11-28T20:55:41 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 07 LOVE ON ME.flac"
+2025-11-28T20:59:33 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 08 CLOUDS.flac"
+2025-11-28T21:02:42 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 09 RESTORE MY FAITH.flac"
+2025-11-28T21:08:54 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac"
+2025-11-28T21:12:37 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac"
+2025-11-28T21:17:02 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac"
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0008
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0007
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0006
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0005
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0004
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0003
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0002
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0001
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0012
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0011
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0010
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0009
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0008
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0007
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0006
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0005
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0004
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0003
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0002
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0001
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0012
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0011
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0010
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0009
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0008
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0007
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0006
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0005
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0004
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0003
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0002
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0001
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0012
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0011
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0010
+2025-11-29T00:48:21 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0009
+2025-12-01T22:37:21 player: played "A Unicorn Masquerade - A Unicorn Masquerade/It lingers.flac"
+2025-12-01T22:44:18 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 01 LIGHTNING.flac"
+2025-12-03T10:23:11 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 02 START UP A RUMOUR.flac"
+2025-12-03T10:23:24 player: played "Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 01 In an empty field, you gave her a mix tape.flac"
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0012
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0011
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0010
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0009
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0008
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0007
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0006
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0005
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0004
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0003
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0002
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD3/Vangelis - Blade Runner CD3.cue/track0001
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0012
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0011
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0010
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0009
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0008
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0007
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0006
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0005
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0004
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0003
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0002
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD2/Vangelis - Blade Runner CD2.cue/track0001
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0012
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0011
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0010
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0009
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0008
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0007
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0006
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0005
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0004
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0003
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0002
+2025-12-03T10:27:11 update: removing [2007] Vangelis - Blade Runner Trilogy/CD1/Vangelis - Blade Runner CD1.cue/track0001
+2025-12-03T10:29:02 player: played "Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 01 In an empty field, you gave her a mix tape.flac"
+2025-12-03T10:34:48 player: played "Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 02 One of the few things that travels upward when you let it go.flac"
+2025-12-03T10:37:08 player: played "Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 04 They slipped away at intermission.flac"
+2025-12-03T10:48:10 pipewire_output: Decoder is too slow; playing silence to avoid xrun
+2025-12-03T10:48:10 pipewire_output: Decoder is too slow; playing silence to avoid xrun
+2025-12-03T10:48:10 player: played "Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 06 He kept it in the basement, with a tarp over it.flac"
+2025-12-03T10:51:14 player: played "Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 07 Bubbling up to the surface when least expected.flac"
+2025-12-03T10:58:53 player: played "Jay Hosking - Sketches for My Sweetheart the Drone/Jay Hosking - Sketches for My Sweetheart the Drone - 01 Relatively abstemious.flac"
+2025-12-03T11:05:11 player: played "Jay Hosking - Sketches for My Sweetheart the Drone/Jay Hosking - Sketches for My Sweetheart the Drone - 02 Occulta semina.flac"
+2025-12-03T11:13:47 player: played "Jay Hosking - Sketches for My Sweetheart the Drone/Jay Hosking - Sketches for My Sweetheart the Drone - 03 Trees under Venice.flac"
+2025-12-03T11:17:09 player: played "Jay Hosking - Sketches for My Sweetheart the Drone/Jay Hosking - Sketches for My Sweetheart the Drone - 04 Anthropodenial.flac"
+2025-12-03T11:23:10 player: played "Jay Hosking - Sketches for My Sweetheart the Drone/Jay Hosking - Sketches for My Sweetheart the Drone - 05 Walsham.flac"
+2025-12-03T11:28:35 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 01 LIGHTNING.flac"
+2025-12-03T11:31:55 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 02 START UP A RUMOUR.flac"
+2025-12-03T11:35:57 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 03 NERVOUS.flac"
+2025-12-03T11:39:48 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 04 CURIOUS (feat. Toro y Moi).flac"
+2025-12-03T11:43:15 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 05 DANGER!.flac"
+2025-12-03T11:47:19 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 06 ON&ON.flac"
+2025-12-03T11:49:38 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 07 LOVE ON ME.flac"
+2025-12-03T12:45:56 pipewire_output: Decoder is too slow; playing silence to avoid xrun
+2025-12-03T12:46:08 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 08 CLOUDS.flac"
+2025-12-03T12:49:17 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 09 RESTORE MY FAITH.flac"
+2025-12-03T12:55:29 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac"
+2025-12-03T12:59:12 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac"
+2025-12-03T13:01:58 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac"
+2025-12-03T13:05:13 player: played "my_music/Move Me Remix Export 1 71424 at 1643.wav"
+2025-12-03T13:05:15 player: played "Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac"
+2025-12-03T13:09:24 player: played "my_music/Move Me Remix Export 1 71424 at 1643.wav"
+2025-12-04T10:15:23 player: played "Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 01 When Will We Land-.flac"
+2025-12-04T10:19:38 player: played "Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 02 Deadbeat Gospel (feat. somedeadbeat).flac"
+2025-12-04T10:22:39 player: played "Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 03 Sonder.flac"
+2025-12-04T10:24:58 player: played "Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 04 How It Feels.flac"
+2025-12-04T10:28:40 player: played "Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 05 Sunsleeper.flac"
+2025-12-04T10:32:32 player: played "Barry Can't Swim - When Will We Land/Barry Can't Swim & Låpsley - When Will We Land- - 06 Woman.flac"
+2025-12-04T10:36:50 player: played "Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 07 I Won’t Let You Down (feat. Falle Nioke, Blackboxx).flac"
+2025-12-04T10:40:57 player: played "Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 08 Always Get Through To You.flac"
+2025-12-04T10:44:27 player: played "Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 09 Tell Me What You Need (feat. just lil).flac"
+2025-12-04T10:47:56 player: played "Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 10 Dance of the Crab.flac"
+2025-12-05T11:25:00 player: played "Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 10 Dance of the Crab.flac"
+2025-12-05T11:30:27 player: played "Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 11 Define Dancing.flac"
+2025-12-05T12:07:07 exception: Not playing

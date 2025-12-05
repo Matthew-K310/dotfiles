@@ -1,5 +1,5 @@
 ;;; ../../dotfiles/doom/.config/doom/lisp/create-daily.el -*- lexical-binding: t; -*-
-(defun create-daily-file ()
+(defun my/daily-journal ()
   "Create a daily journal file organized by year and week number."
   (interactive)
 
@@ -38,5 +38,8 @@
     (when (= (buffer-size) 0)
       (yas-expand-snippet
        (with-temp-buffer
-         (insert-file-contents "~/dotfiles/doom/.config/doom/snippets/org-mode/daily")
+         (insert-file-contents "~/.config/doom/snippets/org-mode/daily")
          (buffer-string))))))
+
+;; Run at 6:00 every morning
+(run-at-time "06:00" 86400 #'my/daily-journal)

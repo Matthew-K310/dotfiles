@@ -35,6 +35,7 @@
 (package! elfeed-tube)
 (package! elfeed-tube-mpv)
 (package! focus)
+(package! forge)
 
 ;; programs
 (package! bluetooth)

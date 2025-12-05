@@ -14,7 +14,8 @@
   :group 'termux-sms)
 
 ;; CHANGE THIS BASED ON NETWORK
-(defcustom termux-sms-phone-ip "192.168.1.86"
+;; (defcustom termux-sms-phone-ip "192.168.1.86"
+(defcustom termux-sms-phone-ip "100.80.33.123"
   "IP address of your phone."
   :type 'string
   :group 'termux-sms)
@@ -29,7 +30,7 @@
   :type 'string
   :group 'termux-sms)
 
-(defcustom termux-sms-ssh-key "~/.ssh/phone_key"
+(defcustom termux-sms-ssh-key "~/.ssh/id_ed25519"
   "SSH key path for Termux."
   :type 'file
   :group 'termux-sms)

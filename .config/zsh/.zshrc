@@ -140,3 +140,10 @@ bindkey -M visual '^[[P' vi-delete
 # syntax highlighting
 source /usr/local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="/usr/local/bin:$PATH"
+
+# bun completions
+[ -s "/home/matthewkennedy/.bun/_bun" ] && source "/home/matthewkennedy/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

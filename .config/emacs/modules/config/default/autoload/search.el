@@ -6,9 +6,9 @@
 If prefix ARG is set, prompt for a directory to search from."
   (interactive "P")
   (let ((default-directory
-          (if arg
-              (read-directory-name "Search directory: ")
-            default-directory)))
+         (if arg
+             (read-directory-name "Search directory: ")
+           default-directory)))
     (call-interactively
      (cond ((modulep! :completion ivy)     #'+ivy/project-search-from-cwd)
            ((modulep! :completion helm)    #'+helm/project-search-from-cwd)
@@ -76,11 +76,11 @@ If prefix ARG is set, include ignored/hidden files."
          (disabled-command-function nil)
          (current-prefix-arg (unless (eq arg 'other) arg))
          (default-directory
-           (if (eq arg 'other)
-               (if-let* ((projects (projectile-relevant-known-projects)))
-                   (completing-read "Search project: " projects nil t)
-                 (user-error "There are no known projects"))
-             default-directory)))
+          (if (eq arg 'other)
+              (if-let* ((projects (projectile-relevant-known-projects)))
+                  (completing-read "Search project: " projects nil t)
+                (user-error "There are no known projects"))
+            default-directory)))
     (call-interactively
      (cond ((modulep! :completion ivy)     #'+ivy/project-search)
            ((modulep! :completion helm)    #'+helm/project-search)

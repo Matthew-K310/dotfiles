@@ -124,7 +124,7 @@ mayv
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCfZwJg0C0P-xX7BicmwVKqw][PosyMusic]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCgCezP1ThHMANeuHtnf1Euw][Reject Convenience]]
 *** Theology
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UClgeQKxy-N_zWeF_2B9Jhtw][Jamie Bambrick]]
+# **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UClgeQKxy-N_zWeF_2B9Jhtw][Jamie Bambrick]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCpT8WUnhNKduppkbC35BgFA][Sola Media]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC69a1SBisk8MjzKhRAWLAMg][wwutt]]
 *** Video Essays

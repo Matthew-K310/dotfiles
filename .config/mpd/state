@@ -2,9 +2,7 @@ sw_volume: 100
 audio_device_state:1:PipeWire Audio
 audio_device_state:1:album_art
 audio_device_state:1:HTTP Stream
-state: pause
-current: 586
-time: 121.516
+state: stop
 random: 0
 repeat: 0
 single: 0
@@ -611,4 +609,55 @@ playlist_begin
 594:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac
 595:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac
 596:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac
+597:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 01 LIGHTNING.flac
+598:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 02 START UP A RUMOUR.flac
+599:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 03 NERVOUS.flac
+600:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 04 CURIOUS (feat. Toro y Moi).flac
+601:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 05 DANGER!.flac
+602:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 06 ON&ON.flac
+603:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 07 LOVE ON ME.flac
+604:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 08 CLOUDS.flac
+605:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 09 RESTORE MY FAITH.flac
+606:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac
+607:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac
+608:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac
+609:Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 01 In an empty field, you gave her a mix tape.flac
+610:Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 02 One of the few things that travels upward when you let it go.flac
+611:Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 04 They slipped away at intermission.flac
+612:Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 06 He kept it in the basement, with a tarp over it.flac
+613:Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 07 Bubbling up to the surface when least expected.flac
+614:Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 01 In an empty field, you gave her a mix tape.flac
+615:Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 02 One of the few things that travels upward when you let it go.flac
+616:Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 04 They slipped away at intermission.flac
+617:Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 06 He kept it in the basement, with a tarp over it.flac
+618:Jay Hosking - Scenes - ambient and cinematic works/Jay Hosking - Scenes - ambient and cinematic works - 07 Bubbling up to the surface when least expected.flac
+619:Jay Hosking - Sketches for My Sweetheart the Drone/Jay Hosking - Sketches for My Sweetheart the Drone - 01 Relatively abstemious.flac
+620:Jay Hosking - Sketches for My Sweetheart the Drone/Jay Hosking - Sketches for My Sweetheart the Drone - 02 Occulta semina.flac
+621:Jay Hosking - Sketches for My Sweetheart the Drone/Jay Hosking - Sketches for My Sweetheart the Drone - 03 Trees under Venice.flac
+622:Jay Hosking - Sketches for My Sweetheart the Drone/Jay Hosking - Sketches for My Sweetheart the Drone - 04 Anthropodenial.flac
+623:Jay Hosking - Sketches for My Sweetheart the Drone/Jay Hosking - Sketches for My Sweetheart the Drone - 05 Walsham.flac
+624:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 01 LIGHTNING.flac
+625:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 02 START UP A RUMOUR.flac
+626:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 03 NERVOUS.flac
+627:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 04 CURIOUS (feat. Toro y Moi).flac
+628:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 05 DANGER!.flac
+629:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 06 ON&ON.flac
+630:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 07 LOVE ON ME.flac
+631:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 08 CLOUDS.flac
+632:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 09 RESTORE MY FAITH.flac
+633:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac
+634:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac
+635:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac
+636:my_music/Move Me Remix Export 1 71424 at 1643.wav
+637:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 01 When Will We Land-.flac
+638:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 02 Deadbeat Gospel (feat. somedeadbeat).flac
+639:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 03 Sonder.flac
+640:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 04 How It Feels.flac
+641:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 05 Sunsleeper.flac
+642:Barry Can't Swim - When Will We Land/Barry Can't Swim & Låpsley - When Will We Land- - 06 Woman.flac
+643:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 07 I Won’t Let You Down (feat. Falle Nioke, Blackboxx).flac
+644:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 08 Always Get Through To You.flac
+645:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 09 Tell Me What You Need (feat. just lil).flac
+646:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 10 Dance of the Crab.flac
+647:Barry Can't Swim - When Will We Land/Barry Can't Swim - When Will We Land- - 11 Define Dancing.flac
 playlist_end

@@ -1,7 +1,7 @@
 {
 	// "layer": "top", // Waybar at top layer
 	// "position": "bottom", // Waybar position (top|bottom|left|right)
-	"height": 30, // Waybar height (to be removed for auto height)
+	"height": 24, // Waybar height (to be removed for auto height)
 	// "width": 1280, // Waybar width
 	"spacing": 2, // Gaps between modules (4px)
 	// "modules-left": ["hyprland/workspaces", "hyprland/mode", "hyprland/scratchpad", "custom/media"],
@@ -24,15 +24,15 @@
 		"disable-scroll": false,
 		"all-outputs": true,
 		"format": "{icon}",
-		// "persistent-workspaces": {
-		// 	"1": [],
-		// 	"2": [],
-		// 	"3": [],
-		// 	"4": [],
-		// 	"5": [],
-		// 	"6": [],
-		// 	"7": []
-		// },
+		"persistent-workspaces": {
+			"1": [],
+			"2": [],
+			"3": [],
+			"4": [],
+			"5": [],
+			"6": [],
+			"7": []
+		},
 		"format-icons": {
 			"1": "Ⅰ",
 			"2": "Ⅱ",
@@ -160,7 +160,7 @@
 	},
 	"pulseaudio": {
 		// "scroll-step": 1, // %, can be a float
-		"format": "{icon} {volume}% ",
+		"format": "{icon}  {volume}% ",
 		"format-bluetooth": "{icon} {volume}%  ",
 		"format-bluetooth-muted": " {icon} {format_source}",
 		"format-muted": " {format_source}",

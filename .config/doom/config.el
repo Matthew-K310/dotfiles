@@ -1,7 +1,7 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Matthew Kennedy"
-      user-mail-address "matthew_i_kennedy@iCloud.com")
+      user-mail-address "matthew@matthew-kennedy.com")
 
 (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo")
       auth-source-cache-expiry nil) ; default is 7200 (2h)
@@ -84,19 +84,6 @@
 (add-hook! '+doom-dashboard-functions :append
   (insert "\n" (+doom-dashboard--center +doom-dashboard--width "May the machine spirit be pleased by your work.")))
 
-;; (assoc-delete-all "Reload last session" +doom-dashboard-menu-sections)
-(assoc-delete-all "Open documentation" +doom-dashboard-menu-sections)
-
-;; open daily agenda on startup
-;; (add-hook 'emacs-startup-hook
-;;           (lambda ()
-;;             (org-agenda nil "w")))
-
-;; open GTD agenda on startup
-;; (add-hook 'emacs-startup-hook
-;;           (lambda ()
-;;             (org-agenda nil "g")))
-
 ;; Relative line numbers
 (setq display-line-numbers-type `relative)
 
@@ -133,9 +120,8 @@
 (load! "lisp/jitsi-meeting")
 (load! "lisp/meeting-assistant")
 (load! "lisp/mu4e-contact")
-(load! "lisp/mu4e-dashboard")
 (load! "lisp/nm")
-(load! "lisp/org-caldav")
+(load! "lisp/org-find-file-tags")
 (load! "lisp/pg-config")
 (load! "lisp/pomodoro")
 (load! "lisp/popup-dirvish-browser")
@@ -144,6 +130,8 @@
 (load! "lisp/termux-sms")
 (load! "lisp/theo")
 (load! "lisp/weather")
+(load! "private/irc-config")
+(load! "private/mu4e-config")
 
 (setq treesit-language-source-alist
       '((javascript "https://github.com/tree-sitter/tree-sitter-javascript")
@@ -160,7 +148,7 @@
         (swift      "https://github.com/tree-sitter/swift-tree-sitter")
         (ruby      "https://github.com/tree-sitter/tree-sitter-ruby")
         (haskell      "https://github.com/tree-sitter/tree-sitter-haskell")
-        (go      "https://github.com/tree-sitter/go-tree-sitter")))
+        (go      "https://github.com/tree-sitter/tree-sitter-go")))
 
 (after! tree-sitter
   (require 'tree-sitter-langs)
@@ -169,7 +157,7 @@
 ;; enable all analyzers; not done by default
 (after! lsp-mode
   (setq  lsp-go-analyses '((fieldalignment . t)
-                            (nilness . t)
+                           (nilness . t)
                            (shadow . t)
                            (unusedparams . t)
                            (unusedwrite . t)
@@ -257,32 +245,32 @@
 
       (:prefix ("k" . "kill")
        :desc "Kill process" "p" #'kill-process)
-
-      ;; emms keybinds
+      
       (:prefix ("m" . "music/EMMS")
        :desc "Update from MPD" "u" #'my/update-emms-from-mpd
-       :desc "Play directory tree" "d" #'emms-play-directory-tree
-       :desc "Shuffle playlist" "h" #'emms-shuffle
-       :desc "Pause track" "p" #'emms-pause
-       :desc "Stop track" "s" #'emms-stop
-       :desc "Previous track" "b" #'emms-previous
-       :desc "Next track" "n" #'emms-next
-       :desc "Open Browser" "o" #'emms-browser)
+       :desc "Play at directory tree" "d" #'emms-play-directory-tree
+       :desc "Go to emms playlist" "p" #'emms-playlist-mode-go
+       :desc "Shuffle" "h" #'emms-shuffle
+       :desc "Emms pause track" "x" #'emms-pause
+       :desc "Emms stop track" "s" #'emms-stop
+       :desc "Emms play previous track" "b" #'emms-previous
+       :desc "Emms play next track" "n" #'emms-next
+       :desc "EMMS Browser" "o" #'emms-browser)
 
       ;; notes keybinds
       (:prefix ("n" . "notes")
-       :desc "Insert Noter Annotation" "i" #'org-noter-insert-note
+       :desc "Insert Noter Annotation" "i" #'org-noter-insert-note)
 
-       (:prefix ("b" . "blog")
-        :desc "Create new blog post" "n" #'blog/new-post 
-        :desc "Export blog post to Hugo MD" "e" #'org-hugo-export-to-md
-        :desc "Run Air dev server" "r" #'blog/site-serve
-        :desc "Run Hugo dev server" "h" #'blog/hugo-serve)
+      (:prefix ("b" . "blog")
+       :desc "Create new blog post" "n" #'blog/new-post 
+       :desc "Export blog post to Hugo MD" "e" #'org-hugo-export-to-md
+       :desc "Run Air dev server" "r" #'blog/site-serve
+       :desc "Run Hugo dev server" "h" #'blog/hugo-serve)
 
-       (:prefix ("r" . "roam")
-        :desc "Find Roam Node"    "f" #'org-roam-node-find
-        :desc "Insert Roam Node"  "i" #'org-roam-node-insert
-        :desc "Toggle Roam Buffer" "t" #'org-roam-buffer-toggle))
+      (:prefix ("r" . "roam")
+       :desc "Find Roam Node"    "f" #'org-roam-node-find
+       :desc "Insert Roam Node"  "i" #'org-roam-node-insert
+       :desc "Toggle Roam Buffer" "t" #'org-roam-buffer-toggle)
       
       ;; open calendar
       (:prefix ("o" . "open")
@@ -334,13 +322,13 @@
 (define-key global-map (kbd "C-c b h") #'blog/blog-serve-dev) ;; h for hugo
 (define-key global-map (kbd "C-c b s") #'blog/site-serve-dev) ;; s for site
 
-;; inbox capture
-(defun org-capture-inbox ()
-  (interactive)
-  (call-interactively 'org-store-link)
-  (org-capture nil "n"))
+;; ;; inbox capture
+;; (defun org-capture-inbox ()
+;;   (interactive)
+;;   (call-interactively 'org-store-link)
+;;   (org-capture nil "n"))
 
-(define-key global-map (kbd "C-c f") 'org-capture-inbox)
+;; (define-key global-map (kbd "C-c f") 'org-capture-inbox)
 
 ;; random global bind lol
 (global-set-key (kbd "C-c n f") #'org-roam-node-find)
@@ -358,8 +346,8 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/notes")
-(setq org-agenda-diary-file "~/notes/agenda.org")
+(setq org-directory "~/org")
+(setq org-agenda-diary-file "~/org/agenda.org")
 
 (after! org
   (map! :map org-mode-map
@@ -370,7 +358,7 @@
 (add-to-list 'org-modules 'org-habit)
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "STRT(s)" "WAIT(w)""|" "DONE(d)")))
+      '((sequence "TODO(t)" "NEXT(n)" "STRT(s)" "WAIT(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
 ;; Auto-clock in when state changes to STRT
 (defun my/org-clock-in-if-starting ()
@@ -393,51 +381,12 @@
 ;; Prevent clock from stopping when marking subtasks as done
 (setq org-clock-out-when-done nil)
 
-
-(defun my/daily-journal ()
-  "Open today's daily journal file, organized by year and ISO week number.
-Creates folders and inserts template if needed."
-  (interactive)
-
-  ;; Current time and components
-  (let* ((current-time (current-time))
-         (year (format-time-string "%Y" current-time))
-         (week (format-time-string "Week %V" current-time))
-
-         ;; File name like 2025-01-24.org
-         (file-name (format-time-string "%Y-%m-%d.org" current-time))
-
-         ;; Directory structure: ~/notes/journal/2025/Week 04/
-         (base-dir "~/notes/journal/")
-         (year-dir (expand-file-name year base-dir))
-         (week-dir (expand-file-name week year-dir))
-
-         ;; Final file path
-         (file-path (expand-file-name file-name week-dir)))
-
-    ;; Create directories if needed
-    (make-directory week-dir t)
-
-    ;; Open the file
-    (find-file file-path)
-
-    ;; If the file is empty, insert your daily template
-    (when (= (buffer-size) 0)
-      (yas-expand-snippet
-       (with-temp-buffer
-         (insert-file-contents "~/.config/doom/snippets/daily")
-         (buffer-string))))))
-
-
-;; Run at 6:00 every morning
-(run-at-time "06:00" 86400 #'my/daily-journal)
-
 ;; Set archive location to done.org under current date
 (defun my/archive-done-task ()
   "Archive current task to done.org under today's date"
   (interactive)
   (let* ((date-header (format-time-string "%Y-%m-%d %A"))
-         (archive-file (expand-file-name "~/notes/done.org"))
+         (archive-file (expand-file-name "~/org/done.org"))
          (location (format "%s::* %s" archive-file date-header)))
     ;; Only archive if not a habit
     (unless (org-is-habit-p)
@@ -451,7 +400,7 @@ Creates folders and inserts template if needed."
 (defun my/move-to-done-org ()
   "Move the current org heading to done.org under today's date."
   (interactive)
-  (let* ((done-file (expand-file-name "~/notes/done.org"))
+  (let* ((done-file (expand-file-name "~/org/done.org"))
          (today-heading (format-time-string "* %Y-%m-%d %A")))
 
     ;; First, mark the task as DONE if it's not already
@@ -490,8 +439,8 @@ Creates folders and inserts template if needed."
 (provide 'done-refile)
 
 ;; Set this *before* loading org-roam so Doom doesn’t override it.
-(setq org-roam-directory (expand-file-name "~/notes/roam")
-      +org-roam-dir      (expand-file-name "~/notes/roam")
+(setq org-roam-directory (expand-file-name "~/org/roam")
+      +org-roam-dir      (expand-file-name "~/org/roam")
       org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory)
       org-roam-database-connector 'sqlite-builtin)
 
@@ -579,12 +528,12 @@ Comments:
            (format-time-string "-%Y-%m-%d-%H%M%S") ".docx")))
 
 (setq org-agenda-files
-      '("~/notes/inbox.org"
-        "~/notes/todo.org"
-        "~/notes/habits.org"
-        "~/notes/projects.org"
-        "~/notes/agenda.org"
-        "~/notes/calendar.org"))
+      '("~/org/inbox.org"
+        "~/org/todo.org"
+        "~/org/habits.org"
+        "~/org/projects.org"
+        "~/org/agenda.org"
+        "~/org/calendar.org"))
 
 (setq org-tag-alist '(("inbox" . ?i)))
 
@@ -627,50 +576,51 @@ Comments:
           (todo "WAIT"
                 ((org-agenda-overriding-header "Blocked / Waiting")))))))
 
-;; Capture templates
+;; Mark tasks with a CLOSED timestamp on DONE
 (after! org
-  (setq org-capture-templates
-        '(("t" "Todo" entry
-           (file+headline "~/notes/inbox.org" "Todo")
-           "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
-           :prepend t)
+  (setq org-log-done 'time)
 
-          ("e" "Event" entry
-           (file+headline "~/notes/calendar.org" "Events")
-           ;; "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
-           "* %^{Event}\nSCHEDULED: %^T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
+  ;; Capture templates
+  (after! org
+    ;; Automatically resume previous task when clocking out
+    (setq org-clock-out-resume t)
 
-          ("d" "Deadline" entry
-           (file+headline "~/notes/calendar.org" "Deadlines")
-           "* NEXT %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
-          
-          ("i" "Idea" entry
-           (file+headline "~/notes/inbox.org" "Ideas")
-           "* [%<%Y-%m-%d %a>] %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?"
-           :prepend t)
-          
-          ("f" "Feynman Technique" entry
-           (file "~/notes/feynman.org")
-           "* %^{Topic}\n** Explanation (first pass)\n%?\n** Gaps / Questions\n** Refined Explanation\n** Final Simple Version")
+    (setq org-capture-templates
+          '(("t" "Todo" entry
+             (file+headline "~/org/inbox.org" "Todo")
+             "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?" :prepend t)
 
+            ("e" "Event" entry
+             (file+headline "~/org/calendar.org" "Events")
+             "* %^{Event}\nSCHEDULED: %^T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
 
-          ("p" "Project" entry
-           (file+headline "~/notes/projects.org" "Projects")
-           "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:END:\n** TODO %?")
-          
-          ("n" "Note" entry
-           (file+headline "~/notes/inbox.org" "Inbox")
-           "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
-           :prepend t)
-                
-          ("b" "Bookmark" entry
-           (file+headline "~/notes/bookmarks.org" "Inbox")
-           "** [[%^{URL}][%^{Title}]]\n:PROPERTIES:\n:CREATED: %U\n:TAGS: %(org-capture-bookmark-tags)\n:END:\n\n"
-           :empty-lines 0)
+            ("d" "Deadline" entry
+             (file+headline "~/org/calendar.org" "Deadlines")
+             "* NEXT %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
 
-          ("c" "Contact" entry
-           (file+headline "~/notes/contacts.org" "Contacts")
-           "* %^{Name}
+            ("l" "Log / Break" entry
+             (file+datetree "~/org/agenda.org")
+             "* %?\n%U\n" :clock-in t)
+
+            ("i" "Idea" entry
+             (file+headline "~/org/inbox.org" "Ideas")
+             "* [%<%Y-%m-%d %a>] %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?" :prepend t)
+
+            ("p" "Project" entry
+             (file+headline "~/org/projects.org" "Projects")
+             "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:END:\n** TODO %?")
+
+            ("n" "Note" entry
+             (file+headline "~/org/inbox.org" "Inbox")
+             "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?" :prepend t)
+
+            ("b" "Bookmark" entry
+             (file+headline "~/org/bookmarks.org" "Inbox")
+             "** [[%^{URL}][%^{Title}]]\n:PROPERTIES:\n:CREATED: %U\n:TAGS: %(org-capture-bookmark-tags)\n:END:\n\n" :empty-lines 0)
+
+            ("c" "Contact" entry
+             (file+headline "~/org/contacts.org" "Contacts")
+             "* %^{Name}
 
 :PROPERTIES:
 :CREATED: %U
@@ -687,7 +637,7 @@ Comments:
     (save-window-excursion
       (let ((tags-list '()))
         ;; Collect existing tags
-        (with-current-buffer (find-file-noselect "~/notes/bookmarks.org")
+        (with-current-buffer (find-file-noselect "~/org/bookmarks.org")
           (save-excursion
             (goto-char (point-min))
             (while (re-search-forward "^:TAGS:\\s-*\\(.+\\)$" nil t)
@@ -701,15 +651,29 @@ Comments:
           ;; Return as a comma-separated string
           (mapconcat 'identity selected-tags ", ")))))
 
+  ;; Helper function to select and link a contact
+  (defun org-capture-ref-link (file)
+    "Create a link to a contact in contacts.org"
+    (let* ((headlines (org-map-entries
+                       (lambda ()
+                         (cons (org-get-heading t t t t)
+                               (org-id-get-create)))
+                       t
+                       (list file)))
+           (contact (completing-read "Contact: "
+                                     (mapcar #'car headlines)))
+           (id (cdr (assoc contact headlines))))
+      (format "[[id:%s][%s]]" id contact))))
+
 (defun blog/new-post (title)
-  "Create a new blog post in `~/notes/blog/posts/` with TITLE.
+  "Create a new blog post in `~/org/blog/posts/` with TITLE.
 Inserts Org front-matter and opens the file."
   (interactive "sPost title: ")
   (let* ((slug (downcase
                 (replace-regexp-in-string "[^a-z0-9]+" "-" title)))
          (date (format-time-string "%Y-%m-%d"))
          (filename (format "%s-%s.org" date slug))
-         (dir "~/notes/blog/")
+         (dir "~/org/blog/")
          (filepath (expand-file-name filename dir)))
     (unless (file-exists-p dir)
       (make-directory dir t))
@@ -1091,69 +1055,6 @@ This function is designed to be called via `emacsclient -e`."
               (when (or (eq major-mode 'emms-browser-mode)
                         (eq major-mode 'emms-playlist-mode))
                 (emms-center-buffer-in-frame)))))
-
-;; Keybindings
-(map! :leader
-      (:prefix ("m" . "music/EMMS")
-       :desc "Update from MPD" "u" #'my/update-emms-from-mpd
-       :desc "Play at directory tree" "d" #'emms-play-directory-tree
-       :desc "Go to emms playlist" "p" #'emms-playlist-mode-go
-       :desc "Shuffle" "h" #'emms-shuffle
-       :desc "Emms pause track" "x" #'emms-pause
-       :desc "Emms stop track" "s" #'emms-stop
-       :desc "Emms play previous track" "b" #'emms-previous
-       :desc "Emms play next track" "n" #'emms-next
-       :desc "EMMS Browser" "o" #'emms-browser))
-
-;; Optional: Waybar signal hook (uncomment if using waybar)
-;; (with-eval-after-load 'emms
-;;   (add-hook 'emms-player-started-hook 'emms-signal-waybar-mpd-update))
-
-;; send and receive
-(defvar xmpp-daemon-process nil)
-
-(defun xmpp-start-daemon ()
-  "Start the Go XMPP daemon in the specified project directory."
-  (interactive)
-  ;; dir in which to run `go run .`
-  ;; (let ((default-directory "/home/matthewkennedy/dev/personal/emacs-xmpp/daemon/"))
-  (let ((default-directory "/home/matthewkennedy/dev/personal/emacs-xmpp/"))
-    (setq xmpp-daemon-process
-          ;; (start-process "xmpp-daemon" "*xmpp-output*" "just" "run"))
-          (start-process "xmpp-daemon" "*xmpp-output*" "just" "run"))
-    (set-process-filter
-     xmpp-daemon-process
-     ;; process output to buffer to be read by user (for dev testing)
-     (lambda (proc output)
-       (with-current-buffer (get-buffer-create "*xmpp-output*")
-         (goto-char (point-max))
-         (insert output))))))
-
-
-;; (defun xmpp-send (text)
-;;   (interactive "sMessage: ")
-;;   (let ((socket (make-network-process
-;;                  :name "xmpp-daemon"
-;;                  :buffer "*xmpp-daemon*"
-;;                  :family 'local
-;;                  :service "/tmp/xmpp-daemon.sock")))
-;;     (process-send-string socket (concat text "\n"))
-;;     (delete-process socket)))
-
-(defun xmpp-send-message (msg)
-  "Send MSG to the running Go XMPP client via Unix socket."
-  (interactive "sMessage: ")
-  (let ((sock "/tmp/xmpp_send.sock"))
-    (if (file-exists-p sock)
-        (let ((proc (make-network-process
-                     :name "xmpp-client"
-                     :family 'local
-                     :service sock
-                     :buffer nil
-                     :noquery t)))  ;; don’t prompt when killing Emacs
-          (process-send-string proc (concat msg "\n"))
-          (delete-process proc))
-      (message "Socket not found: %s (is xmpp client running?)" sock))))
 
 (defvar site-serve-process nil)
 (defvar blog-serve-process nil)
