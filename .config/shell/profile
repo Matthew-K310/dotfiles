@@ -84,3 +84,5 @@ unsetopt PROMPT_SP 2>/dev/null
 
 # Load shortcuts if not already loaded
 [ ! -f "$XDG_CONFIG_HOME/shell/shortcutrc" ] && setsid -f shortcuts >/dev/null 2>&1
+
+BEMENU_OPTS="--fn ('JetBrainsMono Nerd Font Mono [14px]')"

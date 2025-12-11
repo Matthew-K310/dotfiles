@@ -177,10 +177,9 @@ is non-nil."
                       #'+mu4e-initialise-icons-hook)))))
 
   (plist-put (cdr (assoc :flags mu4e-header-info)) :shortname " Flags") ; default=Flgs
-  (add-to-list 'mu4e-bookmarks
-               '(:name "Flagged messages"
-                 :query "flag:flagged"
-                 :key ?f) t)
+  (add-to-list 'mu4e-bookmarks '(:name "Flagged messages"
+                                 :query "flag:flagged"
+                                 :key ?f) t)
 
   (add-to-list 'mu4e-bookmarks
                '(:name "Archived messages"

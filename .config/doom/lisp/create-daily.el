@@ -18,7 +18,7 @@
          (date-string (format-time-string "%B %d, %Y" current-time))
 
          ;; Create folder paths
-         (year-dir (expand-file-name year "~/notes/journal/"))
+         (year-dir (expand-file-name year "~/org/journal/"))
          (week-dir (expand-file-name (format "Week %d" week-number) year-dir))
 
          ;; Create file path/name

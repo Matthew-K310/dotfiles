@@ -114,6 +114,7 @@
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
 (load! "lisp/audio-record")
+(load! "lisp/blog-post")
 (load! "lisp/create-daily")
 (load! "lisp/done-refile")
 (load! "lisp/elfeed-download")
@@ -665,23 +666,22 @@ Comments:
            (id (cdr (assoc contact headlines))))
       (format "[[id:%s][%s]]" id contact))))
 
-(defun blog/new-post (title)
-  "Create a new blog post in `~/org/blog/posts/` with TITLE.
-Inserts Org front-matter and opens the file."
-  (interactive "sPost title: ")
-  (let* ((slug (downcase
-                (replace-regexp-in-string "[^a-z0-9]+" "-" title)))
-         (date (format-time-string "%Y-%m-%d"))
-         (filename (format "%s-%s.org" date slug))
-         (dir "~/org/blog/")
-         (filepath (expand-file-name filename dir)))
-    (unless (file-exists-p dir)
-      (make-directory dir t))
-    (find-file filepath)
-    (unless (file-exists-p filepath)
-      (insert (format "#+TITLE: %s\n#+DATE: %s\n#+TAGS: \n#+OPTIONS: toc:nil num:nil\n\n"
-                      title date))
-      (save-buffer))))
+;; (defun blog/new-post (title) ;;   "Create a new blog post in `~/org/blog/posts/` with TITLE.
+;; Inserts Org front-matter and opens the file."
+;;   (interactive "sPost title: ")
+;;   (let* ((slug (downcase
+;;                 (replace-regexp-in-string "[^a-z0-9]+" "-" title)))
+;;          (date (format-time-string "%Y-%m-%d"))
+;;          (filename (format "%s-%s.org" date slug))
+;;          (dir "~/org/blog/")
+;;          (filepath (expand-file-name filename dir)))
+;;     (unless (file-exists-p dir)
+;;       (make-directory dir t))
+;;     (find-file filepath)
+;;     (unless (file-exists-p filepath)
+;;       (insert (format "#+TITLE: %s\n#+DATE: %s\n#+TAGS: \n#+OPTIONS: toc:nil num:nil\n#+HUGO_BASE_DIR: ~/site/hugo\n\n"
+;;                       title date))
+;;       (save-buffer))))
 
 (defun thanos/wtype-text (text)
   "Process TEXT for wtype, handling newlines properly."
