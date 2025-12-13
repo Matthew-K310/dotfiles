@@ -140,7 +140,6 @@ Moved from Nord to Compline, as it is more minimal and less blue.
 ** Local packages
 #+begin_src elisp
 (load! "lisp/audio-record")
-(load! "lisp/blog-post")
 (load! "lisp/create-daily")
 (load! "lisp/done-refile")
 (load! "lisp/elfeed-download")
@@ -307,10 +306,10 @@ Moved from Nord to Compline, as it is more minimal and less blue.
        :desc "Run Air dev server" "r" #'blog/site-serve
        :desc "Run Hugo dev server" "h" #'blog/hugo-serve)
 
-      (:prefix ("r" . "roam")
-       :desc "Find Roam Node"    "f" #'org-roam-node-find
-       :desc "Insert Roam Node"  "i" #'org-roam-node-insert
-       :desc "Toggle Roam Buffer" "t" #'org-roam-buffer-toggle)
+      ;; (:prefix ("r" . "roam")
+      ;;  :desc "Find Roam Node"    "f" #'org-roam-node-find
+      ;;  :desc "Insert Roam Node"  "i" #'org-roam-node-insert
+      ;;  :desc "Toggle Roam Buffer" "t" #'org-roam-buffer-toggle)
       
       ;; open calendar
       (:prefix ("o" . "open")
@@ -322,7 +321,6 @@ Moved from Nord to Compline, as it is more minimal and less blue.
        :desc "Export as markdown"        "e" #'org-md-export-as-markdown
        :desc "Preview markdown file"     "p" #'markdown-preview
        :desc "Export as html"            "h" #'org-html-export-as-html
-       :desc "Org Roam UI"               "u" #'org-roam-ui-mode
        :desc "Search dictionary at word" "d" #'dictionary-lookup-definition
        :desc "Powerthesaurus lookup"     "t" #'powerthesaurus-lookup-word-at-point
        :desc "Read Aloud This"           "r" #'read-aloud-this
@@ -376,12 +374,12 @@ Moved from Nord to Compline, as it is more minimal and less blue.
 ;; (define-key global-map (kbd "C-c f") 'org-capture-inbox)
 
 ;; random global bind lol
-(global-set-key (kbd "C-c n f") #'org-roam-node-find)
+;; (global-set-key (kbd "C-c n f") #'org-roam-node-find)
 
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c C-x C-a") 'my/archive-done-task)
-  (define-key org-mode-map (kbd "C-c n l") #'org-roam-buffer-toggle)
-  (define-key org-mode-map (kbd "C-c n i") #'org-roam-node-insert)
+  ;; (define-key org-mode-map (kbd "C-c n l") #'org-roam-buffer-toggle)
+  ;; (define-key org-mode-map (kbd "C-c n i") #'org-roam-node-insert)
   (define-key org-mode-map (kbd "C-c e") #'org-set-effort)
   (define-key org-mode-map (kbd "C-c i") #'org-clock-in)
   (define-key org-mode-map (kbd "C-c o") #'org-clock-out)
@@ -488,66 +486,17 @@ Moved from Nord to Compline, as it is more minimal and less blue.
 
 (provide 'done-refile)
 
-;; Set this *before* loading org-roam so Doom doesn’t override it.
-(setq org-roam-directory (expand-file-name "~/org/roam")
-      +org-roam-dir      (expand-file-name "~/org/roam")
-      org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory)
-      org-roam-database-connector 'sqlite-builtin)
-
-(use-package! org-roam
-  :config
-  ;; Ensure directory exists
-  (unless (file-exists-p org-roam-directory)
-    (make-directory org-roam-directory t))
-
-  ;; Extra safety: catch database errors gracefully
-  (advice-add 'org-roam-db-query :around
-              (lambda (fn &rest args)
-                (condition-case err
-                    (apply fn args)
-                  (error
-                   (message "Org-roam DB error: %S" err)
-                   nil))))
-
-  ;; Keep DB in sync automatically
-  (org-roam-db-autosync-mode +1))
-
-(use-package! websocket
-  :after org-roam)
-
-(use-package! org-roam-ui
-  :after org-roam
-  :config
-  (setq org-roam-ui-sync-theme t
-        org-roam-ui-follow t
-        org-roam-ui-update-on-save t
-        org-roam-ui-open-on-start t))
-
 (use-package! org-download
   :after org
   :config
   (setq-default org-download-screenshot-method "scrot -s %s"))
 
-(defun debug-org-roam-db ()
-  "Test org-roam DB connection and settings."
-  (interactive)
-  (message "Org-roam dir: %s (exists: %s)"
-           org-roam-directory
-           (file-exists-p org-roam-directory))
-  (message "DB path: %s" org-roam-db-location)
-  (message "Connector: %s" org-roam-database-connector)
-  (condition-case err
-      (progn
-        (org-roam-db-sync)
-        (message "Database synced successfully!"))
-    (error (message "Database sync error: %S" err))))
-
 ;; Keybinds for org mode
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c C-x C-a") 'my/archive-done-task)
-  (define-key org-mode-map (kbd "C-c n l") #'org-roam-buffer-toggle)
-  (define-key org-mode-map (kbd "C-c n f") #'org-roam-node-find)
-  (define-key org-mode-map (kbd "C-c n i") #'org-roam-node-insert)
+  ;; (define-key org-mode-map (kbd "C-c n l") #'org-roam-buffer-toggle)
+  ;; (define-key org-mode-map (kbd "C-c n f") #'org-roam-node-find)
+  ;; (define-key org-mode-map (kbd "C-c n i") #'org-roam-node-insert)
   (define-key org-mode-map (kbd "C-c e") #'org-set-effort)
   (define-key org-mode-map (kbd "C-c i") #'org-clock-in)
   (define-key org-mode-map (kbd "C-c o") #'org-clock-out))
@@ -578,6 +527,29 @@ Comments:
            (format-time-string "-%Y-%m-%d-%H%M%S") ".docx")))
 #+end_src
 
+** Denote Configuration
+#+begin_src elisp
+(use-package denote
+  :ensure t
+  :hook (dired-mode . denote-dired-mode)
+  :bind
+  (("C-c n n" . denote)
+   ("C-c n r" . denote-rename-file)
+   ("C-c n l" . denote-link)
+   ("C-c n c" . denote-link-after-creating)
+   ("C-c n b" . denote-backlinks)
+   ("C-c n d" . denote-dired)
+   ("C-c n g" . denote-grep))
+  :config
+  (setq denote-directory (expand-file-name "~/org/denote/"))
+  (setq denote-blog-directory (expand-file-name "~/org/blog/"))
+
+  ;; Automatically rename Denote buffers when opening them so that
+  ;; instead of their long file name they have, for example, a literal
+  ;; "[D]" followed by the file's title.  Read the doc string of
+  ;; `denote-rename-buffer-format' for how to modify this.
+  (denote-rename-buffer-mode 1))
+#+end_src
 ** Org Agenda Config
 #+begin_src elisp
 (setq org-agenda-files
@@ -654,25 +626,25 @@ Comments:
              (file+headline "~/org/calendar.org" "Deadlines")
              "* NEXT %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
 
-            ("l" "Log / Break" entry
-             (file+datetree "~/org/agenda.org")
-             "* %?\n%U\n" :clock-in t)
-
-            ("i" "Idea" entry
-             (file+headline "~/org/inbox.org" "Ideas")
-             "* [%<%Y-%m-%d %a>] %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?" :prepend t)
+            ("c" "Capture" entry
+             (file+headline "~/org/inbox.org" "Inbox")
+             "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?" :prepend t)
+            
+            ("n" "New note (with Denote)" plain
+             (file denote-last-path)
+             #'denote-org-capture
+             :no-save t
+             :immediate-finish nil
+             :kill-buffer t
+             :jump-to-captured t)
+            
+            ("l" "TIL" entry
+             (file+headline "~/org/TIL.org" "TIL")
+             "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?" :prepend t)
 
             ("p" "Project" entry
              (file+headline "~/org/projects.org" "Projects")
              "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:END:\n** TODO %?")
-
-            ("n" "Note" entry
-             (file+headline "~/org/inbox.org" "Inbox")
-             "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?" :prepend t)
-
-            ("b" "Bookmark" entry
-             (file+headline "~/org/bookmarks.org" "Inbox")
-             "** [[%^{URL}][%^{Title}]]\n:PROPERTIES:\n:CREATED: %U\n:TAGS: %(org-capture-bookmark-tags)\n:END:\n\n" :empty-lines 0)
 
             ("c" "Contact" entry
              (file+headline "~/org/contacts.org" "Contacts")
@@ -722,26 +694,6 @@ Comments:
       (format "[[id:%s][%s]]" id contact))))
 
 #+end_src
-** Blog Capture
-#+begin_src elisp
-;; (defun blog/new-post (title) ;;   "Create a new blog post in `~/org/blog/posts/` with TITLE.
-;; Inserts Org front-matter and opens the file."
-;;   (interactive "sPost title: ")
-;;   (let* ((slug (downcase
-;;                 (replace-regexp-in-string "[^a-z0-9]+" "-" title)))
-;;          (date (format-time-string "%Y-%m-%d"))
-;;          (filename (format "%s-%s.org" date slug))
-;;          (dir "~/org/blog/")
-;;          (filepath (expand-file-name filename dir)))
-;;     (unless (file-exists-p dir)
-;;       (make-directory dir t))
-;;     (find-file filepath)
-;;     (unless (file-exists-p filepath)
-;;       (insert (format "#+TITLE: %s\n#+DATE: %s\n#+TAGS: \n#+OPTIONS: toc:nil num:nil\n#+HUGO_BASE_DIR: ~/site/hugo\n\n"
-;;                       title date))
-;;       (save-buffer))))
-#+end_src
-
 ** Emacs Everywhere
 #+begin_src elisp
 (defun thanos/wtype-text (text)

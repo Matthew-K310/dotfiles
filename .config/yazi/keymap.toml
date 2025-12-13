@@ -145,8 +145,8 @@ keymap = [
 	{ on = [ "g", "s" ],       run = "cd ~/.local/share",     desc = "Goto share" },
 	{ on = [ "g", "S" ],       run = "cd ~/.local/src",     desc = "Goto src" },
 	{ on = [ "g", "b" ],       run = "cd ~/.local/bin",     desc = "Goto bin" },
-	{ on = [ "g", "o" ],       run = "cd ~/notes", desc = "Goto notes dir" },
-	{ on = [ "g", "t" ],       run = "cd ~/notes/til", desc = "Goto til dir" },
+	{ on = [ "g", "o" ],       run = "cd ~/org", desc = "Goto org dir" },
+	{ on = [ "g", "t" ],       run = "cd ~/org/til", desc = "Goto til dir" },
 	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Jump interactively" },
 
 	# Tabs

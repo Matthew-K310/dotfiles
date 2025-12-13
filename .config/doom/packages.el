@@ -16,8 +16,9 @@
 (package! go-mode)
 
 ;; org
-(package! org-roam)
-(package! org-roam-ui)
+(package! denote)
+;; (package! org-roam)
+;; (package! org-roam-ui)
 (package! org-bullets)
 (package! ox-hugo)
 (package! org-noter)

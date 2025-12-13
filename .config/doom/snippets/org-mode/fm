@@ -1,9 +1,6 @@
 # -*- mode: snippet -*-
-# name: blog-post
-# key: blog
+# name: blog frontmatter
+# key: bfm
 # --
-#+TITLE: ${1:Post Title}
-#+DATE: `(format-time-string "%Y-%m-%d")`
-#+TAGS:
 #+OPTIONS: toc:nil num:nil
 #+HUGO_BASE_DIR: ~/site/hugo

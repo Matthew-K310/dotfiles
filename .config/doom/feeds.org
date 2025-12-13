@@ -13,6 +13,7 @@
 *** [[https://raphlinus.github.io/feed.xml][RaphLinus]]
 *** [[https://susam.net/feed.xml][Susam.net]]
 *** [[https://battlepenguin.com/feed.xml][BattlePenguin]]
+*** [[https://karl-voit.at/feeds/lazyblorg-all.atom_1.0.links-only.xml][Karl Voit]]
 ** Emacs
 *** [[https://sachachua.com/blog/category/emacs/feed/][Sacha Chua]]
 *** [[https://irreal.org/blog/?feed=rss2][Irreal]]
@@ -21,7 +22,11 @@
 *** [[https://emacsredux.com/atom.xml][Emacs Redux]]
 *** [[https://baty.net/index.xml][Jack Baty]]
 *** [[https://batsov.com/][Bohzidar Batsov (think)]]
+*** [[http://yummymelon.com/devnull/feeds/all.atom.xml][Charles Choi]]
+*** [[https://christiantietze.de/feed.atom][Christian Tietze]]
+*** [[https://ankit.earth/blog/][Ankit Gadiya]]
 ** Programming
+*** [[https://benhoyt.com/writings/rss.xml][Ben Hoyt]]
 *** [[https://charm.land/blog/rss.xml][charm.sh]]
 *** [[https://jvns.ca/atom.xml][Julia Evans]]
 *** [[https://blog.pragmaticengineer.com/rss/][The Pragmatic Engineer]]
@@ -36,6 +41,8 @@
 *** [[https://carlosbecker.com/posts/index.xml][Carlos Becker]]
 *** [[https://hamvocke.com/feed.xml][Ham Vocke]]
 *** [[https://codeberg.org/Matthew-K310/emacs-xmpp.rss][emacs-xmpp commits]]
+*** [[https://matklad.github.io/feed.xml][matklad]]
+*** [[https://kevinlynagh.com/feed.xml][Kevin Lynagh]]
 ** Privacy and Security
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC-ufRLYrXxrIEApGn9VG5pQ][Reject Convenience]]
 *** [[https://krebsonsecurity.com/feed/][Krebs on Security]]
@@ -45,6 +52,7 @@
 *** [[https://www.eff.org/rss/updates.xml][EFF]]
 *** [[https://www.privacytools.io/feed.xml][Privacy Tools]]
 *** [[https://www.privateinternetaccess.com/blog/feed/][Private Internet Access]]
+*** [[https://ksol.io/en/blog/posts/][ksol.io]]
 ** Philosophy
 *** [[https://lindypress.net/rss][Lindypress]]
 *** [[https://jaredhenderson.substack.com/feed][Jared Henderson's Substack]]
@@ -70,9 +78,13 @@
 *** [[https://unixdigest.com/feed.rss][Unix Digest]]
 *** [[https://danluu.com/atom.xml][Dan Luu]]
 *** [[https://kevquirk.com/feed][KevQuirk]]
+*** [[https://jacobwsmith.xyz/feed.xml][Jacob Smith]]
+*** [[https://ratfactor.com/atom.xml][Dave Gauer]]
 *** [[https://hamatti.org/feed/feed.xml][Juhis]]
 *** [[https://her.st/rss.xml][her.st]]
 *** [[https://protesilaos.com/master.xml][Protesilaos Stavrou]]
+*** [[https://www.raphaelkabo.com/rss.xml][Raphael Kabo]]
+*** [[https://rejectconvenience.blog/][Reject Convenience Blog]]
 ** YouTube
 *** Cars
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCHdpnvKJDijKNe2caIasnww][Garbage Time]]

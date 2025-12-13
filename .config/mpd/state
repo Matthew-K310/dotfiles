@@ -2,7 +2,9 @@ sw_volume: 100
 audio_device_state:1:PipeWire Audio
 audio_device_state:1:album_art
 audio_device_state:1:HTTP Stream
-state: stop
+state: pause
+current: 692
+time: 50.509
 random: 0
 repeat: 0
 single: 0
@@ -682,4 +684,28 @@ playlist_begin
 667:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 06 The word for world is forest.flac
 668:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 07 Dancing at the edge of the world.flac
 669:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 08 Always coming home.flac
+670:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 01 LIGHTNING.flac
+671:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 02 START UP A RUMOUR.flac
+672:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 03 NERVOUS.flac
+673:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 04 CURIOUS (feat. Toro y Moi).flac
+674:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 05 DANGER!.flac
+675:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 06 ON&ON.flac
+676:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 07 LOVE ON ME.flac
+677:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 08 CLOUDS.flac
+678:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 09 RESTORE MY FAITH.flac
+679:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac
+680:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac
+681:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac
+682:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 01 LIGHTNING.flac
+683:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 02 START UP A RUMOUR.flac
+684:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 03 NERVOUS.flac
+685:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 04 CURIOUS (feat. Toro y Moi).flac
+686:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 05 DANGER!.flac
+687:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 06 ON&ON.flac
+688:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 07 LOVE ON ME.flac
+689:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 08 CLOUDS.flac
+690:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 09 RESTORE MY FAITH.flac
+691:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac
+692:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac
+693:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac
 playlist_end
