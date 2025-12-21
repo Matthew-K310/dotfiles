@@ -3,8 +3,8 @@ audio_device_state:1:PipeWire Audio
 audio_device_state:1:album_art
 audio_device_state:1:HTTP Stream
 state: pause
-current: 1
-time: 152.69
+current: 727
+time: 134.931
 random: 0
 repeat: 0
 single: 0
@@ -720,4 +720,63 @@ playlist_begin
 703:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac
 704:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac
 705:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac
+706:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 01 This Version Of You (feat. Julianna Barwick).flac
+707:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 02 Wide Awake (feat. Charlie Houston).flac
+708:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 03 Love Letter (feat. The Knocks).flac
+709:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 04 Behind The Sun.flac
+710:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 05 Forgive Me (feat. Izzy Bizu).flac
+711:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 06 North Garden.flac
+712:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 07 Better Now (feat. MARO).flac
+713:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 08 The Last Goodbye (feat. Bettye LaVette).flac
+714:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 09 All My Life.flac
+715:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 10 Equal (feat. Låpsley).flac
+716:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 11 Healing Grid.flac
+717:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 12 I Can’t Sleep.flac
+718:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 13 Light Of Day (feat. Ólafur Arnalds).flac
+719:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 01 The Setting Sun.flac
+720:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 02 Night to Day.flac
+721:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 03 Mirror.flac
+722:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 04 Groove.flac
+723:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 05 Vintage Story.flac
+724:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 06 Sunny Village.flac
+725:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 07 Through the Grass at Night.flac
+726:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 08 Adventuring.flac
+727:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 09 To Dawn, from a Very Rainy Night.flac
+728:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 10 Building.flac
+729:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 11 Creating.flac
+730:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 12 Peaceful Village.flac
+731:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 13 Nostalgic.flac
+732:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 14 Midnight.flac
+733:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 15 Heartbeat.flac
+734:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 16 The Seraphs (Tuning Cylinder).flac
+735:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 17 Winter.flac
+736:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 18 Daylight.flac
+737:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 19 Quirky Tavern.flac
+738:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 20 Cultured Tavern.flac
+739:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 21 Hallowcroft.flac
+740:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 22 Fall-o'-croft.flac
+741:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 23 Summer Day.flac
+742:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 24 Roots.flac
+743:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 25 The Invention (Tuning Cylinder).flac
+744:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 26 Spring.flac
+745:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 27 Radiance and Rust.flac
+746:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 28 Eidolon Battle.flac
+747:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 29 The Resonance Archives (Library).flac
+748:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 30 Arctic Winds.flac
+749:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 31 Fall.flac
+750:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 32 Windy Village.flac
+751:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 33 Chilly Village.flac
+752:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 34 Summer Stroll (High Activity Version).flac
+753:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 35 Tenacious.flac
+754:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 36 The Lazaret.flac
+755:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 37 Devastation (with Fade-In).flac
+756:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 38 Nadiya (Spring).flac
+757:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 39 Nadiya (Summer).flac
+758:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 40 Nadiya (Fall).flac
+759:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 41 Nadiya (Winter).flac
+760:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 42 The Safety of a Warm Fire.flac
+761:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 43 V I N T A G e W A V e.flac
+762:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 44 Creative Mode Trailer - 2016.flac
+763:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 45 Feature Trailer - 2020.flac
+764:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 46 Feature Trailer - 2022.flac
 playlist_end

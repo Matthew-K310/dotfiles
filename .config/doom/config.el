@@ -831,17 +831,6 @@ This function is designed to be called via `emacsclient -e`."
     ;; Now current-buffer is the vterm buffer
     (delete-other-windows)))
 
-;; (defun my/new-frame-with-vterm ()
-;;   "Create a new frame and immediately open vterm in it."
-;;   (interactive)
-;;   (require 'vterm)
-;;   (let ((new-frame (make-frame '((explicit-vterm . t)))))
-;;     (select-frame new-frame)
-;;     (delete-other-windows)
-;;     (let ((default-directory "~/"))
-;;       (vterm (format "*vterm-%s*" (frame-parameter new-frame 'name))))
-;;     (delete-other-windows)))
-
 ;; EMMS full configuration with Nord theme, centered layout, and swaync notifications
 (use-package! emms
   :defer t
