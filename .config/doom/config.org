@@ -140,6 +140,7 @@ Moved from Nord to Compline, as it is more minimal and less blue.
 ** Local packages
 #+begin_src elisp
 (load! "lisp/audio-record")
+(load! "lisp/change-fonts")
 (load! "lisp/create-daily")
 (load! "lisp/done-refile")
 (load! "lisp/elfeed-download")
@@ -408,83 +409,6 @@ Moved from Nord to Compline, as it is more minimal and less blue.
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "STRT(s)" "WAIT(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
-;; Auto-clock in when state changes to STRT
-(defun my/org-clock-in-if-starting ()
-  "Clock in when the task state changes to STRT"
-  (when (and (string= org-state "STRT")
-             (not (org-clock-is-active)))
-    (org-clock-in)))
-
-;; Auto-clock out when leaving STRT state
-(defun my/org-clock-out-if-not-starting ()
-  "Clock out when leaving STRT state"
-  (when (and (org-clock-is-active)
-             (not (string= org-state "STRT")))
-    (org-clock-out)))
-
-;; Add these functions to org-after-todo-state-change-hook
-(add-hook 'org-after-todo-state-change-hook 'my/org-clock-in-if-starting)
-(add-hook 'org-after-todo-state-change-hook 'my/org-clock-out-if-not-starting)
-
-;; Prevent clock from stopping when marking subtasks as done
-(setq org-clock-out-when-done nil)
-
-;; Set archive location to done.org under current date
-(defun my/archive-done-task ()
-  "Archive current task to done.org under today's date"
-  (interactive)
-  (let* ((date-header (format-time-string "%Y-%m-%d %A"))
-         (archive-file (expand-file-name "~/org/done.org"))
-         (location (format "%s::* %s" archive-file date-header)))
-    ;; Only archive if not a habit
-    (unless (org-is-habit-p)
-      ;; Add COMPLETED property if it doesn't exist
-      (org-set-property "COMPLETED" (format-time-string "[%Y-%m-%d %a %H:%M]"))
-      ;; Set archive location and archive
-      (setq org-archive-location location)
-      (org-archive-subtree))))
-
-;; refile on done
-(defun my/move-to-done-org ()
-  "Move the current org heading to done.org under today's date."
-  (interactive)
-  (let* ((done-file (expand-file-name "~/org/done.org"))
-         (today-heading (format-time-string "* %Y-%m-%d %A")))
-
-    ;; First, mark the task as DONE if it's not already
-    (when (org-entry-is-todo-p)
-      (org-todo 'done))
-
-    ;; Add CLOSED property if it doesn't exist
-    (unless (org-entry-get nil "CLOSED")
-      (org-add-planning-info 'closed (org-current-effective-time)))
-
-    ;; Ensure done.org exists and has today's date heading
-    (with-current-buffer (find-file-noselect done-file)
-      (goto-char (point-min))
-      ;; Find or create today's heading
-      (unless (re-search-forward (concat "^" (regexp-quote today-heading) "$") nil t)
-        (goto-char (point-max))
-        (unless (bolp) (insert "\n"))
-        (insert today-heading "\n")
-        (save-buffer)))
-
-    ;; Use org-refile to move the subtree
-    (let* ((rfloc (with-current-buffer (find-file-noselect done-file)
-                    (goto-char (point-min))
-                    (re-search-forward (concat "^" (regexp-quote today-heading) "$"))
-                    (list today-heading
-                          done-file
-                          nil
-                          (point)))))
-      (org-refile nil nil rfloc))
-
-    (message "Task moved to done.org under %s" today-heading)))
-
-;; Bind to a convenient key
-(global-set-key (kbd "C-c d") 'my/move-to-done-org)
-
-(provide 'done-refile)
 
 (use-package! org-download
   :after org
@@ -525,6 +449,78 @@ Comments:
            " -o "
            (file-name-sans-extension (buffer-file-name))
            (format-time-string "-%Y-%m-%d-%H%M%S") ".docx")))
+#+end_src
+
+** Task Management
+#+begin_src emacs-lisp
+;; Auto-clock in when state changes to STRT
+(defun my/org-clock-in-if-starting ()
+  "Clock in when the task state changes to STRT."
+  (when (and (string= org-state "STRT")
+             (not (org-clock-is-active)))
+    (org-clock-in)))
+
+;; Auto-clock out when leaving STRT state (but not to DONE - handle that separately)
+(defun my/org-clock-out-if-not-starting ()
+  "Clock out when leaving STRT state, unless going to DONE."
+  (when (and (org-clock-is-active)
+             (not (member org-state '("STRT" "DONE"))))
+    (org-clock-out)))
+
+;; Add these functions to org-after-todo-state-change-hook
+(add-hook 'org-after-todo-state-change-hook 'my/org-clock-in-if-starting)
+(add-hook 'org-after-todo-state-change-hook 'my/org-clock-out-if-not-starting)
+
+;; Prevent clock from stopping when marking subtasks as done
+(setq org-clock-out-when-done nil)
+
+;; Alternative: Auto-archive when marking as DONE
+(defun my/auto-archive-done-tasks ()
+  "Automatically archive task when marked as DONE."
+  (when (and (string= org-state "DONE")
+             (not (org-is-habit-p)))
+    (my/move-to-done-org)))
+
+;; Uncomment to enable auto-archiving on DONE
+;; (add-hook 'org-after-todo-state-change-hook 'my/auto-archive-done-tasks)
+#+end_src
+** Pretty org headings
+Install and setup org-modern for better document formatting.
+#+begin_src emacs-lisp
+;; Add frame borders and window dividers
+;; Option 1: Per buffer
+(add-hook 'org-mode-hook #'org-modern-mode)
+(add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
+
+;; Option 2: Globally
+(with-eval-after-load 'org (global-org-modern-mode))
+
+(setq
+ ;; Edit settings
+ org-auto-align-tags nil
+ org-tags-column 0
+ org-catch-invisible-edits 'show-and-error
+ org-special-ctrl-a/e t
+ org-insert-heading-respect-content t
+
+ ;; Org styling, hide markup etc.
+ org-hide-emphasis-markers t
+ org-pretty-entities t
+ org-agenda-tags-column 0
+ org-ellipsis "…")
+
+(global-org-modern-mode)
+
+;; increase line spacing
+(setq-default line-spacing 0.1)
+#+end_src
+
+Replace asterisk headings with "H1", "H2", etc.
+#+begin_src emacs-lisp
+;; Set org-modern to use replace mode
+(setq org-modern-star 'replace)
+;; Customize the replacement strings to show H1, H2, H3, etc.
+(setq org-modern-replace-stars '("H1" "H2" "H3" "H4" "H5" "H6"))
 #+end_src
 
 ** Denote Configuration
@@ -626,7 +622,7 @@ Comments:
              (file+headline "~/org/calendar.org" "Deadlines")
              "* NEXT %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
 
-            ("c" "Capture" entry
+            ("b" "Box capture" entry
              (file+headline "~/org/inbox.org" "Inbox")
              "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?" :prepend t)
             
@@ -657,7 +653,6 @@ Comments:
 :BIRTHDAY: %^{Birthday +1y}u
 :LOCATION: %^{Address}
 :END:
-\\ *** Notes
 %?"))))
 
   (defun org-capture-bookmark-tags ()
@@ -901,7 +896,7 @@ This function is designed to be called via `emacsclient -e`."
       ;; We are *not* passing 'dir' as an argument to 'vterm' here,
       ;; as it's often designed to pick up the current 'default-directory'.
       (vterm))))
-;; Define immediately, not wrapped in after!
+
 (defun my/new-frame-with-vterm ()
   "Create a new frame and immediately open vterm in it."
   (interactive)
@@ -909,10 +904,22 @@ This function is designed to be called via `emacsclient -e`."
   (let ((new-frame (make-frame '((explicit-vterm . t)))))
     (select-frame new-frame)
     (delete-other-windows)
-    ;; Force vterm to take full window
-    (let ((vterm-buffer (vterm (format "*vterm-%s*" (frame-parameter new-frame 'name)))))
-      (switch-to-buffer vterm-buffer)
-      (delete-other-windows))))  ; Nuke any splits vterm created
+    ;; vterm creates and switches to the buffer, but returns nil
+    (vterm (format "*vterm-%s*" (frame-parameter new-frame 'name)))
+    ;; Now current-buffer is the vterm buffer
+    (delete-other-windows)))
+
+;; (defun my/new-frame-with-vterm ()
+;;   "Create a new frame and immediately open vterm in it."
+;;   (interactive)
+;;   (require 'vterm)
+;;   (let ((new-frame (make-frame '((explicit-vterm . t)))))
+;;     (select-frame new-frame)
+;;     (delete-other-windows)
+;;     (let ((default-directory "~/"))
+;;       (vterm (format "*vterm-%s*" (frame-parameter new-frame 'name))))
+;;     (delete-other-windows)))
+
 #+end_src
 ** EMMS
 #+begin_src elisp
@@ -1109,5 +1116,6 @@ OUTPUT-BUFFER is the buffer to capture the output."
   (interactive)
   (my/run-dev-server "/home/matthewkennedy/site/hugo/" "test" "blog-serve" "blog-serve-output"))
 #+end_src
+
 
 

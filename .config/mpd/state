@@ -3,8 +3,8 @@ audio_device_state:1:PipeWire Audio
 audio_device_state:1:album_art
 audio_device_state:1:HTTP Stream
 state: pause
-current: 692
-time: 50.509
+current: 1
+time: 152.69
 random: 0
 repeat: 0
 single: 0
@@ -708,4 +708,16 @@ playlist_begin
 691:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac
 692:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac
 693:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac
+694:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 01 LIGHTNING.flac
+695:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 02 START UP A RUMOUR.flac
+696:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 03 NERVOUS.flac
+697:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 04 CURIOUS (feat. Toro y Moi).flac
+698:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 05 DANGER!.flac
+699:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 06 ON&ON.flac
+700:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 07 LOVE ON ME.flac
+701:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 08 CLOUDS.flac
+702:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 09 RESTORE MY FAITH.flac
+703:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac
+704:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac
+705:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac
 playlist_end

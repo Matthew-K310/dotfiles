@@ -3,7 +3,7 @@
 (defun my/move-to-done-org ()
   "Move the current org heading to done.org under today's date."
   (interactive)
-  (let* ((done-file (expand-file-name "~/notes/done.org"))
+  (let* ((done-file (expand-file-name "~/org/done.org"))
          (today-heading (format-time-string "* %Y-%m-%d %A")))
 
     ;; First, mark the task as DONE if it's not already
