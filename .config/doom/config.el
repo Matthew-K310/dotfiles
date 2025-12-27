@@ -9,81 +9,6 @@
 ;; allow unlocking of GPG keys in mini-buffer
 (setq epg-pinentry-mode 'loopback)
 
-;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
-;; are the three important ones:
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)
-      doom-variable-pitch-font (font-spec :family "Alegreya" :size 18)
-      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 22))
-;;   presentations or streaming.
-;;
-;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
-;; font string. You generally only need these two:
-;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
-;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-
-(add-to-list 'custom-theme-load-path "~/.config/doom/themes/")
-;; Check the system type and load themes accordingly
-;; (cond
-;; ((eq system-type 'darwin)  ;; macOS
-;;  (load-theme 'compline t))      ;; Load Compline theme on macOS
-;; ((eq system-type 'gnu/linux)  ;; Linux
-;;  (load-theme 'ewal-spacemacs-modern t)))  ;; Load pywal theme on Linux
-(load-theme 'compline t)
-;; (load-theme 'lauds t)
-;; (load-theme 'doom-nord t)
-;; (load-theme 'catppuccin `relative)
-;; (setq catppuccin-flavor 'macchiato)
-
-;; Remove top frame bar in emacs
-(add-to-list 'default-frame-alist '(undecorated . t))
-
-;; Emacs statusline
-(setq doom-modeline-icon t)
-(setq doom-modeline-major-mode-icon t)
-(setq doom-modeline-lsp-icon t)
-(setq doom-modeline-major-mode-color-icon t)
-
-;; Setup custom splashscreen
-(defun glory-to-the-omnissiah ()
-  (let* ((banner '(
-                   "πππππππππππ=÷÷÷ππππππ÷÷××÷≠ππππππ÷÷÷÷÷÷÷÷÷÷×≠πππ"
-                   "ππππππππππ×÷÷÷÷÷√ππππ÷÷÷××÷πππππ√÷÷÷≠÷÷÷÷≠×÷≠πππ"
-                   "πππππππππππ÷÷÷×÷÷÷÷÷÷÷÷×÷÷×÷÷÷÷××÷×÷×÷≈÷≠÷×÷≠πππ"
-                   "ππππππππππππ÷×≠÷÷÷÷÷÷÷÷=÷×÷÷×÷×÷÷÷÷÷÷÷≠×=×××÷πππ"
-                   "πππ√÷÷∞πππ∞÷÷÷÷÷÷÷≠≠----+---≈×÷÷÷÷÷÷×÷×××÷×-÷√ππ"
-                   "ππ√÷÷÷÷÷÷÷÷×÷÷×≠-----÷÷××÷----÷-×÷÷÷×××××÷÷÷×≈ππ"
-                   "πππ×××÷÷≠÷÷÷÷≠-----÷-=÷÷==≠÷××-----÷÷-×÷××∞π÷≠ππ"
-                   "πππππ÷÷÷÷÷≠=---×-÷÷÷×÷=≠≠∞∞∞≠=×----÷=×-×-πππππππ"
-                   "ππππππ÷÷÷÷÷-----×--=≠÷≠÷÷÷∞≠=≠------÷----πππππππ"
-                   "πππππ√÷÷÷÷≠-×-÷=×-÷==×÷÷≈≈≈∞≈≠=------×-×-×ππππππ"
-                   "÷÷÷≠-××÷÷÷---÷-÷∞≠≠≈∞≠=≠≠≈≠≈≠≈≠×-----÷×-×--×××÷÷"
-                   "÷×÷×=≠≈÷÷×---×--≠=-×-≠-=≠≠-≈÷-÷÷×----÷×--÷÷-×××÷"
-                   "××--×××=÷÷----÷≈÷-≈π∞-≠÷÷------≠÷÷≠×-=×-××××-××="
-                   "πππππ√÷÷×÷=----×-÷-÷-÷--÷≈××÷÷≈≠≠----÷×-×-ππππππ"
-                   "ππππππ××=×÷----×---------÷=-×××-××---×-××√ππππππ"
-                   "πππππ×-×××÷----+---÷÷×-×=÷÷---=----÷--××××ππππππ"
-                   "πππ≠×÷÷×=×××÷=--------×÷≈≠÷----÷--÷×÷÷-×÷××-≠πππ"
-                   "πππ÷×××××××--×÷≈-------÷÷÷÷-×---÷÷××-×××××-×-πππ"
-                   "ππππ-×=πππ≈×××÷×××÷---------÷÷××÷××-÷ππππ---ππππ"
-                   "ππππππππππππ÷÷=÷×××÷÷÷×==×÷÷×××××÷÷÷ππππππππππππ"
-                   "πππππππππππ÷×=×××÷×=-×××××××÷÷×××÷÷÷∞πππππππππππ"
-                   "ππππππππππ÷÷××÷×∞πππ√×÷×××÷ππππ×=×-××πππππππππππ"
-                   "πππππππππππ÷×××ππππππ×××××∞πππππ√×××√πππππππππππ"
-                   ))
-         (longest-line (apply #'max (mapcar #'length banner))))
-    (put-text-property
-     (point)
-     (dolist (line banner (point))
-       (insert (+doom-dashboard--center
-                +doom-dashboard--width
-                (concat line (make-string (max 0 (- longest-line (length line))) 50)))
-               "\n"))
-     'face 'doom-dashboard-banner)))
-
-(setq +doom-dashboard-ascii-banner-fn #'glory-to-the-omnissiah)
-(add-hook! '+doom-dashboard-functions :append
-  (insert "\n" (+doom-dashboard--center +doom-dashboard--width "May the machine spirit be pleased by your work.")))
-
 ;; Relative line numbers
 (setq display-line-numbers-type `relative)
 
@@ -98,9 +23,7 @@
 
 ;; Set browser for opening links
 (setq browse-url-browser-function 'browse-url-generic)
-;; (setq browse-url-generic-program "chromium")
-(setq browse-url-generic-program "librewolf")
-;; (setq browse-url-generic-program "qutebrowser")
+(setq browse-url-generic-program "helium-browser")
 
 ;; Change focus highlight mode
 '((prog-mode . defun) (text-mode . paragraph))
@@ -112,6 +35,8 @@
 
 ;; nov.el settings
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
+(setq +latex-viewers '(pdf-tools))
 
 (load! "lisp/audio-record")
 (load! "lisp/change-fonts")
@@ -133,97 +58,6 @@
 (load! "lisp/weather")
 (load! "private/irc-config")
 (load! "private/mu4e-config")
-
-(setq treesit-language-source-alist
-      '((javascript "https://github.com/tree-sitter/tree-sitter-javascript")
-        (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "typescript/src")
-        (tsx        "https://github.com/tree-sitter/tree-sitter-typescript" "tsx/src")
-        (templ      "https://github.com/templ-go/tree-sitter-templ")
-        (html      "https://github.com/tree-sitter/tree-sitter-html")
-        (css      "https://github.com/tree-sitter/tree-sitter-css")
-        (rust      "https://github.com/tree-sitter/tree-sitter-rust")
-        (zig      "https://github.com/tree-sitter/zig-tree-sitter")
-        (c      "https://github.com/tree-sitter/tree-sitter-c")
-        (csharp      "https://github.com/tree-sitter/tree-sitter-c-sharp")
-        (php      "https://github.com/tree-sitter/tree-sitter-php")
-        (swift      "https://github.com/tree-sitter/swift-tree-sitter")
-        (ruby      "https://github.com/tree-sitter/tree-sitter-ruby")
-        (haskell      "https://github.com/tree-sitter/tree-sitter-haskell")
-        (go      "https://github.com/tree-sitter/tree-sitter-go")))
-
-(after! tree-sitter
-  (require 'tree-sitter-langs)
-  (add-to-list 'tree-sitter-major-mode-language-alist '(org-mode . go)))
-
-;; enable all analyzers; not done by default
-(after! lsp-mode
-  (setq  lsp-go-analyses '((fieldalignment . t)
-                           (nilness . t)
-                           (shadow . t)
-                           (unusedparams . t)
-                           (unusedwrite . t)
-                           (useany . t)
-                           (unusedvariable . t)))
-  )
-
-(use-package rustic
-  :ensure
-  :bind (:map rustic-mode-map
-              ("M-j" . lsp-ui-imenu)
-              ("M-?" . lsp-find-references)
-              ("C-c C-c l" . flycheck-list-errors)
-              ("C-c C-c a" . lsp-execute-code-action)
-              ("C-c C-c r" . lsp-rename)
-              ("C-c C-c q" . lsp-workspace-restart)
-              ("C-c C-c Q" . lsp-workspace-shutdown)
-              ("C-c C-c s" . lsp-rust-analyzer-status))
-  :config
-  ;; uncomment for less flashiness
-  ;; (setq lsp-eldoc-hook nil)
-  ;; (setq lsp-enable-symbol-highlighting nil)
-  ;; (setq lsp-signature-auto-activate nil)
-
-  ;; comment to disable rustfmt on save
-  (setq rustic-format-on-save t)
-  (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
-
-(defun rk/rustic-mode-hook ()
-  ;; so that run C-c C-c C-r works without having to confirm, but don't try to
-  ;; save rust buffers that are not file visiting. Once
-  ;; https://github.com/brotzeit/rustic/issues/253 has been resolved this should
-  ;; no longer be necessary.
-  (when buffer-file-name
-    (setq-local buffer-save-without-query t))
-  (add-hook 'before-save-hook 'lsp-format-buffer nil t))
-
-;; rust-analyzer integration
-(use-package lsp-mode
-  :ensure
-  :commands lsp
-  :custom
-  ;; what to use when checking on-save. "check" is default, I prefer clippy
-  (lsp-rust-analyzer-cargo-watch-command "clippy")
-  (lsp-eldoc-render-all t)
-  (lsp-idle-delay 0.3)
-  ;; enable / disable the hints as you prefer:
-  (lsp-inlay-hint-enable t)
-  ;; These are optional configurations. See https://emacs-lsp.github.io/lsp-mode/page/lsp-rust-analyzer/#lsp-rust-analyzer-display-chaining-hints for a full list
-  (lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial")
-  (lsp-rust-analyzer-display-chaining-hints t)
-  (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil)
-  (lsp-rust-analyzer-display-closure-return-type-hints t)
-  (lsp-rust-analyzer-display-parameter-hints nil)
-  (lsp-rust-analyzer-display-reborrow-hints nil)
-  :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
-
-(use-package lsp-ui
-  :ensure
-  :commands lsp-ui-mode
-  :custom
-  (lsp-ui-peek-always-show t)
-  (lsp-ui-sideline-show-hover t)
-  (lsp-ui-doc-enable nil))
 
 ;; Custom keymaps
 (map! :leader
@@ -342,6 +176,216 @@
   (define-key org-mode-map (kbd "C-c o") #'org-clock-out)
   (define-key org-mode-map (kbd "C-c b e") #'org-hugo-export-to-md))
 
+;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
+;; are the three important ones:
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)
+      doom-variable-pitch-font (font-spec :family "Alegreya" :size 18)
+      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 22))
+;;   presentations or streaming.
+;;
+;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
+;; font string. You generally only need these two:
+;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
+;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+
+(add-to-list 'custom-theme-load-path "~/.config/doom/themes/")
+;; Check the system type and load themes accordingly
+;; (cond
+;; ((eq system-type 'darwin)  ;; macOS
+;;  (load-theme 'compline t))      ;; Load Compline theme on macOS
+;; ((eq system-type 'gnu/linux)  ;; Linux
+;;  (load-theme 'ewal-spacemacs-modern t)))  ;; Load pywal theme on Linux
+(load-theme 'compline t)
+;; (load-theme 'lauds t)
+;; (load-theme 'doom-nord t)
+;; (load-theme 'catppuccin `relative)
+;; (setq catppuccin-flavor 'macchiato)
+
+;; Remove top frame bar in emacs
+(add-to-list 'default-frame-alist '(undecorated . t))
+
+;; Emacs statusline
+(setq doom-modeline-icon t)
+(setq doom-modeline-major-mode-icon t)
+(setq doom-modeline-lsp-icon t)
+(setq doom-modeline-major-mode-color-icon t)
+
+;; Setup custom splashscreen
+(defun glory-to-the-omnissiah ()
+  (let* ((banner '(
+                   "πππππππππππ=÷÷÷ππππππ÷÷××÷≠ππππππ÷÷÷÷÷÷÷÷÷÷×≠πππ"
+                   "ππππππππππ×÷÷÷÷÷√ππππ÷÷÷××÷πππππ√÷÷÷≠÷÷÷÷≠×÷≠πππ"
+                   "πππππππππππ÷÷÷×÷÷÷÷÷÷÷÷×÷÷×÷÷÷÷××÷×÷×÷≈÷≠÷×÷≠πππ"
+                   "ππππππππππππ÷×≠÷÷÷÷÷÷÷÷=÷×÷÷×÷×÷÷÷÷÷÷÷≠×=×××÷πππ"
+                   "πππ√÷÷∞πππ∞÷÷÷÷÷÷÷≠≠----+---≈×÷÷÷÷÷÷×÷×××÷×-÷√ππ"
+                   "ππ√÷÷÷÷÷÷÷÷×÷÷×≠-----÷÷××÷----÷-×÷÷÷×××××÷÷÷×≈ππ"
+                   "πππ×××÷÷≠÷÷÷÷≠-----÷-=÷÷==≠÷××-----÷÷-×÷××∞π÷≠ππ"
+                   "πππππ÷÷÷÷÷≠=---×-÷÷÷×÷=≠≠∞∞∞≠=×----÷=×-×-πππππππ"
+                   "ππππππ÷÷÷÷÷-----×--=≠÷≠÷÷÷∞≠=≠------÷----πππππππ"
+                   "πππππ√÷÷÷÷≠-×-÷=×-÷==×÷÷≈≈≈∞≈≠=------×-×-×ππππππ"
+                   "÷÷÷≠-××÷÷÷---÷-÷∞≠≠≈∞≠=≠≠≈≠≈≠≈≠×-----÷×-×--×××÷÷"
+                   "÷×÷×=≠≈÷÷×---×--≠=-×-≠-=≠≠-≈÷-÷÷×----÷×--÷÷-×××÷"
+                   "××--×××=÷÷----÷≈÷-≈π∞-≠÷÷------≠÷÷≠×-=×-××××-××="
+                   "πππππ√÷÷×÷=----×-÷-÷-÷--÷≈××÷÷≈≠≠----÷×-×-ππππππ"
+                   "ππππππ××=×÷----×---------÷=-×××-××---×-××√ππππππ"
+                   "πππππ×-×××÷----+---÷÷×-×=÷÷---=----÷--××××ππππππ"
+                   "πππ≠×÷÷×=×××÷=--------×÷≈≠÷----÷--÷×÷÷-×÷××-≠πππ"
+                   "πππ÷×××××××--×÷≈-------÷÷÷÷-×---÷÷××-×××××-×-πππ"
+                   "ππππ-×=πππ≈×××÷×××÷---------÷÷××÷××-÷ππππ---ππππ"
+                   "ππππππππππππ÷÷=÷×××÷÷÷×==×÷÷×××××÷÷÷ππππππππππππ"
+                   "πππππππππππ÷×=×××÷×=-×××××××÷÷×××÷÷÷∞πππππππππππ"
+                   "ππππππππππ÷÷××÷×∞πππ√×÷×××÷ππππ×=×-××πππππππππππ"
+                   "πππππππππππ÷×××ππππππ×××××∞πππππ√×××√πππππππππππ"
+                   ))
+         (longest-line (apply #'max (mapcar #'length banner))))
+    (put-text-property
+     (point)
+     (dolist (line banner (point))
+       (insert (+doom-dashboard--center
+                +doom-dashboard--width
+                (concat line (make-string (max 0 (- longest-line (length line))) 50)))
+               "\n"))
+     'face 'doom-dashboard-banner)))
+
+(setq +doom-dashboard-ascii-banner-fn #'glory-to-the-omnissiah)
+(add-hook! '+doom-dashboard-functions :append
+  (insert "\n" (+doom-dashboard--center +doom-dashboard--width "May the machine spirit be pleased by your work.")))
+
+(setq treesit-language-source-alist
+      '((javascript "https://github.com/tree-sitter/tree-sitter-javascript")
+        (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "typescript/src")
+        (tsx        "https://github.com/tree-sitter/tree-sitter-typescript" "tsx/src")
+        (templ      "https://github.com/templ-go/tree-sitter-templ")
+        (html      "https://github.com/tree-sitter/tree-sitter-html")
+        (css      "https://github.com/tree-sitter/tree-sitter-css")
+        (rust      "https://github.com/tree-sitter/tree-sitter-rust")
+        (zig      "https://github.com/tree-sitter/zig-tree-sitter")
+        (c      "https://github.com/tree-sitter/tree-sitter-c")
+        (csharp      "https://github.com/tree-sitter/tree-sitter-c-sharp")
+        (php      "https://github.com/tree-sitter/tree-sitter-php")
+        (swift      "https://github.com/tree-sitter/swift-tree-sitter")
+        (ruby      "https://github.com/tree-sitter/tree-sitter-ruby")
+        (haskell      "https://github.com/tree-sitter/tree-sitter-haskell")
+        (go      "https://github.com/tree-sitter/tree-sitter-go")))
+
+(after! tree-sitter
+  (require 'tree-sitter-langs)
+  (add-to-list 'tree-sitter-major-mode-language-alist '(org-mode . go)))
+
+;; enable all analyzers; not done by default
+(after! lsp-mode
+  (setq  lsp-go-analyses '((fieldalignment . t)
+                           (nilness . t)
+                           (shadow . t)
+                           (unusedparams . t)
+                           (unusedwrite . t)
+                           (useany . t)
+                           (unusedvariable . t)))
+  )
+
+(use-package rustic
+  :ensure
+  :bind (:map rustic-mode-map
+              ("M-j" . lsp-ui-imenu)
+              ("M-?" . lsp-find-references)
+              ("C-c C-c l" . flycheck-list-errors)
+              ("C-c C-c a" . lsp-execute-code-action)
+              ("C-c C-c r" . lsp-rename)
+              ("C-c C-c q" . lsp-workspace-restart)
+              ("C-c C-c Q" . lsp-workspace-shutdown)
+              ("C-c C-c s" . lsp-rust-analyzer-status))
+  :config
+  ;; uncomment for less flashiness
+  ;; (setq lsp-eldoc-hook nil)
+  ;; (setq lsp-enable-symbol-highlighting nil)
+  ;; (setq lsp-signature-auto-activate nil)
+
+  ;; comment to disable rustfmt on save
+  (setq rustic-format-on-save t)
+  (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
+
+(defun rk/rustic-mode-hook ()
+  ;; so that run C-c C-c C-r works without having to confirm, but don't try to
+  ;; save rust buffers that are not file visiting. Once
+  ;; https://github.com/brotzeit/rustic/issues/253 has been resolved this should
+  ;; no longer be necessary.
+  (when buffer-file-name
+    (setq-local buffer-save-without-query t))
+  (add-hook 'before-save-hook 'lsp-format-buffer nil t))
+
+;; rust-analyzer integration
+(use-package lsp-mode
+  :ensure
+  :commands lsp
+  :custom
+  ;; what to use when checking on-save. "check" is default, I prefer clippy
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
+  (lsp-eldoc-render-all t)
+  (lsp-idle-delay 0.3)
+  ;; enable / disable the hints as you prefer:
+  (lsp-inlay-hint-enable t)
+  ;; These are optional configurations. See https://emacs-lsp.github.io/lsp-mode/page/lsp-rust-analyzer/#lsp-rust-analyzer-display-chaining-hints for a full list
+  (lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial")
+  (lsp-rust-analyzer-display-chaining-hints t)
+  (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil)
+  (lsp-rust-analyzer-display-closure-return-type-hints t)
+  (lsp-rust-analyzer-display-parameter-hints nil)
+  (lsp-rust-analyzer-display-reborrow-hints nil)
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+(use-package lsp-ui
+  :ensure
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-doc-enable nil))
+
+(defun my-open-vterm-at-point ()
+  "Open vterm in the directory of the currently selected window's buffer.
+This function is designed to be called via `emacsclient -e`."
+  (interactive)
+  (let* ((selected-window (selected-window))
+         ;; Ensure selected-window is not nil before trying to get its buffer
+         (buffer-in-window (and selected-window (window-buffer selected-window)))
+         dir)
+
+    (when buffer-in-window
+      (setq dir
+            ;; Temporarily switch to the target buffer to evaluate its context
+            (with-current-buffer buffer-in-window
+              (cond ((buffer-file-name buffer-in-window)
+                     (file-name-directory (buffer-file-name buffer-in-window)))
+                    ((and (eq major-mode 'dired-mode)
+                          (dired-current-directory))
+                     (dired-current-directory))
+                    (t default-directory)))))
+
+    ;; Fallback to the server's default-directory if no specific directory was found
+    (unless dir (setq dir default-directory))
+
+    (message "Opening vterm in directory: %s" dir) ; For debugging, check *Messages* buffer
+
+    ;; Now, crucially, set 'default-directory' for the vterm call itself
+    (let ((default-directory dir))
+      ;; Call the plain 'vterm' function, which should respect 'default-directory'.
+      ;; We are *not* passing 'dir' as an argument to 'vterm' here,
+      ;; as it's often designed to pick up the current 'default-directory'.
+      (vterm))))
+
+(defun my/new-frame-with-vterm ()
+  "Create a new frame and immediately open vterm in it."
+  (interactive)
+  (require 'vterm)
+  (let ((new-frame (make-frame '((explicit-vterm . t)))))
+    (select-frame new-frame)
+    (delete-other-windows)
+    ;; vterm creates and switches to the buffer, but returns nil
+    (vterm (format "*vterm-%s*" (frame-parameter new-frame 'name)))
+    ;; Now current-buffer is the vterm buffer
+    (delete-other-windows)))
+
 (require 'org)
 
 ;; If you use `org' and don't want your org files in the default location below,
@@ -422,15 +466,11 @@ Comments:
 ;; Prevent clock from stopping when marking subtasks as done
 (setq org-clock-out-when-done nil)
 
-;; Alternative: Auto-archive when marking as DONE
 (defun my/auto-archive-done-tasks ()
   "Automatically archive task when marked as DONE."
   (when (and (string= org-state "DONE")
              (not (org-is-habit-p)))
     (my/move-to-done-org)))
-
-;; Uncomment to enable auto-archiving on DONE
-;; (add-hook 'org-after-todo-state-change-hook 'my/auto-archive-done-tasks)
 
 ;; Add frame borders and window dividers
 ;; Option 1: Per buffer
@@ -485,143 +525,6 @@ Comments:
   ;; `denote-rename-buffer-format' for how to modify this.
   (denote-rename-buffer-mode 1))
 
-(setq org-agenda-files
-      '("~/org/inbox.org"
-        "~/org/todo.org"
-        "~/org/habits.org"
-        "~/org/projects.org"
-        "~/org/agenda.org"
-        "~/org/calendar.org"))
-
-(setq org-tag-alist '(("inbox" . ?i)))
-
-(setq org-agenda-custom-commands
-      '(("g" "Get Things Done (GTD)"
-         ((agenda ""
-                  ((org-agenda-skip-function
-                    '(org-agenda-skip-entry-if 'deadline))
-                   (org-deadline-warning-days 0)))
-          (todo "NEXT"
-                ((org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'deadline))
-                 (org-agenda-prefix-format "  %?-12t% s")
-                 (org-agenda-overriding-header "\nUp Next\n")))
-          (tags-todo "inbox"
-                     ((org-agenda-prefix-format "  %?-12t% s")
-                      (org-agenda-overriding-header "\nInbox\n")))
-          (agenda ""
-                  ((org-agenda-overriding-header "\nDeadlines")
-                   (org-agenda-entry-types '(:deadline))
-                   (org-agenda-format-date "%A, %B %d")
-                   (org-deadline-warning-days 7)))
-          (tags "CLOSED>=\"<today>\""
-                ((org-agenda-overriding-header "\nCompleted today\n")))))
-
-        ("w" "Weekly Review"
-         ((agenda ""
-                  ((org-agenda-span 7)
-                   (org-agenda-overriding-header "Calendar (next 7 days)")))
-          (tags-todo "inbox"
-                     ((org-agenda-overriding-header "Inbox (unprocessed)")))
-          (todo "NEXT"
-                ((org-agenda-overriding-header "Next Actions")))
-          (todo "TODO"
-                ((org-agenda-overriding-header "Backlog")
-                 (org-agenda-files
-                  (cl-remove-if (lambda (f)
-                                  (string-match-p "habits\\.org$" f))
-                                org-agenda-files))))
-          (todo "WAIT"
-                ((org-agenda-overriding-header "Blocked / Waiting")))))))
-
-;; Mark tasks with a CLOSED timestamp on DONE
-(after! org
-  (setq org-log-done 'time)
-
-  ;; Capture templates
-  (after! org
-    ;; Automatically resume previous task when clocking out
-    (setq org-clock-out-resume t)
-
-    (setq org-capture-templates
-          '(("t" "Todo" entry
-             (file+headline "~/org/inbox.org" "Todo")
-             "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?" :prepend t)
-
-            ("e" "Event" entry
-             (file+headline "~/org/calendar.org" "Events")
-             "* %^{Event}\nSCHEDULED: %^T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
-
-            ("d" "Deadline" entry
-             (file+headline "~/org/calendar.org" "Deadlines")
-             "* NEXT %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
-
-            ("b" "Box capture" entry
-             (file+headline "~/org/inbox.org" "Inbox")
-             "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?" :prepend t)
-            
-            ("n" "New note (with Denote)" plain
-             (file denote-last-path)
-             #'denote-org-capture
-             :no-save t
-             :immediate-finish nil
-             :kill-buffer t
-             :jump-to-captured t)
-            
-            ("l" "TIL" entry
-             (file+headline "~/org/TIL.org" "TIL")
-             "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?" :prepend t)
-
-            ("p" "Project" entry
-             (file+headline "~/org/projects.org" "Projects")
-             "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:END:\n** TODO %?")
-
-            ("c" "Contact" entry
-             (file+headline "~/org/contacts.org" "Contacts")
-             "* %^{Name}
-
-:PROPERTIES:
-:CREATED: %U
-:EMAIL: %^{Email}
-:PHONE: %^{Phone}
-:BIRTHDAY: %^{Birthday +1y}u
-:LOCATION: %^{Address}
-:END:
-%?"))))
-
-  (defun org-capture-bookmark-tags ()
-    "Get tags from existing bookmarks and prompt for tags with completion."
-    (save-window-excursion
-      (let ((tags-list '()))
-        ;; Collect existing tags
-        (with-current-buffer (find-file-noselect "~/org/bookmarks.org")
-          (save-excursion
-            (goto-char (point-min))
-            (while (re-search-forward "^:TAGS:\\s-*\\(.+\\)$" nil t)
-              (let ((tag-string (match-string 1)))
-                (dolist (tag (split-string tag-string "[,;]" t "[[:space:]]"))
-                  (push (string-trim tag) tags-list))))))
-        ;; Remove duplicates and sort
-        (setq tags-list (sort (delete-dups tags-list) 'string<))
-        ;; Prompt user with completion
-        (let ((selected-tags (completing-read-multiple "Tags (comma-separated): " tags-list)))
-          ;; Return as a comma-separated string
-          (mapconcat 'identity selected-tags ", ")))))
-
-  ;; Helper function to select and link a contact
-  (defun org-capture-ref-link (file)
-    "Create a link to a contact in contacts.org"
-    (let* ((headlines (org-map-entries
-                       (lambda ()
-                         (cons (org-get-heading t t t t)
-                               (org-id-get-create)))
-                       t
-                       (list file)))
-           (contact (completing-read "Contact: "
-                                     (mapcar #'car headlines)))
-           (id (cdr (assoc contact headlines))))
-      (format "[[id:%s][%s]]" id contact))))
-
 (defun thanos/wtype-text (text)
   "Process TEXT for wtype, handling newlines properly."
   (let* ((has-final-newline (string-match-p "\n$" text))
@@ -674,6 +577,145 @@ Comments:
       ;; Make the frame more temporary-like
       (set-frame-parameter frame 'delete-before-kill-buffer t)
       (set-window-dedicated-p (selected-window) t))))
+
+(setq org-agenda-files
+      '("~/org/inbox.org"
+        "~/org/todo.org"
+        "~/org/habits.org"
+        "~/org/projects.org"
+        "~/org/agenda.org"
+        "~/org/calendar.org"))
+
+(setq org-tag-alist '(("inbox" . ?i)))
+
+(setq org-agenda-custom-commands
+      '(("g" "Get Things Done (GTD)"
+         ((agenda ""
+                  ((org-agenda-skip-function
+                    '(org-agenda-skip-entry-if 'deadline))
+                   (org-deadline-warning-days 0)))
+          (todo "NEXT"
+                ((org-agenda-skip-function
+                  '(org-agenda-skip-entry-if 'deadline))
+                 (org-agenda-prefix-format "  %?-12t% s")
+                 (org-agenda-overriding-header "\nUp Next\n")))
+          (tags-todo "inbox"
+                     ((org-agenda-prefix-format "  %?-12t% s")
+                      (org-agenda-overriding-header "\nInbox\n")))
+          (agenda ""
+                  ((org-agenda-overriding-header "\nDeadlines")
+                   (org-agenda-entry-types '(:deadline))
+                   (org-agenda-format-date "%A, %B %d")
+                   (org-deadline-warning-days 7)))
+          (tags "CLOSED>=\"<today>\""
+                ((org-agenda-overriding-header "\nCompleted today\n")))))
+
+        ("w" "Weekly Review"
+         ((agenda ""
+                  ((org-agenda-span 7)
+                   (org-agenda-overriding-header "Calendar (next 7 days)")))
+          (tags-todo "inbox"
+                     ((org-agenda-overriding-header "Inbox (unprocessed)")))
+          (todo "NEXT"
+                ((org-agenda-overriding-header "Next Actions")))
+          (todo "TODO"
+                ((org-agenda-overriding-header "Backlog")
+                 (org-agenda-files
+                  (cl-remove-if (lambda (f)
+                                  (string-match-p "habits\\.org$" f))
+                                org-agenda-files))))
+          (todo "WAIT"
+                ((org-agenda-overriding-header "Blocked / Waiting")))))))
+
+(after! org
+  (setq org-log-done 'time)
+  ;; Automatically resume previous task when clocking out
+  (setq org-clock-out-resume t)
+  
+  ;; Capture templates
+  (setq org-capture-templates
+        '(("t" "Todo" entry
+           (file+headline "~/org/inbox.org" "Todo")
+           "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?" :prepend t)
+          ("e" "Event" entry
+           (file+headline "~/org/calendar.org" "Events")
+           "* %^{Event}\nSCHEDULED: %^T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
+          ("d" "Deadline" entry
+           (file+headline "~/org/calendar.org" "Deadlines")
+           "* NEXT %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:END:\n%?")
+          ("p" "Project" entry
+           (file+headline "~/org/projects.org" "Projects")
+           "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:END:\n** TODO %?")
+          ("c" "Contact" entry
+           (file+headline "~/org/contacts.org" "Contacts")
+           "* %^{Name}
+:PROPERTIES:
+:CREATED: %U
+:EMAIL: %^{Email}
+:PHONE: %^{Phone}
+:BIRTHDAY: %^{Birthday +1y}u
+:LOCATION: %^{Address}
+:END:
+%?")
+          ("i" "Inbox Capture" entry
+           (file+headline "~/org/inbox.org" "Capture")
+           "* %^{Note}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?" :prepend t)
+          ("n" "New Note" plain
+           (file denote-last-path)
+           #'denote-org-capture
+           :no-save t
+           :immediate-finish nil
+           :kill-buffer t
+           :jump-to-captured t))))
+
+(after! org
+  
+
+  (defun org-capture-bookmark-tags ()
+    "Get tags from existing bookmarks and prompt for tags with completion."
+    (save-window-excursion
+      (let ((tags-list '()))
+        ;; Collect existing tags
+        (with-current-buffer (find-file-noselect "~/org/bookmarks.org")
+          (save-excursion
+            (goto-char (point-min))
+            (while (re-search-forward "^:TAGS:\\s-*\\(.+\\)$" nil t)
+              (let ((tag-string (match-string 1)))
+                (dolist (tag (split-string tag-string "[,;]" t "[[:space:]]"))
+                  (push (string-trim tag) tags-list))))))
+        ;; Remove duplicates and sort
+        (setq tags-list (sort (delete-dups tags-list) 'string<))
+        ;; Prompt user with completion
+        (let ((selected-tags (completing-read-multiple "Tags (comma-separated): " tags-list)))
+          ;; Return as a comma-separated string
+          (mapconcat 'identity selected-tags ", ")))))
+
+  ;; Helper function to select and link a contact
+  (defun org-capture-ref-link (file)
+    "Create a link to a contact in contacts.org"
+    (let* ((headlines (org-map-entries
+                       (lambda ()
+                         (cons (org-get-heading t t t t)
+                               (org-id-get-create)))
+                       t
+                       (list file)))
+           (contact (completing-read "Contact: "
+                                     (mapcar #'car headlines)))
+           (id (cdr (assoc contact headlines))))
+      (format "[[id:%s][%s]]" id contact)))))
+
+(use-package inhibit-mouse
+  :custom
+  ;; Disable highlighting of clickable text such as URLs and hyperlinks when hovered.
+  (inhibit-mouse-adjust-mouse-highlight t)
+
+  ;; Disable tooltips (show-help-function) during mouse events.
+  (inhibit-mouse-adjust-show-help-function t)
+
+  :config
+  ;; Enable in both daemon and normal sessions
+  (add-hook 'after-init-hook #'inhibit-mouse-mode)
+  (add-hook 'server-after-make-frame-hook #'inhibit-mouse-mode))
 
 (use-package! elfeed
   :commands (elfeed)
@@ -773,63 +815,6 @@ Comments:
          :map elfeed-search-mode-map
          ("F" . elfeed-tube-fetch)
          ([remap save-buffer] . elfeed-tube-save)))
-
-(use-package inhibit-mouse
-  :custom
-  ;; Disable highlighting of clickable text such as URLs and hyperlinks when hovered.
-  (inhibit-mouse-adjust-mouse-highlight t)
-
-  ;; Disable tooltips (show-help-function) during mouse events.
-  (inhibit-mouse-adjust-show-help-function t)
-
-  :config
-  ;; Enable in both daemon and normal sessions
-  (add-hook 'after-init-hook #'inhibit-mouse-mode)
-  (add-hook 'server-after-make-frame-hook #'inhibit-mouse-mode))
-
-(defun my-open-vterm-at-point ()
-  "Open vterm in the directory of the currently selected window's buffer.
-This function is designed to be called via `emacsclient -e`."
-  (interactive)
-  (let* ((selected-window (selected-window))
-         ;; Ensure selected-window is not nil before trying to get its buffer
-         (buffer-in-window (and selected-window (window-buffer selected-window)))
-         dir)
-
-    (when buffer-in-window
-      (setq dir
-            ;; Temporarily switch to the target buffer to evaluate its context
-            (with-current-buffer buffer-in-window
-              (cond ((buffer-file-name buffer-in-window)
-                     (file-name-directory (buffer-file-name buffer-in-window)))
-                    ((and (eq major-mode 'dired-mode)
-                          (dired-current-directory))
-                     (dired-current-directory))
-                    (t default-directory)))))
-
-    ;; Fallback to the server's default-directory if no specific directory was found
-    (unless dir (setq dir default-directory))
-
-    (message "Opening vterm in directory: %s" dir) ; For debugging, check *Messages* buffer
-
-    ;; Now, crucially, set 'default-directory' for the vterm call itself
-    (let ((default-directory dir))
-      ;; Call the plain 'vterm' function, which should respect 'default-directory'.
-      ;; We are *not* passing 'dir' as an argument to 'vterm' here,
-      ;; as it's often designed to pick up the current 'default-directory'.
-      (vterm))))
-
-(defun my/new-frame-with-vterm ()
-  "Create a new frame and immediately open vterm in it."
-  (interactive)
-  (require 'vterm)
-  (let ((new-frame (make-frame '((explicit-vterm . t)))))
-    (select-frame new-frame)
-    (delete-other-windows)
-    ;; vterm creates and switches to the buffer, but returns nil
-    (vterm (format "*vterm-%s*" (frame-parameter new-frame 'name)))
-    ;; Now current-buffer is the vterm buffer
-    (delete-other-windows)))
 
 ;; EMMS full configuration with Nord theme, centered layout, and swaync notifications
 (use-package! emms

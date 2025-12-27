@@ -2,9 +2,9 @@ sw_volume: 100
 audio_device_state:1:PipeWire Audio
 audio_device_state:1:album_art
 audio_device_state:1:HTTP Stream
-state: pause
-current: 727
-time: 134.931
+state: play
+current: 795
+time: 120.09100000000001
 random: 0
 repeat: 0
 single: 0
@@ -779,4 +779,37 @@ playlist_begin
 762:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 44 Creative Mode Trailer - 2016.flac
 763:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 45 Feature Trailer - 2020.flac
 764:Lo-Phi - Vintage Story OST/Lo-Phi - Vintage Story OST - 46 Feature Trailer - 2022.flac
+765:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 01 Imaginary countries.flac
+766:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 02 Dreams must explain themselves.flac
+767:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 03 Very far away from anywhere else.flac
+768:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 04 The farthest shore.flac
+769:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 05 The unreal and the real.flac
+770:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 06 The word for world is forest.flac
+771:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 07 Dancing at the edge of the world.flac
+772:Jay Hosking - Not even a poet can speak the whole truth/Jay Hosking - Not even a poet can speak the whole truth - 08 Always coming home.flac
+773:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 01 This Version Of You (feat. Julianna Barwick).flac
+774:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 02 Wide Awake (feat. Charlie Houston).flac
+775:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 03 Love Letter (feat. The Knocks).flac
+776:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 04 Behind The Sun.flac
+777:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 05 Forgive Me (feat. Izzy Bizu).flac
+778:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 06 North Garden.flac
+779:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 07 Better Now (feat. MARO).flac
+780:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 08 The Last Goodbye (feat. Bettye LaVette).flac
+781:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 09 All My Life.flac
+782:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 10 Equal (feat. Låpsley).flac
+783:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 11 Healing Grid.flac
+784:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 12 I Can’t Sleep.flac
+785:ODESZA - The Last Goodbye/ODESZA - The Last Goodbye - 13 Light Of Day (feat. Ólafur Arnalds).flac
+786:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 01 LIGHTNING.flac
+787:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 02 START UP A RUMOUR.flac
+788:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 03 NERVOUS.flac
+789:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 04 CURIOUS (feat. Toro y Moi).flac
+790:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 05 DANGER!.flac
+791:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 06 ON&ON.flac
+792:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 07 LOVE ON ME.flac
+793:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 08 CLOUDS.flac
+794:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 09 RESTORE MY FAITH.flac
+795:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac
+796:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac
+797:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac
 playlist_end
