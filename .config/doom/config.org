@@ -13,7 +13,6 @@
 
 ;; allow unlocking of GPG keys in mini-buffer
 (setq epg-pinentry-mode 'loopback)
-
 #+end_src
 
 * Core configuration

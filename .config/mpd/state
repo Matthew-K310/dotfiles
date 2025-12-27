@@ -2,9 +2,9 @@ sw_volume: 100
 audio_device_state:1:PipeWire Audio
 audio_device_state:1:album_art
 audio_device_state:1:HTTP Stream
-state: play
-current: 797
-time: 120.09100000000001
+state: pause
+current: 801
+time: 138.764
 random: 0
 repeat: 0
 single: 0
@@ -812,4 +812,14 @@ playlist_begin
 795:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 10 SCAR ⧸ A NEW VOID.flac
 796:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 11 DON'T TRY.flac
 797:Sam Gellaitry - ANYWHERE HERE IS PERFECT/Sam Gellaitry - ANYWHERE HERE IS PERFECT - 12 YOU MIGHT FIND THE ONE.flac
+798:The Prodigy - The Fat of the Land/05. Serial Thrilla.flac
+799:The Prodigy - The Fat of the Land/09. Climbatize.flac
+800:The Prodigy - The Fat of the Land/10. Fuel My Fire.flac
+801:Jay Hosking - Hoser/Jay Hosking - Hoser - 01 Tracker.flac
+802:Jay Hosking - Hoser/Jay Hosking - Hoser - 02 Deluge.flac
+803:Jay Hosking - Hoser/Jay Hosking - Hoser - 03 Scrooge.flac
+804:Jay Hosking - Hoser/Jay Hosking - Hoser - 04 Press.flac
+805:Jay Hosking - Hoser/Jay Hosking - Hoser - 05 XY.flac
+806:Jay Hosking - Hoser/Jay Hosking - Hoser - 07 Chips.flac
+807:Jay Hosking - Hoser/Jay Hosking - Hoser - 08 Cathedral revisited.flac
 playlist_end
